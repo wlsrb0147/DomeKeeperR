@@ -6,8 +6,16 @@ using UnityEngine.Tilemaps;
 
 public class S_MapGenerator : MonoBehaviour
 {
-    [SerializeField] Vector2Int mapSize;
+    public Vector3Int cellPosition;
 
+    public GameObject mineral;
+
+    [Header("MapStatus")]
+    [SerializeField] Vector2Int mapSize;
+    [SerializeField] float mineralXoffeset;
+    [SerializeField] float mineralYoffeset;
+
+    [Header("Tile")]
     [SerializeField] Tilemap tileMap;
     [SerializeField] Tile mineralTile;
     [SerializeField] Tile GroundTile;
@@ -18,13 +26,9 @@ public class S_MapGenerator : MonoBehaviour
     [SerializeField] Tile rightCornerTile;
     [SerializeField] Tile leftCornerTile;
 
-    public Vector3Int cellPosition;
-
-
     void Start()
     {
         tileMap = GetComponent<Tilemap>();
-
         FillBackground();
     }
 
@@ -39,7 +43,12 @@ public class S_MapGenerator : MonoBehaviour
                 int rnd = Random.Range(0, 100);
 
                 if (rnd >= 0 && rnd < 6)
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
+                {
+                    //tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
+                    var mine = Instantiate(mineral, tileMap.transform);
+                    mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
+                }
+
                 else
                     tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile);
             }
@@ -50,20 +59,22 @@ public class S_MapGenerator : MonoBehaviour
     {
         if (tileMap.GetTile(cellPosition) == null) //현재타일이 null이면
         {
-            /*for (int x = -1; x < 1; x++)
-            {
-                for (int y = -1; y <1; y++)
-                {
-                    Vector3Int checkTilePos = new Vector3Int(cellPosition.x+x, cellPosition.y+y, 0);
+            /* for (int x = -1; x < 1; x++)
+             {
+                 for (int y = -1; y < 1; y++)
+                 {
+                     Vector3Int checkTilePos = new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0);
 
-                    if(x == 0 && y == 0) { continue; }
+                     if (x == 0 && y == 0) { continue; }
 
-                    if (tileMap.GetTile(checkTilePos) != null)
-                    {
-                        //if (tileMap.GetTile(checkTilePos.x, checkTilePos.y, 0) ==null)
-                          //  tileMap.SetTile(new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0), rightCornerTile);
-                    }*/
+                     if (tileMap.GetTile(checkTilePos) != null)
+                     {
+                         if (tileMap.GetTile(new Vector3Int(cellPosition.x + x+1, cellPosition.y + y, 0)) == null)
+                             tileMap.SetTile(new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0), rightCornerTile);
+                     }
 
+                  }
+              }*/
             if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0)) != null) //오른쪽 타일 체크
                 tileMap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), leftWallTile);
             if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0)) != null) //왼쪽 타일 체크
@@ -73,8 +84,6 @@ public class S_MapGenerator : MonoBehaviour
             if (tileMap.GetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0)) != null) //아래 타일 체크
                 tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0), topTile);
         }
-            /*}
-        }*/
     }
 
     public void MakeDot(Vector3 Pos)
