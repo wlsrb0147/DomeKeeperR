@@ -9,6 +9,7 @@ public class M_State
     protected M_StateMachine stateMachine;
     string aniBoolName;
 
+
     public M_State(M_Base @base, M_StateMachine stateMachine,string aniboolname)
     {
         this.m_base = @base;
@@ -18,7 +19,7 @@ public class M_State
 
     public virtual void Enter()
     {
-
+        m_base.ani.SetBool(aniBoolName, true);
     }
     public virtual void Update()
     {
@@ -26,6 +27,6 @@ public class M_State
     }
     public virtual void Exit()
     {
-
+        m_base.ani.SetBool(aniBoolName,false);
     }
 }
