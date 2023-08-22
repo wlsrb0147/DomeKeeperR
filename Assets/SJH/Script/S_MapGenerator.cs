@@ -59,42 +59,63 @@ public class S_MapGenerator : MonoBehaviour
     {
         if (tileMap.GetTile(cellPosition) == null) //현재타일이 null이면
         {
-            /* for (int x = -1; x < 1; x++)
-             {
-                 for (int y = -1; y < 1; y++)
-                 {
-                     Vector3Int checkTilePos = new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0);
+            for (int x = -1; x < 1; x++)
+            {
+                for (int y = -1; y < 1; y++)
+                {
+                    Vector3Int checkTilePos = new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0);
 
-                     if (x == 0 && y == 0) { continue; }
+                    if (x == 0 && y == 0) { continue; }
 
-                     if (tileMap.GetTile(checkTilePos) != null)
-                     {
-                         if (tileMap.GetTile(new Vector3Int(cellPosition.x + x+1, cellPosition.y + y, 0)) == null)
-                             tileMap.SetTile(new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0), rightCornerTile);
-                     }
+                    if (tileMap.GetTile(checkTilePos) != null)
+                    {
+                        for (int _x = -1; _x < 1; _x++)
+                        {
+                            for (int _y = -1; _y < 1; _y++)
+                            {
+                                if (tileMap.GetTile(new Vector3Int(checkTilePos.x + _x, checkTilePos.y + _y, 0)) == null)
+                                {
+                                    if ((_x == -1 || _y == 0) && (_x == 0 || _y == -1))
+                                    {
+                                        Debug.Log("aaa");
+                                        tileMap.SetTile(new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0), leftCornerTile);
+                                    }
+                                    else if ((_x == 1 && _y == 0) && (_x == 0 && _y == -1))
+                                    {
+                                        tileMap.SetTile(new Vector3Int(cellPosition.x + x, cellPosition.y + y, 0), rightCornerTile);
 
-                  }
-              }*/
-            if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0)) != null) //오른쪽 타일 체크
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            /*if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0)) != null) //오른쪽 타일 체크
                 tileMap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), leftWallTile);
             if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0)) != null) //왼쪽 타일 체크
                 tileMap.SetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0), rightWallTile);
             if (tileMap.GetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0)) != null)//위 타일 체크
             {
-                if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y + 1, 0)) == null)
+                if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y + 1, 0)) == null
+                    && tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y + 1, 0)) != mineral)
                 {
                     tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), leftCornerTile);
                 }
 
-                else if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0)) == null)
+                else if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0)) == null
+                    && tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0)) != mineral)
                 {
                     tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), rightCornerTile);
                 }
-                else if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y - 1, 0)) == null)
+                else if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y - 1, 0)) == null
+                    && tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y - 1, 0)) != mineral)
                 {
                     tileMap.SetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0), rightCornerTile);
                 }
-                else if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y - 1, 0)) == null)
+                else if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y - 1, 0)) == null
+                    && tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y - 1, 0)) != mineral)
                 {
                     tileMap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), leftCornerTile);
                 }
@@ -102,7 +123,7 @@ public class S_MapGenerator : MonoBehaviour
                     tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), downTile);
             }
             if (tileMap.GetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0)) != null) //아래 타일 체크
-                tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0), topTile);
+                tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0), topTile);*/
         }
     }
 
