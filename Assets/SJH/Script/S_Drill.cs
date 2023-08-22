@@ -5,16 +5,38 @@ using UnityEngine;
 
 public class S_Drill : MonoBehaviour
 {
-    public LayerMask wahtisGround;
-    public Transform drillPos;
+    [SerializeField] float damage;
+    [SerializeField] LayerMask wahtisGround;
+    [SerializeField] LayerMask wahtisMIneral;
+    [SerializeField] Transform drillPos;
 
+    S_Mineral mineral;
+    private void Start()
+    {
+        mineral = GetComponent<S_Mineral>();
+    }
     void Dig()
     {
-        Collider2D overCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);
+        Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);
+        Collider2D mineralCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisMIneral);
 
-        if (overCollider2d != null)
+        if (groundCollider2d != null)
         {
-            overCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(drillPos.position);
+            groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(drillPos.position);
+        }
+        else if(mineralCollider2d != null)
+        {
+            mineralCollider2d.transform.GetComponent<S_Mineral>().SetDamage(damage);
         }
     }
+  /*  private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Mineral"))
+        {
+            mineral.SetDamage(damage);
+        }
+    }*/
+
+    
+
 }
