@@ -4,5 +4,4 @@ using UnityEngine;
 
 public class Pet_Mine : MonoBehaviour
 {
-    
 }

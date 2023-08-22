@@ -17,6 +17,7 @@ public class S_Mineral : MonoBehaviour
         {
             Hp = 0;
             Destroy(gameObject);
+            
         }
     }
     public void SetDamage(float damage)
