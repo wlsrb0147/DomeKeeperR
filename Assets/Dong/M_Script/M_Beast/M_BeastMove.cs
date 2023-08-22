@@ -33,7 +33,7 @@ public class M_BeastMove : M_State
         }
         else if (Vector2.Distance(beast.domeCenter.position, beast.transform.position) <= 5)
         {
-
+            
         }
 
         else beast.SetVelocity(5, 0);
