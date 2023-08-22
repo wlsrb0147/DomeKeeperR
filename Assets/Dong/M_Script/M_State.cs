@@ -19,6 +19,7 @@ public class M_State
 
     public virtual void Enter()
     {
+        Debug.Log("Enter" + aniBoolName);
         m_base.ani.SetBool(aniBoolName, true);
     }
     public virtual void Update()
@@ -27,6 +28,7 @@ public class M_State
     }
     public virtual void Exit()
     {
+        Debug.Log("Exit" + aniBoolName);
         m_base.ani.SetBool(aniBoolName,false);
     }
 }

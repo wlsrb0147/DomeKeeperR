@@ -27,8 +27,12 @@ public class M_BeastHowling : M_State
 
     }
 
-    void go()
+    public void go()
     {
-        beast.transform.Translate(Vector2.right);
+        beast.HowlOn();
+
+        //stateMachine.ChangeState(beast.move);
+        //Debug.Log("aa");
+        // 여기적으면 실행이안됨
     }
 }
