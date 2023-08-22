@@ -79,8 +79,28 @@ public class S_MapGenerator : MonoBehaviour
                 tileMap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), leftWallTile);
             if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0)) != null) //왼쪽 타일 체크
                 tileMap.SetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0), rightWallTile);
-            if (tileMap.GetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0)) != null) //위 타일 체크
-                tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), downTile);
+            if (tileMap.GetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0)) != null)//위 타일 체크
+            {
+                if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y + 1, 0)) == null)
+                {
+                    tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), leftCornerTile);
+                }
+
+                else if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y + 1, 0)) == null)
+                {
+                    tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), rightCornerTile);
+                }
+                else if (tileMap.GetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y - 1, 0)) == null)
+                {
+                    tileMap.SetTile(new Vector3Int(cellPosition.x - 1, cellPosition.y, 0), rightCornerTile);
+                }
+                else if (tileMap.GetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y - 1, 0)) == null)
+                {
+                    tileMap.SetTile(new Vector3Int(cellPosition.x + 1, cellPosition.y, 0), leftCornerTile);
+                }
+                else
+                    tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y + 1, 0), downTile);
+            }
             if (tileMap.GetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0)) != null) //아래 타일 체크
                 tileMap.SetTile(new Vector3Int(cellPosition.x, cellPosition.y - 1, 0), topTile);
         }

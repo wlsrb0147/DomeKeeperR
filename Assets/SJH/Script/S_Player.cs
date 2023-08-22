@@ -5,18 +5,21 @@ using UnityEngine.XR;
 
 public class S_Player : MonoBehaviour
 {
-    public float Speed = 1f;
-    public float jumpForce = 5f;
+    [SerializeField] float Speed = 1f;
+    [SerializeField] float jumpForce = 5f;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject drill;
+   
+    SpriteRenderer spriteRender;
     Rigidbody2D rigid;
     Animator anim;
-    SpriteRenderer spriteRender;
-    public GameObject player;
-    public GameObject drill;
 
+    Vector3 mousePosition;
 
 
     void Start()
     {
+
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
@@ -24,13 +27,16 @@ public class S_Player : MonoBehaviour
 
     void Update()
     {
+
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
 
 
         if (Input.GetKey(KeyCode.Space))
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, yInput*jumpForce);
+            rigid.velocity = new Vector2(rigid.velocity.x, yInput * jumpForce);
         }
         else
             rigid.velocity = new Vector2(xInput * Speed, rigid.velocity.y);
@@ -51,11 +57,22 @@ public class S_Player : MonoBehaviour
         else
             anim.SetBool("move", false);
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
+        {
             drill.SetActive(true);
-        else
-            drill.SetActive(false);
+            anim.SetBool("dig", true);
 
+            if (mousePosition.x > transform.position.x)
+                spriteRender.flipX = true;
+            else
+                spriteRender.flipX = false;
+        
+        }
+        else
+        {
+            drill.SetActive(false);
+            anim.SetBool("dig", false);
+        }
     }
 
 }
