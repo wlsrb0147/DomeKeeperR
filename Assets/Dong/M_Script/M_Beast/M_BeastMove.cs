@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M_BeastMove : M_State
@@ -25,20 +26,20 @@ public class M_BeastMove : M_State
     {
         base.Update();
 
-
-        if (Vector2.Distance(beast.domeCenter.position, beast.transform.position) <= 15 && beast.howl == false)
+        if (Vector2.Distance(beast.domeCenter.position, beast.transform.position) <= beast.howlX && beast.howl == false)
         {
-            beast.SetVelocity(0, 0);
             stateMachine.ChangeState(beast.howling);
         }
-        else if (Vector2.Distance(beast.domeCenter.position, beast.transform.position) <= 5)
+
+        else if (Vector2.Distance(beast.domeCenter.position, beast.transform.position) <= beast.JumpX)
         {
-            
+            beast.SetVelocity(0, 0);
+            stateMachine.ChangeState(beast.jump);
         }
-
-        else beast.SetVelocity(5, 0);
-
-
+        else
+        {
+            beast.SetVelocity(beast.movingSpeed, 0);
+        }
 
     }
 }

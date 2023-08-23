@@ -13,6 +13,12 @@ public class M_BeastWallDead : M_State
     public override void Enter()
     {
         base.Enter();
+        if(beast.rb.bodyType != RigidbodyType2D.Static)
+        {
+            beast.SetVelocity(0, 0);
+            beast.rb.gravityScale = 0;
+        }
+        beast.gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     public override void Exit()
