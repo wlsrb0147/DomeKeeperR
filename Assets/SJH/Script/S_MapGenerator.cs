@@ -8,7 +8,9 @@ public class S_MapGenerator : MonoBehaviour
 {
 
     public Vector3Int cellPosition;
-    public GameObject mineral;
+    public GameObject redjam;
+    public GameObject bluejam;
+    public GameObject greenjam;
 
     bool[] nullTile;
 
@@ -22,8 +24,6 @@ public class S_MapGenerator : MonoBehaviour
     [SerializeField] Tile mineralTile;
     [SerializeField] Tile GroundTile;
     [SerializeField] Tile GroundTile2;
-    [SerializeField] Tile GroundTile3;
-    [SerializeField] Tile GroundTile4;
     [SerializeField] Tile downTile;
     [SerializeField] Tile topTile;
     [SerializeField] Tile leftWallTile;
@@ -51,23 +51,28 @@ public class S_MapGenerator : MonoBehaviour
 
                 if (rnd >= 0 && rnd < 6)
                 {
-                    //tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
-                    var mine = Instantiate(mineral, tileMap.transform);
+                    var mine = Instantiate(redjam, tileMap.transform);
                     mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
                     tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
 
                 }
-                else if(rnd >=6 && rnd < 20)
+                if (rnd >= 6&& rnd < 12)
+                {
+                    var mine = Instantiate(bluejam, tileMap.transform);
+                    mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
+                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
+
+                }
+                if (rnd >= 12 && rnd < 18)
+                {
+                    var mine = Instantiate(greenjam, tileMap.transform);
+                    mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
+                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
+
+                }
+                else if(rnd >=40 && rnd < 60)
                 {
                     tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile2);
-                }
-                else if (rnd >= 20 && rnd < 40)
-                {
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile3);
-                }
-                else if (rnd >= 40 && rnd < 60)
-                {
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile4);
                 }
                 else
                     tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile);
