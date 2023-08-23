@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Tilemaps;
+using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PetController : PetEntity
 {
@@ -11,54 +11,62 @@ public class PetController : PetEntity
     [SerializeField] float P_attack;
     [SerializeField] bool isMoving;
 
-    S_Mineral mineral;
+    public S_Mineral mineral;
+
+    GameObject[] targetMineral;
+    Transform[] MineralTrs;
+    float[] PetAndMineralDist;
+
+    private Transform PetTr;
+    private Transform targetTr;
+    private int targetint = 0;
+
+    private NavMeshAgent nvAgent;
 
 
     protected override void Start()
     {
         base.Start();
-
         mineral = GetComponent<S_Mineral>();
+        targetMineral = GameObject.FindGameObjectsWithTag("MIneral");
+        MineralTrs = new Transform[targetMineral.Length];
+
+        for (int i = 0; i < targetMineral.Length; i++)
+        {
+            MineralTrs[i] = targetMineral[i].GetComponent<Transform>();
+        }
+        targetTr = MineralTrs[0];
+        StartCoroutine(SearchTarget());
+    }
+
+    IEnumerator SearchTarget()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            for (int i = 0; i < targetMineral.Length; i++)
+            {
+                if (PetAndMineralDist[targetint] <= PetAndMineralDist[i + 1])
+                {
+                    targetTr = MineralTrs[targetint];
+                }
+            }
+        }
+        nvAgent.destination = targetTr.position;
+        targetint = 0;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (isGrounded || isMineraled)
-        {
-            ZeroVelocity();
-            anim.SetBool("Under_Mine", true);
-            Debug.Log("땅 파는중!");
 
-        }
-        else
-            anim.SetBool("Under_Mine", false);
-
-        if (isWallDetected)
-        {
-            Flip();
-        }
-
-       #region #움직임
-
-        //if (anim != null)
-        //{
-        //    if (Mathf.Abs(petSpeed) > 0.01f)
-        //    {
-        //        anim.SetBool("PMove", true);
-        //    }
-        //    else
-        //        anim.SetBool("PMove", false);
-        //}
-
-        //rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
-
-        #endregion
 
     }
 
-    void PetMine() 
+
+
+    void PetUnderMine()
     {
         Collider2D groundCollider = Physics2D.OverlapCircle(footPos.position, 0.4f, whatIsGround);
         Collider2D mineralCollider = Physics2D.OverlapCircle(footPos.position, 0.4f, WhatIsMineral);
@@ -75,4 +83,19 @@ public class PetController : PetEntity
     }
 
 
+    void PetSideMine()
+    {
+        Collider2D groundCollider = Physics2D.OverlapCircle(toothPos.position, 0.5f, whatIsGround);
+        Collider2D mineralCollider = Physics2D.OverlapCircle(toothPos.position, 0.5f, WhatIsMineral);
+
+        if (groundCollider != null)
+        {
+            groundCollider.transform.GetComponent<S_MapGenerator>().MakeDot(toothPos.position);
+        }
+        else if (mineralCollider != null)
+        {
+            mineralCollider.transform.GetComponent<S_Mineral>().SetDamage(P_attack);
+        }
+
+    }
 }
