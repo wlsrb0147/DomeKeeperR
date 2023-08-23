@@ -11,8 +11,13 @@ public class M_Beast : M_Moving
     public M_BeastJump jump { get; private set; }
     public M_BeastWallDead wallDead { get; private set; }
 
+    public bool howl = false;
+
+    public Rigidbody2D rb;
+
     protected override void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         base.Awake();
 
         ani = GetComponent<Animator>();
@@ -22,7 +27,8 @@ public class M_Beast : M_Moving
         groundDead = new M_BeastGroundDead(this, stateMachine, "GroundDead", this);
         howling = new M_BeastHowling(this, stateMachine, "Howling", this);
         jump = new M_BeastJump(this, stateMachine, "Jump", this);
-        wallDead = new M_BeastWallDead(this, stateMachine, "WallDead", this);       
+        wallDead = new M_BeastWallDead(this, stateMachine, "WallDead", this);
+
     }
 
     protected override void Start()
@@ -35,4 +41,18 @@ public class M_Beast : M_Moving
     {
         base.Update();
     }
+
+    public void HowlOn()
+    {
+        howl = true;
+        stateMachine.ChangeState(move);
+        Debug.Log("aa");
+    }
+
+    public void SetVelocity(float InputX, float InputY)
+    {
+        rb.velocity = new Vector2(InputX, InputY);
+    }
+
+
 }
