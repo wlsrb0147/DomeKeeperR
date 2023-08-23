@@ -12,7 +12,11 @@ public class M_DiverBackDead1 : M_State
 
     public override void Enter()
     {
-        base.Enter();
+        base.Enter(); 
+        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        diver.SetVelocity(0, 0);
     }
 
     public override void Exit()

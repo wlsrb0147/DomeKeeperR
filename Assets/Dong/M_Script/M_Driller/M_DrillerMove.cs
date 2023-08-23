@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class M_DrillerMove : M_State
 {
@@ -23,6 +24,11 @@ public class M_DrillerMove : M_State
     public override void Update()
     {
         base.Update();
-        driller.SetVelocity(driller.movingSpeed,0);
+        if(driller.transform.position.x > driller.domeCenter.position.x)
+        {
+            driller.SetVelocity(driller.movingSpeed, 0);
+        }  
+        else driller.SetVelocity(-driller.movingSpeed, 0);
+
     }
 }

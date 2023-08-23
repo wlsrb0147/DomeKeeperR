@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class M_Base : MonoBehaviour
@@ -12,6 +13,7 @@ public class M_Base : MonoBehaviour
     public float hp;
     
     public int faceX = 1;
+    public bool facingRight = true;
 
 
     protected virtual void Awake()
@@ -31,15 +33,18 @@ public class M_Base : MonoBehaviour
     {
         stateMachine.currentState.Update();
 
-        if (transform.position.x > domeCenter.position.x)
+        if (transform.position.x > domeCenter.position.x && facingRight )
         {
-            faceX = -1;
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            facingRight = !facingRight;
+            gameObject.transform.localScale = new Vector3(-1,1,1);
         }
-        else
+        else if(transform.position.x < domeCenter.position.x && !facingRight)
         {
-            faceX = 1;
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            facingRight = !facingRight;
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
+
+        if (facingRight) faceX = 1;
+        else faceX = -1;
     }
 }

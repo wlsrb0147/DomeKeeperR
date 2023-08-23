@@ -14,7 +14,8 @@ public class M_Driller : M_Moving
 
     protected override void Awake()
     {
-        
+        initialFace = -1;
+
         base.Awake();
         transform.Rotate(0, 180, 0);
         attacking = new M_DrillerAttacking(this, stateMachine, "Attacking", this);

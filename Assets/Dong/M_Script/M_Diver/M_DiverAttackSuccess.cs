@@ -13,6 +13,11 @@ public class M_DiverAttackSuccess : M_State
     public override void Enter()
     {
         base.Enter();
+        diver.SetVelocity(0, 0);
+        diver.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        diver.isAttacking = 0;
     }
 
     public override void Exit()
