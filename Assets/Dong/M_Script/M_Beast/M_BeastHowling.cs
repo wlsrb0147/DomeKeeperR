@@ -24,15 +24,7 @@ public class M_BeastHowling : M_State
     public override void Update()
     {
         base.Update();
-
+        beast.SetVelocity(0, 0);
     }
 
-    public void go()
-    {
-        beast.HowlOn();
-
-        //stateMachine.ChangeState(beast.move);
-        //Debug.Log("aa");
-        // 여기적으면 실행이안됨
-    }
 }
