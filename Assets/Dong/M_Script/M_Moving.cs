@@ -5,7 +5,6 @@ using UnityEngine;
 public class M_Moving : M_Base
 {
     public float movingSpeed;
-    public int initialFace = 1;
 
     protected override void Awake()
     {
@@ -24,22 +23,16 @@ public class M_Moving : M_Base
 
     public void SetVelocity(float InputX, float InputY)
     {
-      if(initialFace == 1)
-        {
+            rb.velocity = new Vector2(InputX * faceX, InputY);
+    }
+
+    public void SetVecVelocity(float InputX, float InputY)
+    {
+
             if (transform.position.x > domeCenter.transform.position.x)
             {
                 rb.velocity = new Vector2(-InputX * faceX, InputY);
             }
             else rb.velocity = new Vector2(InputX * faceX, InputY);
-        }
-        else
-        {
-            if (transform.position.x > domeCenter.transform.position.x)
-            {
-                rb.velocity = new Vector2(InputX * faceX, InputY);
-            }
-            else rb.velocity = new Vector2(-InputX * faceX, InputY);
-        }
-        
     }
 }

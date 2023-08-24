@@ -450,7 +450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458939486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.57, y: -7.32, z: 0}
+  m_LocalPosition: {x: -21.95, y: -8.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -497,7 +497,6 @@ MonoBehaviour:
   faceX: 0
   facingRight: 1
   movingSpeed: 5
-  initialFace: 1
   howl: 0
   impulse: {x: 5, y: 9}
   onGround: 1
@@ -605,7 +604,6 @@ MonoBehaviour:
   faceX: 1
   facingRight: 1
   movingSpeed: 1
-  initialFace: 1
   settingOn: 0
 --- !u!61 &472881018
 BoxCollider2D:
@@ -967,7 +965,6 @@ MonoBehaviour:
   faceX: 1
   facingRight: 1
   movingSpeed: 1
-  initialFace: 1
   settingOn: 0
 --- !u!1 &782212163
 GameObject:
@@ -1328,7 +1325,6 @@ MonoBehaviour:
   faceX: 1
   facingRight: 1
   movingSpeed: 3
-  initialFace: 1
   isAttacking: 1
 --- !u!1 &1258134162
 GameObject:
@@ -1749,8 +1745,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0073316246, y: -1.8816906}
-  m_Size: {x: 1.6121044, y: 1.5043277}
+  m_Offset: {x: 0.00596024, y: -1.8902181}
+  m_Size: {x: 1.5998745, y: 1.4872782}
   m_Direction: 1
 --- !u!1 &1446376264
 GameObject:
@@ -1871,7 +1867,6 @@ MonoBehaviour:
   faceX: 1
   facingRight: 1
   movingSpeed: 3
-  initialFace: 1
   isAttacking: 1
 --- !u!58 &1453252532
 CircleCollider2D:
@@ -2204,7 +2199,6 @@ MonoBehaviour:
   faceX: 0
   facingRight: 1
   movingSpeed: 5
-  initialFace: 1
   howl: 0
   impulse: {x: 5, y: 9}
   onGround: 1
@@ -2291,7 +2285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697182326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.65, y: -7.51, z: 0}
+  m_LocalPosition: {x: 16.7, y: -7.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2340,7 +2334,6 @@ MonoBehaviour:
   faceX: 1
   facingRight: 1
   movingSpeed: 3
-  initialFace: 1
   isAttacking: 1
 --- !u!58 &2037218214
 CircleCollider2D:
@@ -2613,7 +2606,6 @@ MonoBehaviour:
   faceX: 1
   facingRight: 1
   movingSpeed: 3
-  initialFace: 1
   isAttacking: 1
 --- !u!58 &2091232043
 CircleCollider2D:

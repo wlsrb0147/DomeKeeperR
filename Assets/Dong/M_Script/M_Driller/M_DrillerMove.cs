@@ -24,11 +24,6 @@ public class M_DrillerMove : M_State
     public override void Update()
     {
         base.Update();
-        if(driller.transform.position.x > driller.domeCenter.position.x)
-        {
-            driller.SetVelocity(driller.movingSpeed, 0);
-        }  
-        else driller.SetVelocity(-driller.movingSpeed, 0);
-
+        driller.SetVelocity(driller.movingSpeed, 0);
     }
 }

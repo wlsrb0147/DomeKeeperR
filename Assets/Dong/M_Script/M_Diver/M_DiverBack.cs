@@ -14,11 +14,9 @@ public class M_DiverBack : M_State
         base.Enter();
         if (diver.transform.position != null)
         {
-          
             back = -diver.Getdir();
-
             back = back.normalized * 2;
-            diver.SetVelocity(back.x, back.y);
+            diver.SetVecVelocity(back.x, back.y);
             diver.isAttacking = -1;
         }
         diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
