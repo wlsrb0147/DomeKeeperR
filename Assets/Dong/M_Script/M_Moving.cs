@@ -35,4 +35,9 @@ public class M_Moving : M_Base
             }
             else rb.velocity = new Vector2(InputX * faceX, InputY);
     }
+
+    public void Jump(Vector2 pulsePower)
+    {
+        rb.AddForce(new Vector2(pulsePower.x * faceX, pulsePower.y), ForceMode2D.Impulse);
+    }
 }

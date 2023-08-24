@@ -17,7 +17,7 @@ public class M_Beast : M_Moving
 
     public bool howl = false;
 
-    public Vector2 impulse;
+    public Vector2 jumpPower;
 
     public bool onGround = true;
 
