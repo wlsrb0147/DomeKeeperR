@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_Mineral : MonoBehaviour
 {
-    [SerializeField] float Hp;
+   public float Hp;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class S_Mineral : MonoBehaviour
         {
             Hp = 0;
             Destroy(gameObject);
-            
+
         }
     }
     public void SetDamage(float damage)

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - MIneral
+  - Dome
   layers:
   - Default
   - TransparentFX
