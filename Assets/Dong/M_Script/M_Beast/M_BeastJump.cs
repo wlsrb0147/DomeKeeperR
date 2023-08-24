@@ -17,7 +17,7 @@ public class M_BeastJump : M_State
         base.Enter();
         beast.rb.gravityScale = 1f;
         beast.onGround = false;
-        beast.rb.AddForce(new Vector2(beast.impulse.x*beast.faceX,beast.impulse.y),ForceMode2D.Impulse);
+        beast.Jump(beast.jumpPower);
     }
 
     public override void Exit()
