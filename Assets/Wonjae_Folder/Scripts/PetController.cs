@@ -1,78 +1,90 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Tilemaps;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 
 public class PetController : PetEntity
 {
-    [Header("Pet Info")]
-    [SerializeField] private float petSpeed;
-    [SerializeField] private float jumpForce;
-    [SerializeField] float P_attack;
-    [SerializeField] bool isMoving;
-
-    S_Mineral mineral;
-
 
     protected override void Start()
     {
         base.Start();
-
-        mineral = GetComponent<S_Mineral>();
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (isGrounded || isMineraled)
+        if (isGrounded)
+        {
+            MoveVelocity();
+            sideMine = false;
+            underMine = false;
+            petIdle = false;
+            petFly = false;
+            petMove = true;
+            Debug.Log("¶¥ À§");
+        }
+
+        if (isGrounded && !isSideDetected)
         {
             ZeroVelocity();
-            anim.SetBool("Under_Mine", true);
-            Debug.Log("¶¥ ÆÄ´ÂÁß!");
-
+            petIdle = false;
+            petMove = false;
+            sideMine = false;
+            petFly = false;
+            underMine = true;
+            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¾Æ¹«°Íµµ ¾øÀ½");
         }
-        else
-            anim.SetBool("Under_Mine", false);
 
-        if (isWallDetected)
+        if (isGrounded && isSideDetected)
         {
-            Flip();
+            MoveVelocity();
+            petMove = false;
+            sideMine = false;
+            petIdle = false;
+            petFly = false;
+            underMine = true;
+            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ º®ÀÖÀ½");
         }
 
-       #region #¿òÁ÷ÀÓ
+        if (isGrounded && isSideMineralDetected)
+        {
+            MoveVelocity();
+            petMove = false;
+            underMine = false;
+            petIdle = false;
+            petFly = false;
+            sideMine = true;
+            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¹Ì³×¶öÀÖÀ½");
+        }
 
-        //if (anim != null)
-        //{
-        //    if (Mathf.Abs(petSpeed) > 0.01f)
-        //    {
-        //        anim.SetBool("PMove", true);
-        //    }
-        //    else
-        //        anim.SetBool("PMove", false);
-        //}
+        if (isMineraled && isSideDetected)
+        {
+            ZeroVelocity();
+            petIdle = false;
+            petMove = false;
+            sideMine = false;
+            petFly = false;
+            underMine = true;
+            Debug.Log("¹Ì³×¶ö À§ÀÎµ¥ ¿·¿¡ º®");
+        }
 
-        //rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
-
-        #endregion
-
+        if (!isGrounded)
+        {
+            Debug.Log("°øÁß¿¡ ¶ä");
+            ZeroVelocity();
+            sideMine = false;
+            underMine = false;
+            petIdle = false;
+            petMove = false;
+            petFly = true;
+        }
     }
 
-    void PetMine() 
-    {
-        Collider2D groundCollider = Physics2D.OverlapCircle(footPos.position, 0.4f, whatIsGround);
-        Collider2D mineralCollider = Physics2D.OverlapCircle(footPos.position, 0.4f, WhatIsMineral);
 
-        if (groundCollider != null)
-        {
-            groundCollider.transform.GetComponent<S_MapGenerator>().MakeDot(footPos.position);
-        }
-        else if (mineralCollider != null)
-        {
-            mineralCollider.transform.GetComponent<S_Mineral>().SetDamage(P_attack);
-        }
-
-    }
 
 
 }
