@@ -61,7 +61,6 @@ public class PetEntity : MonoBehaviour
     }
 
     #region Velocity
-
     public void ZeroVelocity() => rbody.velocity = Vector2.zero;
 
     #endregion
