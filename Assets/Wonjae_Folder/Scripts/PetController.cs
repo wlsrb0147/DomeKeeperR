@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 
 public class PetController : PetEntity
 {
@@ -19,18 +20,65 @@ public class PetController : PetEntity
         if (isGrounded)
         {
             MoveVelocity();
-            sideMine = true;
+            petMove = true;
+            sideMine = false;
             underMine = false;
+            petIdle = false;
+            Debug.Log("¶¥ À§");
         }
 
-        if (isMineraled)
+        if (isGrounded && !isSideDetected)
         {
             ZeroVelocity();
+            petIdle = false;
+            petMove = false;
             sideMine = false;
             underMine = true;
+            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¾Æ¹«°Íµµ ¾øÀ½");
         }
 
+        if (isGrounded && isSideDetected)
+        {
+            MoveVelocity();
+            petMove = false;
+            sideMine = false;
+            underMine = true;
+            petIdle = false;
+            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ º®ÀÖÀ½");
+        }
+
+        if (isGrounded && isSideMineralDetected)
+        {
+            MoveVelocity();
+            petMove = false;
+            sideMine = true;
+            underMine = false;
+            petIdle = false;
+            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¹Ì³×¶öÀÖÀ½");
+        }
+
+        if (isMineraled && isSideDetected)
+        {
+            ZeroVelocity();
+            petIdle = false;
+            petMove = false;
+            sideMine = false;
+            underMine = true;
+            Debug.Log("¹Ì³×¶ö À§ÀÎµ¥ ¿·¿¡ º®");
+        }
+
+        if (!isGrounded)
+        {
+            Debug.Log("°øÁß¿¡ ¶ä");
+            ZeroVelocity();
+            sideMine = false;
+            underMine = false;
+            petIdle = true;
+            petMove = false;
+        }
     }
+
+
 
 
 }

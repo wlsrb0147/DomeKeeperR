@@ -20,15 +20,29 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private float groundCheckDistance;
     [SerializeField] protected Transform mineralUnderCheck;
     [SerializeField] protected float mineralCheckDistance;
+    [SerializeField] protected Transform wallCheck;
+    [SerializeField] protected float wallCheckDistance;
+    [SerializeField] protected Transform sideMineralCheck;
+    [SerializeField] protected float sideMineralCheckDistance;
+    [SerializeField] protected Transform sideCheck;
+    [SerializeField] protected float sideCheckDistance;
+    [SerializeField] protected Transform backCheck;
+    [SerializeField] protected float backCheckDistance;
     [SerializeField] protected private LayerMask whatIsGround;
+    [SerializeField] protected private LayerMask whatIsWall;
     [SerializeField] protected private LayerMask WhatIsMineral;
+    [SerializeField] protected private LayerMask WhatIsSideTile;
     [SerializeField] protected Transform footPos;
     [SerializeField] protected Transform toothPos;
 
 
     #region anim
     protected bool isGrounded;
+    protected bool isWallDetected;
     protected bool isMineraled;
+    protected bool isSideDetected;
+    protected bool isSideMineralDetected;
+    protected bool isBackDetected;
     protected bool petMove;
     protected bool underMine;
     protected bool sideMine;
@@ -53,23 +67,31 @@ public class PetEntity : MonoBehaviour
     {
         CollisionChecks();
         PetAnimatorControllers();
+        FlipController();
     }
 
     #region Flip 
     protected virtual void Flip()
     {
-        facingDir = facingDir* -1;
+        facingDir = facingDir * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
     }
     private void FlipController()
     {
-        if (rbody.velocity.x > 0 && !facingRight)
+        if (isWallDetected)
         {
+            Debug.Log("Flip");
             Flip();
         }
-        else if (rbody.velocity.x < 0 && facingRight)
+
+        if (isBackDetected)
         {
+            sideMine = false;
+            underMine = false;
+            petIdle = false;
+            petMove = false;
+            Debug.Log("µî µÚ ¹Ì³×¶ö");
             Flip();
         }
     }
@@ -80,15 +102,29 @@ public class PetEntity : MonoBehaviour
     #region CollisionChecks
     protected virtual void CollisionChecks()
     {
+        isGrounded = Physics2D.Raycast(groundCheck.position, new Vector2(0,0f -0.1f), groundCheckDistance, whatIsGround);
+        isWallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance * -facingDir, whatIsWall);
 
-        isGrounded = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        isSideDetected = Physics2D.Raycast(sideCheck.position, new Vector2(-0.5f, 0.0f), sideCheckDistance * -facingDir, WhatIsSideTile);
         isMineraled = Physics2D.Raycast(mineralUnderCheck.position, Vector2.down, mineralCheckDistance, WhatIsMineral);
+        isSideMineralDetected = Physics2D.Raycast(sideMineralCheck.position, new Vector2(-1.0f, 0.0f), sideMineralCheckDistance * -facingDir, WhatIsMineral);
+        isBackDetected = Physics2D.Raycast(backCheck.position, Vector2.right,backCheckDistance * facingDir, WhatIsMineral);
     }
 
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance * facingDir, wallCheck.position.y));
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(sideCheck.position, new Vector3(sideCheck.position.x + sideCheckDistance * facingDir, sideCheck.position.y));
+        Gizmos.DrawLine(sideMineralCheck.position, new Vector3(sideMineralCheck.position.x + sideMineralCheckDistance * facingDir, sideMineralCheck.position.y));
+
+        Gizmos.color = Color.blue;
         Gizmos.DrawLine(mineralUnderCheck.position, new Vector3(mineralUnderCheck.position.x, mineralUnderCheck.position.y - mineralCheckDistance));
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
     #endregion
 
@@ -99,12 +135,6 @@ public class PetEntity : MonoBehaviour
     public void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
 
     #endregion
-
-
-    //private void petMovement()
-    //{
-    //   MoveVelocity();
-    //}
 
     private void PetAnimatorControllers()
     {
