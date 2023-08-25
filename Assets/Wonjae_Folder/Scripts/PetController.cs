@@ -20,10 +20,11 @@ public class PetController : PetEntity
         if (isGrounded)
         {
             MoveVelocity();
-            petMove = true;
             sideMine = false;
             underMine = false;
             petIdle = false;
+            petFly = false;
+            petMove = true;
             Debug.Log("¶¥ À§");
         }
 
@@ -33,6 +34,7 @@ public class PetController : PetEntity
             petIdle = false;
             petMove = false;
             sideMine = false;
+            petFly = false;
             underMine = true;
             Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¾Æ¹«°Íµµ ¾øÀ½");
         }
@@ -42,8 +44,9 @@ public class PetController : PetEntity
             MoveVelocity();
             petMove = false;
             sideMine = false;
-            underMine = true;
             petIdle = false;
+            petFly = false;
+            underMine = true;
             Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ º®ÀÖÀ½");
         }
 
@@ -51,9 +54,10 @@ public class PetController : PetEntity
         {
             MoveVelocity();
             petMove = false;
-            sideMine = true;
             underMine = false;
             petIdle = false;
+            petFly = false;
+            sideMine = true;
             Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¹Ì³×¶öÀÖÀ½");
         }
 
@@ -63,6 +67,7 @@ public class PetController : PetEntity
             petIdle = false;
             petMove = false;
             sideMine = false;
+            petFly = false;
             underMine = true;
             Debug.Log("¹Ì³×¶ö À§ÀÎµ¥ ¿·¿¡ º®");
         }
@@ -73,8 +78,9 @@ public class PetController : PetEntity
             ZeroVelocity();
             sideMine = false;
             underMine = false;
-            petIdle = true;
+            petIdle = false;
             petMove = false;
+            petFly = true;
         }
     }
 

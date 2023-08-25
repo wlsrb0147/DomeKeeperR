@@ -36,7 +36,7 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform toothPos;
 
 
-    #region anim
+    #region anim bool
     protected bool isGrounded;
     protected bool isWallDetected;
     protected bool isMineraled;
@@ -47,6 +47,7 @@ public class PetEntity : MonoBehaviour
     protected bool underMine;
     protected bool sideMine;
     protected bool petIdle;
+    protected bool petFly;
     #endregion
 
     protected int facingDir = -1;
@@ -136,14 +137,17 @@ public class PetEntity : MonoBehaviour
 
     #endregion
 
+
+    #region Animaition
     private void PetAnimatorControllers()
     {
-        //bool isMoving = rbody.velocity.x != 0;
+        /*Pet_Dog Anim*/
         anim.SetBool("Pet_Move", petMove);
         anim.SetBool("Pet_idle", petIdle);
+        anim.SetBool("Pet_Fly", petFly);
         anim.SetBool("Under_Mine", underMine);
         anim.SetBool("Side_Mine", sideMine);
-
+        /*pet_Dog Anim Finish*/
     }
 
     void PetUnderMine()
@@ -175,15 +179,6 @@ public class PetEntity : MonoBehaviour
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(toothPos.position);
         }
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Mineral"))
-    //    {
-    //        mineralCheck = true;
-    //    }
-    //    else
-    //        mineralCheck = false;
-    //}
+    #endregion
 
 }
