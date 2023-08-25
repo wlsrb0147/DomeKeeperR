@@ -100,7 +100,7 @@ Transform:
   - {fileID: 7061716428815760171}
   - {fileID: 4939101024197258598}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 0.5
-  speed: 0.1
+  speed: 0.15
   obstacles:
     serializedVersion: 2
     m_Bits: 448
@@ -251,7 +251,7 @@ Rigidbody2D:
   m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -295,9 +295,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035729915, y: 0.10394198}
+  m_Offset: {x: 0.013095796, y: -0.002571255}
   serializedVersion: 2
-  m_Radius: 0.38802603
+  m_Radius: 0.30414692
 --- !u!1 &2182025306968062408
 GameObject:
   m_ObjectHideFlags: 0
