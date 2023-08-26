@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class M_Flyer : M_Moving
 {
@@ -18,7 +19,9 @@ public class M_Flyer : M_Moving
     public Vector2 flyerVec;
     public int attackTimes;
     public int currentAttackTimes;
-
+    public Vector2 normalVec;
+    public Vector2 centerVec;
+    public Vector2 path;
     protected override void Awake()
     {
         base.Awake();
@@ -76,6 +79,23 @@ public class M_Flyer : M_Moving
     public void EndMove()
     {
         stateMachine.ChangeState(appear);
+    }
+
+    public Vector2 Curve(Vector2 start,Vector2 path,Vector2 destination)
+    { float abx, bcx , abcx, aby,bcy,abcy ;
+        Vector2 vec;
+        abx = Mathf.Lerp(start.x, path.x, start.x / path.x);
+        aby = Mathf.Lerp(start.y, path.y, start.y / path.y);
+
+        bcx = Mathf.Lerp(path.x,destination.x, path.x / destination.x);
+        bcy = Mathf.Lerp(path.y,destination.y, path.y / destination.y);
+
+        abcx = Mathf.Lerp(abx, bcx, abx / bcx);
+        abcy = Mathf.Lerp(aby, bcy, aby / bcy);
+
+        vec = new Vector2(abcx, abcy);
+
+        return vec;
     }
 }
 
