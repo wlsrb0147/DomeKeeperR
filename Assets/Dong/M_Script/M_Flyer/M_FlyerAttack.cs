@@ -13,19 +13,22 @@ public class M_FlyerAttack : M_State
     public override void Enter()
     {
         base.Enter();
+        flyer.currentAttackTimes= 0;
+        flyer.attackTimes = Random.Range(2, 4);
     }
 
     public override void Exit()
     {
         base.Exit();
+
     }
 
     public override void Update()
     {
         base.Update();
-        /*if (Vector2.Distance(flyer.transform.position, flyer.moveLocation.position) < 1)
+        if (flyer.currentAttackTimes == flyer.attackTimes)
         {
             stateMachine.ChangeState(flyer.hide);
-        }*/
+        }
     }
 }

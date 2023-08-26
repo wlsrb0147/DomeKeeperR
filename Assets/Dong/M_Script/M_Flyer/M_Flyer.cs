@@ -16,6 +16,9 @@ public class M_Flyer : M_Moving
 
     public Vector2 moveLocation;
     public Vector2 flyerVec;
+    public int attackTimes;
+    public int currentAttackTimes;
+
     protected override void Awake()
     {
         base.Awake();
@@ -67,7 +70,7 @@ public class M_Flyer : M_Moving
 
     public void EndAttack()
     {
-        stateMachine.ChangeState(hide);
+        currentAttackTimes++;
     }
 
     public void EndMove()
