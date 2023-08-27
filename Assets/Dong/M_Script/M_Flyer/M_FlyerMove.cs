@@ -14,7 +14,7 @@ public class M_FlyerMove : M_State
     public override void Enter()
     {
         base.Enter();
-        pos.position = new Vector3(flyer.path.x, flyer.path.y, 0);
+       // pos.position = new Vector3(flyer.path.x, flyer.path.y, 0);
     }
 
     public override void Exit()
@@ -35,7 +35,7 @@ public class M_FlyerMove : M_State
 
 
 
-            // flyer.transform.Translate(vec*Time.deltaTime*5);
+            flyer.transform.Translate(vec*Time.deltaTime*5);
         }
 
         if (Vector2.Distance(flyer.transform.position, flyer.moveLocation) < 1)

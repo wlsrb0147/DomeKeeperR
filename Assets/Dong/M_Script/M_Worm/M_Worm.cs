@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class M_Worm : M_Holding
@@ -11,6 +10,16 @@ public class M_Worm : M_Holding
     public M_WormIdle idle { get; private set; }
     public M_WormInstantiate instantiate { get; private set; }
     public M_WormWakeUp wakeUp { get; private set; }
+
+    public GameObject bullet;
+
+    public float attackTimer_Min;
+    public float attackTimer_Max;
+    public float wakeUpTimer_Min;
+    public float wakeUpTimer_Max;
+
+    public int attackCount = 0;
+    public int attackCounter;
     protected override void Awake()
     {
         base.Awake();
@@ -34,4 +43,30 @@ public class M_Worm : M_Holding
     {
         base.Update();
     }
+
+    public void EndWakeUP()
+    {
+        stateMachine.ChangeState(idle);
+    }
+
+    public void EndAttack()
+    {
+        stateMachine.ChangeState(idle);
+    }
+
+    public void EndIdle()
+    {
+        if (attackCount == attackCounter)
+        {
+            stateMachine.ChangeState(hide);
+            attackCount = 0;
+        }
+    }
+
+    public void Attack()
+    {
+      GameObject bulletPrefab =  Instantiate(bullet);
+        bulletPrefab.SetActive(true);
+    }
+
 }

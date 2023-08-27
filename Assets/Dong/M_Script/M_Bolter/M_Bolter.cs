@@ -26,6 +26,8 @@ public class M_Bolter : M_Moving
     protected override void Start()
     {
         base.Start();
+        stateMachine.Initiate(move1);
+        Debug.Log("asd");
     }
 
     protected override void Update()
