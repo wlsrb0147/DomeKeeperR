@@ -12,6 +12,7 @@ public class M_Worm : M_Holding
     public M_WormWakeUp wakeUp { get; private set; }
 
     public GameObject bullet;
+    public Transform bulletHole;
 
     public float attackTimer_Min;
     public float attackTimer_Max;
@@ -65,7 +66,7 @@ public class M_Worm : M_Holding
 
     public void Attack()
     {
-      GameObject bulletPrefab =  Instantiate(bullet);
+        GameObject bulletPrefab = Instantiate(bullet, bulletHole.position, Quaternion.identity);
         bulletPrefab.SetActive(true);
     }
 

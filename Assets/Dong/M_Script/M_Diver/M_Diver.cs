@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class M_Diver : M_Moving
@@ -13,7 +11,7 @@ public class M_Diver : M_Moving
 
     public int isAttacking = 1;
 
-    
+
 
     protected override void Awake()
     {
@@ -26,7 +24,7 @@ public class M_Diver : M_Moving
         backDead2 = new M_DiverBackDead2(this, stateMachine, "BackDead2", this);
     }
 
-     public Vector2 Getdir()
+    public Vector2 Getdir()
     {
         Vector2 dir;
         dir = domeCenter.position - transform.position;
@@ -37,14 +35,14 @@ public class M_Diver : M_Moving
     {
         base.Start();
         stateMachine.Initiate(attack);
-       float angle = Mathf.Atan2(Getdir().x, Getdir().y) * Mathf.Rad2Deg;
-        if(angle > 90)
+        float angle = Mathf.Atan2(Getdir().x, Getdir().y) * Mathf.Rad2Deg;
+        if (angle > 90)
         {
             transform.rotation = Quaternion.Euler(0, 0, (135 - angle));
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, (225-angle));
+            transform.rotation = Quaternion.Euler(0, 0, (225 - angle));
         }
 
     }
@@ -55,7 +53,7 @@ public class M_Diver : M_Moving
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if(isAttacking == 1) stateMachine.ChangeState(attackDead);
+            if (isAttacking == 1) stateMachine.ChangeState(attackDead);
             else if (isAttacking == 0) stateMachine.ChangeState(backDead1);
             else stateMachine.ChangeState(backDead2);
         }
@@ -68,9 +66,12 @@ public class M_Diver : M_Moving
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Dome"))
+        if (stateMachine.currentState != back)
         {
-            stateMachine.ChangeState(attackSuccess);
+            if (collision.CompareTag("Dome"))
+            {
+                stateMachine.ChangeState(attackSuccess);
+            }
         }
     }
 
