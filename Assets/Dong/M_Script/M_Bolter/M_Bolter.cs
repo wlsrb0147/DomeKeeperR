@@ -16,6 +16,16 @@ public class M_Bolter : M_Moving
 
     public int attackChange { get; set; }
 
+    public GameObject bullet;
+    public Transform shootPosition;
+
+    public GameObject bullet21;
+    public GameObject bullet22;
+    public GameObject bullet23;
+    public Transform shoot21Position;
+    public Transform shoot22Position;
+    public Transform shoot23Position;
+
     protected override void Awake()
     {
         base.Awake();
@@ -62,4 +72,20 @@ public class M_Bolter : M_Moving
         stateMachine.ChangeState(idle);
     }
 
+    public void Shoot()
+    {
+       GameObject bulletPrefab = Instantiate(bullet,shootPosition.position,Quaternion.identity);
+        bulletPrefab.SetActive(true);
+    }
+
+    public void Shoot2()
+    {
+        GameObject bullet21Prefab = Instantiate(bullet21, shoot21Position.position, Quaternion.identity);
+        GameObject bullet22Prefab = Instantiate(bullet22, shoot22Position.position, Quaternion.identity);
+        GameObject bullet23Prefab = Instantiate(bullet23, shoot23Position.position, Quaternion.identity);
+
+        bullet21Prefab.SetActive(true);
+        bullet22Prefab.SetActive(true);
+        bullet23Prefab.SetActive(true);
+    }
 }

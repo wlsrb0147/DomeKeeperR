@@ -14,6 +14,7 @@ public class M_BolterAttack1 : M_State
     public override void Enter()
     {
         base.Enter();
+        bolter.SetVelocity(bolter.zero);
         bolter.attackChange = Random.Range(1, 3);
     }
 

@@ -22,7 +22,7 @@ public class M_Worm : M_Holding
     public Collider2D myCollider;
 
     public int attackCount { get; set; }
-    public int attackCounter { get; set; }
+    public int attackCounter;
     protected override void Awake()
     {
         base.Awake();

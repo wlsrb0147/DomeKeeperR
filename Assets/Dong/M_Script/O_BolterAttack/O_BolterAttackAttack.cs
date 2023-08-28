@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class O_FlyerAttackAttack : M_State
+public class O_BolterAttackAttack : M_State
 {
-    O_FlyerAttack attack;
+    O_BolterAttack attack;
     Vector2 dir;
-    public O_FlyerAttackAttack(M_Base @base, M_StateMachine stateMachine, string aniboolname, O_FlyerAttack attack) : base(@base, stateMachine, aniboolname)
+    public O_BolterAttackAttack(M_Base @base, M_StateMachine stateMachine, string aniboolname, O_BolterAttack attack) : base(@base, stateMachine, aniboolname)
     {
         this.attack = attack;
     }
 
     public override void Enter()
     {
-        base.Enter(); 
+        base.Enter();
         dir = attack.Getdir().normalized;
         dir = dir * attack.moveSpeed.x;
         attack.SetVelocity(dir);

@@ -30,7 +30,7 @@ public class M_BolterMove : M_State
 
         if (Vector2.Distance(bolter.domeCenter.position, bolter.transform.position) <= 10)
         {
-            stateMachine.ChangeState(bolter.idle);
+            stateMachine.ChangeState(bolter.attack1);
 
         }
     }

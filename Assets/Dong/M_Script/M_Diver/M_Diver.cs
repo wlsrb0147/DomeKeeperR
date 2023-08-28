@@ -26,12 +26,6 @@ public class M_Diver : M_Moving
         isAttacking = 1;
     }
 
-/*    public Vector2 Getdir()
-    {
-        Vector2 dir;
-        dir = domeCenter.position - transform.position;
-        return dir;
-    }*/
 
     protected override void Start()
     {
