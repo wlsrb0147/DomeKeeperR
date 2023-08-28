@@ -10,7 +10,7 @@ public class PetEntity : MonoBehaviour
     protected SpriteRenderer spr;
 
     [Header("Pet Info")]
-    [SerializeField] private float petSpeed;
+    [SerializeField] protected float petSpeed;
     [SerializeField] private float petDamage;
     [SerializeField] private float mineSpeed;
 
@@ -34,7 +34,6 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private LayerMask WhatIsSideTile;
     [SerializeField] protected Transform footPos;
     [SerializeField] protected Transform toothPos;
-
 
     #region anim bool
     protected bool isGrounded;

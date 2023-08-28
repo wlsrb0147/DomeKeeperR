@@ -82,9 +82,7 @@ public class PetController : PetEntity
             petMove = false;
             petFly = true;
         }
+
     }
-
-
-
 
 }
