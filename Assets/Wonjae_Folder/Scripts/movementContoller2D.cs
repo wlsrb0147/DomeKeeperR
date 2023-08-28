@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Aoiti.Pathfinding; // 경로 탐색 라이브러리를 가져옴
+using Unity.VisualScripting;
 
 public class MovementController2D : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class MovementController2D : MonoBehaviour
     List<Vector2> pathLeftToGo = new List<Vector2>();
     [SerializeField] bool drawDebugLines;
 
+
     // 첫 번째 프레임 전에 호출되는 함수
     void Start()
     {
@@ -32,12 +34,16 @@ public class MovementController2D : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B)) // 새로운 목표를 확인하는 부분
         {
-            GetMoveCommand(new Vector2 (-0.5f, -11.0f));
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.gravityScale = 0;
-            CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
-            circleColl.enabled = false;
+            SetMovementState();
+            BackMoveCommand(new Vector2(-0.5f, -10.5f));
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) 
+        {
+            ResetMovementState();
+            GetMoveCommand(new Vector2(Random.Range(-180.0f, 180.0f), (Random.Range(-13.0f, -120.0f))));
+
         }
 
         if (pathLeftToGo.Count > 0) // 목표에 도달하지 않았을 때
@@ -56,10 +62,9 @@ public class MovementController2D : MonoBehaviour
                     CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
                     circleColl.enabled = true;
                 }
-
             }
         }
-
+        //시각화
         if (drawDebugLines)
         {
             for (int i = 0; i < pathLeftToGo.Count - 1; i++) // 시각화를 위해 경로를 화면에 표시
@@ -68,9 +73,50 @@ public class MovementController2D : MonoBehaviour
             }
         }
     }
+    void SetMovementState()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
+        circleColl.enabled = false;
+    }
+    private void ResetMovementState()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 3;
+        CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
+        circleColl.enabled = true;
+    }
 
     // 목표를 받아와서 움직임 명령을 생성하는 함수
     void GetMoveCommand(Vector2 target)
+    {
+        Vector2 closestNode = GetClosestNode(transform.position);
+        Vector2 targetNode = GetClosestNode(target);
+        bool canMove = true;
+
+        if (pathfinder.GenerateAstarPath(closestNode, targetNode, out path) || path.Count == 0) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
+        {
+            if (canMove)
+            {
+                path.Clear();
+                path.Add(closestNode);
+                path.Add(targetNode);
+            }
+        }
+
+        if (canMove)
+        {
+            if (searchShortcut && path.Count > 0)
+                pathLeftToGo = ShortenPath(path);
+            else
+            {
+                pathLeftToGo = new List<Vector2>(path);
+                if (!snapToGrid) pathLeftToGo.Add(targetNode);
+            }
+        }
+    }
+    void BackMoveCommand(Vector2 target)
     {
         Vector2 closestNode = GetClosestNode(transform.position);
         if (pathfinder.GenerateAstarPath(closestNode, GetClosestNode(target), out path)) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
@@ -84,6 +130,8 @@ public class MovementController2D : MonoBehaviour
             }
         }
     }
+
+
 
     // 가장 가까운 그리드 점을 찾는 함수
     Vector2 GetClosestNode(Vector2 target)
