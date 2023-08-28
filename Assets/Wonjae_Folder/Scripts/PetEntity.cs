@@ -130,7 +130,6 @@ public class PetEntity : MonoBehaviour
 
 
     #region Velocity
-
     public void ZeroVelocity() => rbody.velocity = Vector2.zero;
     public void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
 

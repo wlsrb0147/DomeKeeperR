@@ -12,13 +12,12 @@ public class M_DiverBack : M_State
     public override void Enter()
     {
         base.Enter();
-        if (diver.transform.position != null)
-        {
+
             back = -diver.Getdir();
             back = back.normalized * 2;
             diver.SetVecVelocity(back.x, back.y);
             diver.isAttacking = -1;
-        }
+        
         diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
         diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
