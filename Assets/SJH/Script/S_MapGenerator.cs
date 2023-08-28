@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class S_MapGenerator : MonoBehaviour
 {
 
-    public Vector3Int cellPosition;
+    Vector3Int cellPosition;
     public GameObject redjam;
     public GameObject bluejam;
     public GameObject greenjam;
@@ -36,17 +36,19 @@ public class S_MapGenerator : MonoBehaviour
     void Start()
     {
         tileMap = GetComponent<Tilemap>();
-        FillBackground();
+        // FillBackground();
+        FillWallTile();
     }
 
 
     void FillBackground()
     {
 
-        for (int i = -10; i < mapSize.x + 10; i++) //바깥타일은 맵 가장자리에 가도 어색하지 않게, 10만큼 여유
+        for (int i = 0; i < mapSize.x; i++) //바깥타일은 맵 가장자리에 가도 어색하지 않게, 10만큼 여유
         {
-            for (int j = -10; j < mapSize.y + 10; j++)
+            for (int j = 0; j < mapSize.y; j++)
             {
+                
                 int rnd = Random.Range(0, 100);
 
                 if (rnd >= 0 && rnd < 6)
@@ -80,7 +82,20 @@ public class S_MapGenerator : MonoBehaviour
             }
         }
     }
+    void FillWallTile()
+    {
+        
+        for (int j = mapSize.y/2-1; j > -mapSize.y; j--)
+        {
+            tileMap.SetTile(new Vector3Int(0, j, 0), GroundTile);
 
+            for (int i = 1; i < mapSize.x / 2; i++)
+            {
+                tileMap.SetTile(new Vector3Int(i, j + mapSize.y / 2 - 1, 0), GroundTile);
+                tileMap.SetTile(new Vector3Int(-i - 1, j + mapSize.y / 2 - 1, 0), GroundTile);
+            }
+        }
+    }
 
 
 
@@ -146,7 +161,6 @@ public class S_MapGenerator : MonoBehaviour
     public void MakeDot(Vector3 Pos)
     {
         cellPosition = tileMap.WorldToCell(Pos);
-
         tileMap.SetTile(cellPosition, null);
         FillWall();
     }
