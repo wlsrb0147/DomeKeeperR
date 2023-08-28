@@ -17,8 +17,9 @@ public class M_FlyerHide : M_State
     {
         base.Enter();
         flyer.inactive.enabled = true;
+        flyer.active.enabled = false;
 
-        if(flyer.transform.position.x > 0) { x = -1;}
+        if (flyer.transform.position.x > 0) { x = -1;}
         else if (flyer.transform.position.x < 0) {x = 1;}
 
         flyer.moveLocation = new Vector2(Random.Range(2f, 15f)*x, Random.Range(-2f, 5f));
@@ -36,8 +37,6 @@ public class M_FlyerHide : M_State
     public override void Exit()
     {
         base.Exit();
-        flyer.active.enabled = false;
-        flyer.inactive.enabled = false;
     }
 
     public override void Update()

@@ -25,5 +25,7 @@ public class M_FlyerDead : M_State
     public override void Update()
     {
         base.Update();
+        flyer.SetVelocity(flyer.zero);
     }
+
 }

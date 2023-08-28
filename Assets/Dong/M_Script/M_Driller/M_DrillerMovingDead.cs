@@ -14,8 +14,7 @@ public class M_DrillerMovingDead : M_State
     public override void Enter()
     {
         base.Enter();
-        driller.SetVelocity(0, 0);
-        driller.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        driller.SetVelocity(driller.zero);
     }
 
     public override void Exit()

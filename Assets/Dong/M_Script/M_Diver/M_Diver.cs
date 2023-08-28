@@ -9,7 +9,7 @@ public class M_Diver : M_Moving
     public M_DiverBackDead1 backDead1 { get; private set; }
     public M_DiverBackDead2 backDead2 { get; private set; }
 
-    public int isAttacking = 1;
+    public int isAttacking { get; set; }
 
 
 
@@ -22,14 +22,16 @@ public class M_Diver : M_Moving
         back = new M_DiverBack(this, stateMachine, "Back", this);
         backDead1 = new M_DiverBackDead1(this, stateMachine, "BackDead1", this);
         backDead2 = new M_DiverBackDead2(this, stateMachine, "BackDead2", this);
+
+        isAttacking = 1;
     }
 
-    public Vector2 Getdir()
+/*    public Vector2 Getdir()
     {
         Vector2 dir;
         dir = domeCenter.position - transform.position;
         return dir;
-    }
+    }*/
 
     protected override void Start()
     {
@@ -80,8 +82,4 @@ public class M_Diver : M_Moving
         stateMachine.ChangeState(attack);
     }
 
-    public void destroy()
-    {
-        Destroy(gameObject);
-    }
 }

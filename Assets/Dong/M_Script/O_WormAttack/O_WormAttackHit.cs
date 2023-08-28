@@ -13,7 +13,6 @@ public class O_WormAttackHit : M_State
     public override void Enter()
     {
         base.Enter();
-        wormAttack.myCollider.enabled = false;
         wormAttack.rb.bodyType = RigidbodyType2D.Static;
     }
 

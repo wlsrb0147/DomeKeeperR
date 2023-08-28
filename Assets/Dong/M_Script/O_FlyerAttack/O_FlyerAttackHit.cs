@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class M_BolterMove2 : M_State
+public class O_FlyerAttackHit : M_State
 {
-    M_Bolter bolter;
-    public M_BolterMove2(M_Base @base, M_StateMachine stateMachine, string aniboolname, M_Bolter bolter) : base(@base, stateMachine, aniboolname)
+    O_FlyerAttack attack;
+    public O_FlyerAttackHit(M_Base @base, M_StateMachine stateMachine, string aniboolname, O_FlyerAttack attack) : base(@base, stateMachine, aniboolname)
     {
-        this.bolter = bolter;
+        this.attack = attack;
     }
 
     public override void Enter()
     {
         base.Enter();
+        attack.SetVelocity(attack.zero);
     }
 
     public override void Exit()
@@ -24,4 +25,5 @@ public class M_BolterMove2 : M_State
     {
         base.Update();
     }
+
 }

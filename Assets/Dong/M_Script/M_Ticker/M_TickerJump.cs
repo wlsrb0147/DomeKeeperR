@@ -13,7 +13,7 @@ public class M_TickerJump : M_State
     public override void Enter()
     {
         base.Enter();
-        ticker.SetVelocity(0, 0);
+        ticker.SetVelocity(ticker.zero);
         ticker.rb.gravityScale = 1;
         ticker.Jump(ticker.jumpPower);
     }

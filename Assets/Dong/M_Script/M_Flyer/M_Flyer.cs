@@ -15,13 +15,20 @@ public class M_Flyer : M_Moving
     public M_FlyerHit hit { get; private set; }
     public M_FlyerMove move { get; private set; }
 
+
+    public int attackTimes { get; set; }
+    public int currentAttackTimes { get; set; }
+
     public Vector2 moveLocation;
     public Vector2 flyerVec;
-    public int attackTimes;
-    public int currentAttackTimes;
+
     public Vector2 normalVec;
     public Vector2 centerVec;
     public Vector2 path;
+
+    public Transform shootPosition;
+    public GameObject bullet;
+
     protected override void Awake()
     {
         base.Awake();
@@ -41,6 +48,7 @@ public class M_Flyer : M_Moving
         
         int x = (int)((Random.Range(1, 3) - 1.5) * 2);
         moveLocation = new Vector3(Random.Range(2f, 15f)*x, Random.Range(-2f, 5f),0);
+
     }
 
     protected override void Start()
@@ -51,6 +59,11 @@ public class M_Flyer : M_Moving
     protected override void Update()
     {
         base.Update();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            stateMachine.ChangeState(dead);
+        }
     }
 
         public Vector2 FlyerMove()
@@ -96,6 +109,12 @@ public class M_Flyer : M_Moving
         vec = new Vector2(abcx, abcy);
 
         return vec;
+    }
+
+    public void Shoot()
+    {
+        GameObject bulletPrefab = Instantiate(bullet, shootPosition.position, transform.rotation);
+        bulletPrefab.SetActive(true);
     }
 }
 

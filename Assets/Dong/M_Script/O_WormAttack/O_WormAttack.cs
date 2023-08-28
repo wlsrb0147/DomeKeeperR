@@ -40,10 +40,6 @@ public class O_WormAttack : M_Base
         }
     }
 
-    public void Destroy()
-    {
-        Destroy(gameObject);
-    }
 
     /*   private void Awake()
        {

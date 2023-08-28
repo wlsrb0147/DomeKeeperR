@@ -19,8 +19,10 @@ public class M_Worm : M_Holding
     public float wakeUpTimer_Min;
     public float wakeUpTimer_Max;
 
-    public int attackCount = 0;
-    public int attackCounter;
+    public Collider2D myCollider;
+
+    public int attackCount { get; set; }
+    public int attackCounter { get; set; }
     protected override void Awake()
     {
         base.Awake();
@@ -32,6 +34,8 @@ public class M_Worm : M_Holding
         idle = new M_WormIdle(this, stateMachine, "Idle", this);
         instantiate = new M_WormInstantiate(this, stateMachine, "Instantiate", this);
         wakeUp = new M_WormWakeUp(this, stateMachine, "WakeUp", this);
+
+        attackCount = 0;
     }
 
     protected override void Start()
@@ -43,6 +47,10 @@ public class M_Worm : M_Holding
     protected override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            stateMachine.ChangeState(dead);
+        }
     }
 
     public void EndWakeUP()
@@ -70,4 +78,8 @@ public class M_Worm : M_Holding
         bulletPrefab.SetActive(true);
     }
 
+    public void WakeUp()
+    {
+        myCollider.enabled = true;
+    }
 }

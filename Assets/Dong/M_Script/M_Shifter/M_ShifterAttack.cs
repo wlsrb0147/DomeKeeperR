@@ -13,11 +13,13 @@ public class M_ShifterAttack : M_State
     public override void Enter()
     {
         base.Enter();
+        shifter.shiftCount = 0;
     }
 
     public override void Exit()
     {
         base.Exit();
+        shifter.shiftCounter = Random.Range(2, 4);
     }
 
     public override void Update()

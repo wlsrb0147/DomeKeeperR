@@ -14,9 +14,8 @@ public class M_BeastGroundDead : M_State
     public override void Enter()
     {
         base.Enter();
-        beast.SetVelocity(0, 0);
+        beast.SetVelocity(beast.zero);
         beast.rb.gravityScale = 0;
-        beast.gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     public override void Exit()

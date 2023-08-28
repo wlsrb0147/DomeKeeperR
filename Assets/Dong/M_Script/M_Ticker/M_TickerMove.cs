@@ -23,7 +23,7 @@ public class M_TickerMove : M_State
     public override void Update()
     {
         base.Update();
-        ticker.SetVelocity(ticker.movingSpeed, 0);
+        ticker.SetVelocity(ticker.moveSpeed);
         if (Vector2.Distance(ticker.domeCenter.transform.position, ticker.transform.position) <= 5)
         {
             stateMachine.ChangeState(ticker.jump);

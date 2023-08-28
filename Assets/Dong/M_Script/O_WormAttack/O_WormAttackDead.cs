@@ -23,5 +23,6 @@ public class O_WormAttackDead : M_State
     public override void Update()
     {
         base.Update();
+        wormAttack.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 }

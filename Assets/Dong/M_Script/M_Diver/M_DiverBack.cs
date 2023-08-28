@@ -18,9 +18,6 @@ public class M_DiverBack : M_State
             diver.SetVecVelocity(back.x, back.y);
             diver.isAttacking = -1;
         
-        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
-        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
     }
 
     public override void Exit()
@@ -31,5 +28,9 @@ public class M_DiverBack : M_State
     public override void Update()
     {
         base.Update();
+
+        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
     }
 }

@@ -13,7 +13,6 @@ public class M_DrillerAttackingDead : M_State
     public override void Enter()
     {
         base.Enter();
-        driller.gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public override void Exit()

@@ -10,7 +10,7 @@ public class M_Driller : M_Moving
     public M_DrillerMovingDead movingDead { get; private set; }
     public M_DrillerSetting setting { get; private set; }
 
-    public bool settingOn = false;
+    public bool settingOn { get; set; }
 
     protected override void Awake()
     {
@@ -23,7 +23,7 @@ public class M_Driller : M_Moving
         move = new M_DrillerMove(this, stateMachine, "Move", this);
         movingDead = new M_DrillerMovingDead(this, stateMachine, "MovingDead", this);
         setting = new M_DrillerSetting(this, stateMachine, "Setting", this);
-
+        settingOn = false;
     }
 
     protected override void Start()
@@ -61,9 +61,5 @@ public class M_Driller : M_Moving
         stateMachine.ChangeState(attacking);
     }
 
-    public void destroy()
-    {
-        Destroy(gameObject);
-    }
 
 }
