@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class S_MapGenerator : MonoBehaviour
 {
 
-    public Vector3Int cellPosition;
+    Vector3Int cellPosition;
     public GameObject redjam;
     public GameObject bluejam;
     public GameObject greenjam;
@@ -36,53 +36,67 @@ public class S_MapGenerator : MonoBehaviour
     void Start()
     {
         tileMap = GetComponent<Tilemap>();
-        FillBackground();
+        FillTile();
     }
 
-
-    void FillBackground()
+    void FillTile()
     {
+        int count = 0;
 
-        for (int i = -10; i < mapSize.x + 10; i++) //바깥타일은 맵 가장자리에 가도 어색하지 않게, 10만큼 여유
+        //tileMap.SetTile(new Vector3Int(0, mapSize.y / 2 - 1, 0), GroundTile);
+
+        for (int j = mapSize.y / 2 - 1; j > -mapSize.y; j--)
         {
-            for (int j = -10; j < mapSize.y + 10; j++)
+            tileMap.SetTile(new Vector3Int(0, j, 0), GroundTile);
+
+            for (int i = 1; i <= mapSize.x / 2; i++)
             {
-                int rnd = Random.Range(0, 100);
+                CreatGround(j, i);
+                CreatGround(j, -i);
 
-                if (rnd >= 0 && rnd < 6)
+                if (i > count)
                 {
-                    var mine = Instantiate(redjam, tileMap.transform);
-                    mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
-
+                    break;
                 }
-                if (rnd >= 6&& rnd < 12)
-                {
-                    var mine = Instantiate(bluejam, tileMap.transform);
-                    mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
-
-                }
-                if (rnd >= 12 && rnd < 18)
-                {
-                    var mine = Instantiate(greenjam, tileMap.transform);
-                    mine.transform.position = new Vector3(i - mapSize.x / 2 + mineralXoffeset, j - mapSize.y / 2 - mineralYoffeset, 0);
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), mineralTile);
-
-                }
-                else if(rnd >=40 && rnd < 60)
-                {
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile2);
-                }
-                else
-                    tileMap.SetTile(new Vector3Int(i - mapSize.x / 2, j - mapSize.y / 2, 0), GroundTile);
-
             }
+            count++;
         }
     }
 
+    void CreatGround(int j, int i)
+    {
+        int rnd = Random.Range(0, 100);
 
-
+        if (rnd >= 0 && rnd < 6)
+        {
+            var mine = Instantiate(redjam, tileMap.transform);
+            mine.transform.position = new Vector3(i + mineralXoffeset, j-1 - mineralYoffeset, 0);
+            tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
+            tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
+        }
+        else if (rnd >= 6 && rnd < 12)
+        {
+            var mine = Instantiate(bluejam, tileMap.transform);
+            mine.transform.position = new Vector3(i + mineralXoffeset, j-1 - mineralYoffeset, 0);
+            tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
+            tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
+        }
+        else if (rnd >= 12 && rnd < 18)
+        {
+            var mine = Instantiate(greenjam, tileMap.transform);
+            mine.transform.position = new Vector3(i + mineralXoffeset, j-1 - mineralYoffeset, 0);
+            tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
+            tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
+        }
+        else if (rnd >= 40 && rnd < 60)
+        {
+            tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile2);
+        }
+        else
+        {
+            tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile);
+        }
+    }
 
     void FillWall() //룸 타일과 바깥 타일이 만나는 부분 
     {
@@ -101,7 +115,7 @@ public class S_MapGenerator : MonoBehaviour
                         nullTile = new bool[9];
                         int count = 0;
 
-                        for(int i = 0; i < 9; i++)
+                        for (int i = 0; i < 9; i++)
                         {
                             nullTile[i] = false;
                         }
@@ -142,14 +156,10 @@ public class S_MapGenerator : MonoBehaviour
         }
     }
 
-
     public void MakeDot(Vector3 Pos)
     {
         cellPosition = tileMap.WorldToCell(Pos);
-
         tileMap.SetTile(cellPosition, null);
         FillWall();
     }
 }
-
-
