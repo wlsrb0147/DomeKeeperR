@@ -47,6 +47,7 @@ public class PetEntity : MonoBehaviour
     protected bool sideMine;
     protected bool petIdle;
     protected bool petFly;
+    protected bool hasFlipped;
     #endregion
 
     protected int facingDir = -1;
@@ -92,7 +93,29 @@ public class PetEntity : MonoBehaviour
             petIdle = false;
             petMove = false;
             Debug.Log("µî µÚ ¹Ì³×¶ö");
-            Flip();
+
+            if (!hasFlipped)
+            {
+                Flip();
+                MoveVelocity();
+                hasFlipped = true;
+            }
+            if (isSideDetected)
+            {
+                if (isGrounded)
+                {
+                    MoveVelocity();
+                    petFly = false;
+                    underMine = false;
+                    sideMine = true;
+                    Flip();
+                }
+            }
+
+        }
+        else
+        {
+            hasFlipped = false;
         }
     }
 

@@ -22,7 +22,6 @@ public class MovementController2D : MonoBehaviour
     List<Vector2> pathLeftToGo = new List<Vector2>();
     [SerializeField] bool drawDebugLines;
 
-
     // 첫 번째 프레임 전에 호출되는 함수
     void Start()
     {
@@ -42,8 +41,7 @@ public class MovementController2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G)) 
         {
             ResetMovementState();
-            GetMoveCommand(new Vector2(Random.Range(-180.0f, 180.0f), (Random.Range(-13.0f, -120.0f))));
-
+            GetMoveCommand(new Vector2(Random.Range(-180.0f, 180.0f), (Random.Range(-50.0f, -120.0f))));
         }
 
         if (pathLeftToGo.Count > 0) // 목표에 도달하지 않았을 때
@@ -54,14 +52,6 @@ public class MovementController2D : MonoBehaviour
             {
                 transform.position = pathLeftToGo[0];
                 pathLeftToGo.RemoveAt(0);
-
-                if (pathLeftToGo.Count == 0)
-                {
-                    Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                    rb.gravityScale = 2;
-                    CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
-                    circleColl.enabled = true;
-                }
             }
         }
         //시각화
@@ -72,7 +62,9 @@ public class MovementController2D : MonoBehaviour
                 Debug.DrawLine(pathLeftToGo[i], pathLeftToGo[i + 1]);
             }
         }
+
     }
+
     void SetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -83,7 +75,7 @@ public class MovementController2D : MonoBehaviour
     private void ResetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 3;
+        rb.gravityScale = 2;
         CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
         circleColl.enabled = true;
     }
@@ -149,6 +141,7 @@ public class MovementController2D : MonoBehaviour
     Dictionary<Vector2, float> GetNeighbourNodes(Vector2 pos)
     {
         Dictionary<Vector2, float> neighbours = new Dictionary<Vector2, float>();
+
         for (int i = -1; i < 2; i++)
         {
             for (int j = -1; j < 2; j++)
