@@ -39,7 +39,7 @@ public class M_Moving : M_Base
     public Vector2 Getdir()
     {
         Vector2 dir;
-        dir = domeCenter.position - transform.position;
+        dir = domeCenter.position - transform.position; 
         return dir;
     }
 
