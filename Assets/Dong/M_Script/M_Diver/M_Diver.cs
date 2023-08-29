@@ -77,21 +77,43 @@ public class M_Diver : M_Moving
     {
         Vector2 pos = Getdir();
 
-        if (Mathf.Abs(pos.x) > 22)
+        pos = new Vector2 (Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+
+        // 1. 24,0
+
+        int i=0;
+
+        while (pos.x > 23 || pos.y > 22.6f)
         {
-            pos.y = pos.y * 22 / pos.x;
-            pos.x = 22;
+            
+            if (pos.x > 23)
+            {
+                pos.y = pos.y * 23 / pos.x;
+                pos.x = 23;
+            }
+
+            if (pos.y > 22.6f) // pos = getdir+9.6
+            {
+                pos.x = (22.6f * pos.x) / pos.y;
+                pos.y = 22.6f;
+            }
+
+            i++;
+
+            Debug.Log(pos);
+
+            if (i == 10) return;
         }
 
-        if (Mathf.Abs(pos.y) > 23)
-        {
-            pos.x = pos.x * 24 / pos.y;
-            pos.y = 12;
-        }
+        pos.x *= -faceX;
+        pos.y -= 9.6f;
 
-        GameObject warningPrefab =  Instantiate(warning, -pos, transform.rotation);
+        Vector2 dir = Getdir();
+        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+
+        GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
         warningPrefab.SetActive(true);
-        Destroy(warningPrefab,5);
+        Destroy(warningPrefab, 5);
 
         Invoke("Invisible", 2);
     }
