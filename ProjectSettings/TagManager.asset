@@ -3,22 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - MIneral
-  - Dome
-  - Mineral
-  - HardTile
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Under
+  - 
   - Water
   - UI
-  - Ground
-  - Mineral
-  - Wall
+  - 
+  - 
+  - 
   - 
   - 
   - 
