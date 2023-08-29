@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -43,16 +44,30 @@ public class S_MapGenerator : MonoBehaviour
     {
         int count = 0;
 
-        //tileMap.SetTile(new Vector3Int(0, mapSize.y / 2 - 1, 0), GroundTile);
-
         for (int j = mapSize.y / 2 - 1; j > -mapSize.y; j--)
         {
             tileMap.SetTile(new Vector3Int(0, j, 0), GroundTile);
 
             for (int i = 1; i <= mapSize.x / 2; i++)
             {
-                CreatGround(j, i);
-                CreatGround(j, -i);
+                int rnd = Random.Range(0, 100);
+
+                if (rnd >= 0 && rnd < 18 && j > -mapSize.y+1)
+                {
+                    CreatGround(j, i);
+                    CreatGround(j, -i);
+                }
+
+                if (rnd >= 19 && rnd < 60)
+                {
+                    tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile2);
+                    tileMap.SetTile(new Vector3Int(-i, j, 0), GroundTile2);
+                }
+                else
+                {
+                    tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile);
+                    tileMap.SetTile(new Vector3Int(-i, j, 0), GroundTile);
+                }
 
                 if (i > count)
                 {
@@ -65,36 +80,28 @@ public class S_MapGenerator : MonoBehaviour
 
     void CreatGround(int j, int i)
     {
-        int rnd = Random.Range(0, 100);
+        int rnd = Random.Range(0, 19);
 
         if (rnd >= 0 && rnd < 6)
         {
             var mine = Instantiate(redjam, tileMap.transform);
-            mine.transform.position = new Vector3(i + mineralXoffeset, j-1 - mineralYoffeset, 0);
+            mine.transform.position = new Vector3(i + mineralXoffeset, j - mineralYoffeset, 0);
             tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
             tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
         }
         else if (rnd >= 6 && rnd < 12)
         {
             var mine = Instantiate(bluejam, tileMap.transform);
-            mine.transform.position = new Vector3(i + mineralXoffeset, j-1 - mineralYoffeset, 0);
+            mine.transform.position = new Vector3(i + mineralXoffeset, j - mineralYoffeset, 0);
             tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
             tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
         }
         else if (rnd >= 12 && rnd < 18)
         {
             var mine = Instantiate(greenjam, tileMap.transform);
-            mine.transform.position = new Vector3(i + mineralXoffeset, j-1 - mineralYoffeset, 0);
+            mine.transform.position = new Vector3(i + mineralXoffeset, j - mineralYoffeset, 0);
             tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
             tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
-        }
-        else if (rnd >= 40 && rnd < 60)
-        {
-            tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile2);
-        }
-        else
-        {
-            tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile);
         }
     }
 
