@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6835504050438269201}
   - component: {fileID: -2865123575679576531}
   - component: {fileID: 5929235182391592829}
+  - component: {fileID: -6118325356814361343}
   m_Layer: 7
   m_Name: Mineral
   m_TagString: Mineral
@@ -98,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9062c05ae74df4a9cfa3a99f1d540d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wahtisGround:
+    serializedVersion: 2
+    m_Bits: 64
   Hp: 20
 --- !u!61 &5929235182391592829
 BoxCollider2D:
@@ -144,3 +148,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0158731, y: 1.0158731}
   m_EdgeRadius: 0
+--- !u!50 &-6118325356814361343
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656843304936396263}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

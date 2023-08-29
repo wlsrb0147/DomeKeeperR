@@ -20,69 +20,48 @@ public class PetController : PetEntity
         if (isGrounded)
         {
             MoveVelocity();
-            sideMine = false;
+            petFly = false;
             underMine = false;
-            petIdle = false;
-            petFly = false;
-            petMove = true;
-            Debug.Log("¶¥ À§");
-        }
-
-        if (isGrounded && !isSideDetected)
-        {
-            ZeroVelocity();
-            petIdle = false;
-            petMove = false;
-            sideMine = false;
-            petFly = false;
-            underMine = true;
-            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¾Æ¹«°Íµµ ¾øÀ½");
-        }
-
-        if (isGrounded && isSideDetected)
-        {
-            MoveVelocity();
-            petMove = false;
-            sideMine = false;
-            petIdle = false;
-            petFly = false;
-            underMine = true;
-            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ º®ÀÖÀ½");
-        }
-
-        if (isGrounded && isSideMineralDetected)
-        {
-            MoveVelocity();
-            petMove = false;
-            underMine = false;
-            petIdle = false;
-            petFly = false;
             sideMine = true;
-            Debug.Log("¶¥ À§ÀÎµ¥ ¿·¿¡ ¹Ì³×¶öÀÖÀ½");
         }
 
-        if (isMineraled && isSideDetected)
+        if (isMineraled)
         {
             ZeroVelocity();
-            petIdle = false;
-            petMove = false;
-            sideMine = false;
             petFly = false;
+            sideMine = false;
             underMine = true;
-            Debug.Log("¹Ì³×¶ö À§ÀÎµ¥ ¿·¿¡ º®");
         }
-
         if (!isGrounded)
         {
-            Debug.Log("°øÁß¿¡ ¶ä");
-            ZeroVelocity();
-            sideMine = false;
             underMine = false;
-            petIdle = false;
-            petMove = false;
+            sideMine = false;
             petFly = true;
         }
 
-    }
+        if(isSideMineralDetected)
+        {
+            MoveVelocity();
+            petFly = false;
+            underMine = false;
+            sideMine = true;
+        }
 
+        if (!isSideMineralDetected && isGrounded)
+        {
+            ZeroVelocity();
+            petFly = false;
+            sideMine = false;
+            underMine = true;
+        }
+
+        if(!sideCheck && isGrounded)
+        {
+            ZeroVelocity();
+            petFly = false;
+            sideMine = false;
+            underMine = true;
+        }
+
+    }
 }

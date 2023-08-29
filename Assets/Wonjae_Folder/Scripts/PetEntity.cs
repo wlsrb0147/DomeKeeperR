@@ -47,13 +47,14 @@ public class PetEntity : MonoBehaviour
     protected bool sideMine;
     protected bool petIdle;
     protected bool petFly;
+    protected bool hasFlipped;
     #endregion
 
     protected int facingDir = -1;
     protected bool facingRight = true;
 
     S_Mineral mineral;
-    bool mineralCheck;
+    bool hardTileCheck;
 
     protected virtual void Start()
     {
@@ -71,7 +72,7 @@ public class PetEntity : MonoBehaviour
     }
 
     #region Flip 
-    protected virtual void Flip()
+    public virtual void Flip()
     {
         facingDir = facingDir * -1;
         facingRight = !facingRight;
@@ -85,15 +86,37 @@ public class PetEntity : MonoBehaviour
             Flip();
         }
 
-        if (isBackDetected)
-        {
-            sideMine = false;
-            underMine = false;
-            petIdle = false;
-            petMove = false;
-            Debug.Log("µî µÚ ¹Ì³×¶ö");
-            Flip();
-        }
+        //if (isBackDetected)
+        //{
+        //    sideMine = false;
+        //    underMine = false;
+        //    petIdle = false;
+        //    petMove = false;
+        //    Debug.Log("µî µÚ ¹Ì³×¶ö");
+
+        //    if (!hasFlipped)
+        //    {
+        //        Flip();
+        //        MoveVelocity();
+        //        hasFlipped = true;
+        //    }
+        //    if (isSideDetected)
+        //    {
+        //        if (isGrounded)
+        //        {
+        //            MoveVelocity();
+        //            petFly = false;
+        //            underMine = false;
+        //            sideMine = true;
+        //            Flip();
+        //        }
+        //    }
+
+        //}
+        //else
+        //{
+        //    hasFlipped = false;
+        //}
     }
 
     #endregion
@@ -157,7 +180,7 @@ public class PetEntity : MonoBehaviour
         {
             mineralCollider2d.transform.GetComponent<S_Mineral>().SetDamage(petDamage);
         }
-        else if (groundCollider2d != null && !mineralCheck)
+        else if (groundCollider2d != null && !hardTileCheck)
         {
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(footPos.position);
         }
@@ -172,7 +195,7 @@ public class PetEntity : MonoBehaviour
         {
             mineralCollider2d.transform.GetComponent<S_Mineral>().SetDamage(petDamage);
         }
-        else if (groundCollider2d != null && !mineralCheck)
+        else if (groundCollider2d != null && !hardTileCheck)
         {
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(toothPos.position);
         }
