@@ -62,6 +62,7 @@ public class S_MapGenerator : MonoBehaviour
                 {
                     tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile2);
                     tileMap.SetTile(new Vector3Int(-i, j, 0), GroundTile2);
+                    
                 }
                 else
                 {
