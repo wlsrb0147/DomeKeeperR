@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9062c05ae74df4a9cfa3a99f1d540d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mineral: {fileID: 2204650972640768874}
   wahtisGround:
     serializedVersion: 2
     m_Bits: 64
+  mineral: {fileID: 6761765093515425406, guid: 5827e843343f41c4c8d2ffb85f48393c, type: 3}
   Hp: 20
 --- !u!61 &8267186495701992230
 BoxCollider2D:

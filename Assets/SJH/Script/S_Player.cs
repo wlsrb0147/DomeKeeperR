@@ -43,7 +43,7 @@ public class S_Player : MonoBehaviour
 
         if (yInput < 0)
             player.layer = 3;
-        else player.layer = 0;
+        else player.layer = 9;
 
         if (xInput != 0)
         {
