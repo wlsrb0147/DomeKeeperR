@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class M_Moving : M_Base
 {
-    public float movingSpeed;
+    public Vector2 moveSpeed;
 
     protected override void Awake()
     {
@@ -21,9 +21,9 @@ public class M_Moving : M_Base
         base.Update();
     }
 
-    public void SetVelocity(float InputX, float InputY)
+    public void SetVelocity(Vector2 vec)
     {
-            rb.velocity = new Vector2(InputX * faceX, InputY);
+            rb.velocity = new Vector2(vec.x * faceX, vec.y);
     }
 
     public void SetVecVelocity(float InputX, float InputY)
@@ -34,6 +34,13 @@ public class M_Moving : M_Base
                 rb.velocity = new Vector2(-InputX * faceX, InputY);
             }
             else rb.velocity = new Vector2(InputX * faceX, InputY);
+    }
+
+    public Vector2 Getdir()
+    {
+        Vector2 dir;
+        dir = domeCenter.position - transform.position;
+        return dir;
     }
 
     public void Jump(Vector2 pulsePower)

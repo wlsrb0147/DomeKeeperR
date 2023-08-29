@@ -24,6 +24,6 @@ public class M_DrillerMove : M_State
     public override void Update()
     {
         base.Update();
-        driller.SetVelocity(driller.movingSpeed, 0);
+        driller.SetVelocity(driller.moveSpeed);
     }
 }

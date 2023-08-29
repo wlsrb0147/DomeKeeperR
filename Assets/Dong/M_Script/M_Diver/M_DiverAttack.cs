@@ -15,10 +15,6 @@ public class M_DiverAttack : M_State
     {
         base.Enter();
 
-        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
-
         diver.isAttacking = 1;
     }
 
@@ -30,11 +26,16 @@ public class M_DiverAttack : M_State
     public override void Update()
     {
         base.Update();
+        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+
+
         if (diver.transform.position != null)
         {
             atk = diver.Getdir();
             atk = atk.normalized;
-            diver.SetVecVelocity(atk.x * diver.movingSpeed, atk.y * diver.movingSpeed);
+            diver.SetVecVelocity(atk.x * diver.moveSpeed.x, atk.y * diver.moveSpeed.x);
         }
     }
 }

@@ -13,7 +13,6 @@ public class M_TickerDead : M_State
     public override void Enter()
     {
         base.Enter();
-        ticker.gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     public override void Exit()
@@ -24,5 +23,6 @@ public class M_TickerDead : M_State
     public override void Update()
     {
         base.Update();
+        ticker.SetVelocity(ticker.zero);
     }
 }

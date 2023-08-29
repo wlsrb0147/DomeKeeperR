@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class M_BolterMove2 : M_State
+public class O_BolterAttack2Attack : M_State
 {
-    M_Bolter bolter;
-    public M_BolterMove2(M_Base @base, M_StateMachine stateMachine, string aniboolname, M_Bolter bolter) : base(@base, stateMachine, aniboolname)
+    public O_BolterAttack2Attack(M_Base @base, M_StateMachine stateMachine, string aniboolname) : base(@base, stateMachine, aniboolname)
     {
-        this.bolter = bolter;
     }
 
     public override void Enter()

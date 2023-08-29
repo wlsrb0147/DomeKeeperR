@@ -1,4 +1,5 @@
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M_Worm : M_Holding
@@ -11,15 +12,19 @@ public class M_Worm : M_Holding
     public M_WormInstantiate instantiate { get; private set; }
     public M_WormWakeUp wakeUp { get; private set; }
 
+    [Header("받아오는 값")]
     public GameObject bullet;
     public Transform bulletHole;
 
+    [Header("공격주기")]
     public float attackTimer_Min;
     public float attackTimer_Max;
     public float wakeUpTimer_Min;
     public float wakeUpTimer_Max;
 
-    public int attackCount = 0;
+    public Collider2D myCollider { get; set; }
+
+    public int attackCount { get; set; }
     public int attackCounter;
     protected override void Awake()
     {
@@ -32,6 +37,10 @@ public class M_Worm : M_Holding
         idle = new M_WormIdle(this, stateMachine, "Idle", this);
         instantiate = new M_WormInstantiate(this, stateMachine, "Instantiate", this);
         wakeUp = new M_WormWakeUp(this, stateMachine, "WakeUp", this);
+
+        myCollider =gameObject.GetComponent<Collider2D>();
+
+        attackCount = 0;
     }
 
     protected override void Start()
@@ -43,6 +52,10 @@ public class M_Worm : M_Holding
     protected override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            stateMachine.ChangeState(dead);
+        }
     }
 
     public void EndWakeUP()
@@ -70,4 +83,8 @@ public class M_Worm : M_Holding
         bulletPrefab.SetActive(true);
     }
 
+    public void WakeUp()
+    {
+        myCollider.enabled = true;
+    }
 }

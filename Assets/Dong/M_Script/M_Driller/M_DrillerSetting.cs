@@ -13,7 +13,7 @@ public class M_DrillerSetting : M_State
     public override void Enter()
     {
         base.Enter();
-        driller.SetVelocity(0, 0);
+        driller.SetVelocity(driller.zero);
     }
 
     public override void Exit()

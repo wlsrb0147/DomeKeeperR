@@ -23,5 +23,6 @@ public class M_BolterDead : M_State
     public override void Update()
     {
         base.Update();
+        bolter.SetVelocity(bolter.zero);
     }
 }

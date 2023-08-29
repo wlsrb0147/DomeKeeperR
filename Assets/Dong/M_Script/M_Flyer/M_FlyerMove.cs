@@ -35,7 +35,7 @@ public class M_FlyerMove : M_State
 
 
 
-            flyer.transform.Translate(vec*Time.deltaTime*5);
+            flyer.transform.Translate(vec*Time.deltaTime*flyer.moveSpeed.x);
         }
 
         if (Vector2.Distance(flyer.transform.position, flyer.moveLocation) < 1)

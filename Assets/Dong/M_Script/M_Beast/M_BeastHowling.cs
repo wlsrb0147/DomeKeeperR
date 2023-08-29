@@ -24,7 +24,7 @@ public class M_BeastHowling : M_State
     public override void Update()
     {
         base.Update();
-        beast.SetVelocity(0, 0);
+        beast.SetVelocity(beast.zero);
     }
 
 }

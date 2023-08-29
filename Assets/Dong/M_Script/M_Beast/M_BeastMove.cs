@@ -33,12 +33,12 @@ public class M_BeastMove : M_State
 
         else if (Vector2.Distance(beast.domeCenter.position, beast.transform.position) <= beast.JumpX)
         {
-            beast.SetVelocity(0, 0);
+            beast.SetVelocity(beast.zero);
             stateMachine.ChangeState(beast.jump);
         }
         else
         {
-            beast.SetVelocity(beast.movingSpeed, 0);
+            beast.SetVelocity(beast.moveSpeed);
         }
 
     }

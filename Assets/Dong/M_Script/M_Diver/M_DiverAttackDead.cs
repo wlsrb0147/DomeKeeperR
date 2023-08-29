@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class M_DiverAttackDead : M_State
 {
@@ -13,10 +14,7 @@ public class M_DiverAttackDead : M_State
     public override void Enter()
     {
         base.Enter();
-        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
-        diver.SetVelocity(0,0);
+        diver.SetVelocity(diver.zero);
     }
 
     public override void Exit()
@@ -27,5 +25,6 @@ public class M_DiverAttackDead : M_State
     public override void Update()
     {
         base.Update();
+        diver.SetVelocity(diver.zero);
     }
 }

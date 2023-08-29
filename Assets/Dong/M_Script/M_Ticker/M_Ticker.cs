@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M_Ticker : M_Moving
@@ -31,6 +32,10 @@ public class M_Ticker : M_Moving
     protected override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            stateMachine.ChangeState(dead);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,12 +47,4 @@ public class M_Ticker : M_Moving
         }
     }
 
-    public void DeleteCollider()
-    {
-        gameObject.GetComponent<CircleCollider2D>().enabled = false;
-    }
-    public void Destroy()
-    {
-        Destroy(gameObject);
-    }
 }

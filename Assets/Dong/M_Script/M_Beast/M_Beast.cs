@@ -15,14 +15,13 @@ public class M_Beast : M_Moving
     #endregion
 
 
-    public bool howl = false;
+    public bool howl { get; private set; }
 
     public Vector2 jumpPower;
+    public bool onGround { get;  set; }
 
-    public bool onGround = true;
-
-    public float howlX;
-    public float JumpX;
+    public float howlX { get; private set; }
+    public float JumpX { get; private set; }
 
 
     protected override void Awake()
@@ -39,6 +38,8 @@ public class M_Beast : M_Moving
 
         howlX = Random.Range(15f, 17f);
         JumpX = Random.Range(10f, 12f);
+        howl = false;
+        onGround = true;
     }
 
     protected override void Start()
@@ -78,8 +79,4 @@ public class M_Beast : M_Moving
         else stateMachine.ChangeState(wallDead);
     }
 
-    private void Destroy()
-    {
-        Destroy(gameObject);
-    }
 }
