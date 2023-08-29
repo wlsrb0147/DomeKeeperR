@@ -100,7 +100,6 @@ public class M_Diver : M_Moving
 
             i++;
 
-            Debug.Log(pos);
 
             if (i == 10) return;
         }

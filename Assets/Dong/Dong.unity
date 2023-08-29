@@ -4964,11 +4964,13 @@ MonoBehaviour:
   inactive: {fileID: 1678085712}
   shootPosition: {fileID: 1556594593}
   bullet: {fileID: 1248903496}
+  myposition: {x: 0, y: 0}
   moveLocation: {x: 0, y: 0}
-  flyerVec: {x: 0, y: 0}
-  normalVec: {x: 0, y: 0}
-  centerVec: {x: 0, y: 0}
   path: {x: 0, y: 0}
+  centerVec: {x: 0, y: 0}
+  testVec: {x: 0, y: 0}
+  normalVec: {x: 0, y: 0}
+  x: 0
 --- !u!58 &1678085712
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5136,7 +5138,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678085710}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

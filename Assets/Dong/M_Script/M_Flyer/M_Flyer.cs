@@ -11,6 +11,7 @@ public class M_Flyer : M_Moving
     public Transform shootPosition;
     public GameObject bullet;
 
+
     public M_FlyerAppear appear {  get; private set; }
     public M_FlyerAttack attack { get; private set; }
     public M_FlyerDead dead { get; private set; }
@@ -23,11 +24,22 @@ public class M_Flyer : M_Moving
     public int currentAttackTimes { get; set; }
 
     [Header("Test")]
+    public Vector2 myposition;   
     public Vector2 moveLocation;
-    public Vector2 flyerVec;
-    public Vector2 normalVec;
-    public Vector2 centerVec;
     public Vector2 path;
+    public Vector2 centerVec;
+    public Vector2 testVec;
+    public Vector2 normalVec;
+    public Vector2 curve;
+    public Vector2 test1;
+    public Vector2 test2;
+    public Vector2 test3;
+    public float multi;
+    
+    
+    
+   
+    public float x;
 
 
     protected override void Awake()
@@ -39,8 +51,7 @@ public class M_Flyer : M_Moving
         hide = new M_FlyerHide(this, stateMachine, "Hide", this);
         hit = new M_FlyerHit(this, stateMachine, "Hit", this);
         move = new M_FlyerMove(this, stateMachine, "Move", this);
-        
-        
+
         stateMachine.Initiate(move);
 
 
@@ -67,13 +78,13 @@ public class M_Flyer : M_Moving
         }
     }
 
-        public Vector2 FlyerMove()
+/*        public Vector2 FlyerMove()
     {
         flyerVec = new Vector2((moveLocation.x - transform.position.x),
                 (moveLocation.y - transform.position.y));
         flyerVec = flyerVec.normalized;
         return flyerVec;
-    }
+    }*/
 
     public void EndHide()
     {
@@ -95,17 +106,24 @@ public class M_Flyer : M_Moving
         stateMachine.ChangeState(appear);
     }
 
-    public Vector2 Curve(Vector2 start,Vector2 path,Vector2 destination)
-    { float abx, bcx , abcx, aby,bcy,abcy ;
+    public Vector2 Curve(Vector2 start,Vector2 path,Vector2 destination, float timing)
+    { 
+        float abx, bcx , abcx, aby,bcy,abcy ;
         Vector2 vec;
-        abx = Mathf.Lerp(start.x, path.x, start.x / path.x);
-        aby = Mathf.Lerp(start.y, path.y, start.y / path.y);
+        abx = Mathf.Lerp(start.x, path.x, timing);
+        aby = Mathf.Lerp(start.y, path.y, timing);
 
-        bcx = Mathf.Lerp(path.x,destination.x, path.x / destination.x);
-        bcy = Mathf.Lerp(path.y,destination.y, path.y / destination.y);
+        test1 = new Vector2(abx, aby);
 
-        abcx = Mathf.Lerp(abx, bcx, abx / bcx);
-        abcy = Mathf.Lerp(aby, bcy, aby / bcy);
+        bcx = Mathf.Lerp(path.x, destination.x, timing);
+        bcy = Mathf.Lerp(path.y,destination.y, timing);
+
+        test2 = new Vector2(bcx, bcy);
+
+        abcx = Mathf.Lerp(abx, bcx, timing);
+        abcy = Mathf.Lerp(aby, bcy, timing);
+
+        test3 = new Vector2(abcx, abcy);
 
         vec = new Vector2(abcx, abcy);
 
@@ -116,6 +134,16 @@ public class M_Flyer : M_Moving
     {
         GameObject bulletPrefab = Instantiate(bullet, shootPosition.position, transform.rotation);
         bulletPrefab.SetActive(true);
+    }
+
+    public float vectorLength(Vector2 vec1,Vector2 vec2)
+    {
+        float x;
+        Vector2 wantLength;
+        wantLength = new Vector2(vec1.x - vec2.x, vec1.y - vec2.y);
+        x = wantLength.magnitude;
+
+        return x;
     }
 }
 
