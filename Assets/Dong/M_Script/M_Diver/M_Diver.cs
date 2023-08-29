@@ -12,6 +12,8 @@ public class M_Diver : M_Moving
     public int isAttacking { get; set; }
 
 
+    public GameObject warning;
+
 
     protected override void Awake()
     {
@@ -73,7 +75,29 @@ public class M_Diver : M_Moving
 
     private void OnBecameInvisible()
     {
-        stateMachine.ChangeState(attack);
+        Vector2 pos = Getdir();
+
+        if (Mathf.Abs(pos.x) > 22)
+        {
+            pos.y = pos.y * 22 / pos.x;
+            pos.x = 22;
+        }
+
+        if (Mathf.Abs(pos.y) > 23)
+        {
+            pos.x = pos.x * 24 / pos.y;
+            pos.y = 12;
+        }
+
+        GameObject warningPrefab =  Instantiate(warning, -pos, transform.rotation);
+        warningPrefab.SetActive(true);
+        Destroy(warningPrefab,5);
+
+        Invoke("Invisible", 2);
     }
 
+    void Invisible()
+    {
+        stateMachine.ChangeState(attack);
+    }
 }

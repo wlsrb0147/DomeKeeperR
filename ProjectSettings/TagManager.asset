@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - MIneral
   - Dome
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Ground
   - Mineral
   - Wall
-  - 
+  - Monster
   - 
   - 
   - 
