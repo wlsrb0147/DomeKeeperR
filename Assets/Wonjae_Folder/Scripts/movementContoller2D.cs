@@ -43,7 +43,7 @@ public class MovementController2D : MonoBehaviour
         {
             PetEntity pt = GetComponent<PetEntity>();
             ResetMovementState();
-            Vector2 randomTarget = (new Vector2(Random.Range(-180.0f, 180.0f), (Random.Range(-50.0f, -120.0f))));
+            Vector2 randomTarget = (new Vector2(Random.Range(-96.0f, 96.0f), (Random.Range(-50.0f, -290.0f))));
 
             if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면
                 pt.Flip();

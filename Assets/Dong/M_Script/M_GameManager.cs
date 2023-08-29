@@ -9,12 +9,12 @@ public class M_GameManager : MonoBehaviour
 
     private void Start()
     {
+        int monsterCount = CountWithTag(monsterTag);
+        Debug.Log(" 몬스터 숫자 : " + monsterCount);
     }
 
     private void Update()
     {
-        int monsterCount = CountWithTag(monsterTag);
-        Debug.Log(" 몬스터 숫자 : " + monsterCount);
     }
 
     private int CountWithTag(string tag)
