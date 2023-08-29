@@ -54,7 +54,7 @@ public class PetEntity : MonoBehaviour
     protected bool facingRight = true;
 
     S_Mineral mineral;
-    bool mineralCheck;
+    bool hardTileCheck;
 
     protected virtual void Start()
     {
@@ -180,7 +180,7 @@ public class PetEntity : MonoBehaviour
         {
             mineralCollider2d.transform.GetComponent<S_Mineral>().SetDamage(petDamage);
         }
-        else if (groundCollider2d != null && !mineralCheck)
+        else if (groundCollider2d != null && !hardTileCheck)
         {
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(footPos.position);
         }
@@ -195,7 +195,7 @@ public class PetEntity : MonoBehaviour
         {
             mineralCollider2d.transform.GetComponent<S_Mineral>().SetDamage(petDamage);
         }
-        else if (groundCollider2d != null && !mineralCheck)
+        else if (groundCollider2d != null && !hardTileCheck)
         {
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(toothPos.position);
         }
