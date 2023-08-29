@@ -5,8 +5,11 @@ using UnityEngine.VFX;
 
 public class M_Flyer : M_Moving
 {
+    [Header("받아오는 값")] 
     public Collider2D active; // attack,hit때의 collider
     public Collider2D inactive; // apper,hide때의 collider
+    public Transform shootPosition;
+    public GameObject bullet;
 
     public M_FlyerAppear appear {  get; private set; }
     public M_FlyerAttack attack { get; private set; }
@@ -19,15 +22,13 @@ public class M_Flyer : M_Moving
     public int attackTimes { get; set; }
     public int currentAttackTimes { get; set; }
 
+    [Header("Test")]
     public Vector2 moveLocation;
     public Vector2 flyerVec;
-
     public Vector2 normalVec;
     public Vector2 centerVec;
     public Vector2 path;
 
-    public Transform shootPosition;
-    public GameObject bullet;
 
     protected override void Awake()
     {

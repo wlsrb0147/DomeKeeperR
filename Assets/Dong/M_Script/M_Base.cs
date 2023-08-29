@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class M_Base : MonoBehaviour
 {
     public M_StateMachine stateMachine { get; private set; }
     public Animator ani { get; private set; }
     public Rigidbody2D rb { get; private set; }
-
     public Transform domeCenter { get; private set; }
-    public float hp;
+
+    [Header("Stat")]
+    public float hp =1;
+    public float atk = 1;
     
     public int faceX { get ; private set; }
     public bool facingRight { get ; private set; }

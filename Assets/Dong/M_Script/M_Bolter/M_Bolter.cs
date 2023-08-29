@@ -16,6 +16,7 @@ public class M_Bolter : M_Moving
 
     public int attackChange { get; set; }
 
+    [Header("받아오는 값")]
     public GameObject bullet;
     public Transform shootPosition;
 

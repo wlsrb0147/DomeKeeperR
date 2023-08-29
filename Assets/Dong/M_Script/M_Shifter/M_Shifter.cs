@@ -15,6 +15,7 @@ public class M_Shifter : M_Holding
     public int shiftCounter;
     public int shiftCount;
 
+    [Header("받아오는 값")]
     public GameObject bullet;
     public Transform shootPosition;
 

@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   shiftCounter: 0
   shiftCount: 0
   bullet: {fileID: 169506987}
@@ -323,9 +324,9 @@ GameObject:
   - component: {fileID: 52720900}
   - component: {fileID: 52720899}
   - component: {fileID: 52720898}
-  - component: {fileID: 52720897}
   - component: {fileID: 52720896}
   - component: {fileID: 52720895}
+  - component: {fileID: 52720897}
   m_Layer: 0
   m_Name: Tick (1)
   m_TagString: Untagged
@@ -408,6 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 2, y: 0}
   jumpPower: {x: 3, y: 5}
 --- !u!95 &52720898
@@ -571,9 +573,9 @@ GameObject:
   - component: {fileID: 122124522}
   - component: {fileID: 122124521}
   - component: {fileID: 122124520}
-  - component: {fileID: 122124523}
   - component: {fileID: 122124525}
   - component: {fileID: 122124524}
+  - component: {fileID: 122124523}
   m_Layer: 0
   m_Name: Worm
   m_TagString: Untagged
@@ -683,13 +685,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   bullet: {fileID: 618206085}
   bulletHole: {fileID: 2030515232}
   attackTimer_Min: 2
   attackTimer_Max: 3
   wakeUpTimer_Min: 3
   wakeUpTimer_Max: 5
-  myCollider: {fileID: 122124524}
   attackCounter: 3
 --- !u!70 &122124524
 CapsuleCollider2D:
@@ -937,6 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 3, y: 0}
 --- !u!1 &215749069
 GameObject:
@@ -1027,9 +1030,9 @@ GameObject:
   - component: {fileID: 318231738}
   - component: {fileID: 318231737}
   - component: {fileID: 318231736}
-  - component: {fileID: 318231739}
   - component: {fileID: 318231741}
   - component: {fileID: 318231742}
+  - component: {fileID: 318231739}
   m_Layer: 0
   m_Name: O_BolterAttack22
   m_TagString: Untagged
@@ -1138,6 +1141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
 --- !u!50 &318231741
 Rigidbody2D:
   serializedVersion: 4
@@ -1246,6 +1250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
 --- !u!58 &385792286
 CircleCollider2D:
@@ -1655,9 +1660,9 @@ GameObject:
   - component: {fileID: 458939488}
   - component: {fileID: 458939487}
   - component: {fileID: 458939489}
-  - component: {fileID: 458939490}
   - component: {fileID: 458939492}
   - component: {fileID: 458939491}
+  - component: {fileID: 458939490}
   m_Layer: 0
   m_Name: Beast
   m_TagString: Untagged
@@ -1766,6 +1771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
   jumpPower: {x: 8, y: 8}
 --- !u!58 &458939491
@@ -1864,6 +1870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 1, y: 0}
 --- !u!61 &472881018
 BoxCollider2D:
@@ -2036,9 +2043,9 @@ GameObject:
   - component: {fileID: 618206088}
   - component: {fileID: 618206087}
   - component: {fileID: 618206086}
-  - component: {fileID: 618206091}
   - component: {fileID: 618206090}
   - component: {fileID: 618206089}
+  - component: {fileID: 618206091}
   m_Layer: 0
   m_Name: O_WormAttack
   m_TagString: Untagged
@@ -2209,6 +2216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   forceX: 5
   forceY: 5
   myCollider: {fileID: 0}
@@ -2406,6 +2414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 1, y: 0}
 --- !u!1 &782212163
 GameObject:
@@ -2683,6 +2692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 4, y: -1.2}
   attackCounter: 2
   bullet: {fileID: 1420797599}
@@ -2704,9 +2714,9 @@ GameObject:
   - component: {fileID: 817688858}
   - component: {fileID: 817688857}
   - component: {fileID: 817688856}
-  - component: {fileID: 817688859}
   - component: {fileID: 817688860}
   - component: {fileID: 817688861}
+  - component: {fileID: 817688859}
   m_Layer: 0
   m_Name: Tick
   m_TagString: Untagged
@@ -2815,6 +2825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 2, y: 0}
   jumpPower: {x: 3, y: 5}
 --- !u!50 &817688860
@@ -2915,6 +2926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
 --- !u!58 &825411865
 CircleCollider2D:
@@ -3187,9 +3199,9 @@ GameObject:
   - component: {fileID: 935977020}
   - component: {fileID: 935977019}
   - component: {fileID: 935977018}
-  - component: {fileID: 935977021}
   - component: {fileID: 935977023}
   - component: {fileID: 935977024}
+  - component: {fileID: 935977021}
   m_Layer: 0
   m_Name: O_BolterAttack23
   m_TagString: Untagged
@@ -3298,6 +3310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
 --- !u!50 &935977023
 Rigidbody2D:
   serializedVersion: 4
@@ -3635,6 +3648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
 --- !u!1 &1248903496
 GameObject:
@@ -3820,6 +3834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 5, y: 0}
 --- !u!1 &1258134162
 GameObject:
@@ -4012,9 +4027,9 @@ GameObject:
   - component: {fileID: 1420797602}
   - component: {fileID: 1420797601}
   - component: {fileID: 1420797600}
-  - component: {fileID: 1420797605}
   - component: {fileID: 1420797604}
   - component: {fileID: 1420797603}
+  - component: {fileID: 1420797605}
   m_Layer: 0
   m_Name: O_BolterAttack1
   m_TagString: Untagged
@@ -4185,6 +4200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 3, y: 0}
 --- !u!1 &1420920006
 GameObject:
@@ -4549,8 +4565,8 @@ GameObject:
   - component: {fileID: 1678085714}
   - component: {fileID: 1678085713}
   - component: {fileID: 1678085712}
-  - component: {fileID: 1678085711}
   - component: {fileID: 1678085717}
+  - component: {fileID: 1678085711}
   m_Layer: 0
   m_Name: Flyer
   m_TagString: Untagged
@@ -4571,16 +4587,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
   active: {fileID: 1678085713}
   inactive: {fileID: 1678085712}
+  shootPosition: {fileID: 1556594593}
+  bullet: {fileID: 1248903496}
   moveLocation: {x: 0, y: 0}
   flyerVec: {x: 0, y: 0}
   normalVec: {x: 0, y: 0}
   centerVec: {x: 0, y: 0}
   path: {x: 0, y: 0}
-  shootPosition: {fileID: 1556594593}
-  bullet: {fileID: 1248903496}
 --- !u!58 &1678085712
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4778,9 +4795,9 @@ GameObject:
   - component: {fileID: 1692204482}
   - component: {fileID: 1692204481}
   - component: {fileID: 1692204480}
-  - component: {fileID: 1692204483}
   - component: {fileID: 1692204485}
   - component: {fileID: 1692204486}
+  - component: {fileID: 1692204483}
   m_Layer: 0
   m_Name: O_BolterAttack21
   m_TagString: Untagged
@@ -4889,6 +4906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
 --- !u!50 &1692204485
 Rigidbody2D:
   serializedVersion: 4
@@ -4972,9 +4990,9 @@ GameObject:
   - component: {fileID: 1697182332}
   - component: {fileID: 1697182331}
   - component: {fileID: 1697182330}
-  - component: {fileID: 1697182329}
   - component: {fileID: 1697182328}
   - component: {fileID: 1697182327}
+  - component: {fileID: 1697182329}
   m_Layer: 0
   m_Name: Beast (1)
   m_TagString: Untagged
@@ -5057,6 +5075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
   jumpPower: {x: 8, y: 8}
 --- !u!95 &1697182330
@@ -5329,6 +5348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  atk: 1
   moveSpeed: {x: 6, y: 0}
 --- !u!58 &2070718222
 CircleCollider2D:
