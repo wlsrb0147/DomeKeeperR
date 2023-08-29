@@ -112,8 +112,16 @@ public class M_Diver : M_Moving
         float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
 
         GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
+        GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
+        GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
+
         warningPrefab.SetActive(true);
-        Destroy(warningPrefab, 5);
+        warningPrefab2.SetActive(true);
+        warningPrefab3.SetActive(true);
+
+        Destroy(warningPrefab, 2.6f);
+        Destroy(warningPrefab2, 2.6f);
+        Destroy(warningPrefab3, 2.6f);
 
         Invoke("Invisible", 2);
     }
