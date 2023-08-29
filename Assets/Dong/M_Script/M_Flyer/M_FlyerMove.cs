@@ -23,6 +23,7 @@ public class M_FlyerMove : M_State
         x = 0;
         
         enterPosition = flyer.transform;
+        flyer.enterVec = enterPosition.position;
         currentPosition = flyer.GetComponent<Transform>();
         routeLength = flyer.vectorLength(enterPosition.position, flyer.path) + flyer.vectorLength(flyer.path, flyer.moveLocation);
     }

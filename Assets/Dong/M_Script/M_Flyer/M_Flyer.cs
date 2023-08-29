@@ -24,16 +24,13 @@ public class M_Flyer : M_Moving
     public int currentAttackTimes { get; set; }
 
     [Header("Test")]
-    public Vector2 myposition;   
+    public Vector2 myposition;
+    public Vector2 enterVec;
     public Vector2 moveLocation;
     public Vector2 path;
     public Vector2 centerVec;
-    public Vector2 testVec;
     public Vector2 normalVec;
     public Vector2 curve;
-    public Vector2 test1;
-    public Vector2 test2;
-    public Vector2 test3;
     public float multi;
     
     
@@ -107,28 +104,34 @@ public class M_Flyer : M_Moving
     }
 
     public Vector2 Curve(Vector2 start,Vector2 path,Vector2 destination, float timing)
-    { 
-        float abx, bcx , abcx, aby,bcy,abcy ;
-        Vector2 vec;
-        abx = Mathf.Lerp(start.x, path.x, timing);
-        aby = Mathf.Lerp(start.y, path.y, timing);
+    {
+        /*        float abx, bcx , abcx, aby,bcy,abcy ;
+                Vector2 vec;
+                abx = lefp(start.x, path.x, timing);
+                aby = lefp(start.y, path.y, timing);
 
-        test1 = new Vector2(abx, aby);
+                test1 = new Vector2(abx, aby);
 
-        bcx = Mathf.Lerp(path.x, destination.x, timing);
-        bcy = Mathf.Lerp(path.y,destination.y, timing);
+                bcx = lefp(path.x, destination.x, timing);
+                bcy = lefp(path.y,destination.y, timing);
 
-        test2 = new Vector2(bcx, bcy);
+                test2 = new Vector2(bcx, bcy);
 
-        abcx = Mathf.Lerp(abx, bcx, timing);
-        abcy = Mathf.Lerp(aby, bcy, timing);
+                abcx = lefp(abx, bcx, timing);
+                abcy = lefp(aby, bcy, timing);
 
-        test3 = new Vector2(abcx, abcy);
+                test3 = new Vector2(abcx, abcy);
 
-        vec = new Vector2(abcx, abcy);
+                vec = new Vector2(abcx, abcy);
 
-        return vec;
+                return vec;*/
+
+        Vector2 vec1 =  Vector2.Lerp(start, path, timing);
+        Vector2 vec2 =  Vector2.Lerp(path, destination, timing);
+
+        return Vector2.Lerp(vec1, vec2, timing);
     }
+
 
     public void Shoot()
     {

@@ -27,7 +27,6 @@ public class M_FlyerHide : M_State
 
         flyer.centerVec = new Vector2(flyer.moveLocation.x + flyer.transform.position.x, flyer.moveLocation.y + flyer.transform.position.y);
         flyer.centerVec = (flyer.centerVec / 2);
-        flyer.testVec = new Vector2(flyer.moveLocation.x + flyer.transform.position.x, flyer.moveLocation.y + flyer.transform.position.y);
 
         toggle = (int)((Random.Range(0, 2) - 0.5f) * 2); 
         flyer.multi = (float)(Random.Range(1, 4)) / 3; 
