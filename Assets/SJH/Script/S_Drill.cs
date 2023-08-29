@@ -10,32 +10,32 @@ public class S_Drill : MonoBehaviour
     [SerializeField] LayerMask wahtisMIneral;
     [SerializeField] Transform drillPos;
 
-    //bool mineralCheck;
+    bool hardTileCheck;
 
     void Dig()
     {
         Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);
         Collider2D mineralCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisMIneral);
 
-        if(mineralCollider2d != null  )
+        if (mineralCollider2d != null)
         {
             mineralCollider2d.transform.GetComponent<S_Mineral>().SetDamage(damage);
         }
-        else if (groundCollider2d != null) //&& !mineralCheck)
+        else if (groundCollider2d != null && hardTileCheck == false)
         {
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(drillPos.position);
         }
     }
 
- /*   private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Mineral"))
+        if (collision.gameObject.CompareTag("HardTile"))
         {
-            mineralCheck = true;
+            hardTileCheck = true;
         }
         else
-            mineralCheck = false;  
-    }*/
+            hardTileCheck = false;
+    }
 
 
 

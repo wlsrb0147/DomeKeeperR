@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - MIneral
   - Dome
+  - Mineral
+  - HardTile
   layers:
   - Default
   - TransparentFX

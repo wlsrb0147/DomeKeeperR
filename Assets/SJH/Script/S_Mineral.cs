@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class S_Mineral : MonoBehaviour
 {
+    [SerializeField] GameObject mineral;
     [SerializeField] LayerMask wahtisGround;
     Collider2D groundCollider2d;
     public float Hp;

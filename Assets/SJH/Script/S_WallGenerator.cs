@@ -27,9 +27,8 @@ public class S_WallGenerator : MonoBehaviour
             for (int i = count; i < mapSize.x / 2; i++)
             {
                 //tileMap.SetTile(new Vector3Int(1,-50), wallTile);
-                tileMap.SetTile(new Vector3Int(i + 1, j + mapSize.y / 2 - 1, 0), wallTile);
-                tileMap.SetTile(new Vector3Int(-i - 1, j + mapSize.y / 2 - 1, 0), wallTile);
-
+                tileMap.SetTile(new Vector3Int(i+1, j + mapSize.y / 2 - 1, 0), wallTile);
+                tileMap.SetTile(new Vector3Int(-i-1, j + mapSize.y / 2 - 1, 0), wallTile);
             }
 
             count++;
