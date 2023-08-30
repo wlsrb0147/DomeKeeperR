@@ -1,6 +1,12 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
 using Unity.Burst.CompilerServices;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 [RequireComponent(typeof(LineRenderer))]
 public class rotationTower : MonoBehaviour
 {
@@ -10,7 +16,7 @@ public class rotationTower : MonoBehaviour
     [SerializeField] float rotationRadius, angularSpeed;
     [SerializeField] private GameObject lazer;
     [SerializeField] private GameObject lazerend;
-    Animator anim;
+
     float posX, posY, angle = 0f;
     [SerializeField] private float leftLockAngle;
     [SerializeField] private float rightLockAngle;
@@ -18,37 +24,33 @@ public class rotationTower : MonoBehaviour
     [SerializeField] private Transform lazerPos;
     [SerializeField] private int raydistance;
     RaycastHit2D lrhit;
-    public RaycastHit2D[] lrhits;
     public LineRenderer lr;
     [SerializeField] public LayerMask whatisEnemy;
     [SerializeField] public LayerMask whatisEnd;
     Vector2 pos;
     [SerializeField] float Atk;
-    public float rayDistance = 200f;
-    [SerializeField] private GameObject animationPrefab;
-    private GameObject currentAnimation; // 현재 재생 중인 애니메이션 프리팹
-    public Vector3 targetPosition;
     #endregion
     private void Start()
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
-        anim = GetComponent<Animator>();    
+        
     }
     void Update()
     {
         Move();
         SetRotation();
         Attack();
+
+
     }
     void Attack()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.C))
         {
             LrDraw();
-
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.C))
         {
             LrDisable();
         }
@@ -60,62 +62,31 @@ public class rotationTower : MonoBehaviour
     }
     void LrDraw()
     {
-        lr.SetPosition(0, lazerPos.transform.position);
-
-
-        bool hitEnemy = false;
-
+      
+        //pos = new Vector2(-transform.position.x, transform.position.y);
+        lr.SetPosition(0, lazerPos.position);
         if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnd))
         {
             lr.SetPosition(1, lrhit.point);
+
             lr.enabled = true;
-
-        
-            if (lrhit.collider.CompareTag("Monster"))
-            {
-                GameObject hitObject = lrhit.collider.gameObject;
-                hitObject.GetComponent<M_Base>().Damage(1);
-                hitEnemy = true; 
-            }
+            //Instantiate(lazerend,lrhit.point,Quaternion.identity);
         }
-
-        
-        if (!hitEnemy)
+        if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
         {
-            lrhits = Physics2D.RaycastAll(transform.position, transform.up, raydistance, whatisEnemy);
+            lr.SetPosition(1, lrhit.point);
 
-            foreach (RaycastHit2D hit in lrhits)
-            {
-                if (hit.collider.CompareTag("Monster"))
-                {
-                    GameObject hitObject = hit.collider.gameObject;
-                    hitObject.GetComponent<M_Base>().Damage(1);
+            lr.enabled = true;
+           
 
-                    lr.SetPosition(1, hit.point);
-                    lr.enabled = true;
-
-                    Instantiate(lazerend, hit.point, Quaternion.identity);
-
-                    //break; //이것만 지우면 관통형 레이저 가능 
-                }
-            }
+             
         }
-
-
-        lr.enabled = true;
-
+       
+     
     }
 
-
-
-
-
-
-
-
-
-
-    void SetRotation()
+   
+    void SetRotation() 
     {
         if (angle > 1.5 && angle < 1.6)
         {
@@ -128,11 +99,11 @@ public class rotationTower : MonoBehaviour
         transform.position = new Vector3(posX, posY);
     }
 
-    void Move()
+    void Move() 
     {
         if (angle < leftLockAngle)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.Z))
             {
 
                 angle = angle + Time.deltaTime * angularSpeed;
@@ -147,7 +118,7 @@ public class rotationTower : MonoBehaviour
 
         if (angle > rightLockAngle)
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.X))
             {
 
                 angle = angle + Time.deltaTime * -angularSpeed;
@@ -160,5 +131,4 @@ public class rotationTower : MonoBehaviour
         }
 
     }
-
 }
