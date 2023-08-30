@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5849882653010812433}
   - component: {fileID: 3000647208305880719}
   - component: {fileID: 2333910410110707102}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Driller
   m_TagString: Monster
   m_Icon: {fileID: 0}

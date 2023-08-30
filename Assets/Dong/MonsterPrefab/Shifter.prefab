@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7841159241353818873}
   - component: {fileID: 6198632215676020315}
   - component: {fileID: 8834699515375301424}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Shifter
   m_TagString: Monster
   m_Icon: {fileID: 0}
