@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4477179762556784314}
   m_Layer: 0
   m_Name: BlueJem
-  m_TagString: Untagged
+  m_TagString: BlueJem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
