@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class M_Flyer : M_Moving
 {
-    [Header("받아오는 값")] 
+    [Header("받아오는 값")]
     public Collider2D active; // attack,hit때의 collider
     public Collider2D inactive; // apper,hide때의 collider
     public Transform shootPosition;
     public GameObject bullet;
 
 
-    public M_FlyerAppear appear {  get; private set; }
+    public M_FlyerAppear appear { get; private set; }
     public M_FlyerAttack attack { get; private set; }
     public M_FlyerDead dead { get; private set; }
     public M_FlyerHide hide { get; private set; }
@@ -22,20 +19,13 @@ public class M_Flyer : M_Moving
 
     public int attackTimes { get; set; }
     public int currentAttackTimes { get; set; }
+    public Vector2 moveLocation { get; set; }
+    public Vector2 path{ get; set; }
+    public Vector2 centerVec{ get; set; }
+    public Vector2 normalVec{ get; set; }
 
-    [Header("Test")]
-    public Vector2 myposition;
-    public Vector2 enterVec;
-    public Vector2 moveLocation;
-    public Vector2 path;
-    public Vector2 centerVec;
-    public Vector2 normalVec;
-    public Vector2 curve;
-    public float multi;
-    
-    
-    
-   
+
+
     public float x;
 
 
@@ -54,9 +44,9 @@ public class M_Flyer : M_Moving
 
         active.enabled = false;
         inactive.enabled = false;
-        
+
         int x = (int)((Random.Range(1, 3) - 1.5) * 2);
-        moveLocation = new Vector3(Random.Range(2f, 15f)*x, Random.Range(-2f, 5f),0);
+        moveLocation = new Vector3(Random.Range(2f, 15f) * x, Random.Range(-2f, 5f), 0);
 
     }
 
@@ -74,14 +64,6 @@ public class M_Flyer : M_Moving
             stateMachine.ChangeState(dead);
         }
     }
-
-/*        public Vector2 FlyerMove()
-    {
-        flyerVec = new Vector2((moveLocation.x - transform.position.x),
-                (moveLocation.y - transform.position.y));
-        flyerVec = flyerVec.normalized;
-        return flyerVec;
-    }*/
 
     public void EndHide()
     {
@@ -103,35 +85,15 @@ public class M_Flyer : M_Moving
         stateMachine.ChangeState(appear);
     }
 
-    public Vector2 Curve(Vector2 start,Vector2 path,Vector2 destination, float timing)
+    public Vector2 Curve(Vector2 start, Vector2 path, Vector2 destination, float timing)
     {
-        /*        float abx, bcx , abcx, aby,bcy,abcy ;
-                Vector2 vec;
-                abx = lefp(start.x, path.x, timing);
-                aby = lefp(start.y, path.y, timing);
 
-                test1 = new Vector2(abx, aby);
+        Vector2 vec1 = Vector2.Lerp(start, path, timing);
 
-                bcx = lefp(path.x, destination.x, timing);
-                bcy = lefp(path.y,destination.y, timing);
-
-                test2 = new Vector2(bcx, bcy);
-
-                abcx = lefp(abx, bcx, timing);
-                abcy = lefp(aby, bcy, timing);
-
-                test3 = new Vector2(abcx, abcy);
-
-                vec = new Vector2(abcx, abcy);
-
-                return vec;*/
-
-        Vector2 vec1 =  Vector2.Lerp(start, path, timing);
-        Vector2 vec2 =  Vector2.Lerp(path, destination, timing);
+        Vector2 vec2 = Vector2.Lerp(path, destination, timing);
 
         return Vector2.Lerp(vec1, vec2, timing);
     }
-
 
     public void Shoot()
     {
@@ -139,7 +101,7 @@ public class M_Flyer : M_Moving
         bulletPrefab.SetActive(true);
     }
 
-    public float vectorLength(Vector2 vec1,Vector2 vec2)
+    public float vectorLength(Vector2 vec1, Vector2 vec2)
     {
         float x;
         Vector2 wantLength;
@@ -148,5 +110,6 @@ public class M_Flyer : M_Moving
 
         return x;
     }
+
 }
 
