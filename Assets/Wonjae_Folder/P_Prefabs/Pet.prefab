@@ -76,10 +76,10 @@ GameObject:
   - component: {fileID: 21784359278252298}
   - component: {fileID: 6944890912437021682}
   - component: {fileID: 6519751680876049209}
-  - component: {fileID: 4810012377362666940}
+  - component: {fileID: 4408457436200238985}
   m_Layer: 0
   m_Name: Pet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ Transform:
   - {fileID: 7061716428815760171}
   - {fileID: 4939101024197258598}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petSpeed: 2
   petDamage: 10
-  mineSpeed: 0
+  JemStoneScore: 0
   groundCheck: {fileID: 2621648649747222685}
   groundCheckDistance: 0.18
   mineralUnderCheck: {fileID: 7677812303816594371}
@@ -229,7 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 0.5
-  speed: 0.15
+  speed: 0
+  originSpeed: 0.05
   obstacles:
     serializedVersion: 2
     m_Bits: 448
@@ -248,7 +249,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
@@ -263,8 +264,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4810012377362666940
-CircleCollider2D:
+--- !u!68 &4408457436200238985
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -295,9 +296,21 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013095796, y: -0.002571255}
-  serializedVersion: 2
-  m_Radius: 0.30414692
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.28723806, y: 0.10067654}
+  - {x: -0.3045287, y: -0.10420418}
+  - {x: -0.23606537, y: -0.23815632}
+  - {x: -0.0022344291, y: -0.27879715}
+  - {x: 0.24689701, y: -0.24674034}
+  - {x: 0.31915793, y: -0.14547825}
+  - {x: 0.32423016, y: 0.026981354}
+  - {x: 0.19817793, y: 0.16263199}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &2182025306968062408
 GameObject:
   m_ObjectHideFlags: 0

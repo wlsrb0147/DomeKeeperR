@@ -7,9 +7,11 @@ public class S_JemStone : MonoBehaviour
     [SerializeField] LayerMask targetLayer;
     [SerializeField] float scanRange = 1f;
     [SerializeField] float Speed = 1f;
+    public int mineralValue;
 
     Transform nearestTarget;
     bool isScanning = true;
+
     private void Start()
     {
 
@@ -69,7 +71,6 @@ public class S_JemStone : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            
         }
     }
     private void OnDrawGizmos()

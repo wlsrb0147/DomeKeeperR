@@ -7,6 +7,7 @@ TagManager:
   - Monster
   - Dome
   - Mineral
+  - HardTile
   layers:
   - Default
   - TransparentFX
