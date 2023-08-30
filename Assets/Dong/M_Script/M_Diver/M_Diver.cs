@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class M_Diver : M_Moving
 {
@@ -13,6 +14,8 @@ public class M_Diver : M_Moving
 
 
     public GameObject warning;
+
+    float angle;
 
 
     protected override void Awake()
@@ -32,8 +35,58 @@ public class M_Diver : M_Moving
     protected override void Start()
     {
         base.Start();
-        stateMachine.Initiate(attack);
-        float angle = Mathf.Atan2(Getdir().x, Getdir().y) * Mathf.Rad2Deg;
+        stateMachine.Initiate(attackSuccess);
+
+
+        Vector2 pos = Getdir();
+
+        pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+
+        while (pos.x > 23 || pos.y > 22.6f)
+        {
+
+            if (pos.x > 23)
+            {
+                pos.y = pos.y * 23 / pos.x;
+                pos.x = 23;
+            }
+
+            if (pos.y > 22.6f) // pos = getdir+9.6
+            {
+                pos.x = (22.6f * pos.x) / pos.y;
+                pos.y = 22.6f;
+            }
+        }
+
+
+        pos.x *= faceX;
+        if (transform.position.x < 0)
+        {
+            pos.x = -pos.x;
+        }
+       
+
+
+        pos.y -= 9.6f;
+
+        Vector2 dir = Getdir();
+        angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+
+        GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
+        GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
+        GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
+
+        warningPrefab.SetActive(true);
+        warningPrefab2.SetActive(true);
+        warningPrefab3.SetActive(true);
+
+        Destroy(warningPrefab, 2.6f);
+        Destroy(warningPrefab2, 2.6f);
+        Destroy(warningPrefab3, 2.6f);
+
+
+        Invoke("Invisible", 2);
+        angle = Mathf.Atan2(Getdir().x, Getdir().y) * Mathf.Rad2Deg;
         if (angle > 90)
         {
             transform.rotation = Quaternion.Euler(0, 0, (135 - angle));
@@ -42,7 +95,6 @@ public class M_Diver : M_Moving
         {
             transform.rotation = Quaternion.Euler(0, 0, (225 - angle));
         }
-
     }
 
     protected override void Update()
@@ -79,10 +131,6 @@ public class M_Diver : M_Moving
 
         pos = new Vector2 (Mathf.Abs(pos.x), Mathf.Abs(pos.y));
 
-        // 1. 24,0
-
-        int i=0;
-
         while (pos.x > 23 || pos.y > 22.6f)
         {
             
@@ -97,18 +145,13 @@ public class M_Diver : M_Moving
                 pos.x = (22.6f * pos.x) / pos.y;
                 pos.y = 22.6f;
             }
-
-            i++;
-
-
-            if (i == 10) return;
         }
 
         pos.x *= -faceX;
         pos.y -= 9.6f;
 
         Vector2 dir = Getdir();
-        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+         angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
 
         GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
         GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));

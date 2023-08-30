@@ -21,17 +21,21 @@ public class M_BolterMove : M_State
     public override void Update()
     {
         base.Update();
-        if (Vector2.Distance(bolter.domeCenter.position, bolter.transform.position) > 15)
+        if ( Mathf.Abs(bolter.transform.position.x) > 13)
         {
-            bolter.SetVelocity(bolter.moveSpeed);
+            if (bolter.transform.position.y < -5) bolter.SetVelocity(new Vector2(bolter.moveSpeed.x, 1));
+            else bolter.SetVelocity(bolter.moveSpeed);
         }
         else
-            bolter.SetVelocity(new Vector2(bolter.moveSpeed.x / 1.5f, bolter.moveSpeed.y));
+        {
+            if (bolter.transform.position.y < -5) bolter.SetVelocity(new Vector2(bolter.moveSpeed.x / 1.5f, 1));
+            else bolter.SetVelocity(new Vector2(bolter.moveSpeed.x / 1.5f, bolter.moveSpeed.y));
+        }
+            
 
-        if (Vector2.Distance(bolter.domeCenter.position, bolter.transform.position) <= 10)
+        if (Vector2.Distance(bolter.domeCenter.position, bolter.transform.position) <= 9 )
         {
             stateMachine.ChangeState(bolter.attack1);
-
         }
     }
 
