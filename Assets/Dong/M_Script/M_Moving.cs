@@ -23,17 +23,22 @@ public class M_Moving : M_Base
 
     public void SetVelocity(Vector2 vec)
     {
+        if(rb.bodyType != RigidbodyType2D.Static)
+        {
             rb.velocity = new Vector2(vec.x * faceX, vec.y);
+        }
     }
 
     public void SetVecVelocity(float InputX, float InputY)
     {
-
+        if (rb.bodyType != RigidbodyType2D.Static)
+        {
             if (transform.position.x > domeCenter.transform.position.x)
             {
                 rb.velocity = new Vector2(-InputX * faceX, InputY);
             }
             else rb.velocity = new Vector2(InputX * faceX, InputY);
+        }
     }
 
     public Vector2 Getdir()
