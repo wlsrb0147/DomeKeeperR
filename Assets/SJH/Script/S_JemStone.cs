@@ -22,13 +22,13 @@ public class S_JemStone : MonoBehaviour
     {
         ScanTarget();
 
-        if(isScanning)
+        if (isScanning)
         {
             nearestTarget = GetNearestTarget();
             isScanning = false;
         }
 
-        if(nearestTarget != null)
+        if (nearestTarget != null)
         {
             Vector2 dir = nearestTarget.position - transform.position;
             transform.Translate(dir * Speed * Time.deltaTime);
@@ -38,7 +38,7 @@ public class S_JemStone : MonoBehaviour
     void ScanTarget()
     {
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, scanRange, targetLayer);
-        
+
         if (targets.Length > 0)
         {
             float closesDistance = Mathf.Infinity;
@@ -61,7 +61,7 @@ public class S_JemStone : MonoBehaviour
             nearestTarget = null;
 
         isScanning = false;
-        
+
     }
 
     Transform GetNearestTarget()
@@ -74,7 +74,7 @@ public class S_JemStone : MonoBehaviour
         {
             Destroy(gameObject);
 
-            if(color == jemColor.red)
+            if (color == jemColor.red)
             {
                 collision.transform.GetComponent<S_Player>().redjemScore++;
             }
@@ -85,6 +85,23 @@ public class S_JemStone : MonoBehaviour
             if (color == jemColor.blue)
             {
                 collision.transform.GetComponent<S_Player>().bluejemScore++;
+            }
+        }
+        else if (collision.gameObject.CompareTag("Pet"))
+        {
+            Destroy(gameObject);
+
+            if (color == jemColor.red)
+            {
+                collision.transform.GetComponent<PetEntity>().redjemScore++;
+            }
+            if (color == jemColor.green)
+            {
+                collision.transform.GetComponent<PetEntity>().greenjemScore++;
+            }
+            if (color == jemColor.blue)
+            {
+                collision.transform.GetComponent<PetEntity>().bluejemScore++;
             }
         }
     }

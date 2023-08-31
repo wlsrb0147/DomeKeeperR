@@ -50,7 +50,7 @@ public class M_GameManager : MonoBehaviour
 
 
             int monsterCount = CountWithTag(monsterTag);
-            Debug.Log(" 몬스터 숫자 : " + monsterCount);
+            //Debug.Log(" 몬스터 숫자 : " + monsterCount);
         }
     }
 
