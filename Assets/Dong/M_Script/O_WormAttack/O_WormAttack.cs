@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class O_WormAttack : M_Base
 {
-    public int forceX, forceY;
     public Collider2D myCollider;
 
     public O_WormAttackAttack attack { get; private set; }
     public O_WormAttackDead dead { get; private set; }
     public O_WormAttackHit hit { get; private set; }
+
+    float distance;
 
     protected override void Awake()
     {
@@ -23,8 +24,8 @@ public class O_WormAttack : M_Base
     protected override void Start()
     {
         base.Start();
-
-        rb.AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
+        distance = domeCenter.position.x - transform.position.x;
+        rb.AddForce(new Vector2(distance/2, Mathf.Abs(distance)*3/5), ForceMode2D.Impulse);
     }
 
     protected override void Update()

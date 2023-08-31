@@ -7,7 +7,7 @@ public class M_FlyerMove : M_State
 {
     M_Flyer flyer;
     Vector2 route;
-    Transform enterPosition;
+    Vector2 enterPosition;
     Transform currentPosition;
     public float x;
     float routeLength;
@@ -21,11 +21,11 @@ public class M_FlyerMove : M_State
     {
         base.Enter();
         x = 0;
-        
-        enterPosition = flyer.transform;
-        flyer.enterVec = enterPosition.position;
+
+        enterPosition = flyer.transform.position; 
         currentPosition = flyer.GetComponent<Transform>();
-        routeLength = flyer.vectorLength(enterPosition.position, flyer.path) + flyer.vectorLength(flyer.path, flyer.moveLocation);
+        routeLength = flyer.vectorLength(enterPosition, flyer.path) + flyer.vectorLength(flyer.path, flyer.moveLocation);
+
     }
 
     public override void Exit()
@@ -36,13 +36,11 @@ public class M_FlyerMove : M_State
     public override void Update()
     {
         base.Update();
-        flyer.curve = route;
-        flyer.myposition = flyer.transform.position;
 
         if ( x < 1)
         {
 
-            route = flyer.Curve(enterPosition.position, flyer.path, flyer.moveLocation, flyer.x) ; // path는 hide에서 정의
+            route = flyer.Curve(enterPosition, flyer.path, flyer.moveLocation, flyer.x) ; // path는 hide에서 정의
 
             currentPosition.position = route;
             
@@ -59,6 +57,5 @@ public class M_FlyerMove : M_State
             flyer.x = x;
         }
 
-        flyer.curve = route;
     }
 }

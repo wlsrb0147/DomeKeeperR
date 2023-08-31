@@ -64,7 +64,7 @@ public class M_Diver : M_Moving
         {
             pos.x = -pos.x;
         }
-
+       
 
 
         pos.y -= 9.6f;
@@ -129,11 +129,11 @@ public class M_Diver : M_Moving
     {
         Vector2 pos = Getdir();
 
-        pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+        pos = new Vector2 (Mathf.Abs(pos.x), Mathf.Abs(pos.y));
 
         while (pos.x > 23 || pos.y > 22.6f)
         {
-
+            
             if (pos.x > 23)
             {
                 pos.y = pos.y * 23 / pos.x;
@@ -151,7 +151,7 @@ public class M_Diver : M_Moving
         pos.y -= 9.6f;
 
         Vector2 dir = Getdir();
-        angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+         angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
 
         GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
         GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
