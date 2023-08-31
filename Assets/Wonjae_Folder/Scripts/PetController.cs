@@ -67,18 +67,4 @@ public class PetController : PetEntity
         #endregion
 
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("ScoreItem"))
-        {
-            //점수아이템
-            //ItemData가져오기
-            S_JemStone iron = collision.gameObject.GetComponent<S_JemStone>();
-            //점수 얻기
-            JemStoneScore += iron.mineralValue;
-            //아이템 제거
-            Destroy(collision.gameObject);
-        }
-    }
 }

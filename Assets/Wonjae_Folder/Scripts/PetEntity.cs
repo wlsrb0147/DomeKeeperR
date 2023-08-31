@@ -15,7 +15,10 @@ public class PetEntity : MonoBehaviour
     [Tooltip("ÆêÀÇ Á¤º¸¸¦ ³ªÅ¸³À´Ï´Ù.")]
     [SerializeField] protected float petSpeed;
     [SerializeField] private float petDamage;
-    [SerializeField] public int JemStoneScore;
+    [SerializeField] public float redjemScore = 0;
+    [SerializeField] public float greenjemScore = 0;
+    [SerializeField] public float bluejemScore = 0;
+
 
     [Header("Collision Info")]
     [SerializeField] protected Transform groundCheck;
@@ -66,7 +69,6 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        JemStoneScore = 0;
     }
 
     protected virtual void Update()

@@ -23,7 +23,6 @@ public class Pet_magnetCoin : MonoBehaviour
         {
             ReadyToMove = true;
             Pet = GameObject.FindWithTag("Pet").transform;
-            pe.JemStoneScore++;
         }
     }
 }

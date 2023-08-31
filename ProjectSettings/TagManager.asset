@@ -8,6 +8,7 @@ TagManager:
   - Dome
   - Mineral
   - HardTile
+  - Pet
   layers:
   - Default
   - TransparentFX
