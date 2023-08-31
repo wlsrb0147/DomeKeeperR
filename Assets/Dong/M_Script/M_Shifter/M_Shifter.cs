@@ -49,8 +49,13 @@ public class M_Shifter : M_Holding
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            stateMachine.ChangeState(dead);
+            Dead();
         }
+    }
+
+    protected override void Dead()
+    {
+        stateMachine.ChangeState(dead);
     }
 
     public void EndAppear()

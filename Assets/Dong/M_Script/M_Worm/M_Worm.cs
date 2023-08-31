@@ -54,10 +54,14 @@ public class M_Worm : M_Holding
         base.Update();
         if (Input.GetKeyDown(KeyCode.C))
         {
-            stateMachine.ChangeState(dead);
+            Dead();
         }
     }
 
+    protected override void Dead()
+    {
+        stateMachine.ChangeState(dead);
+    }
     public void EndWakeUP()
     {
         stateMachine.ChangeState(idle);

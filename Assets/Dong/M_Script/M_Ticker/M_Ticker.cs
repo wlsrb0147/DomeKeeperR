@@ -34,8 +34,13 @@ public class M_Ticker : M_Moving
         base.Update();
         if (Input.GetKeyDown(KeyCode.V))
         {
-            stateMachine.ChangeState(dead);
+            Dead();
         }
+    }
+
+    protected override void Dead()
+    {
+        stateMachine.ChangeState(dead);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

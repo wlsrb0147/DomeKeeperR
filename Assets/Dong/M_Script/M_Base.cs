@@ -61,9 +61,12 @@ public class M_Base : MonoBehaviour
         HP -= Atk;
         if (HP <= 0)
         {
-
-            Destroy();
+            Dead();
         }
+    }
+    protected  virtual void Dead()
+    {
+
     }
     protected void Destroy()
     {

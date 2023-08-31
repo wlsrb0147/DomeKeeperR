@@ -38,11 +38,15 @@ public class M_Driller : M_Moving
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (settingOn)stateMachine.ChangeState(attackingDead);
-            else stateMachine.ChangeState(movingDead);
+            Dead();
         }
     }
 
+    protected override void Dead()
+    {
+        if (settingOn) stateMachine.ChangeState(attackingDead);
+        else stateMachine.ChangeState(movingDead);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Dome"))
