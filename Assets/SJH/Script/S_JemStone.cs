@@ -7,15 +7,17 @@ public class S_JemStone : MonoBehaviour
     [SerializeField] LayerMask targetLayer;
     [SerializeField] float scanRange = 1f;
     [SerializeField] float Speed = 1f;
-    public int mineralValue;
+    [SerializeField] jemColor color;
+    enum jemColor
+    {
+        red,
+        green,
+        blue,
+    }
 
     Transform nearestTarget;
     bool isScanning = true;
 
-    private void Start()
-    {
-
-    }
     private void Update()
     {
         ScanTarget();
@@ -71,6 +73,19 @@ public class S_JemStone : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
+
+            if(color == jemColor.red)
+            {
+                collision.transform.GetComponent<S_Player>().redjemScore++;
+            }
+            if (color == jemColor.green)
+            {
+                collision.transform.GetComponent<S_Player>().greenjemScore++;
+            }
+            if (color == jemColor.blue)
+            {
+                collision.transform.GetComponent<S_Player>().bluejemScore++;
+            }
         }
     }
     private void OnDrawGizmos()

@@ -12,9 +12,11 @@ public class M_Base : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public Transform domeCenter { get; private set; }
 
+    protected bool destroyed = false;
+
     [Header("Stat")]
-    public float hp =1;
-    public float atk = 1;
+    public float HP =1;
+    public float Atk = 1;
     
     public int faceX { get ; private set; }
     public bool facingRight { get ; private set; }
@@ -54,9 +56,18 @@ public class M_Base : MonoBehaviour
         if (facingRight) faceX = 1;
         else faceX = -1;
     }
+    public void Damage(float Atk)
+    {
+        HP -= Atk;
+        if (HP <= 0)
+        {
 
+            Destroy();
+        }
+    }
     protected void Destroy()
     {
+        destroyed = true;
         Destroy(gameObject);
     }
 
