@@ -73,7 +73,7 @@ public class M_Beast : M_Moving
         }
     }
 
-    void Dead()
+    protected override void Dead()
     {
         if (onGround) stateMachine.ChangeState(groundDead);  
         else stateMachine.ChangeState(wallDead);

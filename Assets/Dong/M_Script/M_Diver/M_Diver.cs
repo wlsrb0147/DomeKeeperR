@@ -102,12 +102,16 @@ public class M_Diver : M_Moving
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (isAttacking == 1) stateMachine.ChangeState(attackDead);
-            else if (isAttacking == 0) stateMachine.ChangeState(backDead1);
-            else stateMachine.ChangeState(backDead2);
+            Dead();
         }
     }
 
+    protected override void Dead()
+    {
+        if (isAttacking == 1) stateMachine.ChangeState(attackDead);
+        else if (isAttacking == 0) stateMachine.ChangeState(backDead1);
+        else stateMachine.ChangeState(backDead2);
+    }
     public void Back()
     {
         stateMachine.ChangeState(back);
