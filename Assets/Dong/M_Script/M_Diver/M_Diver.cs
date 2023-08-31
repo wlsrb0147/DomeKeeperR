@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class M_Diver : M_Moving
 {
@@ -11,7 +12,6 @@ public class M_Diver : M_Moving
 
     public int isAttacking { get; set; }
 
-    float time = 0;
 
     public GameObject warning;
 
@@ -85,7 +85,7 @@ public class M_Diver : M_Moving
         Destroy(warningPrefab3, 2.6f);
 
 
-
+        Invoke("Invisible", 2);
         angle = Mathf.Atan2(Getdir().x, Getdir().y) * Mathf.Rad2Deg;
         if (angle > 90)
         {
@@ -94,19 +94,6 @@ public class M_Diver : M_Moving
         else
         {
             transform.rotation = Quaternion.Euler(0, 0, (225 - angle));
-        }
-
-        // Invoke("Invisible", 2);
-
-        while (true)
-        {
-            time += Time.deltaTime;
-            if (time >= 2)
-            {
-                Invisible();
-                time = 0;
-                break;
-            }
         }
     }
 
@@ -178,24 +165,11 @@ public class M_Diver : M_Moving
         Destroy(warningPrefab2, 2.6f);
         Destroy(warningPrefab3, 2.6f);
 
-        //Invoke("Invisible", 2);
-
-        while (true)
-        {
-            time += Time.deltaTime;
-            if (time >= 2)
-            {
-                Invisible();
-                time = 0;
-                break;
-            }
-        }
+        Invoke("Invisible", 2);
     }
 
     void Invisible()
     {
-
         stateMachine.ChangeState(attack);
-
     }
 }

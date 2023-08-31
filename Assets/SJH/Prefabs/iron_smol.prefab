@@ -176,3 +176,4 @@ MonoBehaviour:
     m_Bits: 512
   scanRange: 1
   Speed: 1
+  mineralValue: 0
