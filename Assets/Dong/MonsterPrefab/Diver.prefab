@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1713133958607842956}
   - component: {fileID: 1963243985296810505}
   - component: {fileID: 7739732289928075713}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Diver
   m_TagString: Monster
   m_Icon: {fileID: 0}

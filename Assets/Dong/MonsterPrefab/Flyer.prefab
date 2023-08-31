@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8323042513537760593}
   - component: {fileID: 4947903283502992510}
   - component: {fileID: 350289010030886370}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Flyer
   m_TagString: Monster
   m_Icon: {fileID: 0}

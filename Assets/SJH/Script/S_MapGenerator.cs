@@ -12,7 +12,6 @@ public class S_MapGenerator : MonoBehaviour
     public GameObject redjam;
     public GameObject bluejam;
     public GameObject greenjam;
-    public Transform playerPos;
 
     bool[] nullTile;
 
@@ -23,6 +22,7 @@ public class S_MapGenerator : MonoBehaviour
 
     [Header("Tile")]
     [SerializeField] Tilemap tileMap;
+    [SerializeField] Tile mineralTile;
     [SerializeField] Tile GroundTile;
     [SerializeField] Tile GroundTile2;
     [SerializeField] Tile downTile;
@@ -33,26 +33,10 @@ public class S_MapGenerator : MonoBehaviour
     [SerializeField] Tile LdownCornerTile;
     [SerializeField] Tile RupCornerTile;
     [SerializeField] Tile LupCornerTile;
-    [SerializeField] Tile[] tileList;
-
 
     void Start()
     {
         tileMap = GetComponent<Tilemap>();
-
-        tileList = new Tile[10];
-
-        tileList[0] = GroundTile;
-        tileList[1] = GroundTile2;
-        tileList[2] = downTile;
-        tileList[3] = topTile;
-        tileList[4] = leftWallTile;
-        tileList[5] = rightWallTile;
-        tileList[6] = RdownCornerTile;
-        tileList[7] = LdownCornerTile;
-        tileList[8] = RupCornerTile;
-        tileList[9] = LupCornerTile;
-
         FillTile();
     }
 
@@ -68,18 +52,17 @@ public class S_MapGenerator : MonoBehaviour
             {
                 int rnd = Random.Range(0, 100);
 
-                SetTileColor(j);
-
-                if (rnd >= 0 && rnd < 5 && j > -mapSize.y + 1) //잼스블록 생성
+                if (rnd >= 0 && rnd < 18 && j > -mapSize.y+1)
                 {
-                    CreatJem(j, i);
-                    CreatJem(j, -i);
+                    CreatGround(j, i);
+                    CreatGround(j, -i);
                 }
 
                 if (rnd >= 19 && rnd < 60)
                 {
                     tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile2);
                     tileMap.SetTile(new Vector3Int(-i, j, 0), GroundTile2);
+                    
                 }
                 else
                 {
@@ -96,57 +79,30 @@ public class S_MapGenerator : MonoBehaviour
         }
     }
 
-    private void SetTileColor(int j)
+    void CreatGround(int j, int i)
     {
-        if (j <= mapSize.y / 2 - 1 && j > mapSize.y / 10)
-        {
-            for (int c = 0; c < 10; c++)
-            {
-                tileList[c].color = new Color(1f, 1f, 1f);
-            }
-        }
+        int rnd = Random.Range(0, 19);
 
-        else if (j <= mapSize.y / 10 && j > -mapSize.y / 2)
-        {
-            for (int c = 0; c < 10; c++)
-            {
-                tileList[c].color = new Color(0.5f, 0.5f, 0.5f);
-            }
-        }
-
-        else
-        {
-            for (int c = 0; c < 10; c++)
-            {
-                tileList[c].color = new Color(0.2f, 0.2f, 0.2f);
-            }
-        }
-    }
-
-    void CreatJem(int j, int i)
-    {
-        int rnd = Random.Range(0, 30);
-
-        if (rnd >= 0 && rnd < 15)
+        if (rnd >= 0 && rnd < 6)
         {
             var mine = Instantiate(redjam, tileMap.transform);
             mine.transform.position = new Vector3(i + mineralXoffeset, j - mineralYoffeset, 0);
-            tileMap.SetTile(new Vector3Int(i, j - 1, 0), GroundTile);
-            tileMap.SetTile(new Vector3Int(-i, j - 1, 0), GroundTile);
+            tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
+            tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
         }
-        else if ((rnd >= 15 && rnd < 25) && (j <= 20 && j > -200))
+        else if (rnd >= 6 && rnd < 12)
         {
             var mine = Instantiate(bluejam, tileMap.transform);
             mine.transform.position = new Vector3(i + mineralXoffeset, j - mineralYoffeset, 0);
-            tileMap.SetTile(new Vector3Int(i, j - 1, 0), GroundTile);
-            tileMap.SetTile(new Vector3Int(-i, j - 1, 0), GroundTile);
+            tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
+            tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
         }
-        else if ((rnd >= 25 && rnd < 30) && (j <= -100 && j > -200))
+        else if (rnd >= 12 && rnd < 18)
         {
             var mine = Instantiate(greenjam, tileMap.transform);
             mine.transform.position = new Vector3(i + mineralXoffeset, j - mineralYoffeset, 0);
-            tileMap.SetTile(new Vector3Int(i, j - 1, 0), GroundTile);
-            tileMap.SetTile(new Vector3Int(-i, j - 1, 0), GroundTile);
+            tileMap.SetTile(new Vector3Int(i, j, 0), mineralTile);
+            tileMap.SetTile(new Vector3Int(-i, j, 0), mineralTile);
         }
     }
 
@@ -183,8 +139,6 @@ public class S_MapGenerator : MonoBehaviour
                                 count++;
                             }
                         }
-
-                        SetTileColor(checkTilePos.y);
 
                         if (nullTile[1] && nullTile[3])
                             tileMap.SetTile(new Vector3Int(checkTilePos.x, checkTilePos.y, 0), LdownCornerTile);

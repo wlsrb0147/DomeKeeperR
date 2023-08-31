@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PetEntity : MonoBehaviour
 {
@@ -10,10 +12,10 @@ public class PetEntity : MonoBehaviour
     protected SpriteRenderer spr;
 
     [Header("Pet Info")]
+    [Tooltip("ÆêÀÇ Á¤º¸¸¦ ³ªÅ¸³À´Ï´Ù.")]
     [SerializeField] protected float petSpeed;
     [SerializeField] private float petDamage;
-    [SerializeField] private float mineSpeed;
-
+    [SerializeField] public int JemStoneScore;
 
     [Header("Collision Info")]
     [SerializeField] protected Transform groundCheck;
@@ -34,6 +36,8 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private LayerMask WhatIsSideTile;
     [SerializeField] protected Transform footPos;
     [SerializeField] protected Transform toothPos;
+
+    
 
     #region anim bool
     protected bool isGrounded;
@@ -62,6 +66,7 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
+        JemStoneScore = 0;
     }
 
     protected virtual void Update()
@@ -201,5 +206,6 @@ public class PetEntity : MonoBehaviour
         }
     }
     #endregion
+
 
 }
