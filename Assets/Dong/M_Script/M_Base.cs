@@ -13,6 +13,7 @@ public class M_Base : MonoBehaviour
     public Transform domeCenter { get; private set; }
 
     protected bool destroyed = false;
+    protected bool dead = false;
 
     [Header("Stat")]
     public float HP =1;
@@ -58,9 +59,14 @@ public class M_Base : MonoBehaviour
     }
     public void Damage(float Atk)
     {
-        HP -= Atk;
-        if (HP <= 0)
+        if (HP >= 0)
         {
+            HP -= Atk;
+        }
+            
+        if (HP < 0 && dead == false)
+        {
+            dead =  true;
             Dead();
         }
     }

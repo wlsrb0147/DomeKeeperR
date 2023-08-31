@@ -1,15 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Threading;
-using Unity.Burst.CompilerServices;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 [RequireComponent(typeof(LineRenderer))]
 public class DefalutTower : MonoBehaviour
 {
+    float x = 0;
     #region 
     [Header("타워 움직임")]
     [SerializeField] Transform rotationCenter;
@@ -39,12 +32,11 @@ public class DefalutTower : MonoBehaviour
     #region 
     [Header("레이캐스트")]
     RaycastHit2D lrhit;
-    RaycastHit2D[] lrhits;
+    public RaycastHit2D[] lrhits;
     public LineRenderer lr;
     [SerializeField] public LayerMask whatisEnemy;
     [SerializeField] public LayerMask whatisEnd;
     Vector2 pos;
-    public bool hitEnemy;
     public float rayDistance = 200f;
     #endregion
 
@@ -60,14 +52,17 @@ public class DefalutTower : MonoBehaviour
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
-           
+
     }
     void Update()
     {
-        Move();
-        SetRotation();
-        Attack();
-        TimeContinue();
+       
+            Move();
+            SetRotation();
+            Attack();
+            TimeContinue();
+           
+        
 
 
     }
@@ -77,14 +72,14 @@ public class DefalutTower : MonoBehaviour
     }
     void Attack()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.Space))
         {
             LrDraw();
             BigLazerShotReady();
 
 
         }
-        if (Input.GetKeyUp(KeyCode.C))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             LrDisable();
         }
@@ -108,38 +103,44 @@ public class DefalutTower : MonoBehaviour
     void BigLazerCreate()
     {
         GameObject Big = Instantiate(BigLazer, lazerPos.transform.position, lazerPos.transform.rotation);
-        
+
         Destroy(Big, 2);
         Invoke("BigLazerfalse", 2f);
-      
+
         bigValue = 0f;
     }
     void BigLazerfalse()
     {
-         isBigLazer = false;
+        isBigLazer = false;
     }
     void LrDraw()
     {
-      
-        //pos = new Vector2(-transform.position.x, transform.position.y);
-        lr.SetPosition(0, lazerPos.position);
+        lr.SetPosition(0, lazerPos.transform.position);
+
+
+        bool hitEnemy = false;
+
         if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnd))
         {
             lr.SetPosition(1, lrhit.point);
+            lr.enabled = true;
 
-        
+
             if (lrhit.collider.CompareTag("Monster"))
             {
-                GameObject hitObject = lrhit.collider.gameObject;
-             
+                if (lrhit.collider != null)
+                {
+                    GameObject hitObject = lrhit.collider.gameObject;
+
                     hitObject.GetComponent<M_Base>().Damage(Atk);
-                
-                
-                hitEnemy = true; 
+
+
+                    hitEnemy = true;
+                }
             }
         }
 
-       
+
         if (!hitEnemy)
         {
             lrhits = Physics2D.RaycastAll(transform.position, transform.up, raydistance, whatisEnemy);
@@ -148,22 +149,27 @@ public class DefalutTower : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Monster"))
                 {
-                    GameObject hitObject = hit.collider.gameObject;
-                
+                    if (hit.collider != null)
+                    {
+                        GameObject hitObject = hit.collider.gameObject;
+
                         hitObject.GetComponent<M_Base>().Damage(Atk);
-                
-                  
-                    lr.SetPosition(1, hit.point);
-                    lr.enabled = true;
 
-                    Instantiate(lazerend, hit.point, Quaternion.identity);
 
-                    break; //이것만 지우면 관통형 레이저 가능 
+                        lr.SetPosition(1, hit.point);
+                        lr.enabled = true;
+
+                       // Instantiate(lazerend, hit.point, Quaternion.identity);
+
+                        break; //이것만 지우면 관통형 레이저 가능 
+                    }
                 }
             }
         }
-       
-     
+
+
+        lr.enabled = true;
+
     }
     void SetRotation()
     {
@@ -178,10 +184,10 @@ public class DefalutTower : MonoBehaviour
         transform.position = new Vector3(posX, posY);
     }
 
-    void Move() 
+    void Move()
     {
-        if(isBigLazer != true) 
-        { 
+        if (isBigLazer != true)
+        {
             if (angle < leftLockAngle)
             {
                 if (Input.GetKey(KeyCode.LeftArrow))
@@ -190,9 +196,9 @@ public class DefalutTower : MonoBehaviour
                     angle = angle + Time.deltaTime * angularSpeed;
                     transform.Rotate(0, 0, rote);
                     if (angle >= leftLockAngle)
-                        {
-                            transform.rotation = Quaternion.Euler(0, 0, 90);
-                        }
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, 90);
+                    }
                 }
             }
 
@@ -211,4 +217,5 @@ public class DefalutTower : MonoBehaviour
             }
         }
     }
+
 }
