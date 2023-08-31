@@ -12,6 +12,8 @@ public class M_Base : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public Transform domeCenter { get; private set; }
 
+    protected bool destroyed = false;
+
     [Header("Stat")]
     public float HP =1;
     public float Atk = 1;
@@ -59,12 +61,16 @@ public class M_Base : MonoBehaviour
         HP -= Atk;
         if (HP <= 0)
         {
-
-            Destroy();
+            Dead();
         }
+    }
+    protected  virtual void Dead()
+    {
+
     }
     protected void Destroy()
     {
+        destroyed = true;
         Destroy(gameObject);
     }
 

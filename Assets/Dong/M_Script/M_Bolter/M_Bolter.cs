@@ -51,11 +51,15 @@ public class M_Bolter : M_Moving
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            stateMachine.ChangeState(dead);
+            Dead();
         }
 
     }
 
+    protected override void Dead()
+    {
+        stateMachine.ChangeState(dead);
+    }
 
     public void AttackChange()
     {

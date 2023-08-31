@@ -61,8 +61,13 @@ public class M_Flyer : M_Moving
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            stateMachine.ChangeState(dead);
+            Dead();
         }
+    }
+
+    protected override void Dead()
+    {
+        stateMachine.ChangeState(dead);
     }
 
     public void EndHide()

@@ -4,10 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PetController : PetEntity
 {
-
     protected override void Start()
     {
         base.Start();
@@ -17,6 +17,7 @@ public class PetController : PetEntity
     {
         base.Update();
 
+        #region Mine
         if (isGrounded)
         {
             MoveVelocity();
@@ -62,6 +63,8 @@ public class PetController : PetEntity
             sideMine = false;
             underMine = true;
         }
+
+        #endregion
 
     }
 }

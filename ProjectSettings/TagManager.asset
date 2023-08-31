@@ -8,9 +8,7 @@ TagManager:
   - Dome
   - Mineral
   - HardTile
-  - RedJem
-  - BlueJem
-  - GreenJem
+  - Pet
   layers:
   - Default
   - TransparentFX

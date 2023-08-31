@@ -8,7 +8,7 @@ public class MovementController2D : MonoBehaviour
 {
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
-    [SerializeField] float speed = 0.0f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
+    [SerializeField] float speed = 0.15f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
     [SerializeField] float originSpeed = 0.05f;
 
     Pathfinder<Vector2> pathfinder; // 경로 탐색 메서드와 Patience를 저장하는 Pathfinder 객체
@@ -22,6 +22,7 @@ public class MovementController2D : MonoBehaviour
     List<Vector2> path;
     List<Vector2> pathLeftToGo = new List<Vector2>();
     [SerializeField] bool drawDebugLines;
+    
 
     // 첫 번째 프레임 전에 호출되는 함수
     void Start()
@@ -35,7 +36,7 @@ public class MovementController2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B)) // 새로운 목표를 확인하는 부분
         {
             SetMovementState();
-            BackMoveCommand(new Vector2(-0.5f, -10.5f));
+            BackMoveCommand(new Vector2(-0.4f, -10.5f));
             
         }
 
@@ -58,20 +59,20 @@ public class MovementController2D : MonoBehaviour
 
         if (pathLeftToGo.Count > 0) // 목표에 도달하지 않았을 때
         {
-            Vector3 dir = (Vector3)pathLeftToGo[0] - transform.position;
-            transform.position += dir.normalized * originSpeed;
-            if (((Vector2)transform.position - pathLeftToGo[0]).sqrMagnitude < originSpeed * originSpeed)
+            Vector3 dir = (Vector3)pathLeftToGo[0] - transform.position;    //목표 위치와 현재 위치 간의 차이 벡터를 계산.
+            transform.position += dir.normalized * originSpeed; //현재 위치에서 목표 위치로 향하는 벡터를 정규화해 이동 속도를 곱한 값 = 일정한 속도로 이동가능
+            if (((Vector2)transform.position - pathLeftToGo[0]).sqrMagnitude < originSpeed * originSpeed) // 현재 위치와 목표사이의 거리의 제곱이 특정 조간보다 작은지 확인, 제곱근 연산은 계산 비용이 높기에 sqrMagnitude를 사용해 연산 효율 높임.
             {
-                transform.position = pathLeftToGo[0];
-                pathLeftToGo.RemoveAt(0);
+                transform.position = pathLeftToGo[0];   //현재 위치를 목표 위치로 설정
+                pathLeftToGo.RemoveAt(0);   //이동이 완료되었으므로 경로 리스트에서 첫 번째 위치를 제거.
             }
         }
         //시각화
-        if (drawDebugLines)
+        if (drawDebugLines) // 시각화를 위해 경로를 화면에 표시한다. 점을 추가하는 로직은 GetMoveCommand, BackMoveCommand이다.
         {
-            for (int i = 0; i < pathLeftToGo.Count - 1; i++) // 시각화를 위해 경로를 화면에 표시
+            for (int i = 0; i < pathLeftToGo.Count - 1; i++) // List에 저장된 점들 사이에 라인을 그리기 위한 반복문. Count -1을 하는 이유는 마지막 점과 그 이전의 점간에 라인을 그리기 위하여.
             {
-                Debug.DrawLine(pathLeftToGo[i], pathLeftToGo[i + 1]);
+                Debug.DrawLine(pathLeftToGo[i], pathLeftToGo[i + 1]);   //현재 점과 다음 점 간에 라인을 그린다.
             }
         }
 
@@ -81,26 +82,31 @@ public class MovementController2D : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
-        CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
-        circleColl.enabled = false;
+        EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
+        capColl.enabled = false;
+        speed = originSpeed;
+
     }
     private void ResetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 2;
         rb.velocity = Vector2.zero;
-        CircleCollider2D circleColl = GetComponent<CircleCollider2D>();
-        circleColl.enabled = true;
+        EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
+        capColl.enabled = true;
     }
 
     // 목표를 받아와서 움직임 명령을 생성하는 함수
-    void GetMoveCommand(Vector2 target)
+    // List<Vector2> pathLeftToGo에 경로상 점들을 저장하는 역할을 해주는 MoveCommand
+    void GetMoveCommand(Vector2 target) //주어진 목표 위치를 받아와 움직임을 명령을 생성하는 역할
     {
-        Vector2 closestNode = GetClosestNode(transform.position);
-        Vector2 targetNode = GetClosestNode(target);
-        bool canMove = true;
+        Vector2 closestNode = GetClosestNode(transform.position);   //현재 위치에서 가장 가까운 그리드 점을 찾는다.
+        Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
+        bool canMove = true;    //이동가능 여부 판단
 
         if (pathfinder.GenerateAstarPath(closestNode, targetNode, out path) || path.Count == 0) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
+            //객체를 사용하여 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성한다. 
+            //경로가 비어있을경우 path.Count는 0이 된다.
         {
             if (canMove)
             {
@@ -113,11 +119,11 @@ public class MovementController2D : MonoBehaviour
         if (canMove)
         {
             if (searchShortcut && path.Count > 0)
-                pathLeftToGo = ShortenPath(path);
+                pathLeftToGo = ShortenPath(path);   //path 리스트에 저장된 경로를 짧게 만들어 pathLeftToGo 리스트에 저장.
             else
             {
-                pathLeftToGo = new List<Vector2>(path);
-                if (!snapToGrid) pathLeftToGo.Add(targetNode);
+                pathLeftToGo = new List<Vector2>(path); //path리스트에 저장된 경로를 그대로 pathLeftToGo 리스트에 복사. 경로 생성이 실패한다면 현재까지 생성된 경로로 유지 가능.
+                if (!snapToGrid) pathLeftToGo.Add(targetNode);  //옵션이 활성화되지 않은경우, targetNode를 pathLeftToGo 리스트에 추가한다. 마지막으로 도달한 위치까지로 이동이 가능하게한다.
             }
         }
     }

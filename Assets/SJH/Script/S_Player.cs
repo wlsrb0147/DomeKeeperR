@@ -9,17 +9,19 @@ public class S_Player : MonoBehaviour
     [SerializeField] float jumpForce = 5f;
     [SerializeField] GameObject player;
     [SerializeField] GameObject drill;
-   
+
     SpriteRenderer spriteRender;
     Rigidbody2D rigid;
     Animator anim;
 
+    public float redjemScore = 0;
+    public float greenjemScore = 0;
+    public float bluejemScore = 0;
     Vector3 mousePosition;
 
 
     void Start()
     {
-
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
@@ -27,7 +29,6 @@ public class S_Player : MonoBehaviour
 
     void Update()
     {
-
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         float xInput = Input.GetAxis("Horizontal");
@@ -66,7 +67,7 @@ public class S_Player : MonoBehaviour
                 spriteRender.flipX = true;
             else
                 spriteRender.flipX = false;
-        
+
         }
         else
         {

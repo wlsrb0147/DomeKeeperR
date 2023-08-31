@@ -1,6 +1,12 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
 using Unity.Burst.CompilerServices;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 [RequireComponent(typeof(LineRenderer))]
 public class DefalutTower : MonoBehaviour
 {
@@ -33,7 +39,6 @@ public class DefalutTower : MonoBehaviour
     #region 
     [Header("레이캐스트")]
     RaycastHit2D lrhit;
-    public RaycastHit2D[] lrhits;
     public LineRenderer lr;
     [SerializeField] public LayerMask whatisEnemy;
     [SerializeField] public LayerMask whatisEnd;
@@ -70,14 +75,14 @@ public class DefalutTower : MonoBehaviour
     }
     void Attack()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.C))
         {
             LrDraw();
             BigLazerShotReady();
 
 
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.C))
         {
             LrDisable();
         }
@@ -113,15 +118,12 @@ public class DefalutTower : MonoBehaviour
     }
     void LrDraw()
     {
-        lr.SetPosition(0, lazerPos.transform.position);
-
-
-        bool hitEnemy = false;
-
+      
+        //pos = new Vector2(-transform.position.x, transform.position.y);
+        lr.SetPosition(0, lazerPos.position);
         if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnd))
         {
             lr.SetPosition(1, lrhit.point);
-            lr.enabled = true;
 
         
             if (lrhit.collider.CompareTag("Monster"))
@@ -158,10 +160,8 @@ public class DefalutTower : MonoBehaviour
                 }
             }
         }
-
-
-        lr.enabled = true;
-
+       
+     
     }
     void SetRotation()
     {
@@ -176,7 +176,7 @@ public class DefalutTower : MonoBehaviour
         transform.position = new Vector3(posX, posY);
     }
 
-    void Move()
+    void Move() 
     {
         if(isBigLazer != true) 
         { 
@@ -209,5 +209,4 @@ public class DefalutTower : MonoBehaviour
             }
         }
     }
-
 }
