@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class LazerEnd : MonoBehaviour
 {
+    Animator anim;
+    
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        anim.SetBool("Hit", true);
+    }
+
     void End()
-    { 
-        Destroy(gameObject);    
+    {
+        anim.SetBool("Hit", false);
+        Destroy(gameObject,0.5f);
     }
 }
