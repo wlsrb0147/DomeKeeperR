@@ -39,10 +39,12 @@ public class DefalutTower : MonoBehaviour
     #region 
     [Header("레이캐스트")]
     RaycastHit2D lrhit;
+    RaycastHit2D[] lrhits;
     public LineRenderer lr;
     [SerializeField] public LayerMask whatisEnemy;
     [SerializeField] public LayerMask whatisEnd;
     Vector2 pos;
+    public bool hitEnemy;
     public float rayDistance = 200f;
     #endregion
 
