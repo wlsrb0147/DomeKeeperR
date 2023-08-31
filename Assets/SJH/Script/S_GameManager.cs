@@ -7,9 +7,10 @@ public class S_GameManager : MonoBehaviour
 {
     public static S_GameManager instance;
 
-    public PetEntity pet;
     public S_Player player;
+    public PetController pet;
     public float GameTime = 0;
+
     void Start()
     {
         if (instance == null)
