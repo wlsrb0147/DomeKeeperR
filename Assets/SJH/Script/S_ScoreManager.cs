@@ -13,11 +13,6 @@ public class S_ScoreManager : MonoBehaviour
     [SerializeField] Text petBluejemScore;
     [SerializeField] Text petGreenjemScore;
 
-
-    private void Start()
-    {
-        
-    }
     void Update()
     {
         redjemScore.text = S_GameManager.instance.player.redjemScore.ToString();
