@@ -6,7 +6,6 @@ public class WJ_PlayerState
 {
     protected WJ_PlayerStateMachine stateMachine;
     protected WJ_Player player;
-    public GameObject drill;
 
     public Vector3 mousePosition;
     protected Rigidbody2D rbody;
