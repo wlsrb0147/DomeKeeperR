@@ -22,5 +22,7 @@ public class S_ScoreManager : MonoBehaviour
         petRedjemScore.text = S_GameManager.instance.pet.redjemScore.ToString();
         petBluejemScore.text = S_GameManager.instance.pet.bluejemScore.ToString();
         petGreenjemScore.text = S_GameManager.instance.pet.greenjemScore.ToString();
+
+        Debug.Log(S_GameManager.instance.pet.redjemScore);
     }
 }
