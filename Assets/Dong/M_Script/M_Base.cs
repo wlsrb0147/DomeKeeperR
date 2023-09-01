@@ -8,6 +8,7 @@ public class M_Base : MonoBehaviour
     public Transform domeCenter { get; private set; }
 
     protected bool destroyed = false;
+    bool dead = false;
 
     [Header("Stat")]
     public float HP = 1;
@@ -54,7 +55,12 @@ public class M_Base : MonoBehaviour
 
         if (HP <= 0)
         {
-            Dead();
+            if(dead == false)
+            {
+                Dead();
+                dead = true;
+            }
+            
         }
 
     }
@@ -67,7 +73,7 @@ public class M_Base : MonoBehaviour
     }
     protected virtual void Dead()
     {
-
+        
     }
     protected void Destroy()
     {
