@@ -91,7 +91,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6058591809805370583}
-  - component: {fileID: 8731581947031565108}
   - component: {fileID: 7341404907283010650}
   - component: {fileID: 3328742222461124093}
   - component: {fileID: 5457040797519380323}
@@ -118,27 +117,8 @@ Transform:
   - {fileID: 7285283446308412047}
   - {fileID: 6417810194277559327}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8731581947031565108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642318594810386260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: febe2d08c92fce44d8c299d5da8a316e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 3
-  jumpForce: 5
-  player: {fileID: 3642318594810386260}
-  drill: {fileID: 5688796081318662971}
-  redjemScore: 0
-  greenjemScore: 0
-  bluejemScore: 0
 --- !u!212 &7341404907283010650
 SpriteRenderer:
   m_ObjectHideFlags: 0
