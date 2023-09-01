@@ -15,7 +15,7 @@ public class WJ_Player : MonoBehaviour
     public float xInput;
     public float yInput;
 
-    [SerializeField] GameObject drill;
+    public GameObject drill;
 
     #region Components
     public Animator anim { get; private set; }
@@ -58,14 +58,13 @@ public class WJ_Player : MonoBehaviour
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            drill.SetActive(true);
             stateMachine.ChangeState(digState);
         }
         else
         {
-            drill.SetActive(false);
+            stateMachine.ChangeState(idleState);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

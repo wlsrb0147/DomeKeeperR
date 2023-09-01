@@ -13,6 +13,7 @@ public class WJ_PlayerDigState : WJ_PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.drill.SetActive(true);
     }
 
     public override void Update()
@@ -20,6 +21,7 @@ public class WJ_PlayerDigState : WJ_PlayerState
         base.Update();
 
         player.SetVelocity(player.xInput * player.Speed, rbody.velocity.y);
+
 
         if (mousePosition.x > player.transform.position.x)
         {
@@ -34,7 +36,7 @@ public class WJ_PlayerDigState : WJ_PlayerState
     public override void Exit()
     {
         base.Exit();
-
+        player.drill.SetActive(false);
     }
 
 }
