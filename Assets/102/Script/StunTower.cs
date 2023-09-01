@@ -20,6 +20,7 @@ public class StunTower : Tower
         SetRotation();
         Move();
         Attack();
+       
     }
     void SetRotation()
     {
@@ -86,7 +87,7 @@ public class StunTower : Tower
         }
     }
 
-
+  
     IEnumerator StunAtk()
     {
         GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);

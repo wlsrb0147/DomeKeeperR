@@ -46,7 +46,7 @@ public class DefalutTower : Tower
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
 
-    }
+    }  
     void Update()
     {
 
@@ -81,16 +81,20 @@ public class DefalutTower : Tower
     }
     void Attack()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (SkillTreeManager.Instance.isTech3 != true)
         {
-            LrDraw();
-            BigLazerShotReady();
+            if (Input.GetKey(KeyCode.Space))
+            {
+
+                LrDraw();
+                BigLazerShotReady();
 
 
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            LrDisable();
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                LrDisable();
+            }
         }
     }
 
@@ -103,7 +107,7 @@ public class DefalutTower : Tower
     {
         if (SkillTreeManager.Instance.isCharge == true)
         {
-            bigValue += 0.0005f;
+            bigValue += 0.0005f; 
 
             if (bigValue >= 1)
             {
@@ -118,7 +122,6 @@ public class DefalutTower : Tower
 
         Destroy(Big, BigLazerDelay);
         Invoke("BigLazerfalse", BigLazerDelay);
-        Debug.Log("³ª°¨?");
         bigValue = 0f;
     }
     void BigLazerfalse()
