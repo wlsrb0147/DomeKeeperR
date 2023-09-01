@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf5cf5c46543824fb47539cc632e55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  petSpeed: 0
+  petSpeed: 2
   petDamage: 10
   redjemScore: 0
   greenjemScore: 0

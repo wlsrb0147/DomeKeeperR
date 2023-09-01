@@ -84,7 +84,7 @@ public class MovementController2D : MonoBehaviour
         rb.gravityScale = 0;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = false;
-        speed = originSpeed;
+        originSpeed = speed;
 
     }
     private void ResetMovementState()
