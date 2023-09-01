@@ -108,7 +108,7 @@ public class FireTower : Tower
         if(FireRestTime > FireRestCool )
         { 
         GameObject Firebat = Instantiate(Fire, FirePos.transform.position,FirePos.transform.rotation);
-        Destroy(Firebat, 1);
+        Destroy(Firebat, 0.2f);
         yield return new WaitForSeconds(FireDuartion);
         FireRestTime = 0f;
         isFire = false;
