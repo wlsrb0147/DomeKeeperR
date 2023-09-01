@@ -38,9 +38,13 @@ public class S_Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             rigid.velocity = new Vector2(rigid.velocity.x, yInput * jumpForce);
+            anim.SetBool("up", true);
         }
         else
+        { 
             rigid.velocity = new Vector2(xInput * Speed, rigid.velocity.y);
+            anim.SetBool("up", false);
+        }
 
         if (yInput < 0)
             player.layer = 3;

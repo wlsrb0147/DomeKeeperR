@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187878091942283106, guid: 456c529007fec304892cf304b747bbe3, type: 3}
       propertyPath: HP
-      value: 600
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -458,6 +458,9 @@ MonoBehaviour:
   jumpForce: 5
   player: {fileID: 108580113}
   drill: {fileID: 1198727105}
+  redjemScore: 0
+  greenjemScore: 0
+  bluejemScore: 0
 --- !u!4 &108580119
 Transform:
   m_ObjectHideFlags: 0
@@ -1692,11 +1695,11 @@ MonoBehaviour:
   redjam: {fileID: 0}
   bluejam: {fileID: 0}
   greenjam: {fileID: 0}
+  playerPos: {fileID: 0}
   mapSize: {x: 350, y: 100}
   mineralXoffeset: 0.5
   mineralYoffeset: 71.36
   tileMap: {fileID: 637064656}
-  mineralTile: {fileID: 11400000, guid: d576eb0b8c080ec418f121a4b9c611c7, type: 2}
   GroundTile: {fileID: 11400000, guid: c6811cbb259f2b04e966c9c45b5c2854, type: 2}
   GroundTile2: {fileID: 0}
   downTile: {fileID: 11400000, guid: b00d0eb7ce07ef24a8f1deb3dfc1bf5e, type: 2}
@@ -1707,6 +1710,7 @@ MonoBehaviour:
   LdownCornerTile: {fileID: 0}
   RupCornerTile: {fileID: 0}
   LupCornerTile: {fileID: 0}
+  tileList: []
 --- !u!483693784 &637064655
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -1938,7 +1942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187878091942283106, guid: 456c529007fec304892cf304b747bbe3, type: 3}
       propertyPath: HP
-      value: 600
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2823,7 +2827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1368637569
 MonoBehaviour:
   m_ObjectHideFlags: 0
