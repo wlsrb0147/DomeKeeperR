@@ -1,17 +1,8 @@
 using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
-public class DefalutTower : MonoBehaviour
+public class DefalutTower : Tower
 {
-    float x = 0;
-    #region 
-    [Header("타워 움직임")]
-    [SerializeField] Transform rotationCenter;
-    [SerializeField] float rotationRadius, angularSpeed;
-    [SerializeField] private float leftLockAngle;
-    [SerializeField] private float rightLockAngle;
-    [SerializeField] private float rote;
-    float posX, posY, angle = 0f;
-    #endregion
+  
 
     #region 
     [Header("레이저")]
@@ -61,9 +52,6 @@ public class DefalutTower : MonoBehaviour
             SetRotation();
             Attack();
             TimeContinue();
-           
-        
-
 
     }
     void TimeContinue()
@@ -159,7 +147,7 @@ public class DefalutTower : MonoBehaviour
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
 
-                       // Instantiate(lazerend, hit.point, Quaternion.identity);
+                        Instantiate(lazerend, hit.point, Quaternion.identity);
 
                         break; //이것만 지우면 관통형 레이저 가능 
                     }
