@@ -19,6 +19,13 @@ public class SkillTreeManager : MonoBehaviour
     #region
     [Header("태크2")]
     [SerializeField] public bool isTech2 = false;
+    [SerializeField] public bool isFireTower = false;
+    [SerializeField] public bool isStunTower = false;
+    [SerializeField] public GameObject StunTower;
+    [SerializeField] public GameObject FireTower;
+
+
+
     #endregion
     #region
     [Header("태크3")]
@@ -33,9 +40,21 @@ public class SkillTreeManager : MonoBehaviour
         SelectTech1();
         SelectTech2();
         SelectTech3();
+        SetActive();
 
     }
 
+    void SetActive()
+    {
+        if (isStunTower == true)
+        {
+            StunTower.SetActive(true);
+        }
+        if (isFireTower == true)
+        {
+            FireTower.SetActive(true);
+        }
+    }
 
     void SelectTech1()
     { 

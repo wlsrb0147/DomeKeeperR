@@ -20,4 +20,15 @@ public class LazerBig : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        UpdateAtk();
+    }
+    void UpdateAtk()
+    { 
+        if(SkillTreeManager.Instance.isChargeDelayless == true) 
+        {
+            Atk *= 2;
+        }
+    }
 }
