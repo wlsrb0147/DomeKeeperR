@@ -2,7 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class DefalutTower : Tower
 {
-  
+
 
     #region 
     [Header("레이저")]
@@ -11,11 +11,12 @@ public class DefalutTower : Tower
     [SerializeField] private GameObject BigLazer;
     [SerializeField] private Transform lazerPos;
     [SerializeField] private int raydistance;
-    [SerializeField] private float AttackDelayTime;
     [SerializeField] private float chargeTime;
     [SerializeField] private float upgradeChargeTime;
     [SerializeField] private float bigValue;
     [SerializeField] private bool isBigLazer;
+    [SerializeField] private float BigLazerDelay;
+
 
 
     #endregion
@@ -34,11 +35,12 @@ public class DefalutTower : Tower
     #region 
     [Header("애니메이션")]
     [SerializeField] private GameObject animationPrefab;
-    private GameObject currentAnimation; // 현재 재생 중인 애니메이션 프리팹
     #endregion
-
     [SerializeField] float Atk;
-
+    #region 
+    [Header("Auto업그레이드")]
+    [SerializeField] private float AutoMoveTime;
+    #endregion
     private void Start()
     {
         lr = GetComponent<LineRenderer>();
@@ -47,16 +49,35 @@ public class DefalutTower : Tower
     }
     void Update()
     {
-       
-            Move();
-            SetRotation();
-            Attack();
-            TimeContinue();
 
+        Move();
+        SetRotation();
+        Attack();
+        TimeContinue();
+        AutoMove();
+        if (SkillTreeManager.Instance.isTech3 == true)
+        {
+            LrDraw();
+        }
+    }
+
+    void ChargeDelayUpgrade()
+    {
+        if(SkillTreeManager.Instance.isChargeDelayless == true)
+        {
+            BigLazerDelay = 1;
+        }
+        
     }
     void TimeContinue()
     {
-        AttackDelayTime = Time.time;
+     
+            AutoMoveTime += Time.deltaTime;
+            if (AutoMoveTime > 4)
+            {
+                AutoMoveTime = 0;
+            }
+        
     }
     void Attack()
     {
@@ -80,21 +101,24 @@ public class DefalutTower : Tower
 
     void BigLazerShotReady()
     {
-        bigValue += 0.0005f;
-
-        if (bigValue >= 1)
+        if (SkillTreeManager.Instance.isCharge == true)
         {
-            isBigLazer = true;
-            BigLazerCreate();
+            bigValue += 0.0005f;
+
+            if (bigValue >= 1)
+            {
+                isBigLazer = true;
+                BigLazerCreate();
+            }
         }
     }
     void BigLazerCreate()
     {
         GameObject Big = Instantiate(BigLazer, lazerPos.transform.position, lazerPos.transform.rotation);
 
-        Destroy(Big, 2);
-        Invoke("BigLazerfalse", 2f);
-
+        Destroy(Big, BigLazerDelay);
+        Invoke("BigLazerfalse", BigLazerDelay);
+        Debug.Log("나감?");
         bigValue = 0f;
     }
     void BigLazerfalse()
@@ -148,8 +172,10 @@ public class DefalutTower : Tower
                         lr.enabled = true;
 
                         Instantiate(lazerend, hit.point, Quaternion.identity);
-
+                        if(SkillTreeManager.Instance.isPenetrate != true) 
+                        { 
                         break; //이것만 지우면 관통형 레이저 가능 
+                        }
                     }
                 }
             }
@@ -165,6 +191,14 @@ public class DefalutTower : Tower
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        if (angle >= 0.8 && angle <= 0.9)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -45);
+        }
+        if (angle >= 2.3 && angle <= 2.4)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 45);
+        }
         posX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
         posY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius / 1.5f;
 
@@ -172,6 +206,40 @@ public class DefalutTower : Tower
         transform.position = new Vector3(posX, posY);
     }
 
+    void AutoMove()
+    {
+        if (SkillTreeManager.Instance.isTech3 == true)
+        {
+            if (angle < leftLockAngle)
+            {
+                if (AutoMoveTime > 0 && AutoMoveTime < 2)
+                {
+
+                    angle = angle + Time.deltaTime * angularSpeed;
+                    transform.Rotate(0, 0, rote);
+                    if (angle >= leftLockAngle)
+                    {
+
+                        transform.rotation = Quaternion.Euler(0, 0, 90);
+                    }
+                }
+            }
+
+            if (angle > rightLockAngle)
+            {
+                if (AutoMoveTime > 2 && AutoMoveTime < 4)
+                {
+
+                    angle = angle + Time.deltaTime * -angularSpeed;
+                    transform.Rotate(0, 0, -rote);
+                    if (angle <= rightLockAngle)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
+                }
+            }
+        }
+    }
     void Move()
     {
         if (isBigLazer != true)
