@@ -671,7 +671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &355989167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,6 +1461,10 @@ MonoBehaviour:
   isChargeDelayless: 0
   isChargeTimeLess: 0
   isTech2: 0
+  isFireTower: 0
+  isStunTower: 0
+  StunTower: {fileID: 355989166}
+  FireTower: {fileID: 362824795}
   isTech3: 0
 --- !u!4 &446610183
 Transform:
