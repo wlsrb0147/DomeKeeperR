@@ -15,6 +15,7 @@ public class M_WormInstantiate : M_State
     {
         base.Enter();
         counter = Random.Range(worm.wakeUpTimer_Min, worm.wakeUpTimer_Max + 1);
+        worm.myCollider.enabled = false;
     }
 
     public override void Exit()
