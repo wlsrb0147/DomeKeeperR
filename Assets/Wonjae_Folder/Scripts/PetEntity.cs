@@ -15,9 +15,9 @@ public class PetEntity : MonoBehaviour
     [Tooltip("ÆêÀÇ Á¤º¸¸¦ ³ªÅ¸³À´Ï´Ù.")]
     [SerializeField] protected float petSpeed;
     [SerializeField] private float petDamage;
-    [SerializeField] public float redjemScore = 0;
-    [SerializeField] public float greenjemScore = 0;
-    [SerializeField] public float bluejemScore = 0;
+    public float redjemScore = 0;
+    public float greenjemScore = 0;
+    public float bluejemScore = 0;
 
 
     [Header("Collision Info")]
@@ -92,38 +92,17 @@ public class PetEntity : MonoBehaviour
             Debug.Log("Flip");
             Flip();
         }
-
-        //if (isBackDetected)
-        //{
-        //    sideMine = false;
-        //    underMine = false;
-        //    petIdle = false;
-        //    petMove = false;
-        //    Debug.Log("µî µÚ ¹Ì³×¶ö");
-
-        //    if (!hasFlipped)
-        //    {
-        //        Flip();
-        //        MoveVelocity();
-        //        hasFlipped = true;
-        //    }
-        //    if (isSideDetected)
-        //    {
-        //        if (isGrounded)
-        //        {
-        //            MoveVelocity();
-        //            petFly = false;
-        //            underMine = false;
-        //            sideMine = true;
-        //            Flip();
-        //        }
-        //    }
-
-        //}
-        //else
-        //{
-        //    hasFlipped = false;
-        //}
+        if (isBackDetected)
+        {
+            sideMine = true;
+            underMine = false;
+            petIdle = false;
+            petMove = false;
+            Flip();
+            Debug.Log("µî µÚ ¹Ì³×¶ö");
+            Invoke("Flip", 2.5f);
+            //return;
+        }
     }
 
     #endregion
