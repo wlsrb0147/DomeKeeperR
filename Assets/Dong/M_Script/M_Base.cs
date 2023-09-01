@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class M_Base : MonoBehaviour
 {
@@ -13,14 +8,13 @@ public class M_Base : MonoBehaviour
     public Transform domeCenter { get; private set; }
 
     protected bool destroyed = false;
-    protected bool dead = false;
 
     [Header("Stat")]
-    public float HP =1;
+    public float HP = 1;
     public float Atk = 1;
-    
-    public int faceX { get ; private set; }
-    public bool facingRight { get ; private set; }
+
+    public int faceX { get; private set; }
+    public bool facingRight { get; private set; }
     public Vector2 zero { get; private set; }
 
     protected virtual void Awake()
@@ -33,22 +27,22 @@ public class M_Base : MonoBehaviour
         faceX = 1;
         facingRight = true;
     }
-    
+
     protected virtual void Start()
     {
-  
+
     }
 
     protected virtual void Update()
     {
         stateMachine.currentState.Update();
 
-        if (transform.position.x > domeCenter.position.x && facingRight )
+        if (transform.position.x > domeCenter.position.x && facingRight)
         {
             facingRight = !facingRight;
-            gameObject.transform.localScale = new Vector3(-1,1,1);
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if(transform.position.x < domeCenter.position.x && !facingRight)
+        else if (transform.position.x < domeCenter.position.x && !facingRight)
         {
             facingRight = !facingRight;
             gameObject.transform.localScale = new Vector3(1, 1, 1);
@@ -56,21 +50,22 @@ public class M_Base : MonoBehaviour
 
         if (facingRight) faceX = 1;
         else faceX = -1;
+
+
+        if (HP <= 0)
+        {
+            Dead();
+        }
+
     }
     public void Damage(float Atk)
     {
-        if (HP >= 0)
+        if (HP > 0)
         {
             HP -= Atk;
         }
-            
-        if (HP < 0 && dead == false)
-        {
-            dead =  true;
-            Dead();
-        }
     }
-    protected  virtual void Dead()
+    protected virtual void Dead()
     {
 
     }
@@ -83,7 +78,7 @@ public class M_Base : MonoBehaviour
     protected void OffRigidbody2D()
     {
         if (gameObject.GetComponent<CapsuleCollider2D>() != null)
-        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
         if (gameObject.GetComponent<CircleCollider2D>() != null)
             gameObject.GetComponent<CircleCollider2D>().enabled = false;

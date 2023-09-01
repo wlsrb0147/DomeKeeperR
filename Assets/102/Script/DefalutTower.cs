@@ -61,9 +61,6 @@ public class DefalutTower : MonoBehaviour
             SetRotation();
             Attack();
             TimeContinue();
-           
-        
-
 
     }
     void TimeContinue()
@@ -159,7 +156,7 @@ public class DefalutTower : MonoBehaviour
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
 
-                       // Instantiate(lazerend, hit.point, Quaternion.identity);
+                        Instantiate(lazerend, hit.point, Quaternion.identity);
 
                         break; //이것만 지우면 관통형 레이저 가능 
                     }

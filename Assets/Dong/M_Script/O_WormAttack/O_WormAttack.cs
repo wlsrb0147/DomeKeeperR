@@ -41,6 +41,12 @@ public class O_WormAttack : M_Base
         }
     }
 
+    protected override void Dead()
+    {
+        stateMachine.ChangeState(dead);
+    }
+
+
 
     /*   private void Awake()
        {
