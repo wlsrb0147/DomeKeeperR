@@ -27,6 +27,14 @@ public class StunTower : Tower
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        if (angle >= 0.8 && angle <= 0.9)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -45);
+        }
+        if (angle >= 2.3 && angle <= 2.4)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 45);
+        }
         posX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
         posY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius / 1.5f;
 
@@ -81,7 +89,6 @@ public class StunTower : Tower
 
     IEnumerator StunAtk()
     {
-        Debug.Log("½÷Áö´Â°Å¾ß?");
         GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
         yield return new WaitForSeconds(StunRestCool); 
