@@ -16,6 +16,7 @@ public class DefalutTower : Tower
     [SerializeField] private float bigValue;
     [SerializeField] private bool isBigLazer;
     [SerializeField] private float BigLazerDelay;
+    [SerializeField] private float BigLazerChargeValue;
 
 
 
@@ -59,16 +60,27 @@ public class DefalutTower : Tower
         {
             LrDraw();
         }
+        ChargeDelayUpgrade();
+        ChargeTimeUpgrade();
     }
 
     void ChargeDelayUpgrade()
     {
         if(SkillTreeManager.Instance.isChargeDelayless == true)
         {
-            BigLazerDelay = 1;
+            BigLazerDelay = 0.25f;
         }
         
     }
+    void ChargeTimeUpgrade()
+    {
+        if (SkillTreeManager.Instance.isChargeTimeLess == true)
+        {
+            BigLazerChargeValue = 0.005f;
+        }
+
+    }
+
     void TimeContinue()
     {
      
@@ -107,7 +119,7 @@ public class DefalutTower : Tower
     {
         if (SkillTreeManager.Instance.isCharge == true)
         {
-            bigValue += 0.0005f; 
+            bigValue += BigLazerChargeValue; 
 
             if (bigValue >= 1)
             {

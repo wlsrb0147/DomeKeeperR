@@ -97,8 +97,11 @@ public class FireTower : Tower
     {
         if (hit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
         {
+            if (FireRestTime > FireRestCool) 
+            { 
             isFire = true;
-            if(isFire) { 
+            }
+            if (isFire) { 
             StartCoroutine("CreateFire");
             }
         }
@@ -113,13 +116,12 @@ public class FireTower : Tower
     IEnumerator CreateFire()
     {
       
-        if(FireRestTime > FireRestCool )
-        { 
+        
         GameObject Firebat = Instantiate(Fire, FirePos.transform.position,FirePos.transform.rotation);
         Destroy(Firebat, 0.2f);
         yield return new WaitForSeconds(FireDuartion);
         FireRestTime = 0f;
         isFire = false;
-        }
+        
     }
 }

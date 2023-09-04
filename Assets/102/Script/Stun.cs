@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Stun : MonoBehaviour
 {
-    [SerializeField] float Atk;
-    [SerializeField] float Speed;
+    [SerializeField] public float Atk;
+    [SerializeField] public float Speed; //업글시 속도증가시키면 됨 
     private void Start()
     {
         
