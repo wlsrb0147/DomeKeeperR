@@ -11,6 +11,7 @@ public class StunTower : Tower
     [Header("½ºÅÏ")]
     [SerializeField] float StunDuartion;
     [SerializeField] float StunRestCool;
+    [SerializeField] float StunRestTime;
 
 
     #endregion
@@ -20,7 +21,13 @@ public class StunTower : Tower
         SetRotation();
         Move();
         Attack();
-       
+        ShotDelay();
+    }
+
+
+    void ShotDelay()
+    {
+        StunRestTime += Time.deltaTime;
     }
     void SetRotation()
     {
@@ -79,7 +86,10 @@ public class StunTower : Tower
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
+            if (StunRestTime > StunRestCool) 
+            { 
             StartCoroutine("StunAtk");
+            }
         }
         else
         {
@@ -92,6 +102,8 @@ public class StunTower : Tower
     {
         GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
+        StunRestTime = 0;
         yield return new WaitForSeconds(StunRestCool); 
+        
     }
 }

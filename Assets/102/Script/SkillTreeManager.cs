@@ -7,6 +7,7 @@ public class SkillTreeManager : MonoBehaviour
     public static SkillTreeManager Instance;
 
     #region
+    public int id;
     [Header("ебе╘1")]
     [SerializeField] public bool isTech1 = false;
     [SerializeField] public bool isPenetrate = false;
