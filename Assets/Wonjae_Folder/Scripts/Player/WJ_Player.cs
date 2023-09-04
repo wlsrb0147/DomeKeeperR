@@ -24,9 +24,6 @@ public class WJ_Player : MonoBehaviour
     public float greenjemScore = 0;
     public float bluejemScore = 0;
 
-    /*  public float xInput;
-      public float yInput;*/
-
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D rbody { get; private set; }
@@ -56,38 +53,29 @@ public class WJ_Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
-        //spriteRender = GetComponent<SpriteRenderer>();
         stateMachine.Initialize(idleState);
     }
 
     void Update()
     {
         stateMachine.currentState.Update();
+
         LayerChangeControll();
-        Dig();
 
-        /*    xInput = Input.GetAxisRaw("Horizontal");
-            yInput = Input.GetAxisRaw("Vertical");*/
-
-
-        /*   else
-           {
-               stateMachine.ChangeState(idleState);
-           }*/
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            stateMachine.ChangeState(upState);
-        }*/
-    }
-    void Dig()
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             drill.SetActive(true);
-            stateMachine.ChangeState(digState);
+            anim.SetBool("dig", true);
         }
+        if (!Input.GetMouseButton(0))
+        {
+            drill.SetActive(false);
+            anim.SetBool("dig", false);
+        }
+
     }
+
+
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);

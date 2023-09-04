@@ -29,9 +29,9 @@ public class WJ_PlayerGroundState : WJ_PlayerState
         if(!player.IsGroundDetected() || yInput < 0)
             stateMachine.ChangeState(player.downState);
 
-        if (Input.GetKey(KeyCode.Space) && player.IsGroundDetected())        
+        if (Input.GetKey(KeyCode.Space))        
             stateMachine.ChangeState(player.upState);
-        
+
     }
 
 }

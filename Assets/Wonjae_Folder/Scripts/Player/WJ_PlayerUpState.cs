@@ -19,7 +19,10 @@ public class WJ_PlayerUpState : WJ_PlayerState
 
         rbody.velocity = new Vector2(rbody.velocity.x, player.jumpForce);
 
-        if(!Input.GetKey(KeyCode.Space))
+        if (xInput != 0)
+            player.SetVelocity(player.Speed * 0.8f * xInput, rbody.velocity.y);
+
+        if (!Input.GetKey(KeyCode.Space))
             stateMachine.ChangeState(player.idleState);
     }
 

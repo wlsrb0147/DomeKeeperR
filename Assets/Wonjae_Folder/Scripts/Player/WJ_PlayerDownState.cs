@@ -28,6 +28,10 @@ public class WJ_PlayerDownState : WJ_PlayerState
         }
         if (xInput != 0)
             player.SetVelocity(player.Speed * 0.8f * xInput, rbody.velocity.y);
+        if(Input.GetKey(KeyCode.Space))
+        {
+            stateMachine.ChangeState(player.upState);
+        }
 
 
 
