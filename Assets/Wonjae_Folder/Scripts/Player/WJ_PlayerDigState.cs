@@ -13,23 +13,27 @@ public class WJ_PlayerDigState : WJ_PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.drill.SetActive(true);
     }
 
     public override void Update()
     {
         base.Update();
 
-        player.SetVelocity(player.xInput * player.Speed, rbody.velocity.y);
+        //player.SetVelocity(player.xInput * player.Speed, rbody.velocity.y);
 
 
-        if (mousePosition.x > player.transform.position.x)
+      /*  if (mousePosition.x > player.transform.position.x)
         {
-            spriteRender.flipX = true;
+            player.Flip();
         }
         else
         {
-            spriteRender.flipY = false;
+            player.Flip();
+        }*/
+
+        if (!Input.GetMouseButton(0))
+        {
+            stateMachine.ChangeState(player.idleState);
         }
     }
 
