@@ -6,7 +6,7 @@ using UnityEngine;
 public class S_VirtualCamera : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
-    [SerializeField] float domeOrthoSize = 13.5f;
+    [SerializeField] float domeOrthoSize = 13f;
     [SerializeField] float mineOrthoSize = 6f;
     [SerializeField] Transform domeViewPoint;
     [SerializeField] float zoomSpeed = 1f;
