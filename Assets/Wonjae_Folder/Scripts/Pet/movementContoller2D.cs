@@ -8,8 +8,7 @@ public class MovementController2D : MonoBehaviour
 {
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
-    [SerializeField] float speed = 0.15f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
-    [SerializeField] float originSpeed = 0.05f;
+    [SerializeField] float originSpeed = 0.05f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
 
     Pathfinder<Vector2> pathfinder; // 경로 탐색 메서드와 Patience를 저장하는 Pathfinder 객체
     [Tooltip("Navigator가 통과할 수 없는 레이어들")]
@@ -23,6 +22,7 @@ public class MovementController2D : MonoBehaviour
     List<Vector2> pathLeftToGo = new List<Vector2>();
     [SerializeField] bool drawDebugLines;
     
+    PetEntity PE = new PetEntity();
 
     // 첫 번째 프레임 전에 호출되는 함수
     void Start()
@@ -37,7 +37,6 @@ public class MovementController2D : MonoBehaviour
         {
             SetMovementState();
             BackMoveCommand(new Vector2(-0.4f, -10.5f));
-            
         }
 
         if (Input.GetKeyDown(KeyCode.G)) 
@@ -54,7 +53,6 @@ public class MovementController2D : MonoBehaviour
 
             GetMoveCommand(randomTarget);
 
-            
         }
 
         if (pathLeftToGo.Count > 0) // 목표에 도달하지 않았을 때
