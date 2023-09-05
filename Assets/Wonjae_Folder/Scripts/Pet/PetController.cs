@@ -72,12 +72,12 @@ public class PetController : PetEntity
     }
 
     //스킬 구매 시작
-    public void BuyPetDamageLv2() => PetDamageLv2();
-    public void BuyPetDamageLv3() => PetDamageLv3();
-
-
-
-
+    public void BuyDamageLv2() => PetDamageLv2();
+    public void BuyDamageLv3() => PetDamageLv3();
+    public void BuyCarryLv2() => PetCarryLv2();
+    public void BuyCarryLv3() => PetCarryLv3();
+    public void BuyScanLv2() => PetScanLv2();
+    public void BuyScanLv3() => PetScanLv3();
 
     //스킬 구매 끝
 
