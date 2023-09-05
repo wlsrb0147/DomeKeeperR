@@ -9,6 +9,7 @@ public class S_GameManager : MonoBehaviour
 
     public WJ_Player player;
     public PetController pet;
+    public S_JemstoneStash stash;
     public float GameTime = 0;
 
     void Start()

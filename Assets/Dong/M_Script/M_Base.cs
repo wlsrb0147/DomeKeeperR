@@ -1,4 +1,5 @@
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M_Base : MonoBehaviour
@@ -22,6 +23,9 @@ public class M_Base : MonoBehaviour
     public int faceX { get; private set; }
     public bool facingRight { get; private set; }
     public Vector2 zero { get; private set; }
+
+
+    protected Collider2D collision;
 
     protected virtual void Awake()
     {
@@ -68,12 +72,11 @@ public class M_Base : MonoBehaviour
         {
             currentHP = HP1;
             idleTimer = 0;
-            Debug.Log("hit");
         }
 
         if (idleTimer >= 1)
         {
-
+           
         }
 
         idleTimer += Time.deltaTime;
@@ -89,17 +92,29 @@ public class M_Base : MonoBehaviour
 
 
     }
-    public void Damage1(float Atk)
+    public void Damage(float Atk)
     {
+        if (HP1 > 0)
+        {
             HP1 -= Atk;
+        }
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Dome"))
+        {
+            this.collision = collision;
+        }
         
     }
 
-    public void Damage2(float Atk)
+    protected void SetDamage()
     {
-            HP2 -= Atk;
-    }
+        if(collision !=null)
+        collision.GetComponent<Dome>().SetDamage(Atk);
 
+    }
 
     protected virtual void Dead()
     {

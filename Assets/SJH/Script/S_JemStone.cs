@@ -110,4 +110,12 @@ public class S_JemStone : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, scanRange);
     }
+
+    private bool weightjemScore(PetEntity pet)
+    {
+        float totalScore = pet.redjemScore + pet.greenjemScore + pet.bluejemScore;
+
+        return totalScore < pet.maxScore;
+    }
+
 }
