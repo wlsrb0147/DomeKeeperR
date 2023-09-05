@@ -337,8 +337,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -884, y: -480}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -903.5, y: -485.1}
+  m_SizeDelta: {x: 54.985, y: 54.985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &273415274
 MonoBehaviour:
@@ -1681,8 +1681,6 @@ MonoBehaviour:
   wave: 1
   waveSpawnTime: 0
   spawnDuration: 0
-  waveDisabled: {fileID: 2001552988}
-  waveEnabled: {fileID: 273415274}
   spawnMonster: 0
   slider: {fileID: 1810176020}
 --- !u!4 &1582489698
@@ -1744,8 +1742,6 @@ MonoBehaviour:
   wave: 1
   waveSpawnTime: 0
   spawnDuration: 0
-  waveDisabled: {fileID: 0}
-  waveEnabled: {fileID: 0}
   spawnMonster: 0
   slider: {fileID: 1810176020}
 --- !u!4 &1713185367
@@ -1905,7 +1901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -699, y: -491}
+  m_AnchoredPosition: {x: -715.5, y: -488.5}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1810176020
@@ -2197,8 +2193,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -884, y: -480}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -903.5, y: -485.1}
+  m_SizeDelta: {x: 54.99, y: 54.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001552988
 MonoBehaviour:

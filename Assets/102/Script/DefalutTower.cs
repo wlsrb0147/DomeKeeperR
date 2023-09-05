@@ -38,6 +38,8 @@ public class DefalutTower : Tower
     [SerializeField] private GameObject animationPrefab;
     #endregion
     [SerializeField] float Atk;
+    [SerializeField] public int maxHitsBeforeDisable;
+    [SerializeField]public int penetratedCount;
     #region 
     [Header("Auto업그레이드")]
     [SerializeField] private float AutoMoveTime;
@@ -50,7 +52,7 @@ public class DefalutTower : Tower
     }  
     void Update()
     {
-
+      
         Move();
         SetRotation();
         Attack();
@@ -140,7 +142,7 @@ public class DefalutTower : Tower
     {
         isBigLazer = false;
     }
-    void LrDraw()
+   /* void LrDraw()
     {
         lr.SetPosition(0, lazerPos.transform.position);
 
@@ -199,7 +201,63 @@ public class DefalutTower : Tower
 
         lr.enabled = true;
 
-    }
+    }*/
+    void LrDraw()
+    {
+        lr.SetPosition(0, lazerPos.transform.position);
+
+        bool hitEnemy = false;
+        int penetratedEnemyCount = 0; // 관통한 몬스터 수를 세기 위한 변수
+
+        if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnd))
+        {
+            lr.SetPosition(1, lrhit.point);
+            lr.enabled = true;
+
+            if (lrhit.collider.CompareTag("Monster"))
+            {
+                if (lrhit.collider != null)
+                {
+                    GameObject hitObject = lrhit.collider.gameObject;
+                    hitObject.GetComponent<M_Base>().Damage(Atk);
+                    hitEnemy = true;
+                    penetratedEnemyCount++;
+                   
+                }
+            }
+        }
+      
+        if (!hitEnemy && penetratedEnemyCount < penetratedCount) 
+        {
+            lrhits = Physics2D.RaycastAll(transform.position, transform.up, raydistance, whatisEnemy);
+
+            foreach (RaycastHit2D hit in lrhits)
+            {
+                if (hit.collider.CompareTag("Monster"))
+                {
+                    if (hit.collider != null)
+                    {
+                        GameObject hitObject = hit.collider.gameObject;
+                        hitObject.GetComponent<M_Base>().Damage(Atk);
+
+                        lr.SetPosition(1, hit.point);
+                        lr.enabled = true;
+
+                        Instantiate(lazerend, hit.point, Quaternion.identity);
+                        penetratedEnemyCount++;
+
+                        if (penetratedEnemyCount >= penetratedCount) // 3마리 이상 관통했다면 중단
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        lr.enabled = true;
+        }
+    
     void SetRotation()
     {
         if (angle > 1.5 && angle < 1.6)
@@ -221,7 +279,7 @@ public class DefalutTower : Tower
         transform.position = new Vector3(posX, posY);
     }
 
-    void AutoMove()
+        void AutoMove()
     {
         if (SkillTreeManager.Instance.isTech3 == true)
         {
@@ -255,7 +313,7 @@ public class DefalutTower : Tower
             }
         }
     }
-    void Move()
+        void Move()
     {
         if (isBigLazer != true)
         {

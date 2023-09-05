@@ -13,7 +13,8 @@ public class M_BeastAttack : M_State
     public override void Enter()
     {
         base.Enter();
-        beast.rb.bodyType = RigidbodyType2D.Static;
+        beast.SetVelocity(beast.zero);
+        beast.rb.bodyType = RigidbodyType2D.Kinematic;
     }
     public override void Exit()
     {

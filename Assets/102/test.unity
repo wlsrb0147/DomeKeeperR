@@ -1158,6 +1158,7 @@ MonoBehaviour:
   jumpForce: 5
   player: {fileID: 108580113}
   drill: {fileID: 1198727105}
+  light: {fileID: 0}
   redjemScore: 0
   greenjemScore: 0
   bluejemScore: 0
@@ -2756,13 +2757,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408610681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.7, y: -1.15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.980001, y: -9.309999, z: 0}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 1241671188}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &408610684
 BoxCollider2D:
@@ -2908,7 +2909,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &434456694
 GameObject:
@@ -3155,67 +3156,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &456286884
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_RootOrder
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 19.3907
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.9832
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376572076767013109, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214743120703131161, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-      propertyPath: m_Name
-      value: Driller
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
 --- !u!1 &479188428
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,10 +3282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: PosATK
-  skillSprite: {fileID: 21300000, guid: e99dd342bbd62b4499a31035d14a1b90, type: 3}
-  skillDes: Pos Attack Upgrade Lv3
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &479188433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4552,7 +4489,7 @@ Transform:
   - {fileID: 1825535408}
   - {fileID: 1147517486}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &601601753
 GameObject:
@@ -4836,10 +4773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Duration Time
-  skillSprite: {fileID: 21300000, guid: 48706f776f360f141adcde60e5abd8c1, type: 3}
-  skillDes: Increase Duration Time Master
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &604722376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6361,10 +6295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Duration Time
-  skillSprite: {fileID: 21300000, guid: 55988e744adc0634fb2c81cf23139df8, type: 3}
-  skillDes: Increase Duration Time Lv1
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &858788546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7005,10 +6936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Explosion
-  skillSprite: {fileID: 21300000, guid: 1d478a5f2b7aebd4c864ad1a32e69f88, type: 3}
-  skillDes: Pet Explostion Skill Lv1
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &883482407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7682,10 +7610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Explosion
-  skillSprite: {fileID: 21300000, guid: 95d942f37ab5b6541a6205eb2661566b, type: 3}
-  skillDes: Pet Explostion Skill Master
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &935673184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9046,13 +8971,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122738261}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.36, y: -1.15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20.08, y: -9.309999, z: 0}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 1241671188}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1122738264
 BoxCollider2D:
@@ -9207,13 +9132,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182124600}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.72, y: 8.16, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 1241671188}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &1182124603
 BoxCollider2D:
@@ -9713,10 +9638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Explosion
-  skillSprite: {fileID: 21300000, guid: 1d478a5f2b7aebd4c864ad1a32e69f88, type: 3}
-  skillDes: Pet Explostion Skill Lv2
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1235462140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9755,6 +9677,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235462135}
   m_CullTransparentMesh: 1
+--- !u!1 &1241671187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241671188}
+  m_Layer: 0
+  m_Name: End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1241671188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241671187}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.72, y: 8.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1122738263}
+  - {fileID: 408610683}
+  - {fileID: 1182124602}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1247742310
 GameObject:
   m_ObjectHideFlags: 0
@@ -10158,10 +10114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Duration Time
-  skillSprite: {fileID: 21300000, guid: 55988e744adc0634fb2c81cf23139df8, type: 3}
-  skillDes: Increase Duration Time Lv3
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1292011819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10539,7 +10492,15 @@ MonoBehaviour:
   worm: {fileID: 1806603920478596895, guid: 66cb8615176cb1149a3d69b09afbe05c, type: 3}
   shifter: {fileID: 2943596597679754805, guid: 322c7307d5b8f554d97dad3ce8386339, type: 3}
   bolter: {fileID: 633645560670332834, guid: 3cfab5464c312bd4395987aa31e047cc, type: 3}
+  domeCenter: {fileID: 0}
   x: 0
+  waveTime: 0
+  waveTimer: 0
+  wave: 1
+  waveSpawnTime: 0
+  spawnDuration: 0
+  spawnMonster: 0
+  slider: {fileID: 0}
 --- !u!4 &1368637570
 Transform:
   m_ObjectHideFlags: 0
@@ -10553,7 +10514,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1374436627
 GameObject:
@@ -10684,6 +10645,8 @@ MonoBehaviour:
   rayDistance: 10
   animationPrefab: {fileID: 6888460268258515412, guid: a914b4094d36b094ba22917cd7f59041, type: 3}
   Atk: 1
+  maxHitsBeforeDisable: 1
+  penetratedCount: 1
   AutoMoveTime: 0
 --- !u!120 &1374436631
 LineRenderer:
@@ -11055,10 +11018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: PosATK
-  skillSprite: {fileID: 21300000, guid: c691eb0f329cd1d43aafeeaaef0dc336, type: 3}
-  skillDes: Pos Attack Upgrade Master
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1378717963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12720,10 +12680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Duration Time
-  skillSprite: {fileID: 21300000, guid: 55988e744adc0634fb2c81cf23139df8, type: 3}
-  skillDes: Increase Duration Time Lv2
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1563799180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13590,10 +13547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: PosATK
-  skillSprite: {fileID: 21300000, guid: e99dd342bbd62b4499a31035d14a1b90, type: 3}
-  skillDes: Pos Attack Upgrade Lv2
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1658463561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13758,10 +13712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: PosATK
-  skillSprite: {fileID: 21300000, guid: e99dd342bbd62b4499a31035d14a1b90, type: 3}
-  skillDes: Pos Attack Upgrade Lv1
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1662517359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14002,10 +13953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6d64fe0a4a99e4eaf787265dcf4f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Explosion
-  skillSprite: {fileID: 21300000, guid: 1d478a5f2b7aebd4c864ad1a32e69f88, type: 3}
-  skillDes: Pet Explostion Skill Lv3
-  isUpgrade: 0
+  countText: {fileID: 0}
 --- !u!114 &1688534628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15640,7 +15588,7 @@ RectTransform:
   m_Children:
   - {fileID: 922036709}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

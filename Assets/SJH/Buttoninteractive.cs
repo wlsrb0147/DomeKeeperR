@@ -6,13 +6,23 @@ using UnityEngine.UI;
 
 public class Buttoninteractive : MonoBehaviour
 {
+    public bool parentCheck = false;
+    public Button parentbutton;
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
     }
+    private void Update()
+    {
+        if (parentbutton.interactable == false) 
+            parentCheck = true;
+        else
+            parentCheck = false;
+    }
     public void OnClick()
     {
-        GetComponent<Button>().interactable = false ;
+        if (parentCheck)
+            GetComponent<Button>().interactable = false;
     }
 
 }

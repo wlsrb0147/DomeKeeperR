@@ -73,7 +73,7 @@ public class M_Base : MonoBehaviour
 
         if (idleTimer >= 1)
         {
-            //
+
         }
 
         idleTimer += Time.deltaTime;
