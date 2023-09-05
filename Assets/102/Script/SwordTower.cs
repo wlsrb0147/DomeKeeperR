@@ -47,12 +47,13 @@ public class SwordTower : Tower
         }
 
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Monster"))
             {
             collision.gameObject.GetComponent<M_Base>().Damage(atk);
-            }
+            Debug.Log(collision);    
+        }
     }
     void AutoMove()
     {
