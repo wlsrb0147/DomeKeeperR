@@ -24,6 +24,9 @@ public class M_Base : MonoBehaviour
     public bool facingRight { get; private set; }
     public Vector2 zero { get; private set; }
 
+
+    protected Collider2D collision;
+
     protected virtual void Awake()
     {
         stateMachine = new M_StateMachine();
@@ -98,10 +101,22 @@ public class M_Base : MonoBehaviour
         }
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-     //   collision.gameObject.GetComponentInChildren<>
+        if (collision.CompareTag("Dome"))
+        {
+            this.collision = collision;
+        }
+        
     }
+
+    protected void SetDamage()
+    {
+
+        collision.GetComponent<Dome>().SetDamage(Atk);
+
+    }
+
     protected virtual void Dead()
     {
 

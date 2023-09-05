@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Rendering.Universal;
 
 public class PetEntity : MonoBehaviour
 {
@@ -21,9 +23,16 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform toothPos;
 
     [Header("보유한 광물의 수")]
-    public float redjemScore = 0;
-    public float greenjemScore = 0;
-    public float bluejemScore = 0;
+    public float redjemScore = 0f;
+    public float greenjemScore = 0f;
+    public float bluejemScore = 0f;
+
+    public float maxScore = 10.0f;
+
+    [Header("펫의 스킬 레벨")]
+    [SerializeField] public int attackLv = 1; // 공격 레벨
+    [SerializeField] public int carryLv = 1; // 가방 무게도 레벨
+    [SerializeField] public int scanLv = 1; // 시야 레벨
 
     [Header("충돌 체크")]
     [Tooltip("펫이 닿고있는 지면을 확인합니다.")]
@@ -65,6 +74,7 @@ public class PetEntity : MonoBehaviour
     protected Rigidbody2D rbody;
     protected Animator anim;
     protected SpriteRenderer spr;
+    private Light2D _light;
 
     //
     S_Mineral mineral;
@@ -91,6 +101,7 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
+        _light = GetComponent<Light2D>();
     }
 
     protected virtual void Update()
@@ -165,6 +176,16 @@ public class PetEntity : MonoBehaviour
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+
+
+        }
+    }
+
+
     #endregion
 
 
@@ -174,7 +195,7 @@ public class PetEntity : MonoBehaviour
 
     #endregion
 
-
+    //
     #region Animaition
     private void PetAnimatorControllers()
     {
@@ -218,34 +239,82 @@ public class PetEntity : MonoBehaviour
     }
     #endregion
 
-
     #region Pet Skill
 
-    public void PetDamage()
+    protected void PetDamageLv2()
+    {
+        if (attackLv == 1 && redjemScore >= 5.0f)
+        {
+            petDamage += 5.0f;
+            redjemScore -= 5.0f;
+            attackLv = 2;
+        }
+    }
+
+    protected void PetDamageLv3()
+    {
+        if (attackLv == 2 && redjemScore >= 10.0f && greenjemScore >= 1.0f) 
+        {
+            petDamage += 10.0f;
+            redjemScore -= 10.0f;
+            greenjemScore -= 1.0f;
+            attackLv = 3;
+        }
+    }
+
+    protected void PetCarryLv2()
+    {
+        if (carryLv == 1 && redjemScore >= 10.0f)
+        {
+            maxScore = 20;
+            redjemScore -= 10.0f;
+            carryLv = 2;
+        }
+    }
+
+    protected void PetCarryLv3()
+    {
+        if (carryLv == 2 && redjemScore >= 15.0f && greenjemScore >= 5.0f)
+        {
+            maxScore = 30;
+            redjemScore -= 15.0f;
+            greenjemScore -= 5.0f;
+            carryLv = 3;
+        }
+    }
+
+    protected void PetScanLv2()
+    {
+        if (scanLv == 1 && redjemScore >= 5.0f)
+        {
+            _light.pointLightOuterRadius = 5.0f;
+            redjemScore -= 5.0f;
+            scanLv = 2;
+        }
+    }
+
+    protected void PetScanLv3()
+    {
+        if (scanLv == 2 && redjemScore >= 10.0f && greenjemScore >= 5.0f)
+        {
+            _light.pointLightOuterRadius = 10.0f;
+            redjemScore -= 5.0f;
+            greenjemScore -= 5.0f;
+            scanLv = 3;
+        }
+    }
+
+    protected void PetCoolTime()
     {
 
     }
 
-    public void PetSearch()
-    {
-
-    }
-
-    public void PetInventory()
-    {
-
-    }
-
-    public void durationPet()
-    {
-
-    }
-
-    public void doublePet()
+    protected void PetDouble()
     {
 
     }
 
     #endregion
+
 
 }
