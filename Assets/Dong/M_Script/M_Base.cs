@@ -101,6 +101,8 @@ public class M_Base : MonoBehaviour
         }
     }
 
+
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Dome"))
