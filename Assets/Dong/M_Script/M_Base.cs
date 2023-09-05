@@ -67,7 +67,7 @@ public class M_Base : MonoBehaviour
 
         if (idleTimer >= 1)
         {
-            Debug.Log("idle");
+           // Debug.Log("idle");
         }
 
         #endregion
