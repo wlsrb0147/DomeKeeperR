@@ -58,7 +58,7 @@ public class Dome : MonoBehaviour
         }
         
     }
-    void SetDamage(int atk)
+    public void SetDamage(float atk)
     {
         if (!isShield)
         {
