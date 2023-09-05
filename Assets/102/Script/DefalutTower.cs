@@ -52,8 +52,10 @@ public class DefalutTower : Tower
     }  
     void Update()
     {
-      
+        if(SkillTreeManager.Instance.isTech3!= true) 
+        { 
         Move();
+        }
         SetRotation();
         Attack();
         TimeContinue();
@@ -264,7 +266,7 @@ public class DefalutTower : Tower
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        if (angle >= 0.8 && angle <= 0.9)
+       if (angle >= 0.8 && angle <= 0.9)
         {
             transform.rotation = Quaternion.Euler(0, 0, -45);
         }
@@ -309,6 +311,10 @@ public class DefalutTower : Tower
                     {
                         transform.rotation = Quaternion.Euler(0, 0, -90);
                     }
+                    if (transform.rotation.z < -90)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
                 }
             }
         }
@@ -339,6 +345,10 @@ public class DefalutTower : Tower
                     angle = angle + Time.deltaTime * -angularSpeed;
                     transform.Rotate(0, 0, -rote);
                     if (angle <= rightLockAngle)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
+                    if (transform.rotation.z < -90) 
                     {
                         transform.rotation = Quaternion.Euler(0, 0, -90);
                     }

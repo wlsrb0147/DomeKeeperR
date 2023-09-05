@@ -11,7 +11,7 @@ public class Fire : MonoBehaviour
         if (collision.gameObject.CompareTag("Monster"))
         {
             collision.gameObject.GetComponent<M_Base>().Damage(Atk);
-            Debug.Log("데미지가" + Atk + "만큼 달고있어용");
+           
         }
     }
 }
