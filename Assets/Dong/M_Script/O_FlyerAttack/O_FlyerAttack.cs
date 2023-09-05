@@ -37,8 +37,9 @@ public class O_FlyerAttack : M_Moving
         base.Update();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Dome"))
         {
             stateMachine.ChangeState(hit);

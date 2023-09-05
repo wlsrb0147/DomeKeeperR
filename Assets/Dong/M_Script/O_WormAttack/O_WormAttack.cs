@@ -33,8 +33,9 @@ public class O_WormAttack : M_Base
         base.Update();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Dome"))
         {
             stateMachine.ChangeState(hit);
@@ -47,25 +48,4 @@ public class O_WormAttack : M_Base
     }
 
 
-
-    /*   private void Awake()
-       {
-           rb = GetComponent<Rigidbody2D>();
-           myCollider = rb.GetComponent<Collider2D>();
-
-           attack = new O_WormAttackAttack(this, stateMachine, "Attack", this);
-
-
-       }
-       private void Start()
-       {
-           rb = GetComponent<Rigidbody2D>();
-           rb.AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
-
-       }
-
-       private void Update()
-       {
-
-       }*/
 }
