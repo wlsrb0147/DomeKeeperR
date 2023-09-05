@@ -620,7 +620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 80915174}
         m_TargetAssemblyTypeName: PetController, Assembly-CSharp
         m_MethodName: BuyDamageLv2
         m_Mode: 1
@@ -684,6 +684,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76904275}
   m_CullTransparentMesh: 1
+--- !u!1001 &80915173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 924973197211554225, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_Name
+      value: Pet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+--- !u!114 &80915174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9103345212335302220, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
+  m_PrefabInstance: {fileID: 80915173}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf5cf5c46543824fb47539cc632e55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &98274429
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +918,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 80915174}
         m_TargetAssemblyTypeName: PetController, Assembly-CSharp
         m_MethodName: BuyCarryLv2
         m_Mode: 1
@@ -1592,7 +1664,7 @@ RectTransform:
   - {fileID: 453663252}
   - {fileID: 1202649759}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2075,7 +2147,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 80915174}
         m_TargetAssemblyTypeName: PetController, Assembly-CSharp
         m_MethodName: BuyScanLv3
         m_Mode: 1
@@ -3585,67 +3657,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660644710}
   m_CullTransparentMesh: 1
---- !u!1001 &682001671
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 924973197211554225, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_Name
-      value: Pet
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.061
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613983302017319656, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 70c14fe4fcc5db94e85e766b1093e259, type: 3}
 --- !u!1 &733695012
 GameObject:
   m_ObjectHideFlags: 0
@@ -7320,7 +7331,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 80915174}
         m_TargetAssemblyTypeName: PetController, Assembly-CSharp
         m_MethodName: BuyScanLv2
         m_Mode: 1
@@ -8907,7 +8918,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 80915174}
         m_TargetAssemblyTypeName: PetController, Assembly-CSharp
         m_MethodName: BuyCarryLv3
         m_Mode: 1
@@ -10612,7 +10623,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 80915174}
         m_TargetAssemblyTypeName: PetController, Assembly-CSharp
         m_MethodName: BuyDamageLv3
         m_Mode: 1

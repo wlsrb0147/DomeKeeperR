@@ -21,7 +21,6 @@ public class PetController : PetEntity
 
     public void OnMine()
     {
-
         #region Mine
         if (isGrounded)
         {
