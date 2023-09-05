@@ -12,6 +12,8 @@ TagManager:
   - RedJem
   - BlueJem
   - GreenJem
+  - Weapon
+  - Stash
   layers:
   - Default
   - TransparentFX
