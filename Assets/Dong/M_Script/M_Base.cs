@@ -14,7 +14,9 @@ public class M_Base : MonoBehaviour
     public float currentHP;
 
     [Header("Stat")]
-    public float HP = 1;
+    public float HP;
+    public float HP1 = 10;
+    public float HP2 = 0;
     public float Atk = 1;
 
     public int faceX { get; private set; }
@@ -30,17 +32,21 @@ public class M_Base : MonoBehaviour
         zero = new Vector2(0, 0);
         faceX = 1;
         facingRight = true;
+
+        HP = HP1 + HP2;
     }
 
     protected virtual void Start()
     {
         idleTimer = 0;
-        currentHP = HP;
+        currentHP = HP1;
     }
 
     protected virtual void Update()
     {
         stateMachine.currentState.Update();
+
+        HP = HP1 + HP2;
 
         if (transform.position.x > domeCenter.position.x && facingRight)
         {
@@ -58,36 +64,40 @@ public class M_Base : MonoBehaviour
 
         #region hit상태 구현
 
-        if ( currentHP != HP)
+        if ( currentHP != HP1)
         {
-            currentHP = HP;
+            currentHP = HP1;
             idleTimer = 0;
             Debug.Log("hit");
         }
 
         if (idleTimer >= 1)
         {
+<<<<<<< HEAD
            // Debug.Log("idle");
+=======
+            //
+>>>>>>> 868b8a0045955a4c5a5a366fc87092e6d0251ebf
         }
+
+        idleTimer += Time.deltaTime;
 
         #endregion
 
-        idleTimer += Time.deltaTime;
+
 
         if (HP <= 0)
         {
             Dead();
         }
 
-        
-       
 
     }
     public void Damage(float Atk)
     {
-        if (HP > 0)
+        if (HP1 > 0)
         {
-            HP -= Atk;
+            HP1 -= Atk;
         }
     }
     protected virtual void Dead()
