@@ -8,15 +8,17 @@ public class Shooter : MonoBehaviour
     [SerializeField] public GameObject target;
 
     [SerializeField] public float spd;
-    [SerializeField] public int shot = 12;
+    [SerializeField] public int shot;
+    [SerializeField] public float Dtime;
 
     public void Update()
     {
         target = GameObject.FindGameObjectWithTag("Monster");
-        
-            Shot();
-        
-        
+        Dtime += Time.deltaTime;
+        if(Dtime > 0.3f) 
+        { 
+        Shot();
+        }
     }
     public void Shot()
     {
@@ -32,8 +34,8 @@ public class Shooter : MonoBehaviour
             GameObject bullet = Instantiate(missile, transform);
             bullet.GetComponent<BezierMissile>().master = gameObject;
             bullet.GetComponent<BezierMissile>().enemy = target;
-
-            yield return new WaitForSeconds(0.1f);
+            Dtime = 0f;
+            
         }
         yield return null;
     }

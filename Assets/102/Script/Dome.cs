@@ -6,32 +6,90 @@ public class Dome : MonoBehaviour
 {
     #region
     [Header("돔")]
-    [SerializeField] float Hp;
+
+    [SerializeField] float MaxHp;
+    [SerializeField] float CurHp;
     [SerializeField] float Def;
+    [SerializeField] float trueatk;
+
+    public GameObject Damaged;
+    public GameObject DestroyDome;
+    [Header("돔 쉴드")]
+    [SerializeField] bool isShield;
+    SpriteRenderer SI;
+    SpriteRenderer Dd;
+    public GameObject ShieldIg;
+    [SerializeField] float Shield;
+    [SerializeField] float RespawnTime;
+    [SerializeField] float CoolTimer;
+
+    [Header("검")]
+    [SerializeField] float Atk;
 
     #endregion
 
+    private void Start()
+    {
+        SI = ShieldIg.GetComponent<SpriteRenderer>();
+        Dd = Damaged.GetComponent<SpriteRenderer>();
+        MaxHp = CurHp;
+    }
 
-    
+    private void Update()
+    {
+        if (!isShield)
+        {
+            CoolTimer += Time.deltaTime;
+        }
+        if (CoolTimer > RespawnTime)
+        {
+            isShield = true;
+            SI.enabled = true;
+        }
 
+    }
+
+    void SetHeal(int heal)
+    {
+        CurHp += heal;
+        if(CurHp > MaxHp) 
+        {
+            CurHp = MaxHp;
+        }
+        
+    }
     void SetDamage(int atk)
     {
-        Hp -= atk;  
-        if (Hp < 0)
+        if (!isShield)
+        {
+            trueatk = atk - Def;
+            CurHp -= trueatk;
+
+            if (CurHp < MaxHp/2)
+            {
+                Dd.enabled = true;
+            }
+            else
+
+                Dd.enabled = false;
+            if (CurHp < 0)
+            {
+                DestroyDome.SetActive(true);
+                //어떻게 처리할건지 모름 ? 
+            }
+        }
+        else if (isShield)
         { 
-            //어떻게 처리할건지 모름 ? 
+     
+            trueatk = atk - Def;
+            Shield -= trueatk;
+            if (Shield < 0)
+            {
+                SI.enabled = false;
+                isShield = false;
+            }
         }
     }
 
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
