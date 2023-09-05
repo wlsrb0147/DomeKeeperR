@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,12 +34,14 @@ public class M_GameManager : MonoBehaviour
     public float waveTimer;
     public int wave = 1;
     public float waveSpawnTime;
-    public float spawnDuration; 
-        
+    public float spawnDuration;
+
+    public Image waveDisabled;
+    public Image waveEnabled;
 
     public bool spawnMonster = false;
 
-    public Slider slider;
+    public UnityEngine.UI.Slider slider;
 
     private void Start()
     {
@@ -53,6 +55,9 @@ public class M_GameManager : MonoBehaviour
 
         Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
 
+        waveEnabled.enabled = false;
+        waveDisabled.enabled = true;
+        
     }
 
     private void Update()
@@ -64,11 +69,10 @@ public class M_GameManager : MonoBehaviour
             y = 6;
         }
 
-        #region 몬스터 스폰시스템
 
+        // 웨이브때 실행
         if (spawnMonster)
         {
-            
 
             x += Time.deltaTime;
 
@@ -91,35 +95,37 @@ public class M_GameManager : MonoBehaviour
 
         }
 
-        #endregion
-
-        #region 타이머
 
         if (waveTimer > 0)
         {
             waveTimer -= Time.deltaTime;
         }
 
-        if (waveTimer <= 0)
+
+        // 웨이브 시작
+        if (waveTimer <= 0 && !spawnMonster)
         {
             spawnMonster = true;
             spawnDuration = 4;
+            StartCoroutine(WaveAlam());
+
         }
 
         if(spawnMonster)
         {
             waveSpawnTime += Time.deltaTime;
         }
-        // 슬라이더 = wavetimer / wavetime
 
-        #endregion
-
-        #region 웨이브 시스템
-
-        if( waveTimer <0 && waveSpawnTime > waveTime/2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
+        // 웨이브 끝남
+        if ( waveTimer <0 && waveSpawnTime > waveTime/2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
         {
-            // 웨이브 끝남
+
+
+            waveEnabled.enabled = false;
+            waveDisabled.enabled = true;
             
+
+
             spawnMonster = false;
             wave++;
             waveTime = 10 + wave * 5;
@@ -136,11 +142,36 @@ public class M_GameManager : MonoBehaviour
         {
 //            spawnDuration = 12;
         }
-
-        #endregion
     }
 
+    IEnumerator WaveAlam()
+    {
 
+        waveEnabled.enabled = true;
+        waveDisabled.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        waveEnabled.enabled = false;
+        waveDisabled.enabled = true;
+        yield return new WaitForSeconds(0.8f);
+
+        waveEnabled.enabled = true;
+        waveDisabled.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        waveEnabled.enabled = false;
+        waveDisabled.enabled = true;
+        yield return new WaitForSeconds(0.8f);
+
+        waveEnabled.enabled = true;
+        waveDisabled.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        waveEnabled.enabled = false;
+        waveDisabled.enabled = true;
+        yield return new WaitForSeconds(0.8f);
+
+        waveEnabled.enabled = true;
+        waveDisabled.enabled = false;
+
+    }
 
 
 
