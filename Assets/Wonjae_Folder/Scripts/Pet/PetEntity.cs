@@ -165,6 +165,17 @@ public class PetEntity : MonoBehaviour
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+           redjemScore = 0;
+           greenjemScore = 0;
+           bluejemScore = 0;
+        }
+    }
+
+
     #endregion
 
 
