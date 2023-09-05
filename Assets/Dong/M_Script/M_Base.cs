@@ -1,4 +1,5 @@
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M_Base : MonoBehaviour
@@ -22,6 +23,9 @@ public class M_Base : MonoBehaviour
     public int faceX { get; private set; }
     public bool facingRight { get; private set; }
     public Vector2 zero { get; private set; }
+
+
+    protected Collider2D collision;
 
     protected virtual void Awake()
     {
@@ -96,6 +100,25 @@ public class M_Base : MonoBehaviour
             HP1 -= Atk;
         }
     }
+
+
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Dome"))
+        {
+            this.collision = collision;
+        }
+        
+    }
+
+    protected void SetDamage()
+    {
+
+        collision.GetComponent<Dome>().SetDamage(Atk);
+
+    }
+
     protected virtual void Dead()
     {
 
