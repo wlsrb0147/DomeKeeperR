@@ -96,7 +96,7 @@ public class BezierMissile : MonoBehaviour
         if (collision.gameObject == enemy)
         {
             hit = true;
-            collision.gameObject.GetComponent<M_Base>().Damage1(Atk);
+            collision.gameObject.GetComponent<M_Base>().Damage(Atk);
             Destroy(gameObject);
         }
     }
