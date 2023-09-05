@@ -186,9 +186,9 @@ MonoBehaviour:
   idleTimer: 0
   currentHP: 0
   HP: 10
-  HP1: 100
+  HP1: 10
   HP2: 0
-  Atk: 10
+  Atk: 1
   moveSpeed: {x: 6, y: 0}
   jumpPower: {x: 7, y: 7}
   currnetHP: 0

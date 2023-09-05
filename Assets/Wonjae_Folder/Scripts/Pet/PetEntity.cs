@@ -4,8 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.Rendering.Universal;
 
 public class PetEntity : MonoBehaviour
 {
@@ -23,16 +21,9 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform toothPos;
 
     [Header("보유한 광물의 수")]
-    public float redjemScore = 0f;
-    public float greenjemScore = 0f;
-    public float bluejemScore = 0f;
-
-    public float maxScore = 10.0f;
-
-    [Header("펫의 스킬 레벨")]
-    [SerializeField] public int attackLv = 1; // 공격 레벨
-    [SerializeField] public int carryLv = 1; // 가방 무게도 레벨
-    [SerializeField] public int scanLv = 1; // 시야 레벨
+    public float redjemScore = 0;
+    public float greenjemScore = 0;
+    public float bluejemScore = 0;
 
     [Header("충돌 체크")]
     [Tooltip("펫이 닿고있는 지면을 확인합니다.")]
@@ -68,20 +59,15 @@ public class PetEntity : MonoBehaviour
     //방향 전환
     protected int facingDir = -1;
     protected bool facingRight = true;
-    private int cooltimeLv = 1;
-    private float petCooldownTimer = 100.0f;
-    private float petCooldownTimerUpgrade = 60.0f;
-    //
+    bool hardTileCheck;
 
     //컴포넌트
     protected Rigidbody2D rbody;
     protected Animator anim;
     protected SpriteRenderer spr;
-    private S_Mineral mineral;
-    MovementController2D mc;
-    //
 
     //
+    S_Mineral mineral;
 
     #region anim bool
     protected bool isGrounded;
@@ -96,8 +82,6 @@ public class PetEntity : MonoBehaviour
     protected bool petIdle;
     protected bool petFly;
     protected bool hasFlipped = false;
-    private bool hardTileCheck;
-    private bool isPetCooldown = false;
     #endregion
 
 
@@ -107,7 +91,6 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        mc = GetComponent<MovementController2D>();
     }
 
     protected virtual void Update()
@@ -115,35 +98,7 @@ public class PetEntity : MonoBehaviour
         CollisionChecks();
         PetAnimatorControllers();
         FlipController();
-        maxComebackHome();
-
-        if (isPetCooldown)
-        {
-            petCooldownTimer -= Time.deltaTime;
-
-            if(petCooldownTimer <= 0.0f)
-            {
-                isPetCooldown = false;
-                petCooldownTimer = 100.0f;
-
-                //mc.SetMovementState();
-            }
-        }
-
     }
-
-
-
-
-    private void maxComebackHome()
-    {
-        if (redjemScore + greenjemScore + bluejemScore >= maxScore)
-        {
-            Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
-            //mc.SetMovementState();
-        }
-    }
-
 
     #region Flip 
     public virtual void Flip()
@@ -210,23 +165,6 @@ public class PetEntity : MonoBehaviour
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stash"))
-        {
-            S_GameManager.instance.stash.redjemScore = redjemScore;
-            S_GameManager.instance.stash.bluejemScore = bluejemScore;
-            S_GameManager.instance.stash.greenjemScore = greenjemScore;
-
-            redjemScore = 0;
-            bluejemScore = 0;
-            greenjemScore = 0;
-
-            isPetCooldown = true;
-            petCooldownTimer = 100.0f;
-        }
-    }
-
     #endregion
 
 
@@ -236,7 +174,7 @@ public class PetEntity : MonoBehaviour
 
     #endregion
 
-    //
+
     #region Animaition
     private void PetAnimatorControllers()
     {
@@ -280,88 +218,34 @@ public class PetEntity : MonoBehaviour
     }
     #endregion
 
+
     #region Pet Skill
 
-    float price = 5;
-    protected void PetDamageLv2()
+    public void PetDamage()
     {
-        if (attackLv == 1) 
-        {
-            petDamage += 5.0f;
-       
-            attackLv = 2;
-        }
+
     }
 
-    protected void PetDamageLv3()
+    public void PetSearch()
     {
-        if (attackLv == 2 ) 
-        {
-            petDamage += 10.0f;
 
-            attackLv = 3;
-        }
     }
 
-    protected void PetCarryLv2()
+    public void PetInventory()
     {
-        if (carryLv == 1)
-        {
-            maxScore = 20;
-            carryLv = 2;
-        }
+
     }
 
-    protected void PetCarryLv3()
+    public void durationPet()
     {
-        if (carryLv == 2)
-        {
-            maxScore = 30;
-            carryLv = 3;
-        }
+
     }
 
-    protected void PetScanLv2()
-    {
-        if (scanLv == 1)
-        {
-            sideMineralCheckDistance++;
-            scanLv = 2;
-        }
-    }
-
-    protected void PetScanLv3()
-    {
-        if (scanLv == 2)
-        {
-            sideMineralCheckDistance++;
-            scanLv = 3;
-        }
-    }
-
-    protected void PetCoolTimeUpgrade()
-    {
-        if (cooltimeLv == 1 || scanLv == 2 || carryLv == 2 || attackLv == 2)
-        {
-            cooltimeLv = 2;
-            petCooldownTimer = petCooldownTimerUpgrade;
-        }
-    }
-
-    protected void DoublePet()
-    {
-        if (cooltimeLv == 2)
-        {
-
-        }
-    }
-
-    protected void PetDouble()
+    public void doublePet()
     {
 
     }
 
     #endregion
-
 
 }
