@@ -22,13 +22,12 @@ public class MovementController2D : MonoBehaviour
     List<Vector2> path;
     List<Vector2> pathLeftToGo = new List<Vector2>();
     [SerializeField] bool drawDebugLines;
+    
 
-    PetEntity pt; 
     // 첫 번째 프레임 전에 호출되는 함수
     void Start()
     {
         pathfinder = new Pathfinder<Vector2>(GetDistance, GetNeighbourNodes, 1000); // 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
-        pt = GetComponent<PetEntity>();
     }
 
     // 매 프레임마다 호출되는 함수
@@ -43,6 +42,7 @@ public class MovementController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G)) 
         {
+            PetEntity pt = GetComponent<PetEntity>();
             ResetMovementState();
             Vector2 randomTarget = (new Vector2(Random.Range(-96.0f, 96.0f), (Random.Range(-50.0f, -290.0f))));
 
@@ -78,34 +78,22 @@ public class MovementController2D : MonoBehaviour
 
     }
 
-    public void SetMovementState()
+    void SetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        //rb.gravityScale = 0;
+        rb.gravityScale = 0;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = false;
-        originSpeed = 0.18f;
-        BackMoveCommand(new Vector2(-0.4f, -10.5f));
+        speed = originSpeed;
 
     }
-    public void ResetMovementState()
+    private void ResetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        //rb.gravityScale = 2;
+        rb.gravityScale = 2;
         rb.velocity = Vector2.zero;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = true;
-
-        PetEntity pt = GetComponent<PetEntity>();
-        Vector2 randomTarget = (new Vector2(Random.Range(-96.0f, 96.0f), (Random.Range(-50.0f, -290.0f))));
-
-        if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면
-            pt.Flip();
-
-        if (transform.localScale.x > 0)
-            pt.Flip();
-
-        GetMoveCommand(randomTarget);
     }
 
     // 목표를 받아와서 움직임 명령을 생성하는 함수

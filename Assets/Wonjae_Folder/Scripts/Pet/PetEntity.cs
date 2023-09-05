@@ -126,7 +126,7 @@ public class PetEntity : MonoBehaviour
                 isPetCooldown = false;
                 petCooldownTimer = 100.0f;
 
-                mc.SetMovementState();
+                //mc.SetMovementState();
             }
         }
 
@@ -140,7 +140,7 @@ public class PetEntity : MonoBehaviour
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
             Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
-            mc.SetMovementState();
+            //mc.SetMovementState();
         }
     }
 
