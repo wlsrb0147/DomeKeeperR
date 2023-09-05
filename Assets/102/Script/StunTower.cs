@@ -12,29 +12,36 @@ public class StunTower : SubTower
     [SerializeField] float StunDuartion;
     [SerializeField] float StunRestCool;
     [SerializeField] float StunRestTime;
-
-
+ 
+   
     #endregion
     public GameObject Stun;
+    private void Start()
+    {
+     
+        isMe = false;
+    }
     protected override void Update()
     {
         base.Update();
-        SetRotation();
-        Move();
         ShotDelay();
         Attack();
     }
 
-    void Attack()
+    protected override void Attack()
     {
-        if (StunRestTime > StunRestCool)
-        {
-            StartCoroutine("StunAtk");
-        }
-        else 
-        {
+        if (Input.GetKeyDown(KeyCode.Space)) { 
+            if (StunRestTime > StunRestCool)
+            {
+               
+                    StartCoroutine("StunAtk");
+                
+            }
+            else 
+            {
                 StopCoroutine("StunAtk");
         
+            }
         }
     }
     
@@ -47,6 +54,7 @@ public class StunTower : SubTower
   
     IEnumerator StunAtk()
     {
+        
         GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
         StunRestTime = 0;

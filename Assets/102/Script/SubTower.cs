@@ -10,10 +10,12 @@ public class SubTower : Tower
     [SerializeField] private float AutoMoveTime;
     #endregion
     [SerializeField] float attackDelayTime;
-    public GameObject SubAmmo;
+    [SerializeField] protected GameObject SubAmmo;
+    [SerializeField] protected bool isMe;
+
     void Start()
     {
-        
+        isMe = true;
     }
 
 
@@ -24,9 +26,12 @@ public class SubTower : Tower
         AutoMove();
         TimeContinue();
         SetRotation();
-        Attack();
         AttackDelay();
+        if(isMe == true) 
+        { 
         AutoAttack();
+        Attack();
+        }
     }
     protected void TimeContinue()
     {
@@ -134,14 +139,14 @@ public class SubTower : Tower
         }
     }
 
-     void Attack()
+     protected virtual void Attack()
      { 
         if(Input.GetKey(KeyCode.Space)) 
         {
             if(attackDelayTime > 1.5f) 
             {
                 attackDelayTime = 0f;
-               GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
+                GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
                 Destroy(subAmmo, 5f);
             }
         }

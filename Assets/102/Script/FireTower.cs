@@ -18,12 +18,17 @@ public class FireTower : SubTower
 
     #endregion
     public GameObject Fire;
+    private void Start()
+    {
+        isMe = false;
+    }
     protected override void Update()
     {
         base.Update();
         RestTimeCheck();
-        Detection();
+        
         UpdateFirePosition();
+        Attack();
     }
 
     void RestTimeCheck()
@@ -39,7 +44,7 @@ public class FireTower : SubTower
             Fire.transform.position = FirePos.transform.position;
         }
     }
-    void Detection()
+    protected override void Attack()
     {
         if (hit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
         {
