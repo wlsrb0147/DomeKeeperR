@@ -47,8 +47,9 @@ public class M_Driller : M_Moving
         if (settingOn) stateMachine.ChangeState(attackingDead);
         else stateMachine.ChangeState(movingDead);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Dome"))
         {
             stateMachine.ChangeState(setting);
