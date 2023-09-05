@@ -68,13 +68,21 @@ public class PetEntity : MonoBehaviour
     //방향 전환
     protected int facingDir = -1;
     protected bool facingRight = true;
-    bool hardTileCheck;
+    private int attackLv = 1;
+    private int carryLv = 1;
+    private int scanLv = 1;
+    private int cooltimeLv = 1;
+    private float petCooldownTimer = 100.0f;
+    private float petCooldownTimerUpgrade = 60.0f;
+    //
 
     //컴포넌트
     protected Rigidbody2D rbody;
     protected Animator anim;
     protected SpriteRenderer spr;
-    private Light2D _light;
+    private S_Mineral mineral;
+    MovementController2D mc;
+    //
 
     //
     S_Mineral mineral;
@@ -92,6 +100,8 @@ public class PetEntity : MonoBehaviour
     protected bool petIdle;
     protected bool petFly;
     protected bool hasFlipped = false;
+    private bool hardTileCheck;
+    private bool isPetCooldown = false;
     #endregion
 
 
@@ -101,7 +111,7 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        _light = GetComponent<Light2D>();
+        mc = GetComponent<MovementController2D>();
     }
 
     protected virtual void Update()
@@ -109,7 +119,35 @@ public class PetEntity : MonoBehaviour
         CollisionChecks();
         PetAnimatorControllers();
         FlipController();
+        maxComebackHome();
+
+        if (isPetCooldown)
+        {
+            petCooldownTimer -= Time.deltaTime;
+
+            if(petCooldownTimer <= 0.0f)
+            {
+                isPetCooldown = false;
+                petCooldownTimer = 100.0f;
+
+                mc.SetMovementState();
+            }
+        }
+
     }
+
+
+
+
+    private void maxComebackHome()
+    {
+        if (redjemScore + greenjemScore + bluejemScore >= maxScore)
+        {
+            Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
+            mc.SetMovementState();
+        }
+    }
+
 
     #region Flip 
     public virtual void Flip()
@@ -180,11 +218,18 @@ public class PetEntity : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
+            S_GameManager.instance.stash.redjemScore = redjemScore;
+            S_GameManager.instance.stash.bluejemScore = bluejemScore;
+            S_GameManager.instance.stash.greenjemScore = greenjemScore;
 
+            redjemScore = 0;
+            bluejemScore = 0;
+            greenjemScore = 0;
 
+            isPetCooldown = true;
+            petCooldownTimer = 100.0f;
         }
     }
-
 
     #endregion
 
@@ -298,9 +343,21 @@ public class PetEntity : MonoBehaviour
         }
     }
 
-    protected void PetCoolTime()
+    protected void PetCoolTimeUpgrade()
     {
+        if (cooltimeLv == 1 || scanLv == 2 || carryLv == 2 || attackLv == 2)
+        {
+            cooltimeLv = 2;
+            petCooldownTimer = petCooldownTimerUpgrade;
+        }
+    }
 
+    protected void DoublePet()
+    {
+        if (cooltimeLv == 2)
+        {
+
+        }
     }
 
     protected void PetDouble()

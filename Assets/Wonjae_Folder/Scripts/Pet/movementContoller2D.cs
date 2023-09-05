@@ -42,7 +42,6 @@ public class MovementController2D : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G)) 
         {
-            PetEntity pt = GetComponent<PetEntity>();
             ResetMovementState();
             Vector2 randomTarget = (new Vector2(Random.Range(-96.0f, 96.0f), (Random.Range(-50.0f, -290.0f))));
 
@@ -78,22 +77,34 @@ public class MovementController2D : MonoBehaviour
 
     }
 
-    void SetMovementState()
+    public void SetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         //rb.gravityScale = 0;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = false;
         originSpeed = 0.18f;
+        BackMoveCommand(new Vector2(-0.4f, -10.5f));
 
     }
-    private void ResetMovementState()
+    public void ResetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         //rb.gravityScale = 2;
         rb.velocity = Vector2.zero;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = true;
+
+        PetEntity pt = GetComponent<PetEntity>();
+        Vector2 randomTarget = (new Vector2(Random.Range(-96.0f, 96.0f), (Random.Range(-50.0f, -290.0f))));
+
+        if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면
+            pt.Flip();
+
+        if (transform.localScale.x > 0)
+            pt.Flip();
+
+        GetMoveCommand(randomTarget);
     }
 
     // 목표를 받아와서 움직임 명령을 생성하는 함수
