@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Button : MonoBehaviour
 {
-    Button button;
+    public Button button;
 
     private void Start()
     {
@@ -14,6 +15,7 @@ public class Button : MonoBehaviour
 
     void OnClick()
     {
+        
     }
 
 }
