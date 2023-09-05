@@ -331,9 +331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a32fc1a47a5fe4593f19e0c3954597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 0
-  CurHp: 0
-  Def: 0
+  MaxHp: 1000
+  CurHp: 1000
+  Def: 1
   trueatk: 0
   Damaged: {fileID: 2132913181}
   DestroyDome: {fileID: 1686452646}
@@ -739,7 +739,10 @@ MonoBehaviour:
   leftLockAngle: 3
   rightLockAngle: 0
   rote: 2
+  SubPos: {fileID: 0}
   AutoMoveTime: 0
+  attackDelayTime: 0
+  SubAmmo: {fileID: 0}
   StunPos: {fileID: 1349271881}
   StunDuartion: 2
   StunRestCool: 5
@@ -2313,7 +2316,10 @@ MonoBehaviour:
   leftLockAngle: 3
   rightLockAngle: 0
   rote: 2
+  SubPos: {fileID: 0}
   AutoMoveTime: 0
+  attackDelayTime: 0
+  SubAmmo: {fileID: 0}
   whatisEnemy:
     serializedVersion: 2
     m_Bits: 1
@@ -3047,7 +3053,10 @@ MonoBehaviour:
   leftLockAngle: 3
   rightLockAngle: 0
   rote: 2
+  SubPos: {fileID: 1852342143}
   AutoMoveTime: 0
+  attackDelayTime: 0
+  SubAmmo: {fileID: 9016340266125733884, guid: 010e7daa043673341b85a0e418f7b800, type: 3}
 --- !u!95 &1708158567
 Animator:
   serializedVersion: 5
@@ -3522,7 +3531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1852342143}
   m_Layer: 0
-  m_Name: StunPos
+  m_Name: SubPos
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3854,7 +3863,7 @@ MonoBehaviour:
   isStunTower: 0
   StunTower: {fileID: 480345054}
   FireTower: {fileID: 1522182031}
-  isTech3: 1
+  isTech3: 0
 --- !u!4 &1902076028
 Transform:
   m_ObjectHideFlags: 0

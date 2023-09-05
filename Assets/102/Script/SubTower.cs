@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SubTower : Tower
 {
+    [SerializeField] public Transform SubPos;
     #region 
     [Header("Auto업그레이드")]
     [SerializeField] private float AutoMoveTime;
     #endregion
-   
+    [SerializeField] float attackDelayTime;
+    public GameObject SubAmmo;
     void Start()
     {
         
@@ -23,6 +25,8 @@ public class SubTower : Tower
         TimeContinue();
         SetRotation();
         Attack();
+        AttackDelay();
+        AutoAttack();
     }
     protected void TimeContinue()
     {
@@ -34,7 +38,10 @@ public class SubTower : Tower
         }
         
     }
-
+    void AttackDelay() 
+    {
+        attackDelayTime += Time.deltaTime;
+    }
     protected void Move()
     {
         if (SkillTreeManager.Instance.isTech3 != true)
@@ -129,9 +136,26 @@ public class SubTower : Tower
 
      void Attack()
      { 
-        if(Input.GetKeyDown(KeyCode.Space)) 
+        if(Input.GetKey(KeyCode.Space)) 
         {
-        
+            if(attackDelayTime > 1.5f) 
+            {
+                attackDelayTime = 0f;
+               GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
+                Destroy(subAmmo, 5f);
+            }
         }
      }
+    void AutoAttack()
+    {
+        if (SkillTreeManager.Instance.isTech3) 
+        { 
+            if (attackDelayTime > 1.5f)
+            {
+                attackDelayTime = 0f;
+                GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
+                Destroy(subAmmo, 5f);
+            }
+        }
+    }
 }

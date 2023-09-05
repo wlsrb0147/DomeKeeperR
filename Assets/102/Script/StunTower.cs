@@ -27,7 +27,15 @@ public class StunTower : SubTower
 
     void Attack()
     {
-        StartCoroutine("StunAtk");
+        if (StunRestTime > StunRestCool)
+        {
+            StartCoroutine("StunAtk");
+        }
+        else 
+        {
+                StopCoroutine("StunAtk");
+        
+        }
     }
     
 
@@ -44,5 +52,5 @@ public class StunTower : SubTower
         StunRestTime = 0;
         yield return new WaitForSeconds(StunRestCool); 
         
-    }
+    }                   
 }
