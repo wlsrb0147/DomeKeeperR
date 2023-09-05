@@ -93,14 +93,15 @@ public class M_Base : MonoBehaviour
 
 
     }
-    public void Damage(float Atk)
+    public void Damage1(float Atk)
     {
-        if (HP1 > 0)
-        {
             HP1 -= Atk;
-        }
     }
 
+    public void Damage2(float Atk)
+    {
+            HP2 -= Atk;
+    }
 
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
