@@ -18,8 +18,7 @@ public class Stun : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            collision.gameObject.GetComponent<M_Base>().Damage(Atk);
-            Debug.Log("스턴될거야");
+            collision.gameObject.GetComponent<M_Base>().Damage1(Atk);
             Destroy(gameObject);
         }
     }
