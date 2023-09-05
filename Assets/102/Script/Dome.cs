@@ -16,7 +16,7 @@ public class Dome : MonoBehaviour
 
     void SetDamage(int atk)
     {
-        Hp -= atk;
+        Hp -= atk;  
         if (Hp < 0)
         { 
             //어떻게 처리할건지 모름 ? 

@@ -73,11 +73,7 @@ public class M_Base : MonoBehaviour
 
         if (idleTimer >= 1)
         {
-<<<<<<< HEAD
-           // Debug.Log("idle");
-=======
-            //
->>>>>>> 868b8a0045955a4c5a5a366fc87092e6d0251ebf
+
         }
 
         idleTimer += Time.deltaTime;
