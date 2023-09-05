@@ -6,6 +6,7 @@ public class S_ScoreBoard : MonoBehaviour
 {
     [SerializeField] GameObject scoreBoard;
     [SerializeField] GameObject map;
+    [SerializeField] GameObject Skill;
     float count =5;
     void Update()
     {
@@ -31,4 +32,16 @@ public class S_ScoreBoard : MonoBehaviour
             map.SetActive(false);
         }
     }
+
+    public void ActiveTrueSkill()
+    {
+        Skill.SetActive(true);
+    }
+
+    public void ActiveFalseSkill()
+    {
+        Skill.SetActive(false);
+    }
+
+
 }

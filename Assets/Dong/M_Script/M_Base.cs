@@ -1,4 +1,5 @@
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class M_Base : MonoBehaviour
@@ -95,6 +96,11 @@ public class M_Base : MonoBehaviour
         {
             HP1 -= Atk;
         }
+    }
+
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+     //   collision.gameObject.GetComponentInChildren<>
     }
     protected virtual void Dead()
     {

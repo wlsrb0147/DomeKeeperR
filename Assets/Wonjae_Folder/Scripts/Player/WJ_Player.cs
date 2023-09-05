@@ -5,6 +5,8 @@ using UnityEngine;
 public class WJ_Player : MonoBehaviour
 {
     public GameObject drill;
+    public GameObject stash;
+    public GameObject canvas;
     public int facingDir { get; private set; } = 1;
     bool facingRight = true;
     public float layerChangeTime;
@@ -108,4 +110,21 @@ public class WJ_Player : MonoBehaviour
             Flip();
         }
     }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                canvas.
+            }
+        }
+       
+    }
+
+    public void PowerUp()
+    {
+        attackpower++;
+    }*/
 }
