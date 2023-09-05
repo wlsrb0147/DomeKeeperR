@@ -19,21 +19,6 @@ public class M_Moving : M_Base
     protected override void Update()
     {
         base.Update();
-
-        if (currentHP != HP1)
-        {
-            currentHP = HP1;
-            idleTimer = 0;
-            SetVelocity(zero);
-        }
-
-        if (idleTimer >= 1)
-        {
-
-        }
-
-        idleTimer += Time.deltaTime;
-
     }
 
     public void SetVelocity(Vector2 vec)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireTower : Tower
+public class FireTower : SubTower
 {
     [SerializeField] RaycastHit2D hit;
     [SerializeField] LayerMask whatisEnemy;
@@ -18,13 +18,17 @@ public class FireTower : Tower
 
     #endregion
     public GameObject Fire;
-    private void Update()
+    private void Start()
     {
-        SetRotation();
-        Move();
+        isMe = false;
+    }
+    protected override void Update()
+    {
+        base.Update();
         RestTimeCheck();
-        Detection();
+        
         UpdateFirePosition();
+        Attack();
     }
 
     void RestTimeCheck()
@@ -32,60 +36,7 @@ public class FireTower : Tower
       
         FireRestTime += Time.deltaTime;
     }
-    void SetRotation()
-    {
-        if (angle > 1.5 && angle < 1.6)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        if (angle >= 0.8 && angle <= 0.9)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, -45);
-        }
-        if (angle >= 2.3 && angle <= 2.4)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 45);
-        }
-        posX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
-        posY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius / 1.5f;
-
-
-        transform.position = new Vector3(posX, posY);
-    }
-
-    void Move()
-    {
-        
-            if (angle < leftLockAngle)
-            {
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
-
-                    angle = angle + Time.deltaTime * angularSpeed;
-                    transform.Rotate(0, 0, rote);
-                    if (angle >= leftLockAngle)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, 90);
-                    }
-                }
-            }
-
-            if (angle > rightLockAngle)
-            {
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
-
-                    angle = angle + Time.deltaTime * -angularSpeed;
-                    transform.Rotate(0, 0, -rote);
-                    if (angle <= rightLockAngle)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
-                }
-            }
-        
-    }
-
+    
     void UpdateFirePosition()
     {
         if (isFire && Fire != null)
@@ -93,7 +44,7 @@ public class FireTower : Tower
             Fire.transform.position = FirePos.transform.position;
         }
     }
-    void Detection()
+    protected override void Attack()
     {
         if (hit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
         {

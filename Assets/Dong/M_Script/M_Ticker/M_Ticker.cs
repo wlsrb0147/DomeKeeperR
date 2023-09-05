@@ -43,13 +43,11 @@ public class M_Ticker : M_Moving
         stateMachine.ChangeState(dead);
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Dome"))
         {
-            rb.bodyType = RigidbodyType2D.Kinematic;
-            SetVelocity(zero);
+            rb.bodyType = RigidbodyType2D.Static;
             stateMachine.ChangeState(explosion);
         }
     }

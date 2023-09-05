@@ -59,7 +59,6 @@ public class M_Beast : M_Moving
         {
             Dead();
         }
-
     }
 
     public void HowlOn()
@@ -69,9 +68,8 @@ public class M_Beast : M_Moving
     }
 
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag("Dome"))
         {
             stateMachine.ChangeState(attack);

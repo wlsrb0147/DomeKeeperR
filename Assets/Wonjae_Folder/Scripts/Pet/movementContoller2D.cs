@@ -81,16 +81,16 @@ public class MovementController2D : MonoBehaviour
     void SetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
+        //rb.gravityScale = 0;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = false;
-        speed = originSpeed;
+        originSpeed = 0.18f;
 
     }
     private void ResetMovementState()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 2;
+        //rb.gravityScale = 2;
         rb.velocity = Vector2.zero;
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = true;

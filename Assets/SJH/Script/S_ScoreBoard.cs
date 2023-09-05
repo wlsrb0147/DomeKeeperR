@@ -6,19 +6,18 @@ public class S_ScoreBoard : MonoBehaviour
 {
     [SerializeField] GameObject scoreBoard;
     [SerializeField] GameObject map;
-    [SerializeField] GameObject skillboard;
-    float mapcount =5;
-    float skillboardcount = 0f;
+    float count =5;
     void Update()
     {
-        mapcount -= Time.deltaTime;
+        count -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            mapcount = 5;
+            scoreBoard.SetActive(true);
+            count = 5;
            
         }
-        if (mapcount <= 0)
+        if (count <= 0)
         {
             scoreBoard.SetActive(false);
         }
@@ -31,19 +30,5 @@ public class S_ScoreBoard : MonoBehaviour
         {
             map.SetActive(false);
         }
-
-        if(S_GameManager.instance.player.isDomeCheck && Input.GetKeyDown(KeyCode.K) && skillboardcount == 0)
-        {
-            skillboard.SetActive(true);
-            skillboardcount++;
-
-        }
-        else if(Input.GetKeyDown(KeyCode.K) && skillboardcount ==1)
-        {
-            skillboard.SetActive(false);
-            skillboardcount = 0;
-        }
     }
-
-
 }
