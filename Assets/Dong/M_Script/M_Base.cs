@@ -72,12 +72,11 @@ public class M_Base : MonoBehaviour
         {
             currentHP = HP1;
             idleTimer = 0;
-            Debug.Log("hit");
         }
 
         if (idleTimer >= 1)
         {
-
+           
         }
 
         idleTimer += Time.deltaTime;
