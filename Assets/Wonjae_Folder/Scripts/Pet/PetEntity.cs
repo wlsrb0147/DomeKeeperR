@@ -4,8 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.Rendering.Universal;
 
 public class PetEntity : MonoBehaviour
 {
@@ -29,8 +27,6 @@ public class PetEntity : MonoBehaviour
     private float allScore = 0f;
     [Tooltip("Pet이 가질 수 있는 최대 광물 갯수입니다.")]
     public float maxScore = 10.0f;  
-
-    //
 
     [Header("충돌 체크")]
     [Tooltip("Pet이 닿고있는 지면을 확인합니다.")]
@@ -79,8 +75,6 @@ public class PetEntity : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spr;
     private S_Mineral mineral;
-    private Light2D _light;
-    //
 
     #region bool Checks
     protected bool isGrounded;
@@ -104,7 +98,6 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        _light = GetComponent<Light2D>();
     }
 
     protected virtual void Update()
@@ -184,21 +177,21 @@ public class PetEntity : MonoBehaviour
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stash"))
-        {
-            gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
-            gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
-            gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Stash"))
+    //    {
+    //        gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
+    //        gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
+    //        gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;
 
-            redjemScore = 0;
-            bluejemScore = 0;
-            greenjemScore = 0;
+    //        redjemScore = 0;
+    //        bluejemScore = 0;
+    //        greenjemScore = 0;
 
-            maxScore = redjemScore + bluejemScore + greenjemScore;
-        }
-    }
+    //        maxScore = redjemScore + bluejemScore + greenjemScore;
+    //    }
+    //}
 
     #endregion
 
@@ -207,7 +200,7 @@ public class PetEntity : MonoBehaviour
     public void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
 
     #endregion
-    
+
     #region Animaition
     private void PetAnimatorControllers()
     {
@@ -248,6 +241,7 @@ public class PetEntity : MonoBehaviour
         }
     }
     #endregion
+
 
     #region Pet Skill
 
@@ -296,7 +290,6 @@ public class PetEntity : MonoBehaviour
     {
         if (scanLv == 1)
         {
-            _light.pointLightOuterRadius = 5.0f;
             sideMineralCheckDistance++;
             scanLv = 2;
         }
@@ -306,7 +299,6 @@ public class PetEntity : MonoBehaviour
     {
         if (scanLv == 2)
         {
-            _light.pointLightOuterRadius = 8.5f;
             sideMineralCheckDistance++;
             scanLv = 3;
         }
@@ -317,12 +309,6 @@ public class PetEntity : MonoBehaviour
 
     }
 
-    protected void PetDouble()
-    {
-
-    }
-
     #endregion
-
 
 }
