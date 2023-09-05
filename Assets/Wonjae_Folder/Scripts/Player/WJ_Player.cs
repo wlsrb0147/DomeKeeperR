@@ -6,7 +6,7 @@ public class WJ_Player : MonoBehaviour
 {
     public GameObject drill;
     public GameObject stash;
-    public GameObject canvas;
+    public bool isDomeCheck;
     public int facingDir { get; private set; } = 1;
     bool facingRight = true;
     public float layerChangeTime;
@@ -111,20 +111,28 @@ public class WJ_Player : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                canvas.
-            }
-        }
-       
-    }
+            stash.gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
+            stash.gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
+            stash.gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;
 
-    public void PowerUp()
+
+            redjemScore = 0;
+            bluejemScore = 0;
+            greenjemScore = 0;
+
+            isDomeCheck = true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        attackpower++;
-    }*/
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+            isDomeCheck = false;
+        }
+    }
 }
