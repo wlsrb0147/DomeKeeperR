@@ -86,8 +86,6 @@ public class M_GameManager : MonoBehaviour
             if (x > spawnDuration)
             {
                 Spawn(wave);
-                x = 0;
-
                 int monsterCount = CountWithTag(monsterTag);
                 Debug.Log(" 몬스터 숫자 : " + monsterCount);
             }
@@ -119,11 +117,8 @@ public class M_GameManager : MonoBehaviour
         if (waveTimer < 0 && waveSpawnTime > waveTime / 2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
         {
 
-
             waveEnabled.enabled = false;
             waveDisabled.enabled = true;
-
-
 
             spawnMonster = false;
             wave++;
@@ -139,7 +134,7 @@ public class M_GameManager : MonoBehaviour
         }
         else if (waveSpawnTime < waveTime / 2)
         {
-            //            spawnDuration = 12;
+            spawnDuration = 12;
         }
     }
 
@@ -294,6 +289,7 @@ public class M_GameManager : MonoBehaviour
 
             }
         }
+        this.x = 0;
     }
 
     
