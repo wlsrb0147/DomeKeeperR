@@ -4,13 +4,4 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

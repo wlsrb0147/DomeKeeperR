@@ -21,7 +21,6 @@ public class PetController : PetEntity
 
     public void OnMine()
     {
-
         #region Mine
         if (isGrounded)
         {
@@ -71,4 +70,15 @@ public class PetController : PetEntity
 
         #endregion
     }
+
+    //스킬 구매 시작
+    public void BuyPetDamageLv2() => PetDamageLv2();
+    public void BuyPetDamageLv3() => PetDamageLv3();
+
+
+
+
+
+    //스킬 구매 끝
+
 }

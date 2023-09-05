@@ -21,9 +21,14 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform toothPos;
 
     [Header("보유한 광물의 수")]
-    public float redjemScore = 0;
-    public float greenjemScore = 0;
-    public float bluejemScore = 0;
+    public float redjemScore = 0f;
+    public float greenjemScore = 0f;
+    public float bluejemScore = 0f;
+
+    [Header("펫의 스킬 레벨")]
+    [SerializeField] public int attackLv = 1; // 공격 레벨
+    [SerializeField] public int invenLv = 1; // 가방 무게도 레벨
+    [SerializeField] public int scanLv = 1; // 시야 레벨
 
     [Header("충돌 체크")]
     [Tooltip("펫이 닿고있는 지면을 확인합니다.")]
@@ -169,9 +174,8 @@ public class PetEntity : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
-           redjemScore = 0;
-           greenjemScore = 0;
-           bluejemScore = 0;
+
+
         }
     }
 
@@ -230,33 +234,68 @@ public class PetEntity : MonoBehaviour
     #endregion
 
 
-    #region Pet Skill
+    #region PetBuySkill
 
-    public void PetDamage()
-    {
-
-    }
-
-    public void PetSearch()
-    {
-
-    }
-
-    public void PetInventory()
-    {
-
-    }
-
-    public void durationPet()
-    {
-
-    }
-
-    public void doublePet()
+    public void BuySkill()
     {
 
     }
 
     #endregion
+
+    #region Pet Skill
+
+    public void PetDamageLv2()
+    {
+        if (attackLv == 1 && redjemScore >= 5.0f)
+        {
+            petDamage += 5.0f;
+            redjemScore -= 5.0f;
+            attackLv = 2;
+        }
+    }
+
+    public void PetDamageLv3()
+    {
+        if (attackLv == 2 && redjemScore >= 10.0f && greenjemScore >= 1.0f) 
+        {
+            petDamage += 10.0f;
+            redjemScore -= 10.0f;
+            greenjemScore -= 1.0f;
+            attackLv = 3;
+        }
+    }
+
+    public void PetCarryLv2()
+    {
+
+    }
+
+    public void PetCarryLv3()
+    {
+
+    }
+    public void PetScanLv2()
+    {
+
+    }
+
+    public void PetScanLv3()
+    {
+
+    }
+
+    public void PetCoolTime()
+    {
+
+    }
+
+    public void PetDouble()
+    {
+
+    }
+
+    #endregion
+
 
 }
