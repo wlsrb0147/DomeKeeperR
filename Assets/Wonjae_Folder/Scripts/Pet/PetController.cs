@@ -71,4 +71,14 @@ public class PetController : PetEntity
 
         #endregion
     }
+
+    public void DamageUpgrade() => PetDamageLv2();
+    public void DamageUpgrade2() => PetDamageLv3();
+    public void CarryUpgrade() => PetCarryLv2();
+    public void CarryUpgrade2() => PetCarryLv3();
+    public void ScanUpgrade() => PetScanLv2();
+    public void ScanUpgrade2() => PetScanLv3();
+    public void coolTimeUpgrade() => PetCoolTimeUpgrade();
+    public void doublePetUpgrade() => DoublePet();
+
 }

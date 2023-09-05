@@ -123,9 +123,6 @@ MonoBehaviour:
   greenjemScore: 0
   bluejemScore: 0
   maxScore: 10
-  attackLv: 1
-  carryLv: 1
-  scanLv: 1
   groundCheck: {fileID: 2621648649747222685}
   groundCheckDistance: 0.18
   mineralUnderCheck: {fileID: 7677812303816594371}

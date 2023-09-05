@@ -67,7 +67,9 @@ public class PetEntity : MonoBehaviour
     private int attackLv = 1;
     private int carryLv = 1;
     private int scanLv = 1;
-    
+    private int cooltimeLv = 1;
+    private float petCooldownTimer = 100.0f;
+    private float petCooldownTimerUpgrade = 60.0f;
     //
 
     //컴포넌트
@@ -75,6 +77,8 @@ public class PetEntity : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spr;
     private S_Mineral mineral;
+    MovementController2D mc;
+    //
 
     #region bool Checks
     protected bool isGrounded;
@@ -90,6 +94,7 @@ public class PetEntity : MonoBehaviour
     protected bool petFly;
     protected bool hasFlipped = false;
     private bool hardTileCheck;
+    private bool isPetCooldown = false;
     #endregion
 
     protected virtual void Start()
@@ -98,6 +103,7 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
+        mc = GetComponent<MovementController2D>();
     }
 
     protected virtual void Update()
@@ -105,13 +111,35 @@ public class PetEntity : MonoBehaviour
         CollisionChecks();
         PetAnimatorControllers();
         FlipController();
+        maxComebackHome();
 
-        if (redjemScore + greenjemScore + bluejemScore >= maxScore)
+        if (isPetCooldown)
         {
-            Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
+            petCooldownTimer -= Time.deltaTime;
+
+            if(petCooldownTimer <= 0.0f)
+            {
+                isPetCooldown = false;
+                petCooldownTimer = 100.0f;
+
+                mc.SetMovementState();
+            }
         }
 
     }
+
+
+
+
+    private void maxComebackHome()
+    {
+        if (redjemScore + greenjemScore + bluejemScore >= maxScore)
+        {
+            Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
+            mc.SetMovementState();
+        }
+    }
+
 
     #region Flip 
     public virtual void Flip()
@@ -177,21 +205,22 @@ public class PetEntity : MonoBehaviour
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Stash"))
-    //    {
-    //        gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
-    //        gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
-    //        gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+            S_GameManager.instance.stash.redjemScore = redjemScore;
+            S_GameManager.instance.stash.bluejemScore = bluejemScore;
+            S_GameManager.instance.stash.greenjemScore = greenjemScore;
 
-    //        redjemScore = 0;
-    //        bluejemScore = 0;
-    //        greenjemScore = 0;
+            redjemScore = 0;
+            bluejemScore = 0;
+            greenjemScore = 0;
 
-    //        maxScore = redjemScore + bluejemScore + greenjemScore;
-    //    }
-    //}
+            isPetCooldown = true;
+            petCooldownTimer = 100.0f;
+        }
+    }
 
     #endregion
 
@@ -302,9 +331,21 @@ public class PetEntity : MonoBehaviour
         }
     }
 
-    protected void PetCoolTime()
+    protected void PetCoolTimeUpgrade()
     {
+        if (cooltimeLv == 1 || scanLv == 2 || carryLv == 2 || attackLv == 2)
+        {
+            cooltimeLv = 2;
+            petCooldownTimer = petCooldownTimerUpgrade;
+        }
+    }
 
+    protected void DoublePet()
+    {
+        if (cooltimeLv == 2)
+        {
+
+        }
     }
 
     #endregion
