@@ -12,22 +12,48 @@ public class Buttoninteractive : MonoBehaviour
     [SerializeField] float greenjemPrice;
 
     [SerializeField] Button parentbutton;
+    [SerializeField] Button[] otherTech;
     public bool parentCheck = false;
+    public bool otherCheck = true;
 
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
     }
+
     private void Update()
     {
+
         if (parentbutton.interactable == false)
             parentCheck = true;
         else
+        {
             parentCheck = false;
+            otherCheck = false;
+
+        }
+        if (otherTech.Length > 0)
+        {
+            for (int i = 0; i < otherTech.Length; i++)
+            {
+                if (otherTech[i].interactable == false)
+                {
+                    otherCheck = false;
+                    break;
+                }
+
+                if (otherTech[i].interactable == true)
+                    otherCheck = true;
+            }
+        }
+        else
+            otherCheck = true;
+        
     }
+
     public void OnClick()
     {
-        if (parentCheck)
+        if (parentCheck && otherCheck)
         {
             if (S_GameManager.instance.stash.redjemScore >= redjemPrice
             && S_GameManager.instance.stash.bluejemScore >= bluejemPrice
@@ -41,8 +67,5 @@ public class Buttoninteractive : MonoBehaviour
             }
         }
     }
-
-
-
 }
 
