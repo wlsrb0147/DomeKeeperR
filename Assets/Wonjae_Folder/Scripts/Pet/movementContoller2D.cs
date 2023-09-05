@@ -22,12 +22,13 @@ public class MovementController2D : MonoBehaviour
     List<Vector2> path;
     List<Vector2> pathLeftToGo = new List<Vector2>();
     [SerializeField] bool drawDebugLines;
-    
 
+    PetEntity pt; 
     // 첫 번째 프레임 전에 호출되는 함수
     void Start()
     {
         pathfinder = new Pathfinder<Vector2>(GetDistance, GetNeighbourNodes, 1000); // 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
+        pt = GetComponent<PetEntity>();
     }
 
     // 매 프레임마다 호출되는 함수

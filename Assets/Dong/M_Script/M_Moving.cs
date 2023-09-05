@@ -18,7 +18,7 @@ public class M_Moving : M_Base
 
     protected override void Update()
     {
-        base.Update()
+        base.Update();
 
         if (currentHP != HP1)
         {

@@ -68,9 +68,6 @@ public class PetEntity : MonoBehaviour
     //방향 전환
     protected int facingDir = -1;
     protected bool facingRight = true;
-    private int attackLv = 1;
-    private int carryLv = 1;
-    private int scanLv = 1;
     private int cooltimeLv = 1;
     private float petCooldownTimer = 100.0f;
     private float petCooldownTimerUpgrade = 60.0f;
@@ -85,7 +82,6 @@ public class PetEntity : MonoBehaviour
     //
 
     //
-    S_Mineral mineral;
 
     #region anim bool
     protected bool isGrounded;
