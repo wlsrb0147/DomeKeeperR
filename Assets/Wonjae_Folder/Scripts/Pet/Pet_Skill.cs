@@ -1,30 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using static Pet_SkillTree;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Pet_Skill : MonoBehaviour
 {
-    private Image sprite;
+    public int id;
 
-    [SerializeField]
-    private Text countText;
+    public TMP_Text TitleText;
+    public TMP_Text DescriptionText;
 
-    private void Awake()
+    public int[] ConnectedSkills;
+
+    public void UpdateUI()
     {
-        sprite = GetComponent<Image>();
+        TitleText.text = $"{skillTree.SkillLevels[id]}/{skillTree.SkillCaps[id]}\n{skillTree.SkillNames[id]}";
+        DescriptionText.text = $"{skillTree.SkillDescriptions[id]}\nCost: {skillTree.SkillPoint}/1 SP";
+
+        GetComponent<Image>().color = skillTree.SkillLevels[id] >= skillTree.SkillCaps[id] ? Color.yellow : skillTree.SkillPoint > 1 ? Color.green : Color.white ;
+
+        foreach (var connectedSkill in ConnectedSkills)
+        {
+            skillTree.SkillList[connectedSkill].gameObject.SetActive(skillTree.SkillLevels[id] > 0);
+            skillTree.ConnectorList[connectedSkill].gameObject.SetActive(skillTree.SkillLevels[id] > 0);
+        }
     }
 
-    public void Lock()
+    public void Buy()
     {
-        sprite.color = Color.gray; 
-        countText.color = Color.gray;
-    }
+        if (skillTree.SkillPoint < 1 || skillTree.SkillLevels[id] >= skillTree.SkillCaps[id]) return;
+        skillTree.SkillPoint -= 1;
+        skillTree.SkillLevels[id]++;
+        skillTree.UpdateSkillUI();
 
-    public void Unlock()
-    {
-        sprite.color = Color.white;
-        countText.color = Color.white;
+
     }
 
 }
