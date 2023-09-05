@@ -51,7 +51,7 @@ public class SwordTower : Tower
     {
         if(collision.gameObject.CompareTag("Monster"))
             {
-            collision.gameObject.GetComponent<M_Base>().Damage(atk);
+            collision.gameObject.GetComponent<M_Base>().Damage1(atk);
        
         }
     }
