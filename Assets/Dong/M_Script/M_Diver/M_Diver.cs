@@ -115,8 +115,9 @@ public class M_Diver : M_Moving
         stateMachine.ChangeState(back);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         if (stateMachine.currentState != back)
         {
             if (collision.CompareTag("Dome"))

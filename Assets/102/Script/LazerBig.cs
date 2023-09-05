@@ -15,7 +15,7 @@ public class LazerBig : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            collision.gameObject.GetComponent<M_Base>().Damage1(Atk);
+            collision.gameObject.GetComponent<M_Base>().Damage(Atk);
      
         }
     }
