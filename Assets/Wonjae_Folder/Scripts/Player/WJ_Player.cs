@@ -5,8 +5,6 @@ using UnityEngine;
 public class WJ_Player : MonoBehaviour
 {
     public GameObject drill;
-    //public GameObject stash;
-    public bool isDomeCheck;
     public int facingDir { get; private set; } = 1;
     bool facingRight = true;
     public float layerChangeTime;
@@ -108,34 +106,6 @@ public class WJ_Player : MonoBehaviour
         else if (_x < 0 && !facingRight)
         {
             Flip();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stash"))
-        {
-            S_GameManager.instance.stash.redjemScore = redjemScore;
-            S_GameManager.instance.stash.bluejemScore = bluejemScore;
-            S_GameManager.instance.stash.greenjemScore = greenjemScore;
-            /* stash.gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
-             stash.gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
-             stash.gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;*/
-
-
-            redjemScore = 0;
-            bluejemScore = 0;
-            greenjemScore = 0;
-
-            isDomeCheck = true;
-        }
-
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stash"))
-        {
-            isDomeCheck = false;
         }
     }
 }

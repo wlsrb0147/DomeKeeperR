@@ -26,9 +26,8 @@ public class O_BolterAttack : M_Moving
         base.Update();
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(collision);
         if (collision.CompareTag("Dome"))
         {
             stateMachine.ChangeState(hit);

@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class SubTower : Tower
 {
+    [SerializeField] public Transform SubPos;
     #region 
     [Header("Auto업그레이드")]
     [SerializeField] private float AutoMoveTime;
     #endregion
-   
+    [SerializeField] float attackDelayTime;
+    [SerializeField] protected GameObject SubAmmo;
+    [SerializeField] protected bool isMe;
+
     void Start()
     {
-        
+        isMe = true;
     }
 
 
@@ -22,7 +26,12 @@ public class SubTower : Tower
         AutoMove();
         TimeContinue();
         SetRotation();
+        AttackDelay();
+        if(isMe == true) 
+        { 
+        AutoAttack();
         Attack();
+        }
     }
     protected void TimeContinue()
     {
@@ -34,7 +43,10 @@ public class SubTower : Tower
         }
         
     }
-
+    void AttackDelay() 
+    {
+        attackDelayTime += Time.deltaTime;
+    }
     protected void Move()
     {
         if (SkillTreeManager.Instance.isTech3 != true)
@@ -127,11 +139,28 @@ public class SubTower : Tower
         }
     }
 
-     void Attack()
+     protected virtual void Attack()
      { 
-        if(Input.GetKeyDown(KeyCode.Space)) 
+        if(Input.GetKey(KeyCode.Space)) 
         {
-        
+            if(attackDelayTime > 1.5f) 
+            {
+                attackDelayTime = 0f;
+                GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
+                Destroy(subAmmo, 5f);
+            }
         }
      }
+    void AutoAttack()
+    {
+        if (SkillTreeManager.Instance.isTech3) 
+        { 
+            if (attackDelayTime > 1.5f)
+            {
+                attackDelayTime = 0f;
+                GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
+                Destroy(subAmmo, 5f);
+            }
+        }
+    }
 }
