@@ -241,65 +241,59 @@ public class PetEntity : MonoBehaviour
 
     #region Pet Skill
 
+    float price = 5;
     protected void PetDamageLv2()
     {
-        if (attackLv == 1 && redjemScore >= 5.0f)
+        if (attackLv == 1) 
         {
             petDamage += 5.0f;
-            redjemScore -= 5.0f;
+       
             attackLv = 2;
         }
     }
 
     protected void PetDamageLv3()
     {
-        if (attackLv == 2 && redjemScore >= 10.0f && greenjemScore >= 1.0f) 
+        if (attackLv == 2 ) 
         {
             petDamage += 10.0f;
-            redjemScore -= 10.0f;
-            greenjemScore -= 1.0f;
+
             attackLv = 3;
         }
     }
 
     protected void PetCarryLv2()
     {
-        if (carryLv == 1 && redjemScore >= 10.0f)
+        if (carryLv == 1)
         {
             maxScore = 20;
-            redjemScore -= 10.0f;
             carryLv = 2;
         }
     }
 
     protected void PetCarryLv3()
     {
-        if (carryLv == 2 && redjemScore >= 15.0f && greenjemScore >= 5.0f)
+        if (carryLv == 2)
         {
             maxScore = 30;
-            redjemScore -= 15.0f;
-            greenjemScore -= 5.0f;
             carryLv = 3;
         }
     }
 
     protected void PetScanLv2()
     {
-        if (scanLv == 1 && redjemScore >= 5.0f)
+        if (scanLv == 1)
         {
-            _light.pointLightOuterRadius = 5.0f;
-            redjemScore -= 5.0f;
+            sideMineralCheckDistance++;
             scanLv = 2;
         }
     }
 
     protected void PetScanLv3()
     {
-        if (scanLv == 2 && redjemScore >= 10.0f && greenjemScore >= 5.0f)
+        if (scanLv == 2)
         {
-            _light.pointLightOuterRadius = 10.0f;
-            redjemScore -= 5.0f;
-            greenjemScore -= 5.0f;
+            sideMineralCheckDistance++;
             scanLv = 3;
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WJ_Player : MonoBehaviour
 {
     public GameObject drill;
-    public GameObject stash;
+    //public GameObject stash;
     public bool isDomeCheck;
     public int facingDir { get; private set; } = 1;
     bool facingRight = true;
@@ -115,9 +115,12 @@ public class WJ_Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
-            stash.gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
-            stash.gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
-            stash.gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;
+            S_GameManager.instance.stash.redjemScore = redjemScore;
+            S_GameManager.instance.stash.bluejemScore = bluejemScore;
+            S_GameManager.instance.stash.greenjemScore = greenjemScore;
+            /* stash.gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
+             stash.gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
+             stash.gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;*/
 
 
             redjemScore = 0;

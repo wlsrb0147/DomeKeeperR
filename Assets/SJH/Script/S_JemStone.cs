@@ -114,6 +114,7 @@ public class S_JemStone : MonoBehaviour
     private bool weightjemScore(PetEntity pet)
     {
         float totalScore = pet.redjemScore + pet.greenjemScore + pet.bluejemScore;
+
         return totalScore < pet.maxScore;
     }
 
