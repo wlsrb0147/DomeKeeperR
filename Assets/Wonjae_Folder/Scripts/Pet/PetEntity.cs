@@ -4,8 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.Rendering.Universal;
 
 public class PetEntity : MonoBehaviour
 {
@@ -26,16 +24,12 @@ public class PetEntity : MonoBehaviour
     public float redjemScore = 0f;
     public float greenjemScore = 0f;
     public float bluejemScore = 0f;
-
-    public float maxScore = 10.0f;
-
-    [Header("펫의 스킬 레벨")]
-    [SerializeField] public int attackLv = 1; // 공격 레벨
-    [SerializeField] public int carryLv = 1; // 가방 무게도 레벨
-    [SerializeField] public int scanLv = 1; // 시야 레벨
+    private float allScore = 0f;
+    [Tooltip("Pet이 가질 수 있는 최대 광물 갯수입니다.")]
+    public float maxScore = 10.0f;  
 
     [Header("충돌 체크")]
-    [Tooltip("펫이 닿고있는 지면을 확인합니다.")]
+    [Tooltip("Pet이 닿고있는 지면을 확인합니다.")]
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected private float groundCheckDistance;
 
@@ -51,7 +45,7 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform sideCheck;
     [SerializeField] protected float sideCheckDistance;
 
-    [Tooltip("펫 뒤에 미네랄이 있는지 감지합니다.")]
+    [Tooltip("Pet 뒤에 미네랄이 있는지 감지합니다.")]
     [SerializeField] protected Transform backCheck;
     [SerializeField] protected float backCheckDistance;
 
@@ -65,21 +59,24 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private LayerMask WhatIsMineral;
     [SerializeField] protected private LayerMask WhatIsSideTile;
 
-    //방향 전환
+    /// <summary>
+    /// 방향 전환 및 스킬 레벨
+    /// </summary>
     protected int facingDir = -1;
     protected bool facingRight = true;
-    bool hardTileCheck;
+    private int attackLv = 1;
+    private int carryLv = 1;
+    private int scanLv = 1;
+    
+    //
 
     //컴포넌트
     protected Rigidbody2D rbody;
     protected Animator anim;
     protected SpriteRenderer spr;
-    private Light2D _light;
+    private S_Mineral mineral;
 
-    //
-    S_Mineral mineral;
-
-    #region anim bool
+    #region bool Checks
     protected bool isGrounded;
     protected bool isWallDetected;
     protected bool isMineraled;
@@ -92,8 +89,8 @@ public class PetEntity : MonoBehaviour
     protected bool petIdle;
     protected bool petFly;
     protected bool hasFlipped = false;
+    private bool hardTileCheck;
     #endregion
-
 
     protected virtual void Start()
     {
@@ -101,7 +98,6 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        _light = GetComponent<Light2D>();
     }
 
     protected virtual void Update()
@@ -109,6 +105,12 @@ public class PetEntity : MonoBehaviour
         CollisionChecks();
         PetAnimatorControllers();
         FlipController();
+
+        if (redjemScore + greenjemScore + bluejemScore >= maxScore)
+        {
+            Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
+        }
+
     }
 
     #region Flip 
@@ -145,7 +147,6 @@ public class PetEntity : MonoBehaviour
 
     #endregion
 
-
     #region CollisionChecks
     protected virtual void CollisionChecks()
     {
@@ -176,18 +177,23 @@ public class PetEntity : MonoBehaviour
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stash"))
-        {
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Stash"))
+    //    {
+    //        gameObject.GetComponent<S_JemstoneStash>().redjemScore = redjemScore;
+    //        gameObject.GetComponent<S_JemstoneStash>().bluejemScore = bluejemScore;
+    //        gameObject.GetComponent<S_JemstoneStash>().greenjemScore = greenjemScore;
 
+    //        redjemScore = 0;
+    //        bluejemScore = 0;
+    //        greenjemScore = 0;
 
-        }
-    }
-
+    //        maxScore = redjemScore + bluejemScore + greenjemScore;
+    //    }
+    //}
 
     #endregion
-
 
     #region Velocity
     public void ZeroVelocity() => rbody.velocity = Vector2.zero;
@@ -195,17 +201,14 @@ public class PetEntity : MonoBehaviour
 
     #endregion
 
-    //
     #region Animaition
     private void PetAnimatorControllers()
     {
-        /*Pet_Dog Anim*/
         anim.SetBool("Pet_Move", petMove);
         anim.SetBool("Pet_idle", petIdle);
         anim.SetBool("Pet_Fly", petFly);
         anim.SetBool("Under_Mine", underMine);
         anim.SetBool("Side_Mine", sideMine);
-        /*pet_Dog Anim Finish*/
     }
 
     void PetUnderMine()
@@ -238,6 +241,7 @@ public class PetEntity : MonoBehaviour
         }
     }
     #endregion
+
 
     #region Pet Skill
 
@@ -303,12 +307,6 @@ public class PetEntity : MonoBehaviour
 
     }
 
-    protected void PetDouble()
-    {
-
-    }
-
     #endregion
-
 
 }
