@@ -251,13 +251,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60b458049b5e7d488506eaa5677024f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTimer: 0
-  currentHP: 0
+  currentHP1: 0
+  idleTime1: 0.15
+  idleTimer1: 0
+  currentHP2: 0
+  idleTimer2: 100
+  idleTime2: 0
   HP: 0
-  HP1: 10
+  HP1: 10000
   HP2: 0
   Atk: 1
   moveSpeed: {x: 9, y: 0}
+  attacked: 0
   active: {fileID: 5220822978120503954}
   inactive: {fileID: 8323042513537760593}
   shootPosition: {fileID: 6266518595893918887}

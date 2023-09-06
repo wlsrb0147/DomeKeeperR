@@ -28,7 +28,7 @@ public class Stun : MonoBehaviour
             // 만약 타겟과의 거리가 일정 범위 내에 있다면 타겟을 공격
             if (Vector3.Distance(transform.position, target.transform.position) < 0.5f)
             {
-                target.GetComponent<M_Base>().Damage(Atk);
+                target.GetComponent<M_Base>().Damage2(Atk);
                 Destroy(gameObject);
             }
         }
@@ -43,7 +43,7 @@ public class Stun : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            collision.gameObject.GetComponent<M_Base>().Damage(Atk);
+            collision.gameObject.GetComponent<M_Base>().Damage2(Atk);
             Destroy(gameObject);
         }
     }

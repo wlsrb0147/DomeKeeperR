@@ -6,9 +6,9 @@ using UnityEngine.Rendering;
 public class M_Moving : M_Base
 {
     public Vector2 moveSpeed;
-    [SerializeField] float idleTime =0.5f;
-    float idleTimer = 0;
+    public bool attacked = false;
     Vector2 InitialmoveSpeed;
+
 
     protected override void Awake()
     {
@@ -26,30 +26,34 @@ public class M_Moving : M_Base
         base.Update();
 
 
-        if ( currentHP != HP1)
+        if ( currentHP1 != HP1)
         {
-            currentHP = HP1;
-            idleTimer = 0;
+            currentHP1 = HP1;
+            idleTimer1 = 0;
             ChangeAniVelocity(0.5f);
+            attacked = true;
         }
 
-        else if (idleTimer >= idleTime)
+        else if (idleTimer1 >= idleTime1)
         {
             ChangeAniVelocity(1f);
+            attacked = false;
         }
 
-        idleTimer += Time.deltaTime;
+        idleTimer1 += Time.deltaTime;
 
+        if(stun) ChangeAniVelocity(0f);
+        else if (!stun) ChangeAniVelocity(1f);
 
     }
 
-    protected override void ChangeAniVelocity(float x)
+    protected virtual void ChangeAniVelocity(float x)
     {
-        base.ChangeAniVelocity(x);
-
+       
         moveSpeed = InitialmoveSpeed * x;
         ani.SetFloat("AniSpeed", x);
-
+        Debug.Log(x);
+        
     }
 
     public void SetVelocity(Vector2 vec)

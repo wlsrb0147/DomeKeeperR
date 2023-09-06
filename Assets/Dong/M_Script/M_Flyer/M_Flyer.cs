@@ -63,6 +63,9 @@ public class M_Flyer : M_Moving
         {
             Dead();
         }
+
+        if (attacked) stateMachine.ChangeState(hit);
+        
     }
 
     protected override void Dead()

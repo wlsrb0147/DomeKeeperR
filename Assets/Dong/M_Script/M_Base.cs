@@ -11,15 +11,23 @@ public class M_Base : MonoBehaviour
 
     protected bool destroyed = false;
 
- //   public float idleTimer;
-    public float currentHP;
+
+    public float currentHP1;
+    public float idleTime1 = 0.15f;
+    public float idleTimer1 = 0;
+
+
+    public float currentHP2;
+    public float idleTimer2 = 100f;
+    public float idleTime2 = 0;
+    public bool stun;
 
     [Header("Stat")]
     public float HP;
     public float HP1 = 10;
     public float HP2 = 0;
     public float Atk = 1;
-
+    
     public int faceX { get; private set; }
     public bool facingRight { get; private set; }
     public Vector2 zero { get; private set; }
@@ -43,7 +51,8 @@ public class M_Base : MonoBehaviour
     protected virtual void Start()
     {
        // idleTimer = 0;
-        currentHP = HP1;
+        currentHP1 = HP1;
+        currentHP2 = HP2;
     }
 
     protected virtual void Update()
@@ -66,24 +75,22 @@ public class M_Base : MonoBehaviour
         if (facingRight) faceX = 1;
         else faceX = -1;
 
-/*        #region hit상태 구현
 
-        if ( currentHP != HP1)
+
+        if ( currentHP2 != HP2)
         {
-            currentHP = HP1;
-            idleTimer = 0;
-            ChangeAniVelocity(0.5f);
+            currentHP2 = HP2;
+            idleTimer2 = 0;
+            Stun(0f);
+            stun = true;
+        }
+        else if (idleTimer2 >= idleTime2)
+        {
+            Stun(1f);
+            stun = false;
         }
 
-        if (idleTimer >= 1)
-        {
-            ChangeAniVelocity(1f);
-        }
-
-        idleTimer += Time.deltaTime;
-
-        #endregion*/
-
+        idleTimer2 += Time.deltaTime;
 
 
         if (HP <= 0)
@@ -91,20 +98,20 @@ public class M_Base : MonoBehaviour
             Dead();
         }
 
-
+    }
+    protected virtual void Stun(float x)
+    {
+        ani.SetFloat("Stun", x);
     }
 
-    protected virtual void ChangeAniVelocity(float x)
+    public void Damage1(float Atk)
     {
-
-    }
-
-    public void Damage(float Atk)
-    {
-        if (HP1 > 0)
-        {
             HP1 -= Atk;
-        }
+    }
+
+    public void Damage2(float Atk)
+    {
+        HP2 -= Atk;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)

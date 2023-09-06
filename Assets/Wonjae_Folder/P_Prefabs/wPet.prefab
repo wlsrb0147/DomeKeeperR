@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   petDamage: 10
-  petCooldownTimer: 10
+  petCooldownTimer: 1
   footPos: {fileID: 1414214155786455657}
   toothPos: {fileID: 7061716428815760171}
   redjemScore: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   mineralUnderCheck: {fileID: 7677812303816594371}
   mineralCheckDistance: 0.25
   sideMineralCheck: {fileID: 4520116920742061950}
-  sideMineralCheckDistance: 4
+  sideMineralCheckDistance: 6
   sideCheck: {fileID: 3007355970334412507}
   sideCheckDistance: 0.05
   backCheck: {fileID: 711510593784854159}

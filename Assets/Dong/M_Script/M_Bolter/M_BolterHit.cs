@@ -23,5 +23,6 @@ public class M_BolterHit : M_State
     public override void Update()
     {
         base.Update();
+        if (!bolter.attacked) stateMachine.ChangeState(bolter.idle);
     }
 }
