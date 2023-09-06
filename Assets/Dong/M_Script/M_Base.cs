@@ -64,16 +64,11 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Update()
     {
-        Debug.Log(stunBullet.name);
-        Debug.Log(stunScript);
 
         stunTime = stunScript.GetsStunTime();
 
 
         idleTime2 = stunTime;
-
-
-        Debug.Log(idleTime2);
 
 
 
