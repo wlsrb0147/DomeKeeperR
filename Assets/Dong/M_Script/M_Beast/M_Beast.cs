@@ -68,6 +68,10 @@ public class M_Beast : M_Moving
         stateMachine.ChangeState(move);
     }
 
+    protected override void ChangeAniVelocity(float x)
+    {
+        base.ChangeAniVelocity(x);
+    }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {

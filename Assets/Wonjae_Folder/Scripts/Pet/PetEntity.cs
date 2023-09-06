@@ -10,7 +10,7 @@ public class PetEntity : MonoBehaviour
     [Header("펫 정보")]
     [Tooltip("펫의 현재 공격력")]
     [SerializeField] private float petDamage;
-    protected float petSpeed;
+    protected float petSpeed = 2.5f;
 
     [Tooltip("펫 재사용 대기시간")]
     [SerializeField] protected float petCooldownTimer = 100.0f;
@@ -59,9 +59,7 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private LayerMask WhatIsMineral;
     [SerializeField] protected private LayerMask WhatIsSideTile;
 
-    /// <summary>
-    /// 방향 전환 및 스킬 레벨
-    /// </summary>
+    // 방향 전환 및 스킬 레벨
     protected int facingDir = -1;
     protected bool facingRight = true;
     private int attackLv = 1;
@@ -76,8 +74,6 @@ public class PetEntity : MonoBehaviour
     protected SpriteRenderer spr;
     private S_Mineral mineral;
     MovementController2D move_Astar;
-    //
-
     //
 
     #region anim bool
@@ -95,7 +91,7 @@ public class PetEntity : MonoBehaviour
     protected bool hasFlipped = false;
     protected bool isPetCooldown = false;
     private bool hardTileCheck;
-    private bool repeatLabor;
+    private bool repeatLabor =false;
     #endregion
 
     protected virtual void Start()
@@ -112,11 +108,16 @@ public class PetEntity : MonoBehaviour
         CollisionChecks();
         PetAnimatorControllers();
         FlipController();
-        maxComebackHome();
+        if (!repeatLabor)
+        {
+            maxComebackHome();
+
+        }
+
         RestartMining();
     }
 
-    private void RestartMining()
+    protected void RestartMining()
     {
         if (isPetCooldown)
         {
@@ -132,13 +133,15 @@ public class PetEntity : MonoBehaviour
         }
     }
 
-    private void maxComebackHome()
+    protected void maxComebackHome()
     {
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
             Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
             move_Astar.Bmc();
+            repeatLabor = true;
         }
+            
     }
 
     #region Flip 
@@ -218,15 +221,16 @@ public class PetEntity : MonoBehaviour
             greenjemScore = 0;
 
             isPetCooldown = true;
-            Debug.Log("광물 반납 완료! 수면하러갑니다!");
+            repeatLabor = false;
+            Debug.Log("Stash에 광물 반납을 완료하였습니다.");
         }
     }
 
     #endregion
 
     #region Velocity
-    public void ZeroVelocity() => rbody.velocity = Vector2.zero;
-    public void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
+    protected void ZeroVelocity() => rbody.velocity = Vector2.zero;
+    protected void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
 
     #endregion
 
@@ -272,8 +276,6 @@ public class PetEntity : MonoBehaviour
     #endregion
 
     #region Pet Skill
-
-    float price = 5;
     protected void PetDamageLv2()
     {
         if (attackLv == 1) 
