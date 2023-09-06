@@ -80,9 +80,9 @@ public class MovementController2D : MonoBehaviour
         Vector2 currentPos = transform.position;
         Vector2 startPos = new Vector2(currentPos.x + 1.0f, currentPos.y);
         Vector2 forceDir = (startPos - currentPos).normalized;
-        rb.velocity = forceDir * 1.0f;
+        rb.velocity = forceDir * 5.0f;
 
-        Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.5f)); //현재 위치에서 가장 가까운 그리드 점을 찾는다.
+        Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.0f)); //현재 위치에서 가장 가까운 그리드 점을 찾는다.
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
 
         bool canMove = true;    //이동가능 여부 판단
@@ -132,7 +132,6 @@ public class MovementController2D : MonoBehaviour
     private Vector2 SearchMine()
     {
         rb.gravityScale = 2;
-        rb.velocity = Vector2.zero;
         speed = 0.0125f;
         Vector2 randomTarget = (new Vector2(Random.Range(-80.0f, 80.0f), (Random.Range(-50.0f, -300.0f))));
 
