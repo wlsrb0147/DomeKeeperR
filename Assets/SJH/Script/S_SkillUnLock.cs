@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class S_SkillUnLock : MonoBehaviour
 {
     public Button button;
-    public GameObject UnlockImage;
-    [SerializeField] bool useCheck = false;
     [SerializeField] GameObject[] upgradeNode;
     [SerializeField] Dome dome;
+    [SerializeField] GameObject UnlockImage;
+
+    bool useSkill = false;
 
     int upgradeCount = 0;
     enum SkillName
     {
+        None,
         light,
         teleport,
         domesheild,
@@ -26,31 +28,37 @@ public class S_SkillUnLock : MonoBehaviour
     {
         if (skillName == SkillName.domeHP)
         {
-            gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().CurHp/1000;
+            gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().CurHp / dome.GetComponent<Dome>().MaxHp;
         }
-        if (useCheck)
+
+        if (skillName == SkillName.domesheild && useSkill)
+            gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().Shield / dome.GetComponent<Dome>().MaxShield;
+
+        if (S_GameManager.instance.playerSkillUp.lightuseCheck)
         {
             if (skillName == SkillName.light)
                 gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.lightCoolTime) * Time.deltaTime;
-            else if (skillName == SkillName.teleport)
-                gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.teleportCoolTime) * Time.deltaTime;
-            else if (skillName == SkillName.domesheild)
-                gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().Shield/500;
         }
+
+        if (S_GameManager.instance.playerSkillUp.teleportuseCheck)
+        {
+            if (skillName == SkillName.teleport)
+                gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.teleportCoolTime) * Time.deltaTime;
+        }
+
 
     }
 
     public void Unlock()
     {
         UnlockImage.SetActive(false);
-        gameObject.GetComponentInChildren<Slider>().value = 100;
-        useCheck = true;
+        useSkill = true;
     }
 
     public void UpgradeNode()
     {
         upgradeNode[upgradeCount].SetActive(true);
         upgradeCount++;
-        
+
     }
 }

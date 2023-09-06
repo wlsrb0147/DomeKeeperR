@@ -16,6 +16,7 @@ public class Buttoninteractive : MonoBehaviour
     public bool parentCheck = false;
     public bool otherCheck = true;
 
+
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
@@ -30,8 +31,8 @@ public class Buttoninteractive : MonoBehaviour
         {
             parentCheck = false;
             otherCheck = false;
-
         }
+
         if (otherTech.Length > 0)
         {
             for (int i = 0; i < otherTech.Length; i++)
@@ -48,7 +49,9 @@ public class Buttoninteractive : MonoBehaviour
         }
         else
             otherCheck = true;
-        
+
+
+
     }
 
     public void OnClick()
@@ -60,7 +63,7 @@ public class Buttoninteractive : MonoBehaviour
             && S_GameManager.instance.stash.greenjemScore >= greenjemPrice)
             {
                 GetComponent<Button>().interactable = false;
-
+         
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;
                 S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
                 S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
