@@ -7,10 +7,15 @@ public class S_SkillUnLock : MonoBehaviour
 {
     public Button button;
     public GameObject UnlockImage;
-    [SerializeField] bool useCheck;
-    // float lightCoolDownSpeed;
-    //float teleportCoolDownSpeed;
+    [SerializeField] bool useCheck = false;
 
+    enum SkillName
+    {
+        light,
+        teleport,
+    }
+
+    [SerializeField] SkillName skillName;
 
     private void Start()
     {
@@ -18,9 +23,13 @@ public class S_SkillUnLock : MonoBehaviour
     }
     private void Update()
     {
-        if (UnlockImage == true)
+        if (useCheck)
         {
-            gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.lightCoolTime) * Time.deltaTime;
+            if (skillName == SkillName.light)
+                gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.lightCoolTime) * Time.deltaTime;
+            else if (skillName == SkillName.teleport)
+                gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.teleportCoolTime) * Time.deltaTime;
+
         }
 
     }
@@ -28,5 +37,6 @@ public class S_SkillUnLock : MonoBehaviour
     {
         UnlockImage.SetActive(false);
         gameObject.GetComponentInChildren<Slider>().value = 100;
+        useCheck = true;
     }
 }
