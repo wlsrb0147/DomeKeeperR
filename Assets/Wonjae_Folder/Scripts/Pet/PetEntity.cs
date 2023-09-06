@@ -8,25 +8,25 @@ using UnityEngine.UI;
 public class PetEntity : MonoBehaviour
 {
     [Header("펫 정보")]
-    [Tooltip("펫의 이동속도")]
-    [SerializeField] protected float petSpeed;
-
     [Tooltip("펫의 현재 공격력")]
     [SerializeField] private float petDamage;
+    protected float petSpeed;
 
-    [Tooltip("아랫방향 공격")]
+    [Tooltip("펫 재사용 대기시간")]
+    [SerializeField] protected float petCooldownTimer = 100.0f;
+    private float petCooldownTimerUpgrade = 60.0f;
+
+    [Tooltip("footPos : 아랫방향 채광")]
     [SerializeField] protected Transform footPos;
-
-    [Tooltip("정면 공격")]
+    [Tooltip("toothPos : 정방향 채굴")]
     [SerializeField] protected Transform toothPos;
 
     [Header("보유한 광물의 수")]
     public float redjemScore = 0f;
     public float greenjemScore = 0f;
     public float bluejemScore = 0f;
-    private float allScore = 0f;
     [Tooltip("Pet이 가질 수 있는 최대 광물 갯수입니다.")]
-    public float maxScore = 10.0f;  
+    public float maxScore = 10.0f;
 
     [Header("충돌 체크")]
     [Tooltip("Pet이 닿고있는 지면을 확인합니다.")]
@@ -68,8 +68,6 @@ public class PetEntity : MonoBehaviour
     private int scanLv = 1;
     private int carryLv = 1;
     private int cooltimeLv = 1;
-    private float petCooldownTimer = 100.0f;
-    private float petCooldownTimerUpgrade = 60.0f;
     //
 
     //컴포넌트
@@ -77,6 +75,7 @@ public class PetEntity : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spr;
     private S_Mineral mineral;
+    MovementController2D move_Astar;
     //
 
     //
@@ -94,8 +93,9 @@ public class PetEntity : MonoBehaviour
     protected bool petIdle;
     protected bool petFly;
     protected bool hasFlipped = false;
+    protected bool isPetCooldown = false;
     private bool hardTileCheck;
-    private bool isPetCooldown = false;
+    private bool repeatLabor;
     #endregion
 
     protected virtual void Start()
@@ -104,6 +104,7 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
+        move_Astar = GetComponent<MovementController2D>();
     }
 
     protected virtual void Update()
@@ -113,7 +114,6 @@ public class PetEntity : MonoBehaviour
         FlipController();
         maxComebackHome();
         RestartMining();
-
     }
 
     private void RestartMining()
@@ -127,7 +127,7 @@ public class PetEntity : MonoBehaviour
                 isPetCooldown = false;
                 petCooldownTimer = 100.0f;
 
-                //mc.SetMovementState();
+                move_Astar.Gmc();
             }
         }
     }
@@ -137,7 +137,7 @@ public class PetEntity : MonoBehaviour
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
             Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
-            //mc.SetMovementState();
+            move_Astar.Bmc();
         }
     }
 
@@ -218,7 +218,7 @@ public class PetEntity : MonoBehaviour
             greenjemScore = 0;
 
             isPetCooldown = true;
-            petCooldownTimer = 100.0f;
+            Debug.Log("광물 반납 완료! 수면하러갑니다!");
         }
     }
 
