@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class M_GameManager : MonoBehaviour
 {
+    public static M_GameManager instance = null;
+
     string monsterTag = "Monster";
 
     public GameObject beast;
@@ -42,6 +44,7 @@ public class M_GameManager : MonoBehaviour
 
     public UnityEngine.UI.Slider slider;
 
+    public int killedMonster = 0;
 
     private void Awake()
     {
@@ -50,6 +53,9 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled = GameObject.Find("on").GetComponent<Image>();
         waveDisabled = GameObject.Find("off").GetComponent<Image>();
+
+        if (instance == null)  instance = this;
+        else Destroy(gameObject);
     }
     private void Start()
     {

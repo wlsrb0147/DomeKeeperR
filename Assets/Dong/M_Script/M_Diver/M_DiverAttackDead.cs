@@ -15,6 +15,7 @@ public class M_DiverAttackDead : M_State
     {
         base.Enter();
         diver.SetVelocity(diver.zero);
+        M_GameManager.instance.killedMonster++;
     }
 
     public override void Exit()

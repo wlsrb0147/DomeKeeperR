@@ -15,6 +15,7 @@ public class M_FlyerDead : M_State
         base.Enter();
         flyer.active.enabled = false;
         flyer.inactive.enabled = false;
+        M_GameManager.instance.killedMonster++;
     }
 
     public override void Exit()

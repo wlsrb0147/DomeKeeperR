@@ -12,8 +12,9 @@ public class M_DiverBackDead1 : M_State
 
     public override void Enter()
     {
-        base.Enter(); 
-        
+        base.Enter();
+        M_GameManager.instance.killedMonster++;
+
     }
 
     public override void Exit()
