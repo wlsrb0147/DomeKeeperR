@@ -26,9 +26,9 @@ public class M_Moving : M_Base
         base.Update();
 
 
-        if ( currentHP1 != HP1)
+        if ( currentHP1 != hp1)
         {
-            currentHP1 = HP1;
+            currentHP1 = hp1;
             idleTimer1 = 0;
             ChangeAniVelocity(0.5f);
             attacked = true;

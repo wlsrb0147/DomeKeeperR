@@ -18,6 +18,9 @@ public class M_BeastJump : M_State
         beast.rb.gravityScale = 1f;
         beast.onGround = false;
         beast.Jump(beast.jumpPower);
+
+        beast.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        beast.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
     public override void Exit()

@@ -12,12 +12,14 @@ public class M_DiverBack : M_State
     public override void Enter()
     {
         base.Enter();
+        back = -diver.Getdir();
+        back = back.normalized * 2;
+        diver.SetVecVelocity(back.x, back.y);
+        diver.isAttacking = -1;
 
-            back = -diver.Getdir();
-            back = back.normalized * 2;
-            diver.SetVecVelocity(back.x, back.y);
-            diver.isAttacking = -1;
-        
+        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        diver.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
     }
 
     public override void Exit()
@@ -29,8 +31,8 @@ public class M_DiverBack : M_State
     {
         base.Update();
 
-        diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
-        diver.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
+        if (diver.stun) diver.SetVecVelocity(0, 0);
+        else if (!diver.stun) diver.SetVecVelocity(back.x, back.y);
+
     }
 }

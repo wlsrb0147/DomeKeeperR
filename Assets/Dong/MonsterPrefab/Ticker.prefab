@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3325209977784711590
 SpriteRenderer:
@@ -168,9 +168,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.20679367, y: -0.20033288}
+  m_Offset: {x: 0.20679367, y: -0.17332321}
   serializedVersion: 2
-  m_Radius: 0.17593658
+  m_Radius: 0.20294625
 --- !u!114 &2143697074728018093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,10 +190,10 @@ MonoBehaviour:
   idleTimer2: 0
   idleTime2: 15
   stun: 0
-  HP: 0
-  HP1: 10
-  HP2: 0
-  Atk: 1
+  hp: 0
+  hp1: 10
+  hp2: 0
+  atk: 1
   stunBullet: {fileID: 1511442708161056059, guid: 9c9a6e46275235047bd52123d1fb8f47, type: 3}
   moveSpeed: {x: 2, y: 0}
   attacked: 0

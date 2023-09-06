@@ -23,10 +23,10 @@ public class M_Base : MonoBehaviour
     public bool stun;
 
     [Header("Stat")]
-    public float HP;
-    public float HP1 = 10;
-    public float HP2 = 0;
-    public float Atk = 1;
+    public float hp;
+    public float hp1 = 10;
+    public float hp2 = 0;
+    public float atk = 1;
     
     public int faceX { get; private set; }
     public bool facingRight { get; private set; }
@@ -51,15 +51,15 @@ public class M_Base : MonoBehaviour
         faceX = 1;
         facingRight = true;
 
-        HP = HP1 + HP2;
+        hp = hp1 + hp2;
     }
 
     protected virtual void Start()
     {
         if(stunBullet != null) stunScript = stunBullet.GetComponent<Stun>();
 
-        currentHP1 = HP1;
-        currentHP2 = HP2;
+        currentHP1 = hp1;
+        currentHP2 = hp2;
     }
 
     protected virtual void Update()
@@ -74,7 +74,7 @@ public class M_Base : MonoBehaviour
 
         stateMachine.currentState.Update();
 
-        HP = HP1 + HP2;
+        hp = hp1 + hp2;
 
         if (transform.position.x > domeCenter.position.x && facingRight)
         {
@@ -92,9 +92,9 @@ public class M_Base : MonoBehaviour
 
 
 
-        if ( currentHP2 != HP2)
+        if ( currentHP2 != hp2)
         {
-            currentHP2 = HP2;
+            currentHP2 = hp2;
             idleTimer2 = 0;
             Stun(0f);
             stun = true;
@@ -108,7 +108,7 @@ public class M_Base : MonoBehaviour
         idleTimer2 += Time.deltaTime;
 
 
-        if (HP <= 0)
+        if (hp <= 0)
         {
             Dead();
         }
@@ -123,12 +123,12 @@ public class M_Base : MonoBehaviour
 
     public void Damage1(float Atk)
     {
-            HP1 -= Atk;
+            hp1 -= Atk;
     }
 
     public void Damage2(float Atk)
     {
-        HP2 -= Atk;
+        hp2 -= Atk;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -143,7 +143,7 @@ public class M_Base : MonoBehaviour
     protected void SetDamage()
     {
         if(collision !=null)
-        collision.GetComponent<Dome>().SetDamage(Atk);
+        collision.GetComponent<Dome>().SetDamage(atk);
     }
 
     protected virtual void Dead()
