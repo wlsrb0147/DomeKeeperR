@@ -23,33 +23,32 @@ public class Movement : MonoBehaviour
     [SerializeField] bool drawDebugLines;
 
     Rigidbody2D rb;
-    EdgeCollider2D capColl;
+    EdgeCollider2D edgeColl;
     PetEntity pt;
 
-
-
-    // 첫 번째 프레임 전에 호출되는 함수
     void Start()
     {
         pathfinder = new Pathfinder<Vector2>(GetDistance, GetNeighbourNodes, 1000); // 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
         rb = GetComponent<Rigidbody2D>();
-        capColl = GetComponent<EdgeCollider2D>();
+        edgeColl = GetComponent<EdgeCollider2D>();
         pt = GetComponent<PetEntity>();
     }
 
-    // 매 프레임마다 호출되는 함수
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B)) // 새로운 목표를 확인하는 부분
         {
+            rb.gravityScale = 0;
+            speed = 0.1f;
             BackMoveCommand(new Vector2(0.55f, -10.4f));
-           // SetMovementState();
         }
 
         if (Input.GetKeyDown(KeyCode.G)) 
         {
+            rb.gravityScale = 2;
+            rb.velocity = Vector2.zero;
+            speed = 0.0125f;
             Vector2 randomTarget = (new Vector2(Random.Range(-80.0f, 80.0f), (Random.Range(-50.0f, -300.0f))));
-            //ResetMovementState();
 
             if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면
                 pt.Flip();
@@ -80,16 +79,6 @@ public class Movement : MonoBehaviour
         }
 
     }
-
-    //void SetMovementState()
-    //{
-    //    rb.gravityScale = 0;
-    //}
-
-    //private void ResetMovementState()
-    //{
-    //    rboZeroVelocity();
-    //}
 
     // 목표를 받아와서 움직임 명령을 생성하는 함수
     // List<Vector2> pathLeftToGo에 경로상 점들을 저장하는 역할을 해주는 MoveCommand

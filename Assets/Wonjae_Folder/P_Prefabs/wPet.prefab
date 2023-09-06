@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 1099182522928215136}
   - component: {fileID: 21784359278252298}
   - component: {fileID: 4408457436200238985}
-  - component: {fileID: 2244495531196260637}
   - component: {fileID: 7979959642821259973}
+  - component: {fileID: 8407604744272717170}
   m_Layer: 9
   m_Name: wPet
   m_TagString: Pet
@@ -275,26 +275,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &2244495531196260637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924973197211554225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebdef79944b73a8429c8930a8e5e082c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 50
-  speed: 0.15
-  obstacles:
-    serializedVersion: 2
-    m_Bits: 1472
-  searchShortcut: 1
-  snapToGrid: 1
-  drawDebugLines: 1
 --- !u!50 &7979959642821259973
 Rigidbody2D:
   serializedVersion: 4
@@ -310,7 +290,7 @@ Rigidbody2D:
   m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -322,6 +302,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8407604744272717170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924973197211554225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdef79944b73a8429c8930a8e5e082c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSize: 0.5
+  speed: 0.05
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 960
+  searchShortcut: 0
+  snapToGrid: 0
+  drawDebugLines: 1
 --- !u!1 &2182025306968062408
 GameObject:
   m_ObjectHideFlags: 0
