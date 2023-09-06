@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class M_Moving : M_Base
 {
     public Vector2 moveSpeed;
+    [SerializeField] float idleTime =0.5f;
+    float idleTimer = 0;
+    Vector2 InitialmoveSpeed;
 
     protected override void Awake()
     {
         base.Awake();
+        InitialmoveSpeed = moveSpeed;
     }
 
     protected override void Start()
@@ -20,19 +25,30 @@ public class M_Moving : M_Base
     {
         base.Update();
 
-        if (currentHP != HP1)
+
+        if ( currentHP != HP1)
         {
             currentHP = HP1;
             idleTimer = 0;
-            SetVelocity(zero);
+            ChangeAniVelocity(0.5f);
         }
 
-        if (idleTimer >= 1)
+        else if (idleTimer >= idleTime)
         {
-
+            ChangeAniVelocity(1f);
         }
 
         idleTimer += Time.deltaTime;
+
+
+    }
+
+    protected override void ChangeAniVelocity(float x)
+    {
+        base.ChangeAniVelocity(x);
+
+        moveSpeed = InitialmoveSpeed * x;
+        ani.SetFloat("AniSpeed", x);
 
     }
 

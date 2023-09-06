@@ -11,7 +11,7 @@ public class M_Base : MonoBehaviour
 
     protected bool destroyed = false;
 
-    public float idleTimer;
+ //   public float idleTimer;
     public float currentHP;
 
     [Header("Stat")]
@@ -42,7 +42,7 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Start()
     {
-        idleTimer = 0;
+       // idleTimer = 0;
         currentHP = HP1;
     }
 
@@ -66,22 +66,23 @@ public class M_Base : MonoBehaviour
         if (facingRight) faceX = 1;
         else faceX = -1;
 
-        #region hit상태 구현
+/*        #region hit상태 구현
 
         if ( currentHP != HP1)
         {
             currentHP = HP1;
             idleTimer = 0;
+            ChangeAniVelocity(0.5f);
         }
 
         if (idleTimer >= 1)
         {
-           
+            ChangeAniVelocity(1f);
         }
 
         idleTimer += Time.deltaTime;
 
-        #endregion
+        #endregion*/
 
 
 
@@ -92,6 +93,12 @@ public class M_Base : MonoBehaviour
 
 
     }
+
+    protected virtual void ChangeAniVelocity(float x)
+    {
+
+    }
+
     public void Damage(float Atk)
     {
         if (HP1 > 0)
