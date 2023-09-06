@@ -15,6 +15,7 @@ public class S_SkillUnLock : MonoBehaviour
         light,
         teleport,
         domesheild,
+        domeHP,
     }
 
     [SerializeField] SkillName skillName;
@@ -25,15 +26,21 @@ public class S_SkillUnLock : MonoBehaviour
     }
     private void Update()
     {
+        if(skillName == SkillName.domeHP)
+        {
+            gameObject.GetComponentInChildren<Slider>().value = 100;
+
+            gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().CurHp;
+        }
         if (useCheck)
         {
             if (skillName == SkillName.light)
                 gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.lightCoolTime) * Time.deltaTime;
             else if (skillName == SkillName.teleport)
                 gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.teleportCoolTime) * Time.deltaTime;
-            /*else if (skillName == SkillName.domesheild)
-                gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().
-*/
+            else if (skillName == SkillName.domesheild)
+                gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().Shield;
+
 
 
         }
