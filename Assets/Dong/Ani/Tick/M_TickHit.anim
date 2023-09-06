@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_FlyerHit
+  m_Name: M_TickHit
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1695150071, guid: 9e9b0deee1410a24da2730c1919211c3, type: 3}
+      value: {fileID: -151024783, guid: f5bad8ccdd10a7941814fb56bf26783a, type: 3}
     - time: 0.1
-      value: {fileID: 761852724, guid: 9e9b0deee1410a24da2730c1919211c3, type: 3}
+      value: {fileID: -1456092981, guid: f5bad8ccdd10a7941814fb56bf26783a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1695150071, guid: 9e9b0deee1410a24da2730c1919211c3, type: 3}
-    - {fileID: 761852724, guid: 9e9b0deee1410a24da2730c1919211c3, type: 3}
+    - {fileID: -151024783, guid: f5bad8ccdd10a7941814fb56bf26783a, type: 3}
+    - {fileID: -1456092981, guid: f5bad8ccdd10a7941814fb56bf26783a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
