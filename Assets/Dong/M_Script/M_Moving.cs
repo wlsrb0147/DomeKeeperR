@@ -42,16 +42,18 @@ public class M_Moving : M_Base
 
         idleTimer1 += Time.deltaTime;
 
+        if(stun) ChangeAniVelocity(0f);
+        else if (!stun) ChangeAniVelocity(1f);
 
     }
 
-    protected override void ChangeAniVelocity(float x)
+    protected virtual void ChangeAniVelocity(float x)
     {
-        base.ChangeAniVelocity(x);
-
+       
         moveSpeed = InitialmoveSpeed * x;
         ani.SetFloat("AniSpeed", x);
-
+        Debug.Log(x);
+        
     }
 
     public void SetVelocity(Vector2 vec)
