@@ -29,5 +29,4 @@ public class S_SkillUnLock : MonoBehaviour
         UnlockImage.SetActive(false);
         gameObject.GetComponentInChildren<Slider>().value = 100;
     }
-
 }
