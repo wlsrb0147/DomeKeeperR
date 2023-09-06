@@ -18,7 +18,7 @@ public class M_Base : MonoBehaviour
 
 
     public float currentHP2;
-    public float idleTimer2 = 100f;
+    public float idleTimer2 { get; set; }
     public float idleTime2 = 0;
     public bool stun;
 
@@ -57,6 +57,9 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Update()
     {
+        Debug.Log("aa " + idleTime2);
+
+
         stateMachine.currentState.Update();
 
         HP = HP1 + HP2;
@@ -99,6 +102,8 @@ public class M_Base : MonoBehaviour
         }
 
     }
+
+    public void ChangeStunTime(float x) => idleTime2 = x;
     protected virtual void Stun(float x)
     {
         ani.SetFloat("Stun", x);

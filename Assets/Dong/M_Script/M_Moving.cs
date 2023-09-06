@@ -52,7 +52,6 @@ public class M_Moving : M_Base
        
         moveSpeed = InitialmoveSpeed * x;
         ani.SetFloat("AniSpeed", x);
-        Debug.Log(x);
         
     }
 
