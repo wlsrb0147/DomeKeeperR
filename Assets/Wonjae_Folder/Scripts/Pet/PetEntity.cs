@@ -9,8 +9,8 @@ public class PetEntity : MonoBehaviour
 {
     [Header("펫 정보")]
     [Tooltip("펫의 현재 공격력")]
+    [SerializeField] private float petSpeed = 2.5f;
     [SerializeField] private float petDamage;
-    protected float petSpeed = 2.5f;
 
     [Tooltip("펫 재사용 대기시간")]
     [SerializeField] protected float petCooldownTimer = 100.0f;
@@ -213,21 +213,26 @@ public class PetEntity : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Stash"))
+       
+        if (redjemScore + bluejemScore + greenjemScore >= 1)
         {
-            S_GameManager.instance.stash.redjemScore = redjemScore;
-            S_GameManager.instance.stash.bluejemScore = bluejemScore;
-            S_GameManager.instance.stash.greenjemScore = greenjemScore;
+            if (collision.gameObject.CompareTag("Stash"))
+            {
 
-            redjemScore = 0;
-            bluejemScore = 0;
-            greenjemScore = 0;
+                S_GameManager.instance.stash.redjemScore = redjemScore;
+                S_GameManager.instance.stash.bluejemScore = bluejemScore;
+                S_GameManager.instance.stash.greenjemScore = greenjemScore;
 
-            isPetCooldown = true;
-            repeatLabor = false;
-            Debug.Log("Stash에 광물 반납을 완료하였습니다.");
+                redjemScore = 0;
+                bluejemScore = 0;
+                greenjemScore = 0;
+
+                isPetCooldown = true;
+                repeatLabor = false;
+                Debug.Log("Stash에 광물 반납을 완료하였습니다.");
+
+            }
         }
-
     }
 
     #endregion
