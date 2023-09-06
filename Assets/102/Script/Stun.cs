@@ -9,11 +9,14 @@ public class Stun : MonoBehaviour
     private GameObject target; // 현재 추적 중인 적
     private float chaseRange = 50f; // 추적 범위
     private List<GameObject> availableTargets = new List<GameObject>(); // 이동 가능한 적 목록
+    public M_Base monsterBase;
 
     private void Start()
     {
         FindAvailableTargets();
         SetNextTarget();
+        monsterBase.ChangeStunTime(100);
+        
     }
 
     private void Update()
