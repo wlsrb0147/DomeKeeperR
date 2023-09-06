@@ -39,7 +39,7 @@ public class M_Worm : M_Holding
         wakeUp = new M_WormWakeUp(this, stateMachine, "WakeUp", this);
 
         myCollider =gameObject.GetComponent<Collider2D>();
-
+        myCollider.enabled = false;
         attackCount = 0;
     }
 

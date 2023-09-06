@@ -18,6 +18,7 @@ public class M_BeastWallDead : M_State
             beast.SetVelocity(beast.zero);
             beast.rb.gravityScale = 0;
         }
+        M_GameManager.instance.killedMonster++;
     }
 
     public override void Exit()

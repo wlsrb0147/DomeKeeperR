@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class M_GameManager : MonoBehaviour
 {
+    public static M_GameManager instance = null;
+
     string monsterTag = "Monster";
 
     public GameObject beast;
@@ -27,13 +29,17 @@ public class M_GameManager : MonoBehaviour
     string mBolter = "Bolter";
     string mFlyer = "Flyer";
 
-    public float x = 0;
+
+    public int wave = 1;
+    public float defaultWT = 10;
+    public float increasingWT = 5;
 
     public float waveTime;
     public float waveTimer;
-    public int wave = 1;
-    public float waveSpawnTime;
+    
+    public float respawnTimer = 0;
     public float spawnDuration;
+    public float waveContinued;
 
     Image waveDisabled;
     Image waveEnabled;
@@ -42,6 +48,7 @@ public class M_GameManager : MonoBehaviour
 
     public UnityEngine.UI.Slider slider;
 
+    public int killedMonster = 0;
 
     private void Awake()
     {
@@ -50,13 +57,16 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled = GameObject.Find("on").GetComponent<Image>();
         waveDisabled = GameObject.Find("off").GetComponent<Image>();
+
+        if (instance == null)  instance = this;
+        else Destroy(gameObject);
     }
     private void Start()
     {
         int monsterCount = CountWithTag(monsterTag);
         Debug.Log(" 몬스터 숫자 : " + monsterCount);
 
-        waveTime = 10 + wave * 5;
+        waveTime = defaultWT + (wave-1) * increasingWT;
         waveTimer = waveTime;
         spawnDuration = 6;
 
@@ -79,9 +89,9 @@ public class M_GameManager : MonoBehaviour
         if (spawnMonster)
         {
 
-            x += Time.deltaTime;
+            respawnTimer += Time.deltaTime;
 
-            if (x > spawnDuration)
+            if (respawnTimer > spawnDuration)
             {
                 Spawn(wave);
                 int monsterCount = CountWithTag(monsterTag);
@@ -108,11 +118,11 @@ public class M_GameManager : MonoBehaviour
 
         if (spawnMonster)
         {
-            waveSpawnTime += Time.deltaTime;
+            waveContinued += Time.deltaTime;
         }
 
         // 웨이브 끝남
-        if (waveTimer < 0 && waveSpawnTime > waveTime / 2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
+        if (waveTimer < 0 && waveContinued > waveTime / 2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
         {
 
             waveEnabled.enabled = false;
@@ -127,10 +137,10 @@ public class M_GameManager : MonoBehaviour
             }
 
             waveTimer = waveTime;
-            waveSpawnTime = 0;
-            x = 0;
+            waveContinued = 0;
+            respawnTimer = 0;
         }
-        else if (waveSpawnTime > waveTime / 2)
+        else if (waveContinued > waveTime / 2)
         {
             spawnDuration = 12;
         }
@@ -287,7 +297,7 @@ public class M_GameManager : MonoBehaviour
 
             }
         }
-        this.x = 0;
+        this.respawnTimer = 0;
     }
 
     
