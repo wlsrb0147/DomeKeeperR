@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class WJ_Player : MonoBehaviour
 {
+    [SerializeField] GameObject petSpawnPos;
+    [SerializeField] GameObject pet;
 
     public GameObject drill;
 
@@ -131,6 +133,10 @@ public class WJ_Player : MonoBehaviour
         }
     }
 
+    void PetInstantiate()
+    {
+        Instantiate(pet, )
+    }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
