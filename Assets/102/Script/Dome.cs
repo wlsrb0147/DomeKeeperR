@@ -6,7 +6,7 @@ public class Dome : MonoBehaviour
     [Header("µ¼")]
 
     [SerializeField] float MaxHp;
-    [SerializeField] float CurHp;
+    [SerializeField] public float CurHp;
     [SerializeField] public float Def;
     [SerializeField] float trueatk;
 
@@ -17,7 +17,7 @@ public class Dome : MonoBehaviour
     SpriteRenderer SI;
     SpriteRenderer Dd;
     public GameObject ShieldIg;
-    [SerializeField] float Shield;
+    [SerializeField] public float Shield;
     [SerializeField] float RespawnTime;
     [SerializeField] float CoolTimer;
 

@@ -60,7 +60,7 @@ public class DefalutTower : Tower
 
     void ChargeDelayUpgrade()
     {
-        if(SkillTreeManager.Instance.isChargeDelayless == true)
+        if(SkillTreeManager.Instance.isChargeDelayLess == true)
         {
             BigLazerDelay = 0.25f;
         }
