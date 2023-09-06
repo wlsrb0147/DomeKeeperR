@@ -45,6 +45,11 @@ public class MovementController2D : MonoBehaviour
             {
                 transform.position = pathLeftToGo[0];   //현재 위치를 목표 위치로 설정
                 pathLeftToGo.RemoveAt(0);   //이동이 완료되었으므로 경로 리스트에서 첫 번째 위치를 제거.
+
+                if (pathLeftToGo.Count == 0)
+                {
+                    edgeColl.enabled = true;
+                }
             }
         }
         //시각화
@@ -59,7 +64,7 @@ public class MovementController2D : MonoBehaviour
     }
     public void Bmc()
     {
-        BackMoveCommand(new Vector2(0.45f, -10.4f));
+        BackMoveCommand(new Vector2(-1.45f, -10.4f));
     }
 
     public void Gmc()
@@ -72,7 +77,8 @@ public class MovementController2D : MonoBehaviour
     // List<Vector2> pathLeftToGo에 경로상 점들을 저장하는 역할을 해주는 MoveCommand
     void GetMoveCommand(Vector2 target) //주어진 목표 위치를 받아와 움직임을 명령을 생성하는 역할
     {
-        Vector2 closestNode = GetClosestNode(transform.position);   //현재 위치에서 가장 가까운 그리드 점을 찾는다.
+        //Vector2 closestNode = GetClosestNode(transform.position);   //현재 위치에서 가장 가까운 그리드 점을 찾는다.
+        Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.0f));
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
         bool canMove = true;    //이동가능 여부 판단
 
@@ -116,6 +122,7 @@ public class MovementController2D : MonoBehaviour
             }
         }
     }
+
     private Vector2 SearchMine()
     {
         rb.gravityScale = 2;

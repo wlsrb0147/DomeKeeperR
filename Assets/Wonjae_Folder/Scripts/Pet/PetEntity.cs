@@ -111,7 +111,6 @@ public class PetEntity : MonoBehaviour
         if (!repeatLabor)
         {
             maxComebackHome();
-
         }
 
         RestartMining();
