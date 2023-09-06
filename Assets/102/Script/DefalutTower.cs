@@ -37,12 +37,11 @@ public class DefalutTower : Tower
     [Header("애니메이션")]
     [SerializeField] private GameObject animationPrefab;
     #endregion
+    #region 
+    [Header("레이저관통")]
     [SerializeField] float Atk;
     [SerializeField] public int maxHitsBeforeDisable;
     [SerializeField]public int penetratedCount;
-    #region 
-    [Header("Auto업그레이드")]
-    [SerializeField] private float AutoMoveTime;
     #endregion
     private void Start()
     {
@@ -52,18 +51,9 @@ public class DefalutTower : Tower
     }  
     void Update()
     {
-        if(SkillTreeManager.Instance.isTech3!= true) 
-        { 
         Move();
-        }
         SetRotation();
         Attack();
-        TimeContinue();
-        AutoMove();
-        if (SkillTreeManager.Instance.isTech3 == true)
-        {
-            LrDraw();
-        }
         ChargeDelayUpgrade();
         ChargeTimeUpgrade();
     }
@@ -85,20 +75,10 @@ public class DefalutTower : Tower
 
     }
 
-    void TimeContinue()
-    {
-     
-            AutoMoveTime += Time.deltaTime;
-            if (AutoMoveTime > 4)
-            {
-                AutoMoveTime = 0;
-            }
-        
-    }
+ 
     void Attack()
     {
-        if (SkillTreeManager.Instance.isTech3 != true)
-        {
+        
             if (Input.GetKey(KeyCode.Space))
             {
 
@@ -111,7 +91,7 @@ public class DefalutTower : Tower
             {
                 LrDisable();
             }
-        }
+        
     }
 
     void LrDisable()
@@ -281,44 +261,7 @@ public class DefalutTower : Tower
         transform.position = new Vector3(posX, posY);
     }
 
-        void AutoMove()
-    {
-        if (SkillTreeManager.Instance.isTech3 == true)
-        {
-            if (angle < leftLockAngle)
-            {
-                if (AutoMoveTime > 0 && AutoMoveTime < 2)
-                {
-
-                    angle = angle + Time.deltaTime * angularSpeed;
-                    transform.Rotate(0, 0, rote);
-                    if (angle >= leftLockAngle)
-                    {
-
-                        transform.rotation = Quaternion.Euler(0, 0, 90);
-                    }
-                }
-            }
-
-            if (angle > rightLockAngle)
-            {
-                if (AutoMoveTime > 2 && AutoMoveTime < 4)
-                {
-
-                    angle = angle + Time.deltaTime * -angularSpeed;
-                    transform.Rotate(0, 0, -rote);
-                    if (angle <= rightLockAngle)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
-                    if (transform.rotation.z < -90)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
-                }
-            }
-        }
-    }
+       
         void Move()
     {
         if (isBigLazer != true)

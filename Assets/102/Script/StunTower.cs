@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class StunTower : Tower
+public class StunTower : SubTower
 {
     [SerializeField] public Transform StunPos;
 
@@ -12,95 +12,75 @@ public class StunTower : Tower
     [SerializeField] float StunDuartion;
     [SerializeField] float StunRestCool;
     [SerializeField] float StunRestTime;
-
-
+ 
+   
     #endregion
     public GameObject Stun;
-    public GameObject NonAutoStun;
+
+    public GameObject NoneAutoStun;
     private void Start()
     {
-        SetRotation();
-        Move();
-        Attack();
+     
+        isMe = false;
+    }
+    protected override void Update()
+    {
+        base.Update();
         ShotDelay();
+        Attack();
+        AutoAttack();
     }
-
-
-    void ShotDelay()
+    void AutoAttack()
     {
-        StunRestTime += Time.deltaTime;
+        if (SkillTreeManager.Instance.isTech3 == true)
+        {
+            if (StunRestTime > StunRestCool)
+            {
+
+                StartCoroutine("StunAtk");
+            }
+        }
     }
-    void SetRotation()
+    protected override void Attack()
     {
-        if (angle > 1.5 && angle < 1.6)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        if (angle >= 0.8 && angle <= 0.9)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, -45);
-        }
-        if (angle >= 2.3 && angle <= 2.4)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 45);
-        }
-        posX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
-        posY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius / 1.5f;
-
-
-        transform.position = new Vector3(posX, posY);
-    }
-    void Move()
-    {
-
-        if (angle < leftLockAngle)
-        {
-            if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.Space)) { 
+            if (StunRestTime > StunRestCool)
             {
                
-                    StartCoroutine("AutoStunAtk");
-                    StunAttack();
+                    StartCoroutine("StunAtk");
+                    Shot();
             }
             else 
             {
-                StopCoroutine("AutoStunAtk");
+                StopCoroutine("StunAtk");
         
             }
         }
     }
-    
 
-    void Attack()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            if (StunRestTime > StunRestCool) 
-            { 
-            StartCoroutine("StunAtk");
-            }
-        }
-        else
-        {
-            StopCoroutine("StunAtk");
-        }
-    }
-
-    void StunAttack()
+    void Shot()
     {
         if (SkillTreeManager.Instance.isTech3 == false)
         {
-            GameObject SA = Instantiate(NonAutoStun, StunPos.transform.position, StunPos.transform.rotation);
+            GameObject SA = Instantiate(NoneAutoStun, StunPos.transform.position, StunPos.transform.rotation);
             Destroy(SA, 5f);
             StunRestTime = 0;
         }
     }
-    IEnumerator AutoStunAtk()
+    void ShotDelay()
     {
-        if (SkillTreeManager.Instance.isTech3 == true) { 
+        StunRestTime += Time.deltaTime;
+    }
+    
+  
+    IEnumerator StunAtk()
+    {
+        if(SkillTreeManager.Instance.isTech3 == true) { 
         GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
         StunRestTime = 0;
         yield return new WaitForSeconds(StunRestCool);
         }
+
     }                   
 }
