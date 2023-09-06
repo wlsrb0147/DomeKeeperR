@@ -18,8 +18,8 @@ public class M_Base : MonoBehaviour
 
 
     public float currentHP2;
-    public float idleTimer2 { get; set; }
-    public float idleTime2 = 0;
+    public float idleTimer2 = 0;
+    public float idleTime2 = 15f;
     public bool stun;
 
     [Header("Stat")]
@@ -50,15 +50,12 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Start()
     {
-       // idleTimer = 0;
         currentHP1 = HP1;
         currentHP2 = HP2;
     }
 
     protected virtual void Update()
     {
-        Debug.Log("aa " + idleTime2);
-
 
         stateMachine.currentState.Update();
 
