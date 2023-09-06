@@ -748,8 +748,8 @@ MonoBehaviour:
   StunDuartion: 2
   StunRestCool: 1
   StunRestTime: 0
-  target: {fileID: 0}
   Stun: {fileID: 1511442708161056059, guid: 9c9a6e46275235047bd52123d1fb8f47, type: 3}
+  NonAutoStun: {fileID: 7044282094610813547, guid: f492ab4b368d5dd41902c12fc4cfe79f, type: 3}
 --- !u!95 &480345056
 Animator:
   serializedVersion: 5
@@ -3867,7 +3867,7 @@ MonoBehaviour:
   isStunTower: 0
   StunTower: {fileID: 480345054}
   FireTower: {fileID: 1522182031}
-  isTech3: 0
+  isTech3: 1
 --- !u!4 &1902076028
 Transform:
   m_ObjectHideFlags: 0
@@ -4107,7 +4107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1926442822
 SpriteRenderer:
   m_ObjectHideFlags: 0
