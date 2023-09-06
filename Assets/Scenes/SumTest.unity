@@ -2299,7 +2299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1522182032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2327,11 +2327,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   FirePos: {fileID: 1290306154}
-  raydistance: 5
-  FireDuartion: 10
+  raydistance: 10
+  FireDuartion: 5
   FireRestTime: 0
-  FireRestCool: 4
+  FireRestCool: 10
   isFire: 0
+  playFire: 0
   Fire: {fileID: 5937383403257675854, guid: eb747f6b3fdb8e5499651c3979335aa0, type: 3}
 --- !u!95 &1522182033
 Animator:

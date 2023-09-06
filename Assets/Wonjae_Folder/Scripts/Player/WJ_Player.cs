@@ -37,6 +37,14 @@ public class WJ_Player : MonoBehaviour
     public float lightCoolDown;
     public bool useLightSkill = false;
 
+    [Header("TeleportSkill Info")]
+    //[SerializeField] GameObject teleport;
+    [SerializeField] GameObject teleportSkillbar;
+    [SerializeField] GameObject teleportPos;
+    public float teleportCoolTime;
+    public float teleportCoolDown;
+    public bool useteleportSkill = false;
+
 
     #region Components
     public Animator anim { get; private set; }
@@ -80,7 +88,10 @@ public class WJ_Player : MonoBehaviour
         {
             LightSkill();
         }
-
+        if (useteleportSkill)
+        {
+            TeleportSkill();
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -105,6 +116,18 @@ public class WJ_Player : MonoBehaviour
             Instantiate(light, transform.position, Quaternion.identity);
             lightCoolDown = lightCoolTime;
             lightSkillbar.GetComponent<Slider>().value = 0;
+        }
+    }
+    void TeleportSkill()
+    {
+        teleportCoolDown -= Time.deltaTime;
+
+        if (teleportCoolDown <= 0 && Input.GetKeyDown(KeyCode.T))
+        {
+            //Instantiate(light, transform.position, Quaternion.identity);
+            teleportCoolDown = teleportCoolTime;
+            teleportSkillbar.GetComponent<Slider>().value = 0;
+            gameObject.transform.position = teleportPos.transform.position;
         }
     }
 
