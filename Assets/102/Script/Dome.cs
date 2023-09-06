@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dome : MonoBehaviour
@@ -9,13 +7,13 @@ public class Dome : MonoBehaviour
 
     [SerializeField] float MaxHp;
     [SerializeField] float CurHp;
-    [SerializeField] float Def;
+    [SerializeField] public float Def;
     [SerializeField] float trueatk;
 
     public GameObject Damaged;
     public GameObject DestroyDome;
     [Header("µ¼ ½¯µå")]
-    [SerializeField] bool isShield;
+    [SerializeField] bool isShield = false;
     SpriteRenderer SI;
     SpriteRenderer Dd;
     public GameObject ShieldIg;
@@ -33,30 +31,38 @@ public class Dome : MonoBehaviour
         SI = ShieldIg.GetComponent<SpriteRenderer>();
         Dd = Damaged.GetComponent<SpriteRenderer>();
         MaxHp = CurHp;
+        CoolTimer = 29f;
     }
 
     private void Update()
     {
-        if (!isShield)
+        if (SkillTreeManager.Instance.isShield == true)
         {
-            CoolTimer += Time.deltaTime;
-        }
-        if (CoolTimer > RespawnTime)
-        {
-            isShield = true;
-            SI.enabled = true;
-        }
+            if (!isShield)
+            {
+                CoolTimer += Time.deltaTime;
+            }
+            if (CoolTimer > RespawnTime)
+            {
 
+                Shield = 100f;
+                isShield = true;
+                SI.enabled = true;
+                CoolTimer = 0f;
+
+            }
+
+        }
     }
 
     void SetHeal(int heal)
     {
         CurHp += heal;
-        if(CurHp > MaxHp) 
+        if (CurHp > MaxHp)
         {
             CurHp = MaxHp;
         }
-        
+
     }
     public void SetDamage(float atk)
     {
@@ -64,13 +70,13 @@ public class Dome : MonoBehaviour
         {
             trueatk = atk - Def;
             if (trueatk <= 0)
-            { 
+            {
                 trueatk = 0;
             }
 
             CurHp -= trueatk;
 
-            if (CurHp < MaxHp/2)
+            if (CurHp < MaxHp / 2)
             {
                 Dd.enabled = true;
             }
@@ -84,12 +90,17 @@ public class Dome : MonoBehaviour
             }
         }
         else if (isShield)
-        { 
-     
+        {
+
             trueatk = atk - Def;
+            if (trueatk <= 0)
+            {
+                trueatk = 0;
+            }
             Shield -= trueatk;
             if (Shield < 0)
             {
+                Shield = 0f;
                 SI.enabled = false;
                 isShield = false;
             }

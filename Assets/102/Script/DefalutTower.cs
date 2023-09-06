@@ -39,7 +39,7 @@ public class DefalutTower : Tower
     #endregion
     #region 
     [Header("레이저관통")]
-    [SerializeField] float Atk;
+    [SerializeField] public float Atk;
     [SerializeField] public int maxHitsBeforeDisable;
     [SerializeField]public int penetratedCount;
     #endregion

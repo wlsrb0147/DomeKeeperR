@@ -21,7 +21,6 @@ public class PetController : PetEntity
 
     public void OnMine()
     {
-
         #region Mine
         if (isGrounded)
         {
@@ -40,6 +39,7 @@ public class PetController : PetEntity
         }
         if (!isGrounded)
         {
+            ZeroVelocity();
             underMine = false;
             sideMine = false;
             petFly = true;
@@ -67,6 +67,15 @@ public class PetController : PetEntity
             petFly = false;
             sideMine = false;
             underMine = true;
+        }
+
+        if (isPetCooldown == true)
+        {
+            ZeroVelocity();
+            petIdle = true;
+            petFly = false;
+            sideMine = false;
+            underMine = false;
         }
 
         #endregion

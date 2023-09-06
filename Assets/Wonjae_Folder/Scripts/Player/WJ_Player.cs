@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WJ_Player : MonoBehaviour
 {
@@ -31,9 +32,11 @@ public class WJ_Player : MonoBehaviour
 
     [Header("LightSkill Info")]
     [SerializeField] GameObject light;
-    [SerializeField] float lightCoolTime;
-    [SerializeField] float lightCoolDown;
+    [SerializeField] GameObject lightSkillbar;
+    public float lightCoolTime;
+    public float lightCoolDown;
     public bool useLightSkill = false;
+
 
     #region Components
     public Animator anim { get; private set; }
@@ -75,7 +78,6 @@ public class WJ_Player : MonoBehaviour
 
         if (useLightSkill)
         {
-
             LightSkill();
         }
 
@@ -102,9 +104,8 @@ public class WJ_Player : MonoBehaviour
         {
             Instantiate(light, transform.position, Quaternion.identity);
             lightCoolDown = lightCoolTime;
+            lightSkillbar.GetComponent<Slider>().value = 0;
         }
-
-
     }
 
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
