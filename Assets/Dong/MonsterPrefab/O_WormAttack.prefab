@@ -183,10 +183,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e753c13d3d4fda4b82fa1527c765357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTimer: 0
-  currentHP: 0
-  HP: 0
-  HP1: 10
-  HP2: 0
-  Atk: 1
+  deadCheck: 0
+  currentHP1: 0
+  idleTime1: 0.15
+  idleTimer1: 0
+  currentHP2: 0
+  idleTimer2: 0
+  idleTime2: 15
+  stun: 0
+  hp: 0
+  hp1: 8
+  hp2: 0
+  atk: 80
+  stunBullet: {fileID: 0}
   myCollider: {fileID: 0}

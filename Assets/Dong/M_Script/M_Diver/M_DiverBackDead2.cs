@@ -13,7 +13,8 @@ public class M_DiverBackDead2 : M_State
     public override void Enter()
     {
         base.Enter();
-        M_GameManager.instance.killedMonster++;
+        if (diver.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        diver.deadCheck++;
     }
 
     public override void Exit()

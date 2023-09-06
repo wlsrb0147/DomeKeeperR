@@ -15,7 +15,8 @@ public class M_DrillerMovingDead : M_State
     {
         base.Enter();
         driller.SetVelocity(driller.zero);
-        M_GameManager.instance.killedMonster++;
+        if (driller.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        driller.deadCheck++;
     }
 
     public override void Exit()

@@ -14,10 +14,12 @@ public class M_BeastGroundDead : M_State
     public override void Enter()
     {
         base.Enter();
+       
         beast.SetVelocity(beast.zero);
         beast.rb.gravityScale = 0;
 
-        M_GameManager.instance.killedMonster++;
+        if (beast.deadCheck == 0)  M_GameManager.instance.killedMonster++;
+        beast.deadCheck++;
     }
 
     public override void Exit()

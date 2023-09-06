@@ -9,8 +9,10 @@ public class M_Base : MonoBehaviour
     public Animator ani { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public Transform domeCenter { get; private set; }
+
     protected bool destroyed = false;
 
+    public int deadCheck;
 
     public float currentHP1;
     public float idleTime1 = 0.15f;
@@ -51,15 +53,21 @@ public class M_Base : MonoBehaviour
         faceX = 1;
         facingRight = true;
 
-        hp = hp1 + hp2;
+
+
+       
     }
 
     protected virtual void Start()
     {
-        if(stunBullet != null) stunScript = stunBullet.GetComponent<Stun>();
+        hp1 *= Mathf.Log(1+M_GameManager.instance.wave, 2);
+        hp = hp1 + hp2;
+
+        if (stunBullet != null) stunScript = stunBullet.GetComponent<Stun>();
 
         currentHP1 = hp1;
         currentHP2 = hp2;
+        atk *= Mathf.Log(M_GameManager.instance.wave*3+1, 4);
     }
 
     protected virtual void Update()
@@ -148,7 +156,7 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Dead()
     {
-
+        deadCheck++;
     }
     protected void Destroy()
     {
