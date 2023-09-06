@@ -76,7 +76,6 @@ public class FireTower : SubTower
            
             GameObject Firebat = Instantiate(Fire, FirePos.transform.position, FirePos.transform.rotation);
             Destroy(Firebat, 0.2f);
-            Debug.Log("πÊªÁ¡ﬂ");
             yield return new WaitForSeconds(FireDuartion);
             FireRestTime = 0f;
             isFire = false;
