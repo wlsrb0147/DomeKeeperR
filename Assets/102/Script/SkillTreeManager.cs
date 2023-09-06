@@ -9,7 +9,7 @@ public class SkillTreeManager : MonoBehaviour
     private Dome dm;
     private FireTower ft;
     private StunTower st;
-
+    [SerializeField] public GameObject defaltTower;
     public int isAtkUp;
     public int isDefUp;
     #region
@@ -21,7 +21,7 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public bool isPenetrateUpgrade2 = false;
     [SerializeField] public bool isChargeDelayLess = false;
     [SerializeField] public bool isChargeTimeLess = false;
-  
+
 
     #endregion
     #region
@@ -56,7 +56,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             dt = GetComponent<DefalutTower>();
         }
-        if(!dm)
+        if (!dm)
         {
             dm = GetComponent<Dome>();
         }
@@ -71,15 +71,15 @@ public class SkillTreeManager : MonoBehaviour
     }
     private void Update()
     {
- /*       EquipSubTower();
-        CreateAutoTower();*/
+        /*       EquipSubTower();
+               CreateAutoTower();*/
     }
 
     public void AttackUp()
     {
         if (isAtkUp < 5)
         {
-            dt.Atk += 2;
+            defaltTower.GetComponent<DefalutTower>().Atk += 2;
             isAtkUp += 1;
         }
     }
@@ -91,7 +91,12 @@ public class SkillTreeManager : MonoBehaviour
             isDefUp += 1;
         }
     }
-    public void Tech1Active() 
+
+    public void domeHeal()
+    {
+        dm.SetHeal(dm.MaxHp / 3);
+    }
+    public void Tech1Active()
     {
         isTech1 = true;
     }
@@ -106,8 +111,8 @@ public class SkillTreeManager : MonoBehaviour
 
     public void Penetrate()
     {
-        dt.penetratedCount += 1;
-        dt.Atk += 2;
+        defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
+        defaltTower.GetComponent<DefalutTower>().Atk += 2;
     }
     public void Charge()
     {
@@ -123,40 +128,33 @@ public class SkillTreeManager : MonoBehaviour
     }
     //테크2
     public void EquipSubTower()
-    { 
-        if(isTech2 == true) 
-        {
-            SubTower.SetActive(true);
-        }
+    {
+
+        SubTower.SetActive(true);
+
     }
     public void EquipStunTower()
     {
-        if (isTech2 == true)
-        {
-            StunTower.SetActive(true);
-            SubTower.SetActive(false);  
-        }
+
+        StunTower.SetActive(true);
+        SubTower.SetActive(false);
+
     }
     public void StunTimeUp()
     {
-        if (isTech2 == true)
-        {
-            st.StunDuartion += 2f;
-        }
+
+        st.StunDuartion += 2f;
+
     }
     public void StunCoolDown()
     {
-        if (isTech2 == true)
-        {
-            st.StunRestCool -= 2f;
-        }
+
+        st.StunRestCool -= 2f;
+
     }
     public void StunSpeedUp()
     {
-        if (isTech2 == true)
-        {
-        
-        }
+
     }
 
 
@@ -164,35 +162,30 @@ public class SkillTreeManager : MonoBehaviour
 
     public void EquipFireTower()
     {
-        if (isTech2 == true)
-        {
-            FireTower.SetActive(true);
-            SubTower.SetActive(false);
-        }
+
+        FireTower.SetActive(true);
+        SubTower.SetActive(false);
+
     }
     public void FireTowerDurUp()
     {
-        if (isTech2 == true)
-        {
-            ft.FireDuartion += 4f;
-        
-        }
+
+        ft.FireDuartion += 4f;
+
     }
     public void FireTowerRestDown()
     {
-        if (isTech2 == true)
-        {
-            ft.FireRestCool -= 2f;
-           
-        }
+
+        ft.FireRestCool -= 2f;
+
+
     }
     //테크3 
     public void CreateAutoTower()
     {
-        if (isTech3 == true)
-        {
-            AutoTower.SetActive(true);
-        }
+
+        AutoTower.SetActive(true);
+
     }
     public void CreateShield()
     {
