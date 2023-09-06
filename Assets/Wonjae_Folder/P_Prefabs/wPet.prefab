@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf5cf5c46543824fb47539cc632e55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  petSpeed: 2
   petDamage: 10
+  petCooldownTimer: 10
   footPos: {fileID: 1414214155786455657}
   toothPos: {fileID: 7061716428815760171}
   redjemScore: 0
