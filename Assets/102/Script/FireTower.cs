@@ -73,6 +73,7 @@ public class FireTower : SubTower
     IEnumerator CreateFire()
     {
 
+
            
             GameObject Firebat = Instantiate(Fire, FirePos.transform.position, FirePos.transform.rotation);
             Destroy(Firebat, 0.2f);
