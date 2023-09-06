@@ -77,7 +77,6 @@ public class PetController : PetEntity
             sideMine = false;
             underMine = false;
         }
-
         #endregion
     }
 

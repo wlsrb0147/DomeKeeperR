@@ -17,7 +17,7 @@ public class Dome : MonoBehaviour
     SpriteRenderer SI;
     SpriteRenderer Dd;
     public GameObject ShieldIg;
-    [SerializeField] float Shield;
+    [SerializeField] public float Shield;
     [SerializeField] float RespawnTime;
     [SerializeField] float CoolTimer;
 
