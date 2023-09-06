@@ -8,7 +8,7 @@ public class MovementController2D : MonoBehaviour
 {
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
-    [SerializeField] float speed = 0.05f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
+    [SerializeField] float speed = 0.5f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
 
     Pathfinder<Vector2> pathfinder; // 경로 탐색 메서드와 Patience를 저장하는 Pathfinder 객체
     [Tooltip("Navigator가 통과할 수 없는 레이어들")]
@@ -78,12 +78,17 @@ public class MovementController2D : MonoBehaviour
     void GetMoveCommand(Vector2 target) //주어진 목표 위치를 받아와 움직임을 명령을 생성하는 역할
     {
         Vector2 currentPos = transform.position;
-        Vector2 startPos = new Vector2(currentPos.x + 1.0f, currentPos.y);
+        Vector2 startPos = new Vector2(currentPos.x + 5.0f, currentPos.y);
         Vector2 forceDir = (startPos - currentPos).normalized;
-        rb.velocity = forceDir * 5.0f;
+        rb.velocity = forceDir * 3.0f;
 
         Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.0f)); //현재 위치에서 가장 가까운 그리드 점을 찾는다.
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
+
+        if (Mathf.Abs(startPos.x - currentPos.x) <= 2.0f)
+        {
+
+        }
 
         bool canMove = true;    //이동가능 여부 판단
 
@@ -115,7 +120,7 @@ public class MovementController2D : MonoBehaviour
     {
         rb.gravityScale = 0;
         speed = 0.125f;
-        edgeColl.enabled = false;
+        //edgeColl.enabled = false;
         Vector2 closestNode = GetClosestNode(transform.position);
         if (pathfinder.GenerateAstarPath(closestNode, GetClosestNode(target), out path)) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
         {
