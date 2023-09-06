@@ -32,5 +32,10 @@ public class M_BolterIdle : M_State
         {
             stateMachine.ChangeState(bolter.attack1);
         }
+
+        if (bolter.attacked)
+        {
+            stateMachine.ChangeState(bolter.hit);
+        }
     }
 }

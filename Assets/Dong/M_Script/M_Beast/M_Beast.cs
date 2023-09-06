@@ -12,6 +12,7 @@ public class M_Beast : M_Moving
     public M_BeastHowling howling { get; private set; }
     public M_BeastJump jump { get; private set; }
     public M_BeastWallDead wallDead { get; private set; }
+    public M_BeastWallHit wallHit { get; private set; }
     #endregion
 
 
@@ -36,6 +37,8 @@ public class M_Beast : M_Moving
         howling = new M_BeastHowling(this, stateMachine, "Howling", this);
         jump = new M_BeastJump(this, stateMachine, "Jump", this);
         wallDead = new M_BeastWallDead(this, stateMachine, "WallDead", this);
+        wallHit = new M_BeastWallHit(this, stateMachine, "WallHit", this);
+
         rb.gravityScale = 0;
 
         howlX = Random.Range(15f, 17f);
@@ -59,6 +62,7 @@ public class M_Beast : M_Moving
         {
             Dead();
         }
+
 
     }
 

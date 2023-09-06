@@ -8,8 +8,10 @@ public class S_SkillUnLock : MonoBehaviour
     public Button button;
     public GameObject UnlockImage;
     [SerializeField] bool useCheck = false;
-
+    [SerializeField] GameObject[] upgradeNode;
     Dome dome;
+
+    int upgradeCount = 0;
     enum SkillName
     {
         light,
@@ -26,7 +28,7 @@ public class S_SkillUnLock : MonoBehaviour
     }
     private void Update()
     {
-        if(skillName == SkillName.domeHP)
+        if (skillName == SkillName.domeHP)
         {
             gameObject.GetComponentInChildren<Slider>().value = 100;
 
@@ -51,5 +53,12 @@ public class S_SkillUnLock : MonoBehaviour
         UnlockImage.SetActive(false);
         gameObject.GetComponentInChildren<Slider>().value = 100;
         useCheck = true;
+    }
+
+    public void UpgradeNode()
+    {
+        upgradeNode[upgradeCount].SetActive(true);
+        upgradeCount++;
+        
     }
 }
