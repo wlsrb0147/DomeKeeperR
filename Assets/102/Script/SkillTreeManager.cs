@@ -5,9 +5,11 @@ using UnityEngine;
 public class SkillTreeManager : MonoBehaviour
 {
     public static SkillTreeManager Instance;
- 
+    private DefalutTower dt;
+    private Dome dm;
+    public int isAtkUp;
+    public int isDefUp;
     #region
-    public int id;
     [Header("태크1")]
     [SerializeField] public bool isTech1 = false;
     [SerializeField] public bool isPenetrate = false;
@@ -26,6 +28,8 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public bool isStunTower = false;
     [SerializeField] public GameObject StunTower;
     [SerializeField] public GameObject FireTower;
+    [SerializeField] public GameObject SubTower;
+
 
 
 
@@ -33,6 +37,11 @@ public class SkillTreeManager : MonoBehaviour
     #region
     [Header("태크3")]
     [SerializeField] public bool isTech3 = false;
+    [SerializeField] public GameObject SwordTower;
+    [SerializeField] public GameObject AutoTower;
+    [SerializeField] public GameObject DomeShield;
+    [SerializeField] public bool isShield;
+
     #endregion
     private void Awake()
     {
@@ -40,29 +49,72 @@ public class SkillTreeManager : MonoBehaviour
     }
     void Start()
     {
-       
+        if (!dt)
+        {
+            dt = GetComponent<DefalutTower>();
+        }
+        if(!dm)
+        {
+            dm = GetComponent<Dome>();
+        } 
     }
     private void Update()
     {
-      
-        SetActive();
-
+        EquipSubTower();
     }
 
-    void SetActive()
+    public void AttackUp()
     {
-        if (isStunTower == true)
+        if (isAtkUp < 5)
         {
-            StunTower.SetActive(true);
-        }
-        if (isFireTower == true)
-        {
-            FireTower.SetActive(true);
+            dt.Atk += 2;
+            isAtkUp += 1;
         }
     }
-    void AttackUp()
+    public void DefUp()
     {
-     
+        if (isDefUp < 5)
+        {
+            dm.Def += 2;
+            isDefUp += 1;
+        }
     }
-    
+    public void Tech1Active() 
+    {
+        isTech1 = true;
+    }
+    public void Tech2Active()
+    {
+        isTech2 = true;
+    }
+    public void Tech3Active()
+    {
+        isTech3 = true;
+    }
+
+    public void EquipSubTower()
+    { 
+        if(isTech2 == true) 
+        {
+            SubTower.SetActive(true);
+        }
+    }
+
+    public void CreateAutoTower()
+    {
+        if (isTech3 == true)
+        {
+            AutoTower.SetActive(true);
+        }
+    }
+    public void CreateShield()
+    {
+        isShield = true;
+        DomeShield.SetActive(true);
+    }
+    public void CreateSword()
+    {
+        SwordTower.SetActive(true);
+    }
+
 }

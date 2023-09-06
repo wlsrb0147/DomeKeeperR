@@ -337,7 +337,7 @@ MonoBehaviour:
   trueatk: 0
   Damaged: {fileID: 2132913181}
   DestroyDome: {fileID: 1686452646}
-  isShield: 1
+  isShield: 0
   ShieldIg: {fileID: 829839350}
   Shield: 100
   RespawnTime: 30
@@ -452,7 +452,7 @@ MonoBehaviour:
   missile: {fileID: 2187258712913615858, guid: 44de62f77e1d52742a4d87c1b514a227, type: 3}
   target: {fileID: 0}
   spd: 0
-  shot: 12
+  shot: 5
   Dtime: 0
 --- !u!212 &248022186
 SpriteRenderer:
@@ -1442,7 +1442,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829839350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2939,7 +2939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1708158566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3756,7 +3756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d74d4183552b1141aa3df74fb3bf247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  isAtkUp: 0
+  isDefUp: 0
   isTech1: 0
   isPenetrate: 0
   isCharge: 0
@@ -3769,7 +3770,12 @@ MonoBehaviour:
   isStunTower: 0
   StunTower: {fileID: 480345054}
   FireTower: {fileID: 1522182031}
+  SubTower: {fileID: 1708158565}
   isTech3: 0
+  SwordTower: {fileID: 1926442821}
+  AutoTower: {fileID: 248022184}
+  DomeShield: {fileID: 829839350}
+  isShield: 0
 --- !u!4 &1902076028
 Transform:
   m_ObjectHideFlags: 0
@@ -4371,6 +4377,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2131493473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131493476}
+  - component: {fileID: 2131493475}
+  - component: {fileID: 2131493474}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2131493474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131493473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &2131493475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131493473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &2131493476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131493473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2132913181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2132913182
 Transform:
   m_ObjectHideFlags: 0
@@ -4410,7 +4484,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132913181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
