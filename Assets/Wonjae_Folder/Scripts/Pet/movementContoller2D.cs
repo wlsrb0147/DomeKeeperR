@@ -4,11 +4,11 @@ using UnityEngine;
 using Aoiti.Pathfinding; // 경로 탐색 라이브러리를 가져옴
 using Unity.VisualScripting;
 
-public class Movement : MonoBehaviour
+public class MovementController2D : MonoBehaviour
 {
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
-    [SerializeField] float speed = 0.15f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
+    [SerializeField] float speed = 0.05f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
 
     Pathfinder<Vector2> pathfinder; // 경로 탐색 메서드와 Patience를 저장하는 Pathfinder 객체
     [Tooltip("Navigator가 통과할 수 없는 레이어들")]
@@ -32,33 +32,11 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         edgeColl = GetComponent<EdgeCollider2D>();
         pt = GetComponent<PetEntity>();
+        Gmc();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) // 새로운 목표를 확인하는 부분
-        {
-            rb.gravityScale = 0;
-            speed = 0.1f;
-            BackMoveCommand(new Vector2(0.55f, -10.4f));
-        }
-
-        if (Input.GetKeyDown(KeyCode.G)) 
-        {
-            rb.gravityScale = 2;
-            rb.velocity = Vector2.zero;
-            speed = 0.0125f;
-            Vector2 randomTarget = (new Vector2(Random.Range(-80.0f, 80.0f), (Random.Range(-50.0f, -300.0f))));
-
-            if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면
-                pt.Flip();
-            
-            if (transform.localScale.x > 0)
-                pt.Flip();
-
-            GetMoveCommand(randomTarget);
-        }
-
         if (pathLeftToGo.Count > 0) // 목표에 도달하지 않았을 때
         {
             Vector3 dir = (Vector3)pathLeftToGo[0] - transform.position;    //목표 위치와 현재 위치 간의 차이 벡터를 계산.
@@ -78,6 +56,16 @@ public class Movement : MonoBehaviour
             }
         }
 
+    }
+    public void Bmc()
+    {
+        BackMoveCommand(new Vector2(0.45f, -10.4f));
+    }
+
+    public void Gmc()
+    {
+        Vector2 randomTarget = SearchMine();
+        GetMoveCommand(randomTarget);
     }
 
     // 목표를 받아와서 움직임 명령을 생성하는 함수
@@ -113,6 +101,9 @@ public class Movement : MonoBehaviour
     }
     void BackMoveCommand(Vector2 target)
     {
+        rb.gravityScale = 0;
+        speed = 0.125f;
+        edgeColl.enabled = false;
         Vector2 closestNode = GetClosestNode(transform.position);
         if (pathfinder.GenerateAstarPath(closestNode, GetClosestNode(target), out path)) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
         {
@@ -125,7 +116,20 @@ public class Movement : MonoBehaviour
             }
         }
     }
+    private Vector2 SearchMine()
+    {
+        rb.gravityScale = 2;
+        rb.velocity = Vector2.zero;
+        speed = 0.0125f;
+        Vector2 randomTarget = (new Vector2(Random.Range(-80.0f, 80.0f), (Random.Range(-50.0f, -300.0f))));
 
+        if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면
+            pt.Flip();
+
+        if (transform.localScale.x > 0)
+            pt.Flip();
+        return randomTarget;
+    }
 
 
     // 가장 가까운 그리드 점을 찾는 함수
