@@ -67,8 +67,6 @@ public class M_GameManager : MonoBehaviour
         waveEnabled.enabled = false;
         waveDisabled.enabled = true;
 
-        Debug.Log("MyImage is: " + waveEnabled);
-        Debug.Log("MyImage is: " + waveDisabled);
 
     }
 
