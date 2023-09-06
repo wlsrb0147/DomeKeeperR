@@ -3134,7 +3134,7 @@ GameObject:
   - component: {fileID: 1733764343}
   - component: {fileID: 1733764342}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Monster_GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3169,6 +3169,7 @@ MonoBehaviour:
   spawnDuration: 0
   spawnMonster: 0
   slider: {fileID: 1181667156}
+  killedMonster: 0
 --- !u!4 &1733764343
 Transform:
   m_ObjectHideFlags: 0
