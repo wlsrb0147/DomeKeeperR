@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stun : MonoBehaviour
+public class Stun : StunEntity
 {
-    [SerializeField] public float Atk;
-    [SerializeField] public float Speed; //업글시 속도증가시키면 됨 
+  
+    private GameObject target; // 현재 추적 중인 적
+    private float chaseRange = 50f; // 추적 범위
+    private List<GameObject> availableTargets = new List<GameObject>(); // 이동 가능한 적 목록
+
     private void Start()
     {
         

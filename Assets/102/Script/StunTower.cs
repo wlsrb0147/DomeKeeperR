@@ -16,7 +16,8 @@ public class StunTower : Tower
 
     #endregion
     public GameObject Stun;
-    void Update()
+    public GameObject NonAutoStun;
+    private void Start()
     {
         SetRotation();
         Move();
@@ -56,31 +57,18 @@ public class StunTower : Tower
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
-
-                angle = angle + Time.deltaTime * angularSpeed;
-                transform.Rotate(0, 0, rote);
-                if (angle >= leftLockAngle)
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 90);
-                }
+               
+                    StartCoroutine("AutoStunAtk");
+                    StunAttack();
             }
-        }
-
-        if (angle > rightLockAngle)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            else 
             {
-
-                angle = angle + Time.deltaTime * -angularSpeed;
-                transform.Rotate(0, 0, -rote);
-                if (angle <= rightLockAngle)
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, -90);
-                }
+                StopCoroutine("AutoStunAtk");
+        
             }
         }
-
     }
+    
 
     void Attack()
     {
@@ -97,13 +85,22 @@ public class StunTower : Tower
         }
     }
 
-  
-    IEnumerator StunAtk()
+    void StunAttack()
     {
+        if (SkillTreeManager.Instance.isTech3 == false)
+        {
+            GameObject SA = Instantiate(NonAutoStun, StunPos.transform.position, StunPos.transform.rotation);
+            Destroy(SA, 5f);
+            StunRestTime = 0;
+        }
+    }
+    IEnumerator AutoStunAtk()
+    {
+        if (SkillTreeManager.Instance.isTech3 == true) { 
         GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
         StunRestTime = 0;
-        yield return new WaitForSeconds(StunRestCool); 
-        
-    }
+        yield return new WaitForSeconds(StunRestCool);
+        }
+    }                   
 }
