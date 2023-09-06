@@ -9,7 +9,7 @@ public class S_SkillUnLock : MonoBehaviour
     public GameObject UnlockImage;
     [SerializeField] bool useCheck = false;
     [SerializeField] GameObject[] upgradeNode;
-    Dome dome;
+    [SerializeField] Dome dome;
 
     int upgradeCount = 0;
     enum SkillName
