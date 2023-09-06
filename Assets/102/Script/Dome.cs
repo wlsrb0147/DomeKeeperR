@@ -5,7 +5,7 @@ public class Dome : MonoBehaviour
     #region
     [Header("µ¼")]
 
-    [SerializeField] float MaxHp;
+    [SerializeField] public float MaxHp;
     [SerializeField] public float CurHp;
     [SerializeField] public float Def;
     [SerializeField] float trueatk;
@@ -30,7 +30,7 @@ public class Dome : MonoBehaviour
     {
         SI = ShieldIg.GetComponent<SpriteRenderer>();
         Dd = Damaged.GetComponent<SpriteRenderer>();
-        MaxHp = CurHp;
+        CurHp = MaxHp ;
         CoolTimer = 29f;
     }
 
@@ -45,7 +45,7 @@ public class Dome : MonoBehaviour
             if (CoolTimer > RespawnTime)
             {
 
-                Shield = 100f;
+                //Shield = 100f;
                 isShield = true;
                 SI.enabled = true;
                 CoolTimer = 0f;
@@ -55,7 +55,7 @@ public class Dome : MonoBehaviour
         }
     }
 
-    void SetHeal(int heal)
+    public void SetHeal(float heal)
     {
         CurHp += heal;
         if (CurHp > MaxHp)

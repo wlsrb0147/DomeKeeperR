@@ -18,16 +18,16 @@ public class M_Base : MonoBehaviour
 
 
     public float currentHP2;
-    public float idleTimer2 = 100f;
+    public float idleTimer2 { get; set; }
     public float idleTime2 = 0;
-        
+    public bool stun;
 
     [Header("Stat")]
     public float HP;
     public float HP1 = 10;
     public float HP2 = 0;
     public float Atk = 1;
-
+    
     public int faceX { get; private set; }
     public bool facingRight { get; private set; }
     public Vector2 zero { get; private set; }
@@ -52,10 +52,14 @@ public class M_Base : MonoBehaviour
     {
        // idleTimer = 0;
         currentHP1 = HP1;
+        currentHP2 = HP2;
     }
 
     protected virtual void Update()
     {
+        Debug.Log("aa " + idleTime2);
+
+
         stateMachine.currentState.Update();
 
         HP = HP1 + HP2;
@@ -80,11 +84,13 @@ public class M_Base : MonoBehaviour
         {
             currentHP2 = HP2;
             idleTimer2 = 0;
-            ChangeAniVelocity(0f);
+            Stun(0f);
+            stun = true;
         }
         else if (idleTimer2 >= idleTime2)
         {
-            ChangeAniVelocity(1f);
+            Stun(1f);
+            stun = false;
         }
 
         idleTimer2 += Time.deltaTime;
@@ -97,9 +103,10 @@ public class M_Base : MonoBehaviour
 
     }
 
-    protected virtual void ChangeAniVelocity(float x)
+    public void ChangeStunTime(float x) => idleTime2 = x;
+    protected virtual void Stun(float x)
     {
-        ani.SetFloat("AniSpeed", x);
+        ani.SetFloat("Stun", x);
     }
 
     public void Damage1(float Atk)
