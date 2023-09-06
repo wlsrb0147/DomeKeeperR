@@ -71,8 +71,7 @@ public class SkillTreeManager : MonoBehaviour
     }
     private void Update()
     {
-        EquipSubTower();
-        CreateAutoTower();
+     
     }
 
     public void AttackUp()

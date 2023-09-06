@@ -18,7 +18,7 @@ public class M_Base : MonoBehaviour
 
 
     public float currentHP2;
-    public float idleTimer2 = 0.15f;
+    public float idleTimer2 = 100f;
     public float idleTime2 = 0;
         
 

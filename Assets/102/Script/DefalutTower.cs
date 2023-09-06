@@ -201,7 +201,7 @@ public class DefalutTower : Tower
                 if (lrhit.collider != null)
                 {
                     GameObject hitObject = lrhit.collider.gameObject;
-                    hitObject.GetComponent<M_Base>().Damage1(Atk);
+                    hitObject.GetComponent<M_Base>().Damage2(Atk);
                     hitEnemy = true;
                     penetratedEnemyCount++;
                    
@@ -220,7 +220,7 @@ public class DefalutTower : Tower
                     if (hit.collider != null)
                     {
                         GameObject hitObject = hit.collider.gameObject;
-                        hitObject.GetComponent<M_Base>().Damage1(Atk);
+                        hitObject.GetComponent<M_Base>().Damage2(Atk);
 
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
