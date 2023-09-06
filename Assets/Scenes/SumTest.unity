@@ -2767,7 +2767,7 @@ MonoBehaviour:
   animationPrefab: {fileID: 6888460268258515412, guid: a914b4094d36b094ba22917cd7f59041, type: 3}
   Atk: 1
   maxHitsBeforeDisable: 1
-  penetratedCount: 1
+  penetratedCount: 4
 --- !u!212 &1535147943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3791,11 +3791,11 @@ MonoBehaviour:
   isAtkUp: 0
   isDefUp: 0
   isTech1: 0
-  isPenetrate: 0
+  isPenetrate: 1
   isCharge: 0
   isPenetrateUpgrade1: 0
   isPenetrateUpgrade2: 0
-  isChargeDelayless: 0
+  isChargeDelayLess: 0
   isChargeTimeLess: 0
   isTech2: 0
   isFireTower: 0

@@ -108,14 +108,15 @@ public class PetEntity : MonoBehaviour
         CollisionChecks();
         PetAnimatorControllers();
         FlipController();
-        if (!repeatLabor)
-        {
-            maxComebackHome();
-        }
 
+        if (!repeatLabor) 
+        { 
+            maxComebackHome(); 
+        }      
         RestartMining();
     }
 
+    #region Mining
     protected void RestartMining()
     {
         if (isPetCooldown)
@@ -140,8 +141,10 @@ public class PetEntity : MonoBehaviour
             move_Astar.Bmc();
             repeatLabor = true;
         }
-            
+
     }
+    #endregion
+
 
     #region Flip 
     public virtual void Flip()
@@ -223,6 +226,8 @@ public class PetEntity : MonoBehaviour
             repeatLabor = false;
             Debug.Log("Stash에 광물 반납을 완료하였습니다.");
         }
+
+       // if (collision.gameObject.CompareTag("Platform"))
     }
 
     #endregion
@@ -344,7 +349,7 @@ public class PetEntity : MonoBehaviour
     {
         if (cooltimeLv == 2)
         {
-
+            
         }
     }
 
