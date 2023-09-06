@@ -24,5 +24,7 @@ public class M_BeastAttack : M_State
     public override void Update()
     {
         base.Update();
+        Debug.Log(beast.attacked);
+        if (beast.attacked) stateMachine.ChangeState(beast.wallHit);
     }
 }
