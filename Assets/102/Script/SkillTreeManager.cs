@@ -100,7 +100,7 @@ public class SkillTreeManager : MonoBehaviour
         }
     }
 
-    public void SCreateAutoTower()
+    public void CreateAutoTower()
     {
         if (isTech3 == true)
         {
