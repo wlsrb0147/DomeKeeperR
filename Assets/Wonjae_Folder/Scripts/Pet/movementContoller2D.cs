@@ -4,7 +4,7 @@ using UnityEngine;
 using Aoiti.Pathfinding; // 경로 탐색 라이브러리를 가져옴
 using Unity.VisualScripting;
 
-public class MovementController2D : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
@@ -53,8 +53,6 @@ public class MovementController2D : MonoBehaviour
                 pt.Flip();
 
             GetMoveCommand(randomTarget);
-
-            
         }
 
         if (pathLeftToGo.Count > 0) // 목표에 도달하지 않았을 때
@@ -85,6 +83,8 @@ public class MovementController2D : MonoBehaviour
         EdgeCollider2D capColl = GetComponent<EdgeCollider2D>();
         capColl.enabled = false;
         speed = originSpeed;
+        BackMoveCommand(new Vector2(-0.4f, -10.5f));
+        BackMoveCommand(new Vector2(-0.4f, -10.5f));
 
     }
     private void ResetMovementState()
