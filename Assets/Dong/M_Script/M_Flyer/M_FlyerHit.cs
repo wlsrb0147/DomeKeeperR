@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class M_FlyerHit : M_State
@@ -23,5 +24,6 @@ public class M_FlyerHit : M_State
     public override void Update()
     {
         base.Update();
+        if (!flyer.attacked) stateMachine.ChangeState(flyer.attack);
     }
 }
