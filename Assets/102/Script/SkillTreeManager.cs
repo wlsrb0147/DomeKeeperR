@@ -7,6 +7,9 @@ public class SkillTreeManager : MonoBehaviour
     public static SkillTreeManager Instance;
     private DefalutTower dt;
     private Dome dm;
+    private FireTower ft;
+    private StunTower st;
+
     public int isAtkUp;
     public int isDefUp;
     #region
@@ -56,11 +59,20 @@ public class SkillTreeManager : MonoBehaviour
         if(!dm)
         {
             dm = GetComponent<Dome>();
-        } 
+        }
+        if (!ft)
+        {
+            ft = GetComponent<FireTower>();
+        }
+        if (!st)
+        {
+            st = GetComponent<StunTower>();
+        }
     }
     private void Update()
     {
         EquipSubTower();
+        CreateAutoTower();
     }
 
     public void AttackUp()
@@ -91,7 +103,9 @@ public class SkillTreeManager : MonoBehaviour
     {
         isTech3 = true;
     }
-
+    
+    
+    //테크2
     public void EquipSubTower()
     { 
         if(isTech2 == true) 
@@ -99,7 +113,64 @@ public class SkillTreeManager : MonoBehaviour
             SubTower.SetActive(true);
         }
     }
+    public void EquipStunTower()
+    {
+        if (isTech2 == true)
+        {
+            StunTower.SetActive(true);
+            SubTower.SetActive(false);  
+        }
+    }
+    public void StunTimeUp()
+    {
+        if (isTech2 == true)
+        {
+            st.StunDuartion += 2f;
+        }
+    }
+    public void StunCoolDown()
+    {
+        if (isTech2 == true)
+        {
+            st.StunRestCool -= 2f;
+        }
+    }
+    public void StunSpeedUp()
+    {
+        if (isTech2 == true)
+        {
+        
+        }
+    }
 
+
+
+
+    public void EquipFireTower()
+    {
+        if (isTech2 == true)
+        {
+            FireTower.SetActive(true);
+            SubTower.SetActive(false);
+        }
+    }
+    public void FireTowerDurUp()
+    {
+        if (isTech2 == true)
+        {
+            ft.FireDuartion += 4f;
+        
+        }
+    }
+    public void FireTowerRestDown()
+    {
+        if (isTech2 == true)
+        {
+            ft.FireRestCool -= 2f;
+           
+        }
+    }
+    //테크3 
     public void CreateAutoTower()
     {
         if (isTech3 == true)

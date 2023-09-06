@@ -9,9 +9,9 @@ public class StunTower : SubTower
 
     #region
     [Header("Ω∫≈œ")]
-    [SerializeField] float StunDuartion;
-    [SerializeField] float StunRestCool;
-    [SerializeField] float StunRestTime;
+    [SerializeField] public float StunDuartion;
+    [SerializeField] public float StunRestCool;
+    [SerializeField] public float StunRestTime;
  
    
     #endregion
