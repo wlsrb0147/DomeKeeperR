@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 9103345212335302220}
   - component: {fileID: 1099182522928215136}
   - component: {fileID: 21784359278252298}
-  - component: {fileID: 6944890912437021682}
   - component: {fileID: 6519751680876049209}
   - component: {fileID: 4408457436200238985}
+  - component: {fileID: 2244495531196260637}
   m_Layer: 9
   m_Name: wPet
   m_TagString: Pet
@@ -101,7 +101,7 @@ Transform:
   - {fileID: 4939101024197258598}
   - {fileID: 8983549880669369456}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -220,26 +220,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6944890912437021682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924973197211554225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df3f1bcf7fc45543b731cf81e9bb587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridSize: 0.5
-  originSpeed: 0.05
-  obstacles:
-    serializedVersion: 2
-    m_Bits: 448
-  searchShortcut: 0
-  snapToGrid: 1
-  drawDebugLines: 1
 --- !u!50 &6519751680876049209
 Rigidbody2D:
   serializedVersion: 4
@@ -314,6 +294,27 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2244495531196260637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924973197211554225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdef79944b73a8429c8930a8e5e082c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSize: 0.5
+  speed: 0.15
+  originSpeed: 0.05
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 0
+  searchShortcut: 0
+  snapToGrid: 1
+  drawDebugLines: 1
 --- !u!1 &2182025306968062408
 GameObject:
   m_ObjectHideFlags: 0
