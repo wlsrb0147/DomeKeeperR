@@ -194,6 +194,7 @@ MonoBehaviour:
   HP1: 100
   HP2: 0
   Atk: 10
+  stunBullet: {fileID: 1511442708161056059, guid: 9c9a6e46275235047bd52123d1fb8f47, type: 3}
   moveSpeed: {x: 6, y: 0}
   attacked: 0
   jumpPower: {x: 7, y: 7}

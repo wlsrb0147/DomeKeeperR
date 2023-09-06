@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class M_Base : MonoBehaviour
 {
+    
     public M_StateMachine stateMachine { get; private set; }
     public Animator ani { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public Transform domeCenter { get; private set; }
-
     protected bool destroyed = false;
 
 
@@ -35,6 +35,12 @@ public class M_Base : MonoBehaviour
 
     protected Collider2D collision;
 
+
+
+    public GameObject stunBullet;
+    Stun stunScript;
+    float stunTime;
+
     protected virtual void Awake()
     {
         stateMachine = new M_StateMachine();
@@ -50,12 +56,26 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Start()
     {
+        stunScript = stunBullet.GetComponent<Stun>();
+
         currentHP1 = HP1;
         currentHP2 = HP2;
     }
 
     protected virtual void Update()
     {
+        Debug.Log(stunBullet.name);
+        Debug.Log(stunScript);
+
+        stunTime = stunScript.GetsStunTime();
+
+
+        idleTime2 = stunTime;
+
+
+        Debug.Log(idleTime2);
+
+
 
         stateMachine.currentState.Update();
 
