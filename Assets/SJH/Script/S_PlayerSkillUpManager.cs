@@ -18,5 +18,8 @@ public class S_PlayerSkillUpManager : MonoBehaviour
     {
         S_GameManager.instance.player.GetComponentInChildren<S_Drill>().damage += 10f;
     }
-
+    public void UseTeleportSkill()
+    {
+        S_GameManager.instance.player.useteleportSkill = true;
+    }
 }
