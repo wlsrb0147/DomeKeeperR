@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillTreeManager : MonoBehaviour
 {
     public static SkillTreeManager Instance;
-
+ 
     #region
     public int id;
     [Header("태크1")]
@@ -16,6 +16,8 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public bool isPenetrateUpgrade2 = false;
     [SerializeField] public bool isChargeDelayless = false;
     [SerializeField] public bool isChargeTimeLess = false;
+  
+
     #endregion
     #region
     [Header("태크2")]
@@ -36,6 +38,10 @@ public class SkillTreeManager : MonoBehaviour
     {
         Instance = this; // 스킬 트리 매니저의 인스턴스를 설정합니다.
     }
+    void Start()
+    {
+       
+    }
     private void Update()
     {
       
@@ -54,6 +60,9 @@ public class SkillTreeManager : MonoBehaviour
             FireTower.SetActive(true);
         }
     }
-
+    void AttackUp()
+    {
+     
+    }
     
 }

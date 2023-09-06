@@ -58,11 +58,16 @@ public class Dome : MonoBehaviour
         }
         
     }
-    void SetDamage(int atk)
+    public void SetDamage(float atk)
     {
         if (!isShield)
         {
             trueatk = atk - Def;
+            if (trueatk <= 0)
+            { 
+                trueatk = 0;
+            }
+
             CurHp -= trueatk;
 
             if (CurHp < MaxHp/2)
