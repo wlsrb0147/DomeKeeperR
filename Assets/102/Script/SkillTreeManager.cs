@@ -9,7 +9,10 @@ public class SkillTreeManager : MonoBehaviour
     private Dome dm;
     private FireTower ft;
     private StunTower st;
+
+
     [SerializeField] public GameObject defaltTower;
+    [SerializeField] public GameObject dome;
     public int isAtkUp;
     public int isDefUp;
     #region
@@ -87,14 +90,14 @@ public class SkillTreeManager : MonoBehaviour
     {
         if (isDefUp < 5)
         {
-            dm.Def += 2;
+            dome.GetComponent<Dome>().Def += 2;
             isDefUp += 1;
         }
     }
 
-    public void domeHeal()
+    public void DomeHeal()
     {
-        dm.SetHeal(dm.MaxHp / 3);
+        dome.GetComponent<Dome>().SetHeal(dome.GetComponent<Dome>().MaxHp / 3);
     }
     public void Tech1Active()
     {
@@ -143,13 +146,13 @@ public class SkillTreeManager : MonoBehaviour
     public void StunTimeUp()
     {
 
-        st.StunDuartion += 2f;
+        StunTower.GetComponent<StunTower>().StunDuartion += 2f;
 
     }
     public void StunCoolDown()
     {
 
-        st.StunRestCool -= 2f;
+        StunTower.GetComponent<StunTower>().StunRestCool -= 2f;
 
     }
     public void StunSpeedUp()
@@ -170,13 +173,13 @@ public class SkillTreeManager : MonoBehaviour
     public void FireTowerDurUp()
     {
 
-        ft.FireDuartion += 4f;
+        FireTower.GetComponent<FireTower>().FireDuartion += 4f;
 
     }
     public void FireTowerRestDown()
     {
 
-        ft.FireRestCool -= 2f;
+        FireTower.GetComponent<FireTower>().FireRestCool -= 2f;
 
 
     }
