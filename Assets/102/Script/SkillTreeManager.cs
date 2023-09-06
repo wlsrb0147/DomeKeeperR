@@ -19,7 +19,7 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public bool isCharge = false;
     [SerializeField] public bool isPenetrateUpgrade1 = false;
     [SerializeField] public bool isPenetrateUpgrade2 = false;
-    [SerializeField] public bool isChargeDelayless = false;
+    [SerializeField] public bool isChargeDelayLess = false;
     [SerializeField] public bool isChargeTimeLess = false;
   
 
@@ -103,8 +103,19 @@ public class SkillTreeManager : MonoBehaviour
     {
         isTech3 = true;
     }
-    
-    
+
+    public void Charge()
+    {
+        isCharge = true;
+    }
+    public void ChargeDelayDown()
+    {
+        isChargeDelayLess = true;
+    }
+    public void ChargeTimeUpgrade()
+    {
+        isChargeTimeLess = true;
+    }
     //еве╘2
     public void EquipSubTower()
     { 
