@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8240554268281557105}
   - component: {fileID: 2792857119504611309}
+  - component: {fileID: 7865411026850793523}
   - component: {fileID: 7362912475917071201}
-  - component: {fileID: 4998276120081605462}
   m_Layer: 0
   m_Name: Stun
   m_TagString: Untagged
@@ -28,11 +28,11 @@ Transform:
   m_GameObject: {fileID: 1511442708161056059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.82, y: -5.92, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2792857119504611309
 SpriteRenderer:
@@ -86,22 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7362912475917071201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511442708161056059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6865852ea79ad48a030ab2fea9b701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Atk: 20
-  Speed: 10
---- !u!58 &4998276120081605462
-CircleCollider2D:
+--- !u!61 &7865411026850793523
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,9 +115,33 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.00077249855, y: 0.07982491}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.13}
+    newSize: {x: 0.32, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.08000002
+  m_Size: {x: 0.0616322, y: 0.16}
+  m_EdgeRadius: 0
+--- !u!114 &7362912475917071201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511442708161056059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6865852ea79ad48a030ab2fea9b701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Atk: 20
+  Speed: 3
