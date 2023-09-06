@@ -71,7 +71,6 @@ public class PetController : PetEntity
 
         if (isPetCooldown == true)
         {
-            ZeroVelocity();
             petIdle = true;
             petFly = false;
             sideMine = false;

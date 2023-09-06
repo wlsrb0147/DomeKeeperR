@@ -49,7 +49,6 @@ public class M_Moving : M_Base
 
     protected virtual void ChangeAniVelocity(float x)
     {
-       
         moveSpeed = InitialmoveSpeed * x;
         ani.SetFloat("AniSpeed", x);
         

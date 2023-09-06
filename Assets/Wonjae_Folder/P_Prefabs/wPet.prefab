@@ -119,7 +119,8 @@ MonoBehaviour:
   petCooldownTimer: 1
   footPos: {fileID: 1414214155786455657}
   toothPos: {fileID: 7061716428815760171}
-  redjemScore: 0
+  copyPet: {fileID: 924973197211554225}
+  redjemScore: 1
   greenjemScore: 0
   bluejemScore: 0
   maxScore: 10

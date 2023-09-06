@@ -9,8 +9,8 @@ public class PetEntity : MonoBehaviour
 {
     [Header("펫 정보")]
     [Tooltip("펫의 현재 공격력")]
+    [SerializeField] private float petSpeed = 2.5f;
     [SerializeField] private float petDamage;
-    protected float petSpeed = 2.5f;
 
     [Tooltip("펫 재사용 대기시간")]
     [SerializeField] protected float petCooldownTimer = 100.0f;
@@ -20,6 +20,7 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform footPos;
     [Tooltip("toothPos : 정방향 채굴")]
     [SerializeField] protected Transform toothPos;
+    [SerializeField] protected GameObject copyPet;
 
     [Header("보유한 광물의 수")]
     public float redjemScore = 0f;
@@ -101,6 +102,7 @@ public class PetEntity : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
         move_Astar = GetComponent<MovementController2D>();
+        Invoke("DoublePet", 0.5f);
     }
 
     protected virtual void Update()
@@ -211,21 +213,26 @@ public class PetEntity : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Stash"))
+       
+        if (redjemScore + bluejemScore + greenjemScore >= 1)
         {
-            S_GameManager.instance.stash.redjemScore = redjemScore;
-            S_GameManager.instance.stash.bluejemScore = bluejemScore;
-            S_GameManager.instance.stash.greenjemScore = greenjemScore;
+            if (collision.gameObject.CompareTag("Stash"))
+            {
 
-            redjemScore = 0;
-            bluejemScore = 0;
-            greenjemScore = 0;
+                S_GameManager.instance.stash.redjemScore = redjemScore;
+                S_GameManager.instance.stash.bluejemScore = bluejemScore;
+                S_GameManager.instance.stash.greenjemScore = greenjemScore;
 
-            isPetCooldown = true;
-            repeatLabor = false;
-            Debug.Log("Stash에 광물 반납을 완료하였습니다.");
+                redjemScore = 0;
+                bluejemScore = 0;
+                greenjemScore = 0;
+
+                isPetCooldown = true;
+                repeatLabor = false;
+                Debug.Log("Stash에 광물 반납을 완료하였습니다.");
+
+            }
         }
-
     }
 
     #endregion
@@ -347,7 +354,7 @@ public class PetEntity : MonoBehaviour
     {
         if (cooltimeLv == 2)
         {
-            
+            Instantiate(copyPet, new Vector3(-1.4f, -10.0f, 0.0f), Quaternion.identity);
         }
     }
 
