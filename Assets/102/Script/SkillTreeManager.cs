@@ -104,6 +104,11 @@ public class SkillTreeManager : MonoBehaviour
         isTech3 = true;
     }
 
+    public void Penetrate()
+    {
+        dt.penetratedCount += 1;
+        dt.Atk += 2;
+    }
     public void Charge()
     {
         isCharge = true;
