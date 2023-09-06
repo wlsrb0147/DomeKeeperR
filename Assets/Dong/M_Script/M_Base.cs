@@ -113,7 +113,6 @@ public class M_Base : MonoBehaviour
     {
       if(collision !=null)
        collision.GetComponent<Dome>().SetDamage(Atk);
-        Debug.Log(collision.GetComponent<Dome>());
     }
 
     protected virtual void Dead()
