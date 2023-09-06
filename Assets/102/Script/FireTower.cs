@@ -11,10 +11,12 @@ public class FireTower : SubTower
     #region
     [Header("불")]
     [SerializeField] float raydistance;
-    [SerializeField] float FireDuartion;
-    [SerializeField] float FireRestTime;
-    [SerializeField] float FireRestCool;
+    [SerializeField] public float FireDuartion;
+    [SerializeField] public float FireRestTime;
+    [SerializeField] public float FireRestCool;
     [SerializeField] bool isFire;
+    [SerializeField] bool playFire;
+
 
     #endregion
     public GameObject Fire;
@@ -26,17 +28,17 @@ public class FireTower : SubTower
     {
         base.Update();
         RestTimeCheck();
-        
+
         UpdateFirePosition();
         Attack();
     }
 
     void RestTimeCheck()
     {
-      
+
         FireRestTime += Time.deltaTime;
     }
-    
+
     void UpdateFirePosition()
     {
         if (isFire && Fire != null)
@@ -48,31 +50,39 @@ public class FireTower : SubTower
     {
         if (hit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
         {
-            if (FireRestTime > FireRestCool) 
-            { 
-            isFire = true;
+            if (FireRestTime > FireRestCool)
+            {
+                isFire = true;
             }
-            if (isFire) { 
+           
+        }
+       
+        if (isFire)
+        {
             StartCoroutine("CreateFire");
-            }
         }
         else
         {
-            if (!isFire) { 
-            StopCoroutine("CreateFire");
+            if (!isFire)
+            {
+                StopCoroutine("CreateFire");
             }
         }
     }
 
     IEnumerator CreateFire()
     {
-      
+
+           
+            GameObject Firebat = Instantiate(Fire, FirePos.transform.position, FirePos.transform.rotation);
+            Destroy(Firebat, 0.2f);
+            Debug.Log("방사중");
+            yield return new WaitForSeconds(FireDuartion);
+            FireRestTime = 0f;
+            isFire = false;
         
-        GameObject Firebat = Instantiate(Fire, FirePos.transform.position,FirePos.transform.rotation);
-        Destroy(Firebat, 0.2f);
-        yield return new WaitForSeconds(FireDuartion);
-        FireRestTime = 0f;
-        isFire = false;
+         
         
+
     }
 }
