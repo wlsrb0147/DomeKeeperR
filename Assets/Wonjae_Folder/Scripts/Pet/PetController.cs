@@ -69,6 +69,15 @@ public class PetController : PetEntity
             underMine = true;
         }
 
+        if (isPetCooldown == true)
+        {
+            ZeroVelocity();
+            petIdle = true;
+            petFly = false;
+            sideMine = false;
+            underMine = false;
+        }
+
         #endregion
     }
 
