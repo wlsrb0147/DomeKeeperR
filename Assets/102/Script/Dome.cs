@@ -6,7 +6,7 @@ public class Dome : MonoBehaviour
     [Header("µ¼")]
 
     [SerializeField] float MaxHp;
-    [SerializeField] float CurHp;
+    [SerializeField] public float CurHp;
     [SerializeField] public float Def;
     [SerializeField] float trueatk;
 
