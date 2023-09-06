@@ -9,10 +9,12 @@ public class S_SkillUnLock : MonoBehaviour
     public GameObject UnlockImage;
     [SerializeField] bool useCheck = false;
 
+    Dome dome;
     enum SkillName
     {
         light,
         teleport,
+        domesheild,
     }
 
     [SerializeField] SkillName skillName;
@@ -29,6 +31,10 @@ public class S_SkillUnLock : MonoBehaviour
                 gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.lightCoolTime) * Time.deltaTime;
             else if (skillName == SkillName.teleport)
                 gameObject.GetComponentInChildren<Slider>().value += (1 / S_GameManager.instance.player.teleportCoolTime) * Time.deltaTime;
+            /*else if (skillName == SkillName.domesheild)
+                gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().
+*/
+
 
         }
 
