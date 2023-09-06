@@ -102,7 +102,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mineral: {fileID: 444532184952659963, guid: 75cce875655cfb84d89517d293a603fa, type: 3}
-  Hp: 20
+  Hp: 40
 --- !u!61 &1957171531920838957
 BoxCollider2D:
   m_ObjectHideFlags: 0

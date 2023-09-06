@@ -7,18 +7,19 @@ public class S_ScoreBoard : MonoBehaviour
     [SerializeField] GameObject scoreBoard;
     [SerializeField] GameObject map;
     [SerializeField] GameObject skillboard;
-    float mapcount =5;
+    float scorecount =5;
     float skillboardcount = 0f;
     void Update()
     {
-        mapcount -= Time.deltaTime;
+        scorecount -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            mapcount = 5;
-           
+            scorecount = 5;
+            scoreBoard.SetActive(true);
+
         }
-        if (mapcount <= 0)
+        if (scorecount <= 0)
         {
             scoreBoard.SetActive(false);
         }

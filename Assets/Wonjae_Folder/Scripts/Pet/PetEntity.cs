@@ -64,9 +64,6 @@ public class PetEntity : MonoBehaviour
     /// </summary>
     protected int facingDir = -1;
     protected bool facingRight = true;
-    private int attackLv = 1;
-    private int carryLv = 1;
-    private int scanLv = 1;
     private int cooltimeLv = 1;
     private float petCooldownTimer = 100.0f;
     private float petCooldownTimerUpgrade = 60.0f;
@@ -79,7 +76,9 @@ public class PetEntity : MonoBehaviour
     private S_Mineral mineral;
     //
 
-    #region bool Checks
+    //
+
+    #region anim bool
     protected bool isGrounded;
     protected bool isWallDetected;
     protected bool isMineraled;
@@ -125,6 +124,7 @@ public class PetEntity : MonoBehaviour
                 isPetCooldown = false;
                 petCooldownTimer = 100.0f;
 
+                //mc.SetMovementState();
             }
         }
     }
@@ -134,7 +134,7 @@ public class PetEntity : MonoBehaviour
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
             Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
-           // mc.SetMovementState();
+            //mc.SetMovementState();
         }
     }
 
