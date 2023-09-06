@@ -20,6 +20,7 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform footPos;
     [Tooltip("toothPos : 정방향 채굴")]
     [SerializeField] protected Transform toothPos;
+    [SerializeField] protected GameObject copyPet;
 
     [Header("보유한 광물의 수")]
     public float redjemScore = 0f;
@@ -101,6 +102,7 @@ public class PetEntity : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
         move_Astar = GetComponent<MovementController2D>();
+        Invoke("DoublePet", 0.5f);
     }
 
     protected virtual void Update()
@@ -347,7 +349,7 @@ public class PetEntity : MonoBehaviour
     {
         if (cooltimeLv == 2)
         {
-            
+            Instantiate(copyPet, new Vector3(-1.4f, -10.0f, 0.0f), Quaternion.identity);
         }
     }
 
