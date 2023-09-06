@@ -140,10 +140,12 @@ public class SubTower : Tower
     }
 
      protected virtual void Attack()
-     { 
-        if(Input.GetKey(KeyCode.Space)) 
+     {
+        Debug.Log("어택업데이트");
+        if(Input.GetKey(KeyCode.Space))
         {
-            if(attackDelayTime > 1.5f) 
+            Debug.Log("스페이스바");
+            if (attackDelayTime > 1.5f) 
             {
                 attackDelayTime = 0f;
                 GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
