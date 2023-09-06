@@ -3295,7 +3295,7 @@ MonoBehaviour:
   animationPrefab: {fileID: 6888460268258515412, guid: a914b4094d36b094ba22917cd7f59041, type: 3}
   Atk: 1
   maxHitsBeforeDisable: 1
-  penetratedCount: 1
+  penetratedCount: 4
 --- !u!212 &1535147943
 SpriteRenderer:
   m_ObjectHideFlags: 0
