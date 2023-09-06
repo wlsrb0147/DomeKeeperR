@@ -215,12 +215,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7c5451f769e4241bbb96805a38dbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTimer: 0
-  currentHP: 0
+  currentHP1: 0
+  idleTime1: 0.15
+  idleTimer1: 0
+  currentHP2: 0
+  idleTimer2: 0
+  idleTime2: 15
+  stun: 0
   HP: 0
   HP1: 10
   HP2: 0
   Atk: 1
+  stunBullet: {fileID: 2943596597679754805}
   shiftCounter: 0
   shiftCount: 0
   bullet: {fileID: 8115325784861304593, guid: 6fa809c83df4f9747874ce07510c04f5, type: 3}

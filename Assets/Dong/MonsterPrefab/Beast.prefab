@@ -183,12 +183,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e224e3b944c1e468b4f83162f34ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleTimer: 0
-  currentHP: 0
+  currentHP1: 0
+  idleTime1: 0.15
+  idleTimer1: 0
+  currentHP2: 0
+  idleTimer2: 0
+  idleTime2: 100
+  stun: 0
   HP: 10
   HP1: 100
   HP2: 0
   Atk: 10
+  stunBullet: {fileID: 1511442708161056059, guid: 9c9a6e46275235047bd52123d1fb8f47, type: 3}
   moveSpeed: {x: 6, y: 0}
+  attacked: 0
   jumpPower: {x: 7, y: 7}
   currnetHP: 0
