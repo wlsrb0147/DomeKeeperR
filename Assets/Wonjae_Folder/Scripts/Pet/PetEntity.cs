@@ -4,8 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.Rendering.Universal;
 
 public class PetEntity : MonoBehaviour
 {
@@ -26,16 +24,12 @@ public class PetEntity : MonoBehaviour
     public float redjemScore = 0f;
     public float greenjemScore = 0f;
     public float bluejemScore = 0f;
-
-    public float maxScore = 10.0f;
-
-    [Header("펫의 스킬 레벨")]
-    [SerializeField] public int attackLv = 1; // 공격 레벨
-    [SerializeField] public int carryLv = 1; // 가방 무게도 레벨
-    [SerializeField] public int scanLv = 1; // 시야 레벨
+    private float allScore = 0f;
+    [Tooltip("Pet이 가질 수 있는 최대 광물 갯수입니다.")]
+    public float maxScore = 10.0f;  
 
     [Header("충돌 체크")]
-    [Tooltip("펫이 닿고있는 지면을 확인합니다.")]
+    [Tooltip("Pet이 닿고있는 지면을 확인합니다.")]
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected private float groundCheckDistance;
 
@@ -51,7 +45,7 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform sideCheck;
     [SerializeField] protected float sideCheckDistance;
 
-    [Tooltip("펫 뒤에 미네랄이 있는지 감지합니다.")]
+    [Tooltip("Pet 뒤에 미네랄이 있는지 감지합니다.")]
     [SerializeField] protected Transform backCheck;
     [SerializeField] protected float backCheckDistance;
 
@@ -65,7 +59,9 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private LayerMask WhatIsMineral;
     [SerializeField] protected private LayerMask WhatIsSideTile;
 
-    //방향 전환
+    /// <summary>
+    /// 방향 전환 및 스킬 레벨
+    /// </summary>
     protected int facingDir = -1;
     protected bool facingRight = true;
     private int attackLv = 1;
@@ -81,13 +77,9 @@ public class PetEntity : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spr;
     private S_Mineral mineral;
-    MovementController2D mc;
     //
 
-    //
-    S_Mineral mineral;
-
-    #region anim bool
+    #region bool Checks
     protected bool isGrounded;
     protected bool isWallDetected;
     protected bool isMineraled;
@@ -104,14 +96,12 @@ public class PetEntity : MonoBehaviour
     private bool isPetCooldown = false;
     #endregion
 
-
     protected virtual void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        mc = GetComponent<MovementController2D>();
     }
 
     protected virtual void Update()
@@ -120,34 +110,33 @@ public class PetEntity : MonoBehaviour
         PetAnimatorControllers();
         FlipController();
         maxComebackHome();
+        RestartMining();
 
+    }
+
+    private void RestartMining()
+    {
         if (isPetCooldown)
         {
             petCooldownTimer -= Time.deltaTime;
 
-            if(petCooldownTimer <= 0.0f)
+            if (petCooldownTimer <= 0.0f)
             {
                 isPetCooldown = false;
                 petCooldownTimer = 100.0f;
 
-                mc.SetMovementState();
             }
         }
-
     }
-
-
-
 
     private void maxComebackHome()
     {
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
             Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
-            mc.SetMovementState();
+           // mc.SetMovementState();
         }
     }
-
 
     #region Flip 
     public virtual void Flip()
@@ -182,7 +171,6 @@ public class PetEntity : MonoBehaviour
     }
 
     #endregion
-
 
     #region CollisionChecks
     protected virtual void CollisionChecks()
@@ -233,24 +221,20 @@ public class PetEntity : MonoBehaviour
 
     #endregion
 
-
     #region Velocity
     public void ZeroVelocity() => rbody.velocity = Vector2.zero;
     public void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
 
     #endregion
 
-    //
     #region Animaition
     private void PetAnimatorControllers()
     {
-        /*Pet_Dog Anim*/
         anim.SetBool("Pet_Move", petMove);
         anim.SetBool("Pet_idle", petIdle);
         anim.SetBool("Pet_Fly", petFly);
         anim.SetBool("Under_Mine", underMine);
         anim.SetBool("Side_Mine", sideMine);
-        /*pet_Dog Anim Finish*/
     }
 
     void PetUnderMine()
@@ -360,12 +344,6 @@ public class PetEntity : MonoBehaviour
         }
     }
 
-    protected void PetDouble()
-    {
-
-    }
-
     #endregion
-
 
 }

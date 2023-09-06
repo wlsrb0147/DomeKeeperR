@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 6519751680876049209}
   - component: {fileID: 4408457436200238985}
   m_Layer: 9
-  m_Name: Pet
+  m_Name: wPet
   m_TagString: Pet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ Transform:
   - {fileID: 4939101024197258598}
   - {fileID: 8983549880669369456}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -128,7 +128,7 @@ MonoBehaviour:
   mineralUnderCheck: {fileID: 7677812303816594371}
   mineralCheckDistance: 0.25
   sideMineralCheck: {fileID: 4520116920742061950}
-  sideMineralCheckDistance: 3
+  sideMineralCheckDistance: 4
   sideCheck: {fileID: 3007355970334412507}
   sideCheckDistance: 0.05
   backCheck: {fileID: 711510593784854159}
@@ -206,9 +206,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1390057483
-  m_SortingLayer: 3
-  m_SortingOrder: 3
+  m_SortingLayerID: 1001210037
+  m_SortingLayer: 5
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: bfe9d19bf6a405d44b98a3ba62a668b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 0.5
-  speed: 0
   originSpeed: 0.05
   obstacles:
     serializedVersion: 2
