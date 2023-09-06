@@ -343,7 +343,7 @@ public class PetEntity : MonoBehaviour
 
     protected void PetCoolTimeUpgrade()
     {
-        if (cooltimeLv == 1 || scanLv == 2 || carryLv == 2 || attackLv == 2)
+        if (cooltimeLv == 1 &&( scanLv == 2 || carryLv == 2 || attackLv == 2))
         {
             cooltimeLv = 2;
             petCooldownTimer = petCooldownTimerUpgrade;
