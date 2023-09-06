@@ -63,6 +63,11 @@ public class Dome : MonoBehaviour
         if (!isShield)
         {
             trueatk = atk - Def;
+            if (trueatk <= 0)
+            { 
+                trueatk = 0;
+            }
+
             CurHp -= trueatk;
 
             if (CurHp < MaxHp/2)
