@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillTreeManager : MonoBehaviour
 {
     public static SkillTreeManager Instance;
-
+ 
     #region
     public int id;
     [Header("ебе╘1")]

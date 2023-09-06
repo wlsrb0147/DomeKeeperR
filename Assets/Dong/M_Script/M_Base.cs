@@ -111,8 +111,8 @@ public class M_Base : MonoBehaviour
 
     protected void SetDamage()
     {
-      if(collision !=null)
-       collision.GetComponent<Dome>().SetDamage(Atk);
+        if(collision !=null)
+        collision.GetComponent<Dome>().SetDamage(Atk);
         Debug.Log(collision.GetComponent<Dome>());
     }
 
