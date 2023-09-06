@@ -135,7 +135,7 @@ public class WJ_Player : MonoBehaviour
 
     void PetInstantiate()
     {
-        Instantiate(pet, )
+        //Instantiate(pet, )
     }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 

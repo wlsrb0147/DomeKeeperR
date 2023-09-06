@@ -22,9 +22,6 @@ public class S_SkillUnLock : MonoBehaviour
 
     [SerializeField] SkillName skillName;
 
-    private void Start()
-    {
-    }
     private void Update()
     {
         if (skillName == SkillName.domeHP)
@@ -42,6 +39,7 @@ public class S_SkillUnLock : MonoBehaviour
         }
 
     }
+
     public void Unlock()
     {
         UnlockImage.SetActive(false);
