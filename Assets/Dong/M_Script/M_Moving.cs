@@ -6,10 +6,9 @@ using UnityEngine.Rendering;
 public class M_Moving : M_Base
 {
     public Vector2 moveSpeed;
-    [SerializeField] float idleTime =0.15f;
-    float idleTimer = 0;
-    Vector2 InitialmoveSpeed;
     public bool attacked = false;
+    Vector2 InitialmoveSpeed;
+
 
     protected override void Awake()
     {
@@ -27,21 +26,21 @@ public class M_Moving : M_Base
         base.Update();
 
 
-        if ( currentHP != HP1)
+        if ( currentHP1 != HP1)
         {
-            currentHP = HP1;
-            idleTimer = 0;
+            currentHP1 = HP1;
+            idleTimer1 = 0;
             ChangeAniVelocity(0.5f);
             attacked = true;
         }
 
-        else if (idleTimer >= idleTime)
+        else if (idleTimer1 >= idleTime1)
         {
             ChangeAniVelocity(1f);
             attacked = false;
         }
 
-        idleTimer += Time.deltaTime;
+        idleTimer1 += Time.deltaTime;
 
 
     }

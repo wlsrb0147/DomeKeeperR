@@ -16,7 +16,7 @@ public class NonAutoStun : StunEntity
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            collision.gameObject.GetComponent<M_Base>().Damage(Atk);
+            collision.gameObject.GetComponent<M_Base>().Damage1(Atk);
           
             Destroy(gameObject);
         }
