@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class WJ_Player : MonoBehaviour
 {
+
     public GameObject drill;
+
+
+
     public int facingDir { get; private set; } = 1;
     bool facingRight = true;
     public float layerChangeTime;
     public float layerChangeDelay = 1;
+    public bool isDomeCheck;
 
     [Header("Move Info")]
     public float Speed = 3f;
@@ -23,6 +28,12 @@ public class WJ_Player : MonoBehaviour
     public float redjemScore = 0;
     public float greenjemScore = 0;
     public float bluejemScore = 0;
+
+    [Header("LightSkill Info")]
+    [SerializeField] GameObject light;
+    [SerializeField] float lightCoolTime;
+    [SerializeField] float lightCoolDown;
+    public bool useLightSkill = false;
 
     #region Components
     public Animator anim { get; private set; }
@@ -62,11 +73,19 @@ public class WJ_Player : MonoBehaviour
 
         LayerChangeControll();
 
+        if (useLightSkill)
+        {
+
+            LightSkill();
+        }
+
+
         if (Input.GetMouseButton(0))
         {
             drill.SetActive(true);
             anim.SetBool("Dig", true);
         }
+
         if (!Input.GetMouseButton(0))
         {
             drill.SetActive(false);
@@ -75,6 +94,18 @@ public class WJ_Player : MonoBehaviour
 
     }
 
+    void LightSkill()
+    {
+        lightCoolDown -= Time.deltaTime;
+
+        if (lightCoolDown <= 0 && Input.GetKeyDown(KeyCode.X))
+        {
+            Instantiate(light, transform.position, Quaternion.identity);
+            lightCoolDown = lightCoolTime;
+        }
+
+
+    }
 
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 
@@ -106,6 +137,29 @@ public class WJ_Player : MonoBehaviour
         else if (_x < 0 && !facingRight)
         {
             Flip();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+            S_GameManager.instance.stash.redjemScore = redjemScore;
+            S_GameManager.instance.stash.bluejemScore = bluejemScore;
+            S_GameManager.instance.stash.greenjemScore = greenjemScore;
+
+            redjemScore = 0;
+            bluejemScore = 0;
+            greenjemScore = 0;
+
+            isDomeCheck = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stash"))
+        {
+            isDomeCheck = false;
         }
     }
 }

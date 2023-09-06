@@ -58,7 +58,7 @@ public class M_GameManager : MonoBehaviour
 
         waveTime = 10 + wave * 5;
         waveTimer = waveTime;
-        spawnDuration = 4;
+        spawnDuration = 6;
 
 
         Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
@@ -102,7 +102,7 @@ public class M_GameManager : MonoBehaviour
         // 웨이브 시작
         if (waveTimer <= 0 && !spawnMonster)
         {
-            spawnDuration = 4;
+            spawnDuration = 6;
             StartCoroutine(WaveAlam());
             spawnMonster = !spawnMonster;
 
@@ -132,7 +132,7 @@ public class M_GameManager : MonoBehaviour
             waveSpawnTime = 0;
             x = 0;
         }
-        else if (waveSpawnTime < waveTime / 2)
+        else if (waveSpawnTime > waveTime / 2)
         {
             spawnDuration = 12;
         }

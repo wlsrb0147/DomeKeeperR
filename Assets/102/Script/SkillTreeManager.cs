@@ -38,7 +38,9 @@ public class SkillTreeManager : MonoBehaviour
     }
     private void Update()
     {
-      
+        SelectTech1();
+        SelectTech2();
+        SelectTech3();
         SetActive();
 
     }
@@ -55,5 +57,28 @@ public class SkillTreeManager : MonoBehaviour
         }
     }
 
-    
+    void SelectTech1()
+    { 
+        if(isTech1) 
+        {
+            isTech2 = false;
+            isTech3 = false;
+        }
+    }
+    void SelectTech2()
+    {
+        if (isTech2)
+        {
+            isTech1 = false;
+            isTech3 = false;
+        }
+    }
+    void SelectTech3()
+    {
+        if (isTech3)
+        {
+            isTech1 = false;
+            isTech2 = false;
+        }
+    }
 }

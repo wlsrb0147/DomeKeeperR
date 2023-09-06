@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class S_Drill : MonoBehaviour
 {
-    [SerializeField] float damage;
+    public float damage;
     [SerializeField] LayerMask wahtisGround;
     [SerializeField] LayerMask wahtisMIneral;
     [SerializeField] Transform drillPos;
