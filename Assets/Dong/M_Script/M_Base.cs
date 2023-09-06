@@ -56,7 +56,7 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Start()
     {
-        stunScript = stunBullet.GetComponent<Stun>();
+        if(stunBullet != null) stunScript = stunBullet.GetComponent<Stun>();
 
         currentHP1 = HP1;
         currentHP2 = HP2;
@@ -64,8 +64,8 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Update()
     {
-
-        stunTime = stunScript.GetsStunTime();
+        if (stunBullet != null)
+            stunTime = stunScript.GetsStunTime();
 
 
         idleTime2 = stunTime;
