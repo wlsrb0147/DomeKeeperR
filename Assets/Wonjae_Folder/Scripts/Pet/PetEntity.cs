@@ -59,22 +59,22 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected private LayerMask WhatIsMineral;
     [SerializeField] protected private LayerMask WhatIsSideTile;
 
-    // 방향 전환 및 스킬 레벨
+    #region facing and Skill
     protected int facingDir = -1;
     protected bool facingRight = true;
     private int attackLv = 1;
     private int scanLv = 1;
     private int carryLv = 1;
     private int cooltimeLv = 1;
-    //
+    #endregion
 
-    //컴포넌트
+    #region Components
     protected Rigidbody2D rbody;
     protected Animator anim;
     protected SpriteRenderer spr;
     private S_Mineral mineral;
     MovementController2D move_Astar;
-    //
+    #endregion
 
     #region anim bool
     protected bool isGrounded;
@@ -144,7 +144,6 @@ public class PetEntity : MonoBehaviour
 
     }
     #endregion
-
 
     #region Flip 
     public virtual void Flip()
@@ -227,7 +226,6 @@ public class PetEntity : MonoBehaviour
             Debug.Log("Stash에 광물 반납을 완료하였습니다.");
         }
 
-       // if (collision.gameObject.CompareTag("Platform"))
     }
 
     #endregion
@@ -294,7 +292,7 @@ public class PetEntity : MonoBehaviour
     {
         if (attackLv == 2 ) 
         {
-            petDamage += 10.0f;
+            petDamage += 5.0f;
 
             attackLv = 3;
         }
@@ -322,7 +320,7 @@ public class PetEntity : MonoBehaviour
     {
         if (scanLv == 1)
         {
-            sideMineralCheckDistance++;
+            sideMineralCheckDistance += 2;
             scanLv = 2;
         }
     }
@@ -331,7 +329,7 @@ public class PetEntity : MonoBehaviour
     {
         if (scanLv == 2)
         {
-            sideMineralCheckDistance++;
+            sideMineralCheckDistance += 2;
             scanLv = 3;
         }
     }

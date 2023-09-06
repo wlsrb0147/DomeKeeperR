@@ -77,14 +77,19 @@ public class MovementController2D : MonoBehaviour
     // List<Vector2> pathLeftToGo에 경로상 점들을 저장하는 역할을 해주는 MoveCommand
     void GetMoveCommand(Vector2 target) //주어진 목표 위치를 받아와 움직임을 명령을 생성하는 역할
     {
-        //Vector2 closestNode = GetClosestNode(transform.position);   //현재 위치에서 가장 가까운 그리드 점을 찾는다.
-        Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.0f));
+        Vector2 currentPos = transform.position;
+        Vector2 startPos = new Vector2(currentPos.x + 1.0f, currentPos.y);
+        Vector2 forceDir = (startPos - currentPos).normalized;
+        rb.velocity = forceDir * 1.0f;
+
+        Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.5f)); //현재 위치에서 가장 가까운 그리드 점을 찾는다.
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
+
         bool canMove = true;    //이동가능 여부 판단
 
         if (pathfinder.GenerateAstarPath(closestNode, targetNode, out path) || path.Count == 0) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
-            //객체를 사용하여 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성한다. 
-            //경로가 비어있을경우 path.Count는 0이 된다.
+                                                                                                //객체를 사용하여 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성한다. 
+                                                                                                //경로가 비어있을경우 path.Count는 0이 된다.
         {
             if (canMove)
             {
@@ -104,6 +109,7 @@ public class MovementController2D : MonoBehaviour
                 if (!snapToGrid) pathLeftToGo.Add(targetNode);  //옵션이 활성화되지 않은경우, targetNode를 pathLeftToGo 리스트에 추가한다. 마지막으로 도달한 위치까지로 이동이 가능하게한다.
             }
         }
+
     }
     void BackMoveCommand(Vector2 target)
     {
