@@ -8,6 +8,7 @@ public class O_WormAttack : M_Base
     public O_WormAttackDead dead { get; private set; }
     public O_WormAttackHit hit { get; private set; }
 
+
     float distance;
 
     public AudioSource audioSource;
@@ -16,6 +17,7 @@ public class O_WormAttack : M_Base
     public AudioClip clip3;
     public AudioClip clip4;
 
+    int x = 0;
 
     protected override void Awake()
     {
@@ -33,7 +35,7 @@ public class O_WormAttack : M_Base
     {
         base.Start();
         distance = domeCenter.position.x - transform.position.x;
-        rb.AddForce(new Vector2(distance/2, Mathf.Abs(distance)*3/5), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(distance / 2, Mathf.Abs(distance) * 3 / 5), ForceMode2D.Impulse);
     }
 
     protected override void Update()
@@ -52,8 +54,14 @@ public class O_WormAttack : M_Base
 
     protected override void Dead()
     {
-        stateMachine.ChangeState(dead);
+        if (x == 0)
+        {
+            stateMachine.ChangeState(dead);
+            x++;
+        }
     }
+
+
 
 
 }
