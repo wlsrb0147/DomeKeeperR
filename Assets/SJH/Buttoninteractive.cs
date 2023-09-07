@@ -25,7 +25,7 @@ public class Buttoninteractive : MonoBehaviour
     private void Update()
     {
 
-        if (parentbutton.interactable == false)
+        if (parentbutton != null &&parentbutton.interactable == false)
             parentCheck = true;
         else
         {
