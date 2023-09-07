@@ -97,7 +97,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             defaltTower.GetComponent<DefalutTower>().Atk += 2;
             isAtkUp += 1;
-            Debug.Log("더눌리니?");
+          
         }
     }
     public void DefUp()
@@ -116,6 +116,7 @@ public class SkillTreeManager : MonoBehaviour
     public void Tech1Active()
     {
         isTech1 = true;
+        defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
     }
     public void Tech2Active()
     {
@@ -186,8 +187,8 @@ public class SkillTreeManager : MonoBehaviour
     public void StunTimeUp()
     {
         if(isStunTower && !isStunSpeedUp && !isStunAmmoSpeedUp) 
-        { 
-        StunTower.GetComponent<StunTower>().StunDuartion += 2f;
+        {
+            M_GameManager.instance.stunTime += 2f;
         }
 
     }
@@ -202,7 +203,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             if (isStunTower && !isStunTimeUp && !isStunSpeedUp)
             {
-
+            StunEntity.instance.Speed += 2f;
             }
 
         }

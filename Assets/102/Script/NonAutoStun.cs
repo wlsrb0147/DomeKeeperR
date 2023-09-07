@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class NonAutoStun : StunEntity
 {
+ 
     private void Start()
     {
-
+   
     }
     private void Update()
     {
+       
         transform.Translate(0, Speed * Time.deltaTime, 0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
