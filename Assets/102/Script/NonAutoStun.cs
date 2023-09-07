@@ -5,6 +5,7 @@ using UnityEngine;
 public class NonAutoStun : MonoBehaviour
 {
     public float Atk;
+    public float Speed = 5f;
     private void Start()
     {
    
@@ -12,7 +13,7 @@ public class NonAutoStun : MonoBehaviour
     private void Update()
     {
        
-        transform.Translate(0, StunEntity.instance.Speed * Time.deltaTime, 0);
+        transform.Translate(0, Speed * Time.deltaTime, 0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

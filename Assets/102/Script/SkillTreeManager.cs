@@ -59,6 +59,8 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public bool isShield;
     [SerializeField] public bool isAutoTower = false;
     [SerializeField] public bool isDomeShield = false;
+    [SerializeField] public GameObject StunAmmo;
+    [SerializeField] public GameObject NonAutoStunAmmo;
 
 
     #endregion
@@ -211,7 +213,9 @@ public class SkillTreeManager : MonoBehaviour
             {
 
             Debug.Log("3");
-            StunEntity.instance.Speed += 10f;
+            StunAmmo.GetComponent<Stun>().Speed += 10f;
+            NonAutoStunAmmo.GetComponent<NonAutoStun>().Speed += 10f;
+
             isStunAmmoSpeedUp = true;
             }
 

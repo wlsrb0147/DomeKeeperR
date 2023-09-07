@@ -7,6 +7,8 @@ public class Stun : MonoBehaviour
    
     [SerializeField] public float stunTime;
 
+    public float Speed = 5f;
+
     public float Atk;
     private GameObject target; // 현재 추적 중인 적
     private float chaseRange = 50f; // 추적 범위
@@ -34,7 +36,7 @@ public class Stun : MonoBehaviour
             // 타겟 방향 계산
             Vector3 dir = (target.transform.position - transform.position).normalized;
             // 이동
-            transform.Translate(dir * StunEntity.instance.Speed * Time.deltaTime, Space.World);
+            transform.Translate(dir * Speed * Time.deltaTime, Space.World);
 
             // 만약 타겟과의 거리가 일정 범위 내에 있다면 타겟을 공격
             if (Vector3.Distance(transform.position, target.transform.position) < 0.5f)

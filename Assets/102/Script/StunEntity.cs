@@ -5,5 +5,5 @@ using UnityEngine;
 public class StunEntity : MonoBehaviour
 {
     public static StunEntity instance;
-    public float Speed = 5f;
+ 
 }
