@@ -50,7 +50,6 @@ public class NavigationController2D : MonoBehaviour
                 if (pathLeftToGo.Count == 0)
                 {
                     edgeColl.enabled = true;
-                    pt.sideMineralCheckDistance = 10.0f;
                 }
             }
         }
@@ -83,7 +82,6 @@ public class NavigationController2D : MonoBehaviour
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
 
         bool canMove = true;
-        pt.sideMineralCheckDistance = 0;
 
         // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
         //객체를 사용하여 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성하고, 경로가 비어있으면 Count 0으로 만듦.
