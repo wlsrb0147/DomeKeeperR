@@ -18,6 +18,16 @@ public class SoundManager : MonoBehaviour
     public AudioClip FireTowerAtk;
     public AudioClip StunTowerAtk;
     public AudioClip AutoTowerAtk;
+    public AudioClip digSound;
+    public AudioClip groundCrack;
+    public AudioClip mineralCrack;
+    public AudioClip computerOn;
+    public AudioClip computerOff;
+    public AudioClip teleportSound;
+    public AudioClip domeIn;
+    public AudioClip domeOut;
+    public AudioClip skillUp;
+    public AudioClip skillOpen;
 
 
 
@@ -77,7 +87,55 @@ public class SoundManager : MonoBehaviour
     {
         myAudio.PlayOneShot(AutoTowerAtk); //soundExplosion을 재생합니다.
     }
+    public void PlayGroundCrack()
+    {
+        myAudio.PlayOneShot(groundCrack);
+    }
+    public void PlayMineralCrack()
+    {
+        myAudio.PlayOneShot(mineralCrack);
 
+    }
+    public void PlayComputerOn()
+    {
+        myAudio.PlayOneShot(computerOn);
+
+    }
+    public void PlayComputerOff()
+    {
+        myAudio.PlayOneShot(computerOff);
+
+    }
+    public void PlayUseTeleport()
+    {
+        myAudio.PlayOneShot(teleportSound);
+
+    }
+    public void PlayDomeIn()
+    {
+        myAudio.PlayOneShot(domeIn);
+
+    }
+    public void PlayDomeOut()
+    {
+        myAudio.PlayOneShot(domeOut);
+
+    }
+    public void PlaySkillUp()
+    {
+        myAudio.PlayOneShot(skillUp);
+
+    }
+    public void PlaySkillOpen()
+    {
+        myAudio.PlayOneShot(skillOpen);
+
+    }
+    public void PlayDigSound()
+    {
+        myAudio.PlayOneShot(digSound);
+
+    }
 
 
 

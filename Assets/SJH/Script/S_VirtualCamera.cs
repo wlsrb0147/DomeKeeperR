@@ -11,17 +11,29 @@ public class S_VirtualCamera : MonoBehaviour
     [SerializeField] Transform domeViewPoint;
     [SerializeField] float zoomSpeed = 1f;
 
+    int count = 0;
     void Update()
     {
         float currentSize = virtualCamera.m_Lens.OrthographicSize;
 
         if (S_GameManager.instance.player.transform.position.y >= -15f)
         {
+            if (count == 0)
+            {
+                SoundManager.instance.PlayDomeIn();
+                count++;
+            }
+
             currentSize += zoomSpeed * Time.deltaTime;
             virtualCamera.m_Follow = domeViewPoint;
         }
         else if (S_GameManager.instance.player.transform.position.y < -15f)
         {
+            if (count == 1)
+            {
+                SoundManager.instance.PlayDomeOut();
+                count = 0;
+            }
             currentSize -= zoomSpeed * Time.deltaTime;
             virtualCamera.m_Follow = S_GameManager.instance.player.transform;
         }

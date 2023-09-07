@@ -6,9 +6,26 @@ public class S_Drill : MonoBehaviour
     [SerializeField] LayerMask wahtisGround;
     [SerializeField] LayerMask wahtisMIneral;
     [SerializeField] Transform drillPos;
+    [SerializeField] GameObject initCrack;
+    [SerializeField] GameObject bigCrack;
 
     bool hardTileCheck;
+    void DigSound()
+    {
+        Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);
+        Collider2D mineralCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisMIneral);
 
+        if (mineralCollider2d != null)
+        {
+            SoundManager.instance.PlayDigSound();
+            Instantiate(initCrack, groundCollider2d.transform.position, Quaternion.identity);
+        }
+        else if (groundCollider2d != null && hardTileCheck == false)
+        {
+            SoundManager.instance.PlayDigSound();
+            Instantiate(bigCrack, groundCollider2d.transform.position, Quaternion.identity);
+        }
+    }
     void Dig()
     {
         Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);

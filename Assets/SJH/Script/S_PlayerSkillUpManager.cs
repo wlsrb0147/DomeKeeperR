@@ -19,7 +19,7 @@ public class S_PlayerSkillUpManager : MonoBehaviour
     [Header("DrillPowerUp Info")]
     public GameObject drillPowerUp1Image;
     public GameObject drillPowerUp2Image;
-    //public Animator drillAnim;
+    public Animator drillAnim;
 
     int drillPowerTech = 1;
     int lightTech = 1;
@@ -27,6 +27,7 @@ public class S_PlayerSkillUpManager : MonoBehaviour
 
     private void Start()
     {
+       
     }
     public void LightRangeUp1()
     {
@@ -47,7 +48,7 @@ public class S_PlayerSkillUpManager : MonoBehaviour
     {
         S_GameManager.instance.player.GetComponentInChildren<S_Drill>().damage += 10f;
         drillPowerUp1Image.SetActive(true);
-        //drillAnim.SetFloat("speed", 1.5f);
+        drillAnim.SetFloat("speed", 1.5f);
         drillPowerTech++;
     }
     public void DrillPowerUP2()
@@ -55,7 +56,7 @@ public class S_PlayerSkillUpManager : MonoBehaviour
         if(lightRangeTech == 2)
         S_GameManager.instance.player.GetComponentInChildren<S_Drill>().damage += 10f;
         drillPowerUp2Image.SetActive(true);
-        //drillAnim.SetFloat("speed", 3f);
+        drillAnim.SetFloat("speed", 3f);
     }
 
     public void UseLightSkill()

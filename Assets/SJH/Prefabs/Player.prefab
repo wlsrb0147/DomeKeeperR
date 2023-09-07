@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 0.8
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000008973609363c8b0f9f56725ada7bb6935b540ad3b
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.8
-  m_PointLightOuterRadius: 2.5
+  m_PointLightInnerRadius: 0.5
+  m_PointLightOuterRadius: 2
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3642318594810386260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48, y: -7.47, z: 0}
+  m_LocalPosition: {x: 0.56, y: -7.76, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -119,7 +119,7 @@ Transform:
   - {fileID: 6417810194277559327}
   - {fileID: 3658561652573490859}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7341404907283010650
 SpriteRenderer:
@@ -268,9 +268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feaf11db04e33644499e2ec8b47b4c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  petSpawnPos: {fileID: 0}
+  pet: {fileID: 0}
+  pet2: {fileID: 0}
   drill: {fileID: 5688796081318662971}
+  playerCheck: 1
   layerChangeTime: 0
   layerChangeDelay: 0.1
+  isDomeCheck: 0
   Speed: 3
   jumpForce: 5
   groundCheck: {fileID: 3658561652573490859}
@@ -281,6 +286,16 @@ MonoBehaviour:
   redjemScore: 0
   greenjemScore: 0
   bluejemScore: 0
+  light: {fileID: 6481791030991046174, guid: dfa461bcd03758649a90f49e469a3733, type: 3}
+  lightSkillbar: {fileID: 0}
+  lightCoolTime: 5
+  lightCoolDown: 0
+  useLightSkill: 0
+  teleportSkillbar: {fileID: 0}
+  teleportPos: {fileID: 0}
+  teleportCoolTime: 60
+  teleportCoolDown: 0
+  useteleportSkill: 0
 --- !u!1 &4335040783153243895
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ public class Buttoninteractive : MonoBehaviour
 
     enum Name
     {
+        None,
         Attack,
         Heal,
         DefUp,
@@ -84,7 +85,7 @@ public class Buttoninteractive : MonoBehaviour
             && S_GameManager.instance.stash.greenjemScore >= greenjemPrice)
             {
                 GetComponent<Button>().interactable = false;
-
+                SoundManager.instance.PlaySkillUp();
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;
                 S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
                 S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
@@ -101,7 +102,7 @@ public class Buttoninteractive : MonoBehaviour
         && S_GameManager.instance.stash.greenjemScore >= greenjemPrice
         && count < 5)
             {
-
+                SoundManager.instance.PlaySkillUp();
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;
                 S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
                 S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
@@ -119,7 +120,7 @@ public class Buttoninteractive : MonoBehaviour
         && S_GameManager.instance.stash.greenjemScore >= greenjemPrice
         && count < 5)
             {
-
+                SoundManager.instance.PlaySkillUp();
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;
                 S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
                 S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
@@ -138,6 +139,7 @@ public class Buttoninteractive : MonoBehaviour
         && S_GameManager.instance.stash.greenjemScore >= greenjemPrice
         )
             {
+                SoundManager.instance.PlaySkillUp();
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;
                 S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
                 S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
