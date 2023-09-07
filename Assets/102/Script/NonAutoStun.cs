@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonAutoStun : StunEntity
+public class NonAutoStun : MonoBehaviour
 {
- 
+    public float Atk;
     private void Start()
     {
    
@@ -12,7 +12,7 @@ public class NonAutoStun : StunEntity
     private void Update()
     {
        
-        transform.Translate(0, Speed * Time.deltaTime, 0);
+        transform.Translate(0, StunEntity.instance.Speed * Time.deltaTime, 0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -182,13 +182,16 @@ public class SkillTreeManager : MonoBehaviour
         if (!isFireTower) { 
         StunTower.SetActive(true);
         SubTower.SetActive(false);
+            isStunTower = true;
         }
     }
     public void StunTimeUp()
     {
         if(isStunTower && !isStunSpeedUp && !isStunAmmoSpeedUp) 
         {
+            Debug.Log("1");
             M_GameManager.instance.stunTime += 2f;
+            isStunTimeUp = true;
         }
 
     }
@@ -196,14 +199,20 @@ public class SkillTreeManager : MonoBehaviour
     {
         if (isStunTower && !isStunTimeUp && !isStunAmmoSpeedUp)
         {
+
+            Debug.Log("2");
             StunTower.GetComponent<StunTower>().StunRestCool -= 2f;
+            isStunSpeedUp = true;   
         }
     }
     public void StunSpeedUp()
         {
             if (isStunTower && !isStunTimeUp && !isStunSpeedUp)
             {
-            StunEntity.instance.Speed += 2f;
+
+            Debug.Log("3");
+            StunEntity.instance.Speed += 10f;
+            isStunAmmoSpeedUp = true;
             }
 
         }
@@ -215,6 +224,7 @@ public class SkillTreeManager : MonoBehaviour
         { 
         FireTower.SetActive(true);
         SubTower.SetActive(false);
+            isFireTower = true;
         }
     }
     public void FireTowerDurUp()
