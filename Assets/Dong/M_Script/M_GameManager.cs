@@ -64,8 +64,18 @@ public class M_GameManager : MonoBehaviour
     public float greentotal = 0;
     public float bluetotal = 0;
 
+
+    public Text winlose;
+    public Text jemDescription;
+    public Text scroeDescription;
+    public GameObject ending;
+    public float playtime;
+
+    public float domehp;
+
     private void Awake()
     {
+        
         if (instance == null)
         {
             instance = this;
@@ -80,13 +90,12 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled = GameObject.Find("on").GetComponent<Image>();
         waveDisabled = GameObject.Find("off").GetComponent<Image>();
-
-        
+        ending.SetActive(false);
+        stopWave = false;
     }
     private void Start()
     {
-        int monsterCount = CountWithTag(monsterTag);
-        Debug.Log(" 몬스터 숫자 : " + monsterCount);
+        int monsterCount = CountWithTag(monsterTag); // 몬스터 숫자 총합
 
         waveTime = defaultWT + (wave-1) * increasingWT;
         waveTimer = waveTime;
@@ -104,6 +113,7 @@ public class M_GameManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             killmonster = !killmonster;
@@ -215,12 +225,17 @@ public class M_GameManager : MonoBehaviour
             }
         }
 
+
+        if(wave >= 11)
+        {
+            EndingScene();
+        }
     }
     IEnumerator Setfalse()
     {
         yield return new WaitForSeconds(0.1f);
         killmonster = !killmonster;
-    }
+}
 
     IEnumerator WaveAlam()
     {
@@ -253,7 +268,36 @@ public class M_GameManager : MonoBehaviour
     }
 
 
+    public void EndingScene()
+    {
+        
+        ending.SetActive(true);
 
+        if (wave >= 11) winlose.text = "돔을 지켜냈습니다";
+        else    winlose.text = "돔이 파괴되었습니다";
+
+
+        string str;
+        if (wave >= 11)
+        {
+            str = "클리어";
+        }
+        else
+        {
+            str = wave.ToString();
+        }
+
+
+        jemDescription.text = $"레드 스톤 : {redtotal} \n그린 스톤 : {greentotal} \n블루 스톤 : {bluetotal} ";
+        
+        scroeDescription.text = $"총 플레이 시간 : {(int)playtime/60}분 {(int)playtime%60}초\n최종 웨이브 : {str}\n죽인 몬스터 수 : {killedMonster}";
+        
+        killmonster = !killmonster;
+        stopWave = true;
+        StartCoroutine(Setfalse());
+        
+
+    }
     private int CountWithTag(string tag)
     {
         GameObject[] tagNum = GameObject.FindGameObjectsWithTag(tag);

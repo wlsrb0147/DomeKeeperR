@@ -37,7 +37,7 @@ public class M_Base : MonoBehaviour
 
     protected Collider2D collision;
 
-
+    public GameObject realdome;
 
     public GameObject stunBullet;
     Stun stunScript;
@@ -54,8 +54,6 @@ public class M_Base : MonoBehaviour
         facingRight = true;
 
 
-
-       
     }
 
     protected virtual void Start()
@@ -120,10 +118,13 @@ public class M_Base : MonoBehaviour
         {
             Dead();
         }
-
     }
 
     public void ChangeStunTime(float x) => idleTime2 = x;
+
+    protected virtual void ChangeIdle()
+    {
+    }
     protected virtual void Stun(float x)
     {
         ani.SetFloat("Stun", x);

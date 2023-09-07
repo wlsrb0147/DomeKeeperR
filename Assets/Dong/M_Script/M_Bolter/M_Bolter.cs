@@ -53,7 +53,14 @@ public class M_Bolter : M_Moving
         {
             Dead();
         }
-
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
+    }
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(idle);
     }
 
     protected override void Dead()

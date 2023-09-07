@@ -36,8 +36,15 @@ public class M_Ticker : M_Moving
         {
             Dead();
         }
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
     }
-
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(move);
+    }
     protected override void Dead()
     {
         stateMachine.ChangeState(dead);
