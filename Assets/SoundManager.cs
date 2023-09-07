@@ -45,7 +45,10 @@ public class SoundManager : MonoBehaviour
     {
         myAudio.PlayOneShot(SwordHit); //soundExplosion을 재생합니다.
     }
-
+    public void StopLazer()
+    {
+        myAudio.Stop(Lazer);
+    }
 
 
     // 루프 재생 여부를 나타내는 변수
