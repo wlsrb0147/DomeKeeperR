@@ -222,9 +222,9 @@ public class PetEntity : MonoBehaviour
             if (collision.gameObject.CompareTag("Stash"))
             {
 
-                S_GameManager.instance.stash.redjemScore = redjemScore;
-                S_GameManager.instance.stash.bluejemScore = bluejemScore;
-                S_GameManager.instance.stash.greenjemScore = greenjemScore;
+                S_GameManager.instance.stash.redjemScore += redjemScore;
+                S_GameManager.instance.stash.bluejemScore += bluejemScore;
+                S_GameManager.instance.stash.greenjemScore += greenjemScore;
 
                 redjemScore = 0;
                 bluejemScore = 0;

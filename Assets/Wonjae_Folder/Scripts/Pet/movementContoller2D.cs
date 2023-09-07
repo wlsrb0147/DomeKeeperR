@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public class MovementController2D : MonoBehaviour
 {
+    [SerializeField] Transform starPos;
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
     [SerializeField] float speed = 0.05f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
@@ -77,7 +78,7 @@ public class MovementController2D : MonoBehaviour
     // List<Vector2> pathLeftToGo에 경로상 점들을 저장하는 역할을 해주는 MoveCommand
     void GetMoveCommand(Vector2 target) //주어진 목표 위치를 받아와 움직임을 명령을 생성하는 역할
     {
-        Vector2 closestNode = GetClosestNode(new Vector2(0.5f, -11.5f)); //현재 위치에서 가장 가까운 그리드 점을 찾는다.
+        Vector2 closestNode = GetClosestNode(starPos.position); //현재 위치에서 가장 가까운 그리드 점을 찾는다. new Vector2(0.25f, -12f)
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
 
         bool canMove = true;
@@ -110,7 +111,7 @@ public class MovementController2D : MonoBehaviour
     {
         rb.gravityScale = 0;
         speed = 0.1f;
-        //edgeColl.enabled = false;
+        edgeColl.enabled = false;
         Vector2 closestNode = GetClosestNode(transform.position);
         if (pathfinder.GenerateAstarPath(closestNode, GetClosestNode(target), out path)) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
         {
