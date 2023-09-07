@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     public AudioClip Lazer;
     public AudioClip LoopingBackGround;
+    public AudioClip LoopingSwordMove;
     public AudioClip LazerHit;
     public AudioClip LazerMove;
     public AudioClip SwordMove;
@@ -27,6 +28,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         myAudio = this.gameObject.GetComponent<AudioSource>(); //AudioSource 오브젝트를 변수로 담습니다.
+
     }
     public void PlayLazer()
     {
@@ -63,6 +65,7 @@ public class SoundManager : MonoBehaviour
 
     // 루프 재생 여부를 나타내는 변수
     private bool isLoopingBack = false;
+    private bool isLoopingSwordMove = false;
 
     void Update()
     {
@@ -73,8 +76,16 @@ public class SoundManager : MonoBehaviour
             myAudio.loop = true;
             myAudio.Play();
         }
+
+        if(isLoopingSwordMove && !myAudio.isPlaying)
+        {
+            myAudio.clip = LoopingSwordMove;
+            myAudio.loop = true;
+            myAudio.Play();
+        }
     }
     
+
     public void StartLooping()
     {
         isLoopingBack = true;
@@ -87,5 +98,14 @@ public class SoundManager : MonoBehaviour
         isLoopingBack = false;
         myAudio.Stop();
     }
+
+    public void StartLoopingSwordMove()
+    {
+        isLoopingSwordMove = true;
+        myAudio.clip = LoopingSwordMove;
+        myAudio.loop = true;
+        myAudio.Play();
+    }
+
 }
 

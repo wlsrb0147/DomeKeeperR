@@ -6,13 +6,13 @@ public class SwordTower : Tower
     [Header("Auto업그레이드")]
     [SerializeField] private float autoMoveTime;
     [SerializeField] private float atk;
-   
+    public float Timer;
 
     #endregion
 
     private void Start()
     {
-
+     
     }
 
 
@@ -21,6 +21,10 @@ public class SwordTower : Tower
         AutoMove();
         TimeContinue();
         SetRotation();
+        Timer += Time.deltaTime;
+      
+      
+         
     }
     void SetRotation()
     {

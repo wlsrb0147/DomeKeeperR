@@ -101,6 +101,7 @@ public class DefalutTower : Tower
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 LrDisable();
+           
             }
         }
 
