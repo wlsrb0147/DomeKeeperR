@@ -29,6 +29,7 @@ public class S_JemstoneStash : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftControl) && S_GameManager.instance.player.isDomeCheck)
         {
             player.SetActive(false);
+            S_GameManager.instance.player.playerCheck=false;
             anim.SetBool("On", true);
             count++;
         }
@@ -36,6 +37,7 @@ public class S_JemstoneStash : MonoBehaviour
         {
             player.SetActive(true);
             anim.SetBool("On", false);
+            S_GameManager.instance.player.playerCheck = true;
             count = 0;
         }
 

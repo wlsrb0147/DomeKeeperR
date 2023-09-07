@@ -7,9 +7,10 @@ public class WJ_Player : MonoBehaviour
 {
     [SerializeField] GameObject petSpawnPos;
     [SerializeField] GameObject pet;
+    [SerializeField] GameObject pet2;
 
     public GameObject drill;
-
+    public bool playerCheck = true;
 
 
     public int facingDir { get; private set; } = 1;
@@ -136,7 +137,12 @@ public class WJ_Player : MonoBehaviour
     public void PetInstantiate()
     {
         //Instantiate(pet, petSpawnPos.transform.position, Quaternion.identity);
-        pet.SetActive(true );
+        pet.SetActive(true);
+    }
+    public void PetInstantiate2()
+    {
+        //Instantiate(pet, petSpawnPos.transform.position, Quaternion.identity);
+        pet2.SetActive(true);
     }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 

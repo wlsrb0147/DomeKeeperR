@@ -41,14 +41,14 @@ public class DefalutTower : Tower
     [Header("레이저관통")]
     [SerializeField] public float Atk;
     [SerializeField] public int maxHitsBeforeDisable;
-    [SerializeField]public int penetratedCount;
+    [SerializeField] public int penetratedCount;
     #endregion
     private void Start()
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
 
-    }  
+    }
     void Update()
     {
         Move();
@@ -60,11 +60,11 @@ public class DefalutTower : Tower
 
     void ChargeDelayUpgrade()
     {
-        if(SkillTreeManager.Instance.isChargeDelayLess == true)
+        if (SkillTreeManager.Instance.isChargeDelayLess == true)
         {
             BigLazerDelay = 0.25f;
         }
-        
+
     }
     void ChargeTimeUpgrade()
     {
@@ -75,10 +75,11 @@ public class DefalutTower : Tower
 
     }
 
- 
+
     void Attack()
     {
-        
+        if (S_GameManager.instance.player.playerCheck == false)
+        {
             if (Input.GetKey(KeyCode.Space))
             {
 
@@ -91,7 +92,8 @@ public class DefalutTower : Tower
             {
                 LrDisable();
             }
-        
+        }
+
     }
 
     void LrDisable()
@@ -103,7 +105,7 @@ public class DefalutTower : Tower
     {
         if (SkillTreeManager.Instance.isCharge == true)
         {
-            bigValue += BigLazerChargeValue; 
+            bigValue += BigLazerChargeValue;
 
             if (bigValue >= 1)
             {
@@ -124,66 +126,66 @@ public class DefalutTower : Tower
     {
         isBigLazer = false;
     }
-   /* void LrDraw()
-    {
-        lr.SetPosition(0, lazerPos.transform.position);
+    /* void LrDraw()
+     {
+         lr.SetPosition(0, lazerPos.transform.position);
 
 
-        bool hitEnemy = false;
+         bool hitEnemy = false;
 
-        if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnd))
-        {
-            lr.SetPosition(1, lrhit.point);
-            lr.enabled = true;
-
-
-            if (lrhit.collider.CompareTag("Monster"))
-            {
-                if (lrhit.collider != null)
-                {
-                    GameObject hitObject = lrhit.collider.gameObject;
-
-                    hitObject.GetComponent<M_Base>().Damage(Atk);
+         if (lrhit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnd))
+         {
+             lr.SetPosition(1, lrhit.point);
+             lr.enabled = true;
 
 
-                    hitEnemy = true;
-                }
-            }
-        }
+             if (lrhit.collider.CompareTag("Monster"))
+             {
+                 if (lrhit.collider != null)
+                 {
+                     GameObject hitObject = lrhit.collider.gameObject;
+
+                     hitObject.GetComponent<M_Base>().Damage(Atk);
 
 
-        if (!hitEnemy)
-        {
-            lrhits = Physics2D.RaycastAll(transform.position, transform.up, raydistance, whatisEnemy);
-
-            foreach (RaycastHit2D hit in lrhits)
-            {
-                if (hit.collider.CompareTag("Monster"))
-                {
-                    if (hit.collider != null)
-                    {
-                        GameObject hitObject = hit.collider.gameObject;
-
-                        hitObject.GetComponent<M_Base>().Damage(Atk);
+                     hitEnemy = true;
+                 }
+             }
+         }
 
 
-                        lr.SetPosition(1, hit.point);
-                        lr.enabled = true;
+         if (!hitEnemy)
+         {
+             lrhits = Physics2D.RaycastAll(transform.position, transform.up, raydistance, whatisEnemy);
 
-                        Instantiate(lazerend, hit.point, Quaternion.identity);
-                        if(SkillTreeManager.Instance.isPenetrate != true) 
-                        { 
-                        break; //이것만 지우면 관통형 레이저 가능 
-                        }
-                    }
-                }
-            }
-        }
+             foreach (RaycastHit2D hit in lrhits)
+             {
+                 if (hit.collider.CompareTag("Monster"))
+                 {
+                     if (hit.collider != null)
+                     {
+                         GameObject hitObject = hit.collider.gameObject;
+
+                         hitObject.GetComponent<M_Base>().Damage(Atk);
 
 
-        lr.enabled = true;
+                         lr.SetPosition(1, hit.point);
+                         lr.enabled = true;
 
-    }*/
+                         Instantiate(lazerend, hit.point, Quaternion.identity);
+                         if(SkillTreeManager.Instance.isPenetrate != true) 
+                         { 
+                         break; //이것만 지우면 관통형 레이저 가능 
+                         }
+                     }
+                 }
+             }
+         }
+
+
+         lr.enabled = true;
+
+     }*/
     void LrDraw()
     {
         lr.SetPosition(0, lazerPos.transform.position);
@@ -201,15 +203,15 @@ public class DefalutTower : Tower
                 if (lrhit.collider != null)
                 {
                     GameObject hitObject = lrhit.collider.gameObject;
-                    hitObject.GetComponent<M_Base>().Damage2(Atk);
+                    hitObject.GetComponent<M_Base>().Damage1(Atk);
                     hitEnemy = true;
                     penetratedEnemyCount++;
-                   
+
                 }
             }
         }
-      
-        if (!hitEnemy && penetratedEnemyCount < penetratedCount) 
+
+        if (!hitEnemy && penetratedEnemyCount < penetratedCount)
         {
             lrhits = Physics2D.RaycastAll(transform.position, transform.up, raydistance, whatisEnemy);
 
@@ -220,7 +222,7 @@ public class DefalutTower : Tower
                     if (hit.collider != null)
                     {
                         GameObject hitObject = hit.collider.gameObject;
-                        hitObject.GetComponent<M_Base>().Damage2(Atk);
+                        hitObject.GetComponent<M_Base>().Damage1(Atk);
 
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
@@ -238,15 +240,15 @@ public class DefalutTower : Tower
         }
 
         lr.enabled = true;
-        }
-    
+    }
+
     void SetRotation()
     {
         if (angle > 1.5 && angle < 1.6)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-       if (angle >= 0.8 && angle <= 0.9)
+        if (angle >= 0.8 && angle <= 0.9)
         {
             transform.rotation = Quaternion.Euler(0, 0, -45);
         }
@@ -261,39 +263,43 @@ public class DefalutTower : Tower
         transform.position = new Vector3(posX, posY);
     }
 
-       
-        void Move()
-    {
-        if (isBigLazer != true)
-        {
-            if (angle < leftLockAngle)
-            {
-                if (Input.GetKey(KeyCode.LeftArrow))
-                {
 
-                    angle = angle + Time.deltaTime * angularSpeed;
-                    transform.Rotate(0, 0, rote);
-                    if (angle >= leftLockAngle)
+    void Move()
+    {
+        if (S_GameManager.instance.player.playerCheck == false)
+        {
+
+            if (isBigLazer != true)
+            {
+                if (angle < leftLockAngle)
+                {
+                    if (Input.GetKey(KeyCode.LeftArrow))
                     {
-                        transform.rotation = Quaternion.Euler(0, 0, 90);
+
+                        angle = angle + Time.deltaTime * angularSpeed;
+                        transform.Rotate(0, 0, rote);
+                        if (angle >= leftLockAngle)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, 90);
+                        }
                     }
                 }
-            }
 
-            if (angle > rightLockAngle)
-            {
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (angle > rightLockAngle)
                 {
+                    if (Input.GetKey(KeyCode.RightArrow))
+                    {
 
-                    angle = angle + Time.deltaTime * -angularSpeed;
-                    transform.Rotate(0, 0, -rote);
-                    if (angle <= rightLockAngle)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
-                    if (transform.rotation.z < -90) 
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
+                        angle = angle + Time.deltaTime * -angularSpeed;
+                        transform.Rotate(0, 0, -rote);
+                        if (angle <= rightLockAngle)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, -90);
+                        }
+                        if (transform.rotation.z < -90)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, -90);
+                        }
                     }
                 }
             }

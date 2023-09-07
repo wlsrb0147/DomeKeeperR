@@ -27,10 +27,10 @@ public class SubTower : Tower
         TimeContinue();
         SetRotation();
         AttackDelay();
-        if(isMe == true) 
-        { 
-        AutoAttack();
-        Attack();
+        if (isMe == true)
+        {
+            AutoAttack();
+            Attack();
         }
     }
     protected void TimeContinue()
@@ -41,40 +41,44 @@ public class SubTower : Tower
         {
             AutoMoveTime = 0;
         }
-        
+
     }
-    void AttackDelay() 
+    void AttackDelay()
     {
         attackDelayTime += Time.deltaTime;
     }
     protected void Move()
     {
-        if (SkillTreeManager.Instance.isTech3 != true)
+        if (S_GameManager.instance.player.playerCheck == false)
         {
-            if (angle < leftLockAngle)
-            {
-                if (Input.GetKey(KeyCode.RightArrow))
-                {
 
-                    angle = angle + Time.deltaTime * angularSpeed;
-                    transform.Rotate(0, 0, rote);
-                    if (angle >= leftLockAngle)
+            if (SkillTreeManager.Instance.isTech3 != true)
+            {
+                if (angle < leftLockAngle)
+                {
+                    if (Input.GetKey(KeyCode.RightArrow))
                     {
-                        transform.rotation = Quaternion.Euler(0, 0, 90);
+
+                        angle = angle + Time.deltaTime * angularSpeed;
+                        transform.Rotate(0, 0, rote);
+                        if (angle >= leftLockAngle)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, 90);
+                        }
                     }
                 }
-            }
 
-            if (angle > rightLockAngle)
-            {
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (angle > rightLockAngle)
                 {
-
-                    angle = angle + Time.deltaTime * -angularSpeed;
-                    transform.Rotate(0, 0, -rote);
-                    if (angle <= rightLockAngle)
+                    if (Input.GetKey(KeyCode.LeftArrow))
                     {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
+
+                        angle = angle + Time.deltaTime * -angularSpeed;
+                        transform.Rotate(0, 0, -rote);
+                        if (angle <= rightLockAngle)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, -90);
+                        }
                     }
                 }
             }
@@ -139,24 +143,26 @@ public class SubTower : Tower
         }
     }
 
-     protected virtual void Attack()
-     {
-        Debug.Log("어택업데이트");
-        if(Input.GetKey(KeyCode.Space))
+    protected virtual void Attack()
+    {
+        if (S_GameManager.instance.player.playerCheck == false)
         {
-            Debug.Log("스페이스바");
-            if (attackDelayTime > 1.5f) 
+
+            if (Input.GetKey(KeyCode.Space))
             {
-                attackDelayTime = 0f;
-                GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
-                Destroy(subAmmo, 5f);
+                if (attackDelayTime > 1.5f)
+                {
+                    attackDelayTime = 0f;
+                    GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
+                    Destroy(subAmmo, 5f);
+                }
             }
         }
-     }
+    }
     void AutoAttack()
     {
-        if (SkillTreeManager.Instance.isTech3) 
-        { 
+        if (SkillTreeManager.Instance.isTech3)
+        {
             if (attackDelayTime > 1.5f)
             {
                 attackDelayTime = 0f;
