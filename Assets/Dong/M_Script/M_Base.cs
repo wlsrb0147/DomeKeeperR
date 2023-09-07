@@ -39,8 +39,6 @@ public class M_Base : MonoBehaviour
 
     public GameObject realdome;
 
-    public GameObject stunBullet;
-    Stun stunScript;
     float stunTime;
     public int xx;
 
@@ -62,7 +60,6 @@ public class M_Base : MonoBehaviour
         hp1 *= Mathf.Log(1+M_GameManager.instance.wave, 2);
         hp = hp1 + hp2;
 
-        if (stunBullet != null) stunScript = stunBullet.GetComponent<Stun>();
 
         currentHP1 = hp1;
         currentHP2 = hp2;
@@ -71,8 +68,7 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (stunBullet != null)
-            stunTime = stunScript.GetsStunTime();
+            stunTime = M_GameManager.instance.stunTime;
 
 
         idleTime2 = stunTime;
@@ -88,13 +84,11 @@ public class M_Base : MonoBehaviour
             facingRight = !facingRight;
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
 
-            Debug.Log("aaa");
         }
         else if (transform.position.x < domeCenter.position.x && !facingRight)
         {
             facingRight = !facingRight;
             gameObject.transform.localScale = new Vector3(1, 1, 1);
-            Debug.Log("bbb");
         }
 
         if (facingRight) faceX = 1;
