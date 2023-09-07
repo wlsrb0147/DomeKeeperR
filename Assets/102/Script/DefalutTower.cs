@@ -17,7 +17,7 @@ public class DefalutTower : Tower
     [SerializeField] private bool isBigLazer;
     [SerializeField] private float BigLazerDelay;
     [SerializeField] private float BigLazerChargeValue;
-
+    public float Timer =0;
 
 
     #endregion
@@ -47,6 +47,7 @@ public class DefalutTower : Tower
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
+        SoundManager.instance.StartLooping();
 
     }
     void Update()
@@ -56,6 +57,11 @@ public class DefalutTower : Tower
         Attack();
         ChargeDelayUpgrade();
         ChargeTimeUpgrade();
+        if (M_GameManager.instance.domehp <= 0)
+        { 
+            gameObject.SetActive(false);
+        }
+        Timer += Time.deltaTime;
     }
 
     void ChargeDelayUpgrade()
@@ -82,15 +88,20 @@ public class DefalutTower : Tower
         {
             if (Input.GetKey(KeyCode.Space))
             {
-
+               
                 LrDraw();
                 BigLazerShotReady();
-
+                if (Timer > 1.5f)
+                {
+                    SoundManager.instance.PlayLazer();
+                    Timer = 0f;
+                }
 
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 LrDisable();
+           
             }
         }
 
@@ -206,7 +217,7 @@ public class DefalutTower : Tower
                     hitObject.GetComponent<M_Base>().Damage1(Atk);
                     hitEnemy = true;
                     penetratedEnemyCount++;
-
+                    SoundManager.instance.PlayLazerHit();
                 }
             }
         }
@@ -227,6 +238,7 @@ public class DefalutTower : Tower
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
 
+                        SoundManager.instance.PlayLazerHit();
                         Instantiate(lazerend, hit.point, Quaternion.identity);
                         penetratedEnemyCount++;
 

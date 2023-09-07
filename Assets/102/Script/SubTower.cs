@@ -22,6 +22,10 @@ public class SubTower : Tower
 
     protected virtual void Update()
     {
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
         Move();
         AutoMove();
         TimeContinue();
@@ -152,6 +156,7 @@ public class SubTower : Tower
             {
                 if (attackDelayTime > 1.5f)
                 {
+                  
                     attackDelayTime = 0f;
                     GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
                     Destroy(subAmmo, 5f);
@@ -165,6 +170,7 @@ public class SubTower : Tower
         {
             if (attackDelayTime > 1.5f)
             {
+             
                 attackDelayTime = 0f;
                 GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
                 Destroy(subAmmo, 5f);

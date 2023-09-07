@@ -26,11 +26,18 @@ public class M_Beast : M_Moving
 
     public float currnetHP;
 
+    public AudioSource ads;
+    public AudioClip death;
+    public AudioClip[] hit;
+    public AudioClip[] jumps;
+    public AudioClip[] roar;
+    public AudioClip[] land;
 
     protected override void Awake()
     {
         base.Awake();
 
+        ads = GetComponent<AudioSource>();
         move = new M_BeastMove(this,stateMachine,"Move",this);
         attack = new M_BeastAttack(this, stateMachine, "Attack", this);
         groundDead = new M_BeastGroundDead(this, stateMachine, "GroundDead", this);

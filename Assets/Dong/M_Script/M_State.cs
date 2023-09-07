@@ -1,16 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.AnimatedValues;
-using UnityEngine;
-
-public class M_State 
+public class M_State
 {
     protected M_Base m_base;
     protected M_StateMachine stateMachine;
     string aniBoolName;
 
 
-    public M_State(M_Base @base, M_StateMachine stateMachine,string aniboolname)
+    public M_State(M_Base @base, M_StateMachine stateMachine, string aniboolname)
     {
         this.m_base = @base;
         this.stateMachine = stateMachine;
@@ -27,6 +22,6 @@ public class M_State
     }
     public virtual void Exit()
     {
-        m_base.ani.SetBool(aniBoolName,false);
+        m_base.ani.SetBool(aniBoolName, false);
     }
 }

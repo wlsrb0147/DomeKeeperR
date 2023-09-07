@@ -13,6 +13,14 @@ public class O_WormAttackDead : M_State
     public override void Enter()
     {
         base.Enter();
+
+        int x = Random.Range(1, 3);
+        if (x == 1)
+            wormAttack.audioSource.clip = wormAttack.clip2;
+        else
+            wormAttack.audioSource.clip = wormAttack.clip4;
+
+        wormAttack.audioSource.PlayOneShot(wormAttack.audioSource.clip);
     }
 
     public override void Exit()

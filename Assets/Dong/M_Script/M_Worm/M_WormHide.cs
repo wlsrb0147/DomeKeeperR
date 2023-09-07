@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class M_WormHide : M_State
 {
@@ -11,7 +7,7 @@ public class M_WormHide : M_State
     float count;
 
     float heal;
-    public M_WormHide(M_Base @base, M_StateMachine stateMachine, string aniboolname,M_Worm worm) : base(@base, stateMachine, aniboolname)
+    public M_WormHide(M_Base @base, M_StateMachine stateMachine, string aniboolname, M_Worm worm) : base(@base, stateMachine, aniboolname)
     {
         this.worm = worm;
     }
@@ -39,11 +35,11 @@ public class M_WormHide : M_State
             stateMachine.ChangeState(worm.wakeUp);
         }
 
-        if(heal > 1)
+        if (heal > 1)
         {
             worm.hp1 += worm.maxHp * 0.04f;
             heal = 0;
         }
-        
+
     }
 }

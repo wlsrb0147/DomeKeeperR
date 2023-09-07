@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.WSA;
-
 public class M_DiverAttackDead : M_State
 {
     M_Diver diver;
