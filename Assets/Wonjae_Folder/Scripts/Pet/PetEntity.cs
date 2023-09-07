@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class PetEntity : MonoBehaviour
 {
     [Header("펫 정보")]
     [Tooltip("펫의 현재 공격력")]
-    [SerializeField] private float petSpeed = 2.5f;
+    [SerializeField] private float petSpeed = 2.0f;
     [SerializeField] private float petDamage;
 
     [Tooltip("펫 재사용 대기시간")]
@@ -21,6 +22,7 @@ public class PetEntity : MonoBehaviour
     [Tooltip("toothPos : 정방향 채굴")]
     [SerializeField] protected Transform toothPos;
     [SerializeField] protected GameObject copyPet;
+    //[SerializeField] GameObject plight;
 
     [Header("보유한 광물의 수")]
     public float redjemScore = 0f;
@@ -75,6 +77,7 @@ public class PetEntity : MonoBehaviour
     protected SpriteRenderer spr;
     private S_Mineral mineral;
     MovementController2D move_Astar;
+    Light2D _light;
     #endregion
 
     #region anim bool
@@ -102,6 +105,7 @@ public class PetEntity : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
         move_Astar = GetComponent<MovementController2D>();
+        _light = GetComponent<Light2D>();
         Invoke("DoublePet", 0.5f);
     }
 
@@ -129,7 +133,6 @@ public class PetEntity : MonoBehaviour
             {
                 isPetCooldown = false;
                 petCooldownTimer = 100.0f;
-
                 move_Astar.Gmc();
             }
         }
@@ -139,7 +142,7 @@ public class PetEntity : MonoBehaviour
     {
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
-            Debug.Log("보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
+            Debug.Log("Pet의 보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
             move_Astar.Bmc();
             repeatLabor = true;
         }
@@ -240,6 +243,13 @@ public class PetEntity : MonoBehaviour
     #region Velocity
     protected void ZeroVelocity() => rbody.velocity = Vector2.zero;
     protected void MoveVelocity() => rbody.velocity = new Vector2(petSpeed * facingDir, rbody.velocity.y);
+    protected void boostVelocity()
+    {
+        Vector2 currentPos = transform.position;
+        Vector2 startPos = new Vector2(currentPos.x + 5.0f, currentPos.y);
+        Vector2 forceDir = (startPos - currentPos).normalized;
+        rbody.velocity = forceDir * 3.0f;
+    }
 
     #endregion
 
@@ -328,6 +338,7 @@ public class PetEntity : MonoBehaviour
         if (scanLv == 1)
         {
             sideMineralCheckDistance += 2;
+            _light.pointLightOuterRadius = sideMineralCheckDistance;
             scanLv = 2;
         }
     }
@@ -337,6 +348,7 @@ public class PetEntity : MonoBehaviour
         if (scanLv == 2)
         {
             sideMineralCheckDistance += 2;
+            _light.pointLightOuterRadius = sideMineralCheckDistance;
             scanLv = 3;
         }
     }
@@ -354,7 +366,7 @@ public class PetEntity : MonoBehaviour
     {
         if (cooltimeLv == 2)
         {
-            Instantiate(copyPet, new Vector2(-1.4f, -10.0f), Quaternion.identity);
+            Instantiate(copyPet, new Vector3(-1.4f, -10.0f, 0.0f), Quaternion.identity);
         }
     }
 
