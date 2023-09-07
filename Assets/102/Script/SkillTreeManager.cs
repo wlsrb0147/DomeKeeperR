@@ -19,6 +19,9 @@ public class SkillTreeManager : MonoBehaviour
     [Header("태크1")]
     [SerializeField] public bool isTech1 = false;
     [SerializeField] public bool isPenetrate = false;
+    [SerializeField] public bool isPenetrateUp1 = false;
+    [SerializeField] public bool isPenetrateUp2 = false;
+
     [SerializeField] public bool isCharge = false;
     [SerializeField] public bool isPenetrateUpgrade1 = false;
     [SerializeField] public bool isPenetrateUpgrade2 = false;
@@ -32,6 +35,12 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public bool isTech2 = false;
     [SerializeField] public bool isFireTower = false;
     [SerializeField] public bool isStunTower = false;
+    [SerializeField] public bool isFireDurUp = false;
+    [SerializeField] public bool isFireCoolUp = false;
+    [SerializeField] public bool isStunTimeUp = false;
+    [SerializeField] public bool isStunSpeedUp = false;
+    [SerializeField] public bool isStunAmmoSpeedUp = false;
+
     [SerializeField] public GameObject StunTower;
     [SerializeField] public GameObject FireTower;
     [SerializeField] public GameObject SubTower;
@@ -47,6 +56,9 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public GameObject AutoTower;
     [SerializeField] public GameObject DomeShield;
     [SerializeField] public bool isShield;
+    [SerializeField] public bool isAutoTower = false;
+    [SerializeField] public bool isDomeShield = false;
+
 
     #endregion
     private void Awake()
@@ -84,6 +96,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             defaltTower.GetComponent<DefalutTower>().Atk += 2;
             isAtkUp += 1;
+            Debug.Log("더눌리니?");
         }
     }
     public void DefUp()
@@ -112,91 +125,138 @@ public class SkillTreeManager : MonoBehaviour
         isTech3 = true;
     }
 
-    public void Penetrate()
+    public void PenetrateUp1 ()
     {
+        if (isTech1 && !isCharge) 
+        { 
         defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
         defaltTower.GetComponent<DefalutTower>().Atk += 2;
+        isPenetrateUp1 = true;
+        }
+    }
+    public void PenetrateUp2()
+    {
+        if (isTech1 && !isCharge && isPenetrateUp1)
+        {
+            defaltTower.GetComponent<DefalutTower>().penetratedCount += 2;
+            defaltTower.GetComponent<DefalutTower>().Atk += 3;
+            isPenetrateUp2 = true;
+        }
+    }
+    public void PenetrateUp3()
+    {
+        if (isTech1 && !isCharge && isPenetrateUp2)
+        {
+            defaltTower.GetComponent<DefalutTower>().penetratedCount += 3;
+            defaltTower.GetComponent<DefalutTower>().Atk += 5;
+        }
     }
     public void Charge()
     {
-        isCharge = true;
+        if (!isPenetrate)
+        {
+            isCharge = true;
+        }
     }
     public void ChargeDelayDown()
     {
+        if(!isPenetrate && !isChargeTimeLess && isCharge)
         isChargeDelayLess = true;
     }
     public void ChargeTimeUpgrade()
     {
-        isChargeTimeLess = true;
+        if (!isPenetrate && !isChargeDelayLess && isCharge)
+            isChargeTimeLess = true;
     }
     //테크2
     public void EquipSubTower()
     {
-
+        if(!isFireTower && !isStunTower)
         SubTower.SetActive(true);
 
     }
     public void EquipStunTower()
     {
-
+        if (!isFireTower) { 
         StunTower.SetActive(true);
         SubTower.SetActive(false);
-
+        }
     }
     public void StunTimeUp()
     {
-
+        if(isStunTower && !isStunSpeedUp && !isStunAmmoSpeedUp) 
+        { 
         StunTower.GetComponent<StunTower>().StunDuartion += 2f;
+        }
 
     }
     public void StunCoolDown()
     {
-
-        StunTower.GetComponent<StunTower>().StunRestCool -= 2f;
-
+        if (isStunTower && !isStunTimeUp && !isStunAmmoSpeedUp)
+        {
+            StunTower.GetComponent<StunTower>().StunRestCool -= 2f;
+        }
     }
     public void StunSpeedUp()
-    {
+        {
+            if (isStunTower && !isStunTimeUp && !isStunSpeedUp)
+            {
 
-    }
+            }
 
-
+        }
 
 
     public void EquipFireTower()
     {
-
+        if(!isStunTower) 
+        { 
         FireTower.SetActive(true);
         SubTower.SetActive(false);
-
+        }
     }
     public void FireTowerDurUp()
     {
-
-        FireTower.GetComponent<FireTower>().FireDuartion += 4f;
-
+        if(isFireTower && !isFireCoolUp) 
+        { 
+            FireTower.GetComponent<FireTower>().FireDuartion += 4f;
+        }
     }
     public void FireTowerRestDown()
     {
-
-        FireTower.GetComponent<FireTower>().FireRestCool -= 2f;
-
+        if (isFireTower && !isFireDurUp)
+        {
+            FireTower.GetComponent<FireTower>().FireRestCool -= 2f;
+            isFireCoolUp = true;
+        }
 
     }
     //테크3 
+
+    public void Automatic()
+    {
+        isTech3 = true;
+    }
     public void CreateAutoTower()
     {
-
+        if(isTech3)
+        { 
         AutoTower.SetActive(true);
+        isAutoTower = true;
+        }
 
     }
     public void CreateShield()
     {
+        if (isAutoTower) { 
         isShield = true;
         DomeShield.SetActive(true);
+        isDomeShield = true;
+        }
     }
     public void CreateSword()
     {
+        if (isDomeShield )
         SwordTower.SetActive(true);
     }
 
