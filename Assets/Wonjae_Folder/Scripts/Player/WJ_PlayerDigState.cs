@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Tilemaps;
-using UnityEngine;
-
 public class WJ_PlayerDigState : WJ_PlayerGroundState
 {
     public WJ_PlayerDigState(WJ_Player _player, WJ_PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
@@ -21,7 +15,7 @@ public class WJ_PlayerDigState : WJ_PlayerGroundState
 
 
 
-       player.SetVelocity(xInput * player.Speed, rbody.velocity.y);
+        player.SetVelocity(xInput * player.Speed, rbody.velocity.y);
 
 
         /*     if (mousePosition.x > player.transform.position.x)
@@ -32,7 +26,7 @@ public class WJ_PlayerDigState : WJ_PlayerGroundState
              {
                  player.Flip();
              }*/
-    
+
 
 
     }
