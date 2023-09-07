@@ -47,6 +47,7 @@ public class DefalutTower : Tower
     {
         lr = GetComponent<LineRenderer>();
         lr.enabled = false;
+        SoundManager.instance.StartLooping();
 
     }
     void Update()
@@ -86,7 +87,7 @@ public class DefalutTower : Tower
         {
             if (Input.GetKey(KeyCode.Space))
             {
-
+                SoundManager.instance.PlayLazer();
                 LrDraw();
                 BigLazerShotReady();
 
@@ -210,7 +211,7 @@ public class DefalutTower : Tower
                     hitObject.GetComponent<M_Base>().Damage1(Atk);
                     hitEnemy = true;
                     penetratedEnemyCount++;
-
+                    SoundManager.instance.PlayLazerHit();
                 }
             }
         }
@@ -231,6 +232,7 @@ public class DefalutTower : Tower
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
 
+                        SoundManager.instance.PlayLazerHit();
                         Instantiate(lazerend, hit.point, Quaternion.identity);
                         penetratedEnemyCount++;
 
