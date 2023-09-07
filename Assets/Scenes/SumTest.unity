@@ -721,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &480345055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3303,6 +3303,9 @@ MonoBehaviour:
   healDome: 0
   immortableDome: 0
   destroyDome: 0
+  redtotal: 0
+  greentotal: 0
+  bluetotal: 0
 --- !u!4 &1733764343
 Transform:
   m_ObjectHideFlags: 0
@@ -3837,6 +3840,8 @@ MonoBehaviour:
   isDefUp: 0
   isTech1: 0
   isPenetrate: 1
+  isPenetrateUp1: 0
+  isPenetrateUp2: 0
   isCharge: 0
   isPenetrateUpgrade1: 0
   isPenetrateUpgrade2: 0
@@ -3845,6 +3850,11 @@ MonoBehaviour:
   isTech2: 0
   isFireTower: 0
   isStunTower: 0
+  isFireDurUp: 0
+  isFireCoolUp: 0
+  isStunTimeUp: 0
+  isStunSpeedUp: 0
+  isStunAmmoSpeedUp: 0
   StunTower: {fileID: 480345054}
   FireTower: {fileID: 1522182031}
   SubTower: {fileID: 1708158565}
@@ -3853,6 +3863,8 @@ MonoBehaviour:
   AutoTower: {fileID: 248022184}
   DomeShield: {fileID: 829839350}
   isShield: 0
+  isAutoTower: 0
+  isDomeShield: 0
 --- !u!4 &1902076028
 Transform:
   m_ObjectHideFlags: 0
