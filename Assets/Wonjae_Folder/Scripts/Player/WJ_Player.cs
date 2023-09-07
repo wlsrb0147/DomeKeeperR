@@ -9,7 +9,7 @@ public class WJ_Player : MonoBehaviour
     [SerializeField] GameObject pet;
 
     public GameObject drill;
-
+    public bool playerCheck = true;
 
 
     public int facingDir { get; private set; } = 1;

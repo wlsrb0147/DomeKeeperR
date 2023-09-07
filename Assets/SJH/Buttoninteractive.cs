@@ -24,6 +24,20 @@ public class Buttoninteractive : MonoBehaviour
     public bool parentCheck = false;
     public bool otherCheck = true;
 
+    [SerializeField] GameObject[] Attackimage;
+    [SerializeField] GameObject[] Defimage;
+
+    int count = 0;
+
+    enum Name
+    {
+        Attack,
+        Heal,
+        DefUp,
+    }
+
+    [SerializeField] Name buttonname;
+
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
@@ -32,7 +46,7 @@ public class Buttoninteractive : MonoBehaviour
     private void Update()
     {
 
-        if (parentbutton != null &&parentbutton.interactable == false)
+        if (parentbutton != null && parentbutton.interactable == false)
             parentCheck = true;
         else
         {
@@ -70,12 +84,69 @@ public class Buttoninteractive : MonoBehaviour
             && S_GameManager.instance.stash.greenjemScore >= greenjemPrice)
             {
                 GetComponent<Button>().interactable = false;
-         
+
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;
                 S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
                 S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
             }
         }
+    }
+
+    public void OnClick2()
+    {
+        if (buttonname == Name.Attack)  //  Name.Attack
+        {
+            if (S_GameManager.instance.stash.redjemScore >= redjemPrice
+        && S_GameManager.instance.stash.bluejemScore >= bluejemPrice
+        && S_GameManager.instance.stash.greenjemScore >= greenjemPrice
+        && count < 5)
+            {
+
+                S_GameManager.instance.stash.redjemScore -= redjemPrice;
+                S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
+                S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
+                SkillTreeManager.Instance.AttackUp();
+
+                Attackimage[count].SetActive(true);
+
+                count++;
+            }
+        }
+        if (buttonname == Name.DefUp)  //  Name.Attack
+        {
+            if (S_GameManager.instance.stash.redjemScore >= redjemPrice
+        && S_GameManager.instance.stash.bluejemScore >= bluejemPrice
+        && S_GameManager.instance.stash.greenjemScore >= greenjemPrice
+        && count < 5)
+            {
+
+                S_GameManager.instance.stash.redjemScore -= redjemPrice;
+                S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
+                S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
+                SkillTreeManager.Instance.DefUp();
+
+                Defimage[count].SetActive(true);
+
+                count++;
+            }
+        }
+
+        if (buttonname == Name.Heal)  //  Name.Attack
+        {
+            if (S_GameManager.instance.stash.redjemScore >= redjemPrice
+        && S_GameManager.instance.stash.bluejemScore >= bluejemPrice
+        && S_GameManager.instance.stash.greenjemScore >= greenjemPrice
+        )
+            {
+                S_GameManager.instance.stash.redjemScore -= redjemPrice;
+                S_GameManager.instance.stash.bluejemScore -= bluejemPrice;
+                S_GameManager.instance.stash.greenjemScore -= greenjemPrice;
+                SkillTreeManager.Instance.DomeHeal();
+
+
+            }
+        }
+
     }
 }
 

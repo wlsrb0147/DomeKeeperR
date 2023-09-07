@@ -13,6 +13,7 @@ public class SkillTreeManager : MonoBehaviour
 
     [SerializeField] public GameObject defaltTower;
     [SerializeField] public GameObject dome;
+    [SerializeField] GameObject UnlockImage;
     public int isAtkUp;
     public int isDefUp;
     #region
@@ -252,6 +253,7 @@ public class SkillTreeManager : MonoBehaviour
         isShield = true;
         DomeShield.SetActive(true);
         isDomeShield = true;
+        UnlockImage.SetActive(false);
         }
     }
     public void CreateSword()

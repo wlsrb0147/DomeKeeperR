@@ -32,8 +32,10 @@ public class S_SkillUnLock : MonoBehaviour
         }
 
         if (skillName == SkillName.domesheild && useSkill)
+        {
             gameObject.GetComponentInChildren<Slider>().value = dome.GetComponent<Dome>().Shield / dome.GetComponent<Dome>().MaxShield;
-
+            Debug.Log("aaa");
+        }
         if (S_GameManager.instance.playerSkillUp.lightuseCheck)
         {
             if (skillName == SkillName.light)
@@ -51,7 +53,7 @@ public class S_SkillUnLock : MonoBehaviour
 
     public void Unlock()
     {
-        UnlockImage.SetActive(false);
+        //UnlockImage.SetActive(false);
         useSkill = true;
     }
 
