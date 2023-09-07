@@ -144,4 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Atk: 20
-  Speed: 3
+  stunTime: 2
+  Speed: 0
+  monsterBase: {fileID: 0}

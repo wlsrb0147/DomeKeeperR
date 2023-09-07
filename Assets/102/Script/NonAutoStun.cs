@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NonAutoStun : StunEntity
+public class NonAutoStun : MonoBehaviour
 {
- 
+    public float Atk;
+    public float Speed = 5f;
     private void Start()
     {
    

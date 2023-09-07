@@ -26,24 +26,28 @@ public class M_Moving : M_Base
         base.Update();
 
 
-        if ( currentHP1 != hp1)
+        if (stun) ChangeAniVelocity(0f);
+        else if (!stun)
         {
-            currentHP1 = hp1;
-            idleTimer1 = 0;
-            ChangeAniVelocity(0.5f);
-            attacked = true;
-        }
+            if (currentHP1 != hp1)
+            {
+                currentHP1 = hp1;
+                idleTimer1 = 0;
+                ChangeAniVelocity(0.5f);
+                attacked = true;
+            }
 
-        else if (idleTimer1 >= idleTime1)
-        {
-            ChangeAniVelocity(1f);
-            attacked = false;
+            else if (idleTimer1 >= idleTime1)
+            {
+                ChangeAniVelocity(1f);
+                attacked = false;
+            }
         }
+     
+
 
         idleTimer1 += Time.deltaTime;
 
-        if(stun) ChangeAniVelocity(0f);
-        else if (!stun) ChangeAniVelocity(1f);
 
     }
 

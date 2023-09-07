@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Stun : MonoBehaviour
 {
-    [SerializeField] public float Atk;
+   
     [SerializeField] public float stunTime;
-    [SerializeField] public float Speed; // 업글 시 속도 증가시키면 됨
+
+    public float Speed = 5f;
+
+    public float Atk;
     private GameObject target; // 현재 추적 중인 적
     private float chaseRange = 50f; // 추적 범위
     private List<GameObject> availableTargets = new List<GameObject>(); // 이동 가능한 적 목록
