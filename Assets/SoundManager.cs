@@ -11,6 +11,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip LazerMove;
     public AudioClip SwordMove;
     public AudioClip SwordHit;
+    public AudioClip Skillpc;
+    public AudioClip Playpc;
+
 
 
     AudioSource myAudio; //AudioSorce 컴포넌트를 변수로 담습니다.
@@ -45,10 +48,17 @@ public class SoundManager : MonoBehaviour
     {
         myAudio.PlayOneShot(SwordHit); //soundExplosion을 재생합니다.
     }
-    public void StopLazer()
+    public void PlayPc()
     {
-        myAudio.Stop(Lazer);
+        myAudio.PlayOneShot(Playpc); //soundExplosion을 재생합니다.
     }
+    public void PlaySkillPc()
+    {
+        myAudio.PlayOneShot(Skillpc); //soundExplosion을 재생합니다.
+    }
+
+
+
 
 
     // 루프 재생 여부를 나타내는 변수
