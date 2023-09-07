@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordTower : Tower
@@ -8,7 +6,14 @@ public class SwordTower : Tower
     [Header("Auto업그레이드")]
     [SerializeField] private float autoMoveTime;
     [SerializeField] private float atk;
+   
+
     #endregion
+
+    private void Start()
+    {
+
+    }
 
 
     private void Update()
@@ -49,47 +54,48 @@ public class SwordTower : Tower
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Monster"))
-            {
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            SoundManager.instance.PlaySwordHit();
             collision.gameObject.GetComponent<M_Base>().Damage1(atk);
-       
+
         }
     }
     void AutoMove()
     {
         
-            if (angle < leftLockAngle)
+        if (angle < leftLockAngle)
+        {
+            if (autoMoveTime > 0 && autoMoveTime < 2)
             {
-                if (autoMoveTime > 0 && autoMoveTime < 2)
+
+                angle = angle + Time.deltaTime * angularSpeed;
+                transform.Rotate(0, 0, rote);
+                if (angle >= leftLockAngle)
                 {
 
-                    angle = angle + Time.deltaTime * angularSpeed;
-                    transform.Rotate(0, 0, rote);
-                    if (angle >= leftLockAngle)
-                    {
-
-                        transform.rotation = Quaternion.Euler(0, 0, 90);
-                    }
+                    transform.rotation = Quaternion.Euler(0, 0, 90);
                 }
             }
+        }
 
-            if (angle > rightLockAngle)
+        if (angle > rightLockAngle)
+        {
+            if (autoMoveTime > 2 && autoMoveTime < 4)
             {
-                if (autoMoveTime > 2 && autoMoveTime < 4)
-                {
 
-                    angle = angle + Time.deltaTime * -angularSpeed;
-                    transform.Rotate(0, 0, -rote);
-                    if (angle <= rightLockAngle)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
-                    if (transform.rotation.z < -90)
-                    {
-                        transform.rotation = Quaternion.Euler(0, 0, -90);
-                    }
+                angle = angle + Time.deltaTime * -angularSpeed;
+                transform.Rotate(0, 0, -rote);
+                if (angle <= rightLockAngle)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, -90);
+                }
+                if (transform.rotation.z < -90)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, -90);
                 }
             }
-        
+        }
+
     }
 }
