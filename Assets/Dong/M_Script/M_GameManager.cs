@@ -72,7 +72,7 @@ public class M_GameManager : MonoBehaviour
     public float playtime;
 
     public float domehp;
-
+    public float stunTime = 50;
     private void Awake()
     {
         
@@ -102,7 +102,7 @@ public class M_GameManager : MonoBehaviour
         spawnDuration = initialspawnDuration ;
 
 
-        Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
+     //   Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
 
 
         waveEnabled.enabled = false;
@@ -270,7 +270,7 @@ public class M_GameManager : MonoBehaviour
 
     public void EndingScene()
     {
-        
+        killmonster = true;
         ending.SetActive(true);
 
         if (wave >= 11) winlose.text = "돔을 지켜냈습니다";
@@ -291,8 +291,8 @@ public class M_GameManager : MonoBehaviour
         jemDescription.text = $"레드 스톤 : {redtotal} \n그린 스톤 : {greentotal} \n블루 스톤 : {bluetotal} ";
         
         scroeDescription.text = $"총 플레이 시간 : {(int)playtime/60}분 {(int)playtime%60}초\n최종 웨이브 : {str}\n죽인 몬스터 수 : {killedMonster}";
-        
-        killmonster = !killmonster;
+
+ 
         stopWave = true;
         StartCoroutine(Setfalse());
         

@@ -55,6 +55,11 @@ public class M_Shifter : M_Holding
         {
             ChangeIdle();
         }
+
+        if(transform.position.x > domeCenter.position.x)
+        {
+           
+        }
     }
     protected override void ChangeIdle()
     {

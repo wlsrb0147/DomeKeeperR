@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stun : MonoBehaviour
 {
     [SerializeField] public float Atk;
-    [SerializeField] public float stunTime = 50;
+    [SerializeField] public float stunTime;
     [SerializeField] public float Speed; // 업글 시 속도 증가시키면 됨
     private GameObject target; // 현재 추적 중인 적
     private float chaseRange = 50f; // 추적 범위
@@ -27,6 +27,7 @@ public class Stun : MonoBehaviour
 
     private void Update()
     {
+        stunTime = M_GameManager.instance.stunTime;
         if (target != null)
         {
             // 타겟 방향 계산

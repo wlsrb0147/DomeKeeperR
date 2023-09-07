@@ -1637,67 +1637,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1582489696
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1582489698}
-  - component: {fileID: 1582489697}
-  m_Layer: 0
-  m_Name: GameManager (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1582489697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582489696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e96242b01f7de40a505141d6c0086e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beast: {fileID: 6963223684063191489, guid: 456c529007fec304892cf304b747bbe3, type: 3}
-  driller: {fileID: 6214743120703131161, guid: a97e2c2c5b4ede949924d7050309e05c, type: 3}
-  diver: {fileID: 4039655045067145138, guid: 04332beefa5e803468ba48129d30ab0d, type: 3}
-  ticker: {fileID: 3308396527473454658, guid: 51ec8b219b0fccd4e880b8875abe9500, type: 3}
-  flyer: {fileID: 3416435363798052107, guid: 80808936d4479c945861904baa4922f5, type: 3}
-  worm: {fileID: 1806603920478596895, guid: 66cb8615176cb1149a3d69b09afbe05c, type: 3}
-  shifter: {fileID: 2943596597679754805, guid: 322c7307d5b8f554d97dad3ce8386339, type: 3}
-  bolter: {fileID: 633645560670332834, guid: 3cfab5464c312bd4395987aa31e047cc, type: 3}
-  domeCenter: {fileID: 1103839164}
-  x: 0
-  waveTime: 0
-  waveTimer: 0
-  wave: 1
-  waveSpawnTime: 0
-  spawnDuration: 0
-  spawnMonster: 0
-  slider: {fileID: 1810176020}
---- !u!4 &1582489698
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582489696}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713185365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,14 +1675,34 @@ MonoBehaviour:
   shifter: {fileID: 2943596597679754805, guid: 322c7307d5b8f554d97dad3ce8386339, type: 3}
   bolter: {fileID: 633645560670332834, guid: 3cfab5464c312bd4395987aa31e047cc, type: 3}
   domeCenter: {fileID: 1103839164}
-  x: 0
+  wave: 1
+  defaultWT: 10
+  increasingWT: 5
+  maxWaveTime: 60
   waveTime: 0
   waveTimer: 0
-  wave: 1
-  waveSpawnTime: 0
+  respawnTimer: 0
+  initialspawnDuration: 6
   spawnDuration: 0
+  waveContinued: 0
   spawnMonster: 0
   slider: {fileID: 1810176020}
+  killedMonster: 0
+  killmonster: 0
+  stopWave: 0
+  nextWave: 0
+  healDome: 0
+  immortableDome: 0
+  destroyDome: 0
+  redtotal: 0
+  greentotal: 0
+  bluetotal: 0
+  winlose: {fileID: 0}
+  jemDescription: {fileID: 0}
+  scroeDescription: {fileID: 0}
+  ending: {fileID: 0}
+  playtime: 0
+  domehp: 0
 --- !u!4 &1713185367
 Transform:
   m_ObjectHideFlags: 0
