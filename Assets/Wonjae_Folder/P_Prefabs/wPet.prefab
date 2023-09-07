@@ -101,7 +101,7 @@ Transform:
   - {fileID: 4939101024197258598}
   - {fileID: 8983549880669369456}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -117,26 +117,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petSpeed: 2
   petDamage: 10
-  petCooldownTimer: 1
+  petCooldownTimer: 60
   footPos: {fileID: 1414214155786455657}
   toothPos: {fileID: 7061716428815760171}
   copyPet: {fileID: 924973197211554225}
+  plight: {fileID: 6481791030991046174, guid: b5df84fe1c4eb9c4c8352a50f37d0be9, type: 3}
   redjemScore: 0
   greenjemScore: 0
   bluejemScore: 0
   maxScore: 10
   groundCheck: {fileID: 2621648649747222685}
-  groundCheckDistance: 0.18
   mineralUnderCheck: {fileID: 7677812303816594371}
-  mineralCheckDistance: 0.25
+  sideCheck: {fileID: 3007355970334412507}
+  backCheck: {fileID: 711510593784854159}
+  wallCheck: {fileID: 1844269151752789375}
   sideMineralCheck: {fileID: 4520116920742061950}
   sideMineralCheckDistance: 10
-  sideCheck: {fileID: 3007355970334412507}
-  sideCheckDistance: 0.05
-  backCheck: {fileID: 711510593784854159}
-  backCheckDistance: 1
-  wallCheck: {fileID: 1844269151752789375}
-  wallCheckDistance: 0.8
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -292,7 +288,7 @@ Rigidbody2D:
   m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -316,11 +312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdef79944b73a8429c8930a8e5e082c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starPos: {fileID: 0}
   gridSize: 0.5
-  speed: 0.05
+  speed: 0.5
   obstacles:
     serializedVersion: 2
-    m_Bits: 960
+    m_Bits: 992
   searchShortcut: 0
   snapToGrid: 0
   drawDebugLines: 1
