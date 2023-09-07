@@ -16,7 +16,7 @@ public class Stun : MonoBehaviour
     {
         FindAvailableTargets();
         SetNextTarget();
-        monsterBase.ChangeStunTime(100);
+        //monsterBase.ChangeStunTime(100);
         
     }
 
