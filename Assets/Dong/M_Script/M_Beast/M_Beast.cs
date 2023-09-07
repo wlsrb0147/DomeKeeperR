@@ -67,7 +67,14 @@ public class M_Beast : M_Moving
             Dead();
         }
 
-
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
+    }
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(howling);
     }
 
     public void HowlOn()

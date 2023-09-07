@@ -54,8 +54,15 @@ public class M_Driller : M_Moving
         {
             stateMachine.ChangeState(setting);
         }
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
     }
-
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(move);
+    }
     public void Attackstart()
     {
         stateMachine.ChangeState(attackStart);

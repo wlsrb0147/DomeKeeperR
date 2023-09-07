@@ -65,9 +65,16 @@ public class M_Flyer : M_Moving
         }
 
         if (attacked) stateMachine.ChangeState(hit);
-        
-    }
 
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
+    }
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(move);
+    }
     protected override void Dead()
     {
         stateMachine.ChangeState(dead);

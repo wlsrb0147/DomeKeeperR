@@ -51,8 +51,15 @@ public class M_Shifter : M_Holding
         {
             Dead();
         }
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
     }
-
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(idle);
+    }
     protected override void Dead()
     {
         stateMachine.ChangeState(dead);
