@@ -59,7 +59,7 @@ public class M_Flyer : M_Moving
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }

@@ -98,7 +98,7 @@ public class M_Diver : M_Moving
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }

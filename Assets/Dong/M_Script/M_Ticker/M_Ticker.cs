@@ -32,7 +32,7 @@ public class M_Ticker : M_Moving
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.V))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }
