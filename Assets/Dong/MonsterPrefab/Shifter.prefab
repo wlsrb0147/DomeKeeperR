@@ -222,10 +222,10 @@ MonoBehaviour:
   idleTimer2: 0
   idleTime2: 15
   stun: 0
-  HP: 0
-  HP1: 10
-  HP2: 0
-  Atk: 1
+  hp: 0
+  hp1: 40
+  hp2: 0
+  atk: 1
   stunBullet: {fileID: 2943596597679754805}
   shiftCounter: 0
   shiftCount: 0

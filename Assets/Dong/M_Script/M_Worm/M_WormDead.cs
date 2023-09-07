@@ -13,7 +13,8 @@ public class M_WormDead : M_State
     public override void Enter()
     {
         base.Enter();
-        M_GameManager.instance.killedMonster++;
+        if (worm.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        worm.deadCheck++;
     }
 
     public override void Exit()

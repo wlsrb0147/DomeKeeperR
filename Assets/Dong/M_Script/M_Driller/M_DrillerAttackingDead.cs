@@ -13,7 +13,8 @@ public class M_DrillerAttackingDead : M_State
     public override void Enter()
     {
         base.Enter();
-        M_GameManager.instance.killedMonster++;
+        if (driller.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        driller.deadCheck++;
     }
 
     public override void Exit()

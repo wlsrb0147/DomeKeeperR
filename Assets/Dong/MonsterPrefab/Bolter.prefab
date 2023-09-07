@@ -194,10 +194,10 @@ MonoBehaviour:
   idleTimer2: 0
   idleTime2: 15
   stun: 0
-  HP: 0
-  HP1: 10
-  HP2: 0
-  Atk: 1
+  hp: 0
+  hp1: 120
+  hp2: 0
+  atk: 1
   stunBullet: {fileID: 1511442708161056059, guid: 9c9a6e46275235047bd52123d1fb8f47, type: 3}
   moveSpeed: {x: 4, y: -0.8}
   attacked: 0

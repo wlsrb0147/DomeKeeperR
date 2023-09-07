@@ -12,6 +12,8 @@ public class M_Worm : M_Holding
     public M_WormInstantiate instantiate { get; private set; }
     public M_WormWakeUp wakeUp { get; private set; }
 
+    public float maxHp;
+
     [Header("받아오는 값")]
     public GameObject bullet;
     public Transform bulletHole;
@@ -41,12 +43,15 @@ public class M_Worm : M_Holding
         myCollider =gameObject.GetComponent<Collider2D>();
         myCollider.enabled = false;
         attackCount = 0;
+
+        
     }
 
     protected override void Start()
     {
         base.Start();
         stateMachine.Initiate(instantiate);
+        maxHp = hp;
     }
 
     protected override void Update()
