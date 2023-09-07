@@ -139,5 +139,6 @@ public class M_Flyer : M_Moving
     public void SoundHit() => ads.PlayOneShot(soundHit); 
     public void SoundShot() => ads.PlayOneShot(soundShot);
     public void SoundShrink() => ads.PlayOneShot(soundShrink);
+
 }
 
