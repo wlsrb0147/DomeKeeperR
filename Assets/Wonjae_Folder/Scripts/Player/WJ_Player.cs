@@ -136,7 +136,7 @@ public class WJ_Player : MonoBehaviour
     public void PetInstantiate()
     {
         //Instantiate(pet, petSpawnPos.transform.position, Quaternion.identity);
-        pet.SetActive(true );
+        pet.SetActive(true);
     }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 

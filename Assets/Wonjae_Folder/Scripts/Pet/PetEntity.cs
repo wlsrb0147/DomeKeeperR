@@ -14,15 +14,15 @@ public class PetEntity : MonoBehaviour
     [SerializeField] private float petDamage;
 
     [Tooltip("펫 재사용 대기시간")]
-    [SerializeField] protected float petCooldownTimer = 100.0f;
-    private float petCooldownTimerUpgrade = 60.0f;
+    [SerializeField] protected float petCooldownTimer = 60.0f;
+    private float petCooldownTimerUpgrade = 30.0f;
 
     [Tooltip("footPos : 아랫방향 채광")]
     [SerializeField] protected Transform footPos;
     [Tooltip("toothPos : 정방향 채굴")]
     [SerializeField] protected Transform toothPos;
     [SerializeField] protected GameObject copyPet;
-    //[SerializeField] GameObject plight;
+    [SerializeField] GameObject plight;
 
     [Header("보유한 광물의 수")]
     public float redjemScore = 0f;
@@ -34,33 +34,33 @@ public class PetEntity : MonoBehaviour
     [Header("충돌 체크")]
     [Tooltip("Pet이 닿고있는 지면을 확인합니다.")]
     [SerializeField] protected Transform groundCheck;
-    [SerializeField] protected private float groundCheckDistance;
+    private float groundCheckDistance = 0.18f;
 
     [Tooltip("아랫 방향의 미네랄을 감지합니다.")]
     [SerializeField] protected Transform mineralUnderCheck;
-    [SerializeField] protected float mineralCheckDistance;
-
-    [Tooltip("바라보는 방향에 미네랄을 임의의 값만큼 감지합니다.")]
-    [SerializeField] protected Transform sideMineralCheck;
-    [SerializeField] protected float sideMineralCheckDistance;
+    private float mineralCheckDistance = 0.25f;
 
     [Tooltip("정면에 광물이 무엇인지 감지합니다.")]
     [SerializeField] protected Transform sideCheck;
-    [SerializeField] protected float sideCheckDistance;
+    private float sideCheckDistance = 0.05f;
 
     [Tooltip("Pet 뒤에 미네랄이 있는지 감지합니다.")]
     [SerializeField] protected Transform backCheck;
-    [SerializeField] protected float backCheckDistance;
+    private float backCheckDistance = 1.0f;
 
     [Tooltip("벽을 체크하여 방향전환을 결정합니다.")]
     [SerializeField] protected Transform wallCheck;
-    [SerializeField] protected float wallCheckDistance;
+    private float wallCheckDistance = 0.8f;
+
+    [Tooltip("바라보는 방향에 미네랄을 임의의 값만큼 감지합니다.")]
+    [SerializeField] protected Transform sideMineralCheck;
+    public float sideMineralCheckDistance = 10.0f;
 
     [Header("레이어 체크")]
-    [SerializeField] protected private LayerMask whatIsGround;
-    [SerializeField] protected private LayerMask whatIsWall;
-    [SerializeField] protected private LayerMask WhatIsMineral;
-    [SerializeField] protected private LayerMask WhatIsSideTile;
+    [SerializeField] protected LayerMask whatIsGround;
+    [SerializeField] protected LayerMask whatIsWall;
+    [SerializeField] protected LayerMask WhatIsMineral;
+    [SerializeField] protected LayerMask WhatIsSideTile;
 
     #region facing and Skill
     protected int facingDir = -1;
@@ -76,7 +76,7 @@ public class PetEntity : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer spr;
     private S_Mineral mineral;
-    MovementController2D move_Astar;
+    NavigationController2D move_Astar;
     Light2D _light;
     #endregion
 
@@ -104,8 +104,7 @@ public class PetEntity : MonoBehaviour
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
-        move_Astar = GetComponent<MovementController2D>();
-        _light = GetComponent<Light2D>();
+        move_Astar = GetComponent<NavigationController2D>();
         Invoke("DoublePet", 0.5f);
     }
 
@@ -132,7 +131,7 @@ public class PetEntity : MonoBehaviour
             if (petCooldownTimer <= 0.0f)
             {
                 isPetCooldown = false;
-                petCooldownTimer = 100.0f;
+                petCooldownTimer = 60.0f;
                 move_Astar.Gmc();
             }
         }
@@ -143,6 +142,7 @@ public class PetEntity : MonoBehaviour
         if (redjemScore + greenjemScore + bluejemScore >= maxScore)
         {
             Debug.Log("Pet의 보유 광물의 갯수가 최대치가 도달해, Dome으로 복귀합니다.");
+            Instantiate(plight, transform.position, Quaternion.identity);
             move_Astar.Bmc();
             repeatLabor = true;
         }
@@ -338,7 +338,6 @@ public class PetEntity : MonoBehaviour
         if (scanLv == 1)
         {
             sideMineralCheckDistance += 2;
-            _light.pointLightOuterRadius = sideMineralCheckDistance;
             scanLv = 2;
         }
     }
@@ -348,7 +347,6 @@ public class PetEntity : MonoBehaviour
         if (scanLv == 2)
         {
             sideMineralCheckDistance += 2;
-            _light.pointLightOuterRadius = sideMineralCheckDistance;
             scanLv = 3;
         }
     }
