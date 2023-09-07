@@ -49,7 +49,7 @@ public class M_Bolter : M_Moving
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }

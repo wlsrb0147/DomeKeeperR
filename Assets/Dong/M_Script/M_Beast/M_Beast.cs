@@ -62,7 +62,7 @@ public class M_Beast : M_Moving
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }

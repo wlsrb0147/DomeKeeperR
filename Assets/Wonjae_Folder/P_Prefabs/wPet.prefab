@@ -115,12 +115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf5cf5c46543824fb47539cc632e55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  petSpeed: 2
   petDamage: 10
   petCooldownTimer: 1
   footPos: {fileID: 1414214155786455657}
   toothPos: {fileID: 7061716428815760171}
   copyPet: {fileID: 924973197211554225}
-  redjemScore: 1
+  redjemScore: 0
   greenjemScore: 0
   bluejemScore: 0
   maxScore: 10
@@ -129,7 +130,7 @@ MonoBehaviour:
   mineralUnderCheck: {fileID: 7677812303816594371}
   mineralCheckDistance: 0.25
   sideMineralCheck: {fileID: 4520116920742061950}
-  sideMineralCheckDistance: 6
+  sideMineralCheckDistance: 10
   sideCheck: {fileID: 3007355970334412507}
   sideCheckDistance: 0.05
   backCheck: {fileID: 711510593784854159}

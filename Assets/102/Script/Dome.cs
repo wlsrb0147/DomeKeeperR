@@ -21,10 +21,12 @@ public class Dome : MonoBehaviour
     [SerializeField] public float MaxShield;
     [SerializeField] float RespawnTime;
     [SerializeField] float CoolTimer;
-
+    
     [Header("°Ë")]
     [SerializeField] float Atk;
 
+
+    float currentHP;
     #endregion
 
     private void Start()
@@ -37,6 +39,35 @@ public class Dome : MonoBehaviour
 
     private void Update()
     {
+
+
+        if (M_GameManager.instance.healDome)
+        {
+            CurHp += MaxHp * 0.3f;
+            if(CurHp >= MaxHp)
+            {
+                CurHp = MaxHp;
+            }
+            M_GameManager.instance.healDome = !M_GameManager.instance.healDome;
+        }
+        
+        if (M_GameManager.instance.immortableDome)
+        {
+            CurHp = currentHP;
+        }
+        else
+        {
+            currentHP = CurHp;
+        }
+
+        if(M_GameManager.instance.destroyDome)
+        {
+            CurHp = 0;
+            M_GameManager.instance.destroyDome = !M_GameManager.instance.destroyDome;
+        }
+
+
+
         if (SkillTreeManager.Instance.isShield == true)
         {
             if (!isShield)

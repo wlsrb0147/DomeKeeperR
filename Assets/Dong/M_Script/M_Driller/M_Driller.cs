@@ -36,7 +36,7 @@ public class M_Driller : M_Moving
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }
