@@ -42,6 +42,7 @@ public class M_Base : MonoBehaviour
     public GameObject stunBullet;
     Stun stunScript;
     float stunTime;
+    public int xx;
 
     protected virtual void Awake()
     {
@@ -86,16 +87,18 @@ public class M_Base : MonoBehaviour
         {
             facingRight = !facingRight;
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
+
+            Debug.Log("aaa");
         }
         else if (transform.position.x < domeCenter.position.x && !facingRight)
         {
             facingRight = !facingRight;
             gameObject.transform.localScale = new Vector3(1, 1, 1);
+            Debug.Log("bbb");
         }
 
         if (facingRight) faceX = 1;
         else faceX = -1;
-
 
 
         if ( currentHP2 != hp2)

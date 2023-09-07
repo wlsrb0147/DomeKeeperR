@@ -102,7 +102,7 @@ public class M_GameManager : MonoBehaviour
         spawnDuration = initialspawnDuration ;
 
 
-        Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
+     //   Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
 
 
         waveEnabled.enabled = false;
