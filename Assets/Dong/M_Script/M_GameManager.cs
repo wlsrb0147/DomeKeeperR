@@ -391,7 +391,7 @@ public class M_GameManager : MonoBehaviour
 
         for (int i = 0; i < Random.Range(2+(int)(x/2),x+4); i++)
         {
-            y = Random.Range(1+(int)(x/2), x + 4);
+            y = Random.Range(1, x + 3);
 
             switch (y)
             {
