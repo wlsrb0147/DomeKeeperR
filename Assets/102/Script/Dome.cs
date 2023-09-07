@@ -76,7 +76,7 @@ public class Dome : MonoBehaviour
             }
             if (CoolTimer > RespawnTime)
             {
-
+                Debug.Log("aaa");
                 Shield = MaxShield;
                 isShield = true;
                 SI.enabled = true;
