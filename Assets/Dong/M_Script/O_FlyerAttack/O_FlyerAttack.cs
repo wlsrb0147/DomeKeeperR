@@ -8,9 +8,11 @@ public class O_FlyerAttack : M_Moving
     public O_FlyerAttackHit hit { get; private set; }
     Vector2 dir { get; set; }
 
-
+    AudioSource ads;
+    public AudioClip hitSound;
     protected override void Awake()
     {
+        ads = GetComponent<AudioSource>();
         base.Awake();
         attack = new O_FlyerAttackAttack(this, stateMachine, "Attack", this);
         hit = new O_FlyerAttackHit(this, stateMachine, "Hit", this);
@@ -44,5 +46,10 @@ public class O_FlyerAttack : M_Moving
         {
             stateMachine.ChangeState(hit);
         }
+    }
+
+    public void HitSound()
+    {
+        ads.PlayOneShot(hitSound);
     }
 }

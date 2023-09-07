@@ -68,7 +68,7 @@ Transform:
   m_Children:
   - {fileID: 6266518595893918887}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4377554048382165306
 SpriteRenderer:
@@ -273,6 +273,11 @@ MonoBehaviour:
   shootPosition: {fileID: 6266518595893918887}
   bullet: {fileID: 6118037181638295587, guid: d52330587b3f76949988d4d5352149a7, type: 3}
   x: 0
+  soundAppear: {fileID: 8300000, guid: 89f8461556b30b944b1265117fbc3bfa, type: 3}
+  soundDead: {fileID: 8300000, guid: 35810566942d91444b6b1888fbfe97b5, type: 3}
+  soundHit: {fileID: 8300000, guid: 7ad2aa38220cf30449b750a12cbf5069, type: 3}
+  soundShot: {fileID: 8300000, guid: 94f0ff736149a144aa6497930c7582de, type: 3}
+  soundShrink: {fileID: 8300000, guid: b260570f6b466a24f93be4cbfbf9fb18, type: 3}
 --- !u!82 &4417131526690913038
 AudioSource:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &34073632859557343
 SpriteRenderer:
@@ -208,6 +208,7 @@ MonoBehaviour:
   atk: 30
   realdome: {fileID: 0}
   xx: 0
+  ht: {fileID: 8300000, guid: 5576df500463e5e419c50d625baed2f0, type: 3}
 --- !u!82 &8813859307915154873
 AudioSource:
   m_ObjectHideFlags: 0

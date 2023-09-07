@@ -15,6 +15,7 @@ public class M_DiverAttackSuccess : M_State
         base.Enter();
         diver.SetVelocity(diver.zero);
         diver.isAttacking = 0;
+        diver.SoundHit();
     }
 
     public override void Exit()

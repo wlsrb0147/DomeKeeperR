@@ -27,10 +27,14 @@ public class M_Bolter : M_Moving
     public Transform shoot22Position;
     public Transform shoot23Position;
 
+    AudioSource ads;
+    public AudioClip[] death;
+    public AudioClip[] charge;
+
     protected override void Awake()
     {
         base.Awake();
-
+        ads = GetComponent<AudioSource>();
         attack1 = new M_BolterAttack1(this, stateMachine, "Attack1", this);
         attack2 = new M_BolterAttack2(this, stateMachine, "Attack2", this);
         dead = new M_BolterDead(this, stateMachine, "Dead", this);
@@ -99,5 +103,15 @@ public class M_Bolter : M_Moving
         bullet21Prefab.SetActive(true);
         bullet22Prefab.SetActive(true);
         bullet23Prefab.SetActive(true);
+    }
+
+    public void SoundCharge()
+    {
+        ads.PlayOneShot(charge[0]);
+    }
+
+    public void SoundDead()
+    {
+        ads.PlayOneShot(death[Random.Range(0,2)]);
     }
 }

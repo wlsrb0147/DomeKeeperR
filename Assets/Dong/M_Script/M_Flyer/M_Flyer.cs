@@ -28,9 +28,17 @@ public class M_Flyer : M_Moving
 
     public float x;
 
+    AudioSource ads;
+    public AudioClip soundAppear;
+    public AudioClip soundDead;
+    public AudioClip soundHit;
+    public AudioClip soundShot;
+    public AudioClip soundShrink;
+
 
     protected override void Awake()
     {
+        ads = GetComponent<AudioSource>();
         base.Awake();
         appear = new M_FlyerAppear(this, stateMachine, "Appear", this);
         attack = new M_FlyerAttack(this, stateMachine, "Attack", this);
@@ -126,5 +134,10 @@ public class M_Flyer : M_Moving
         return x;
     }
 
+    public void SoundAppear() => ads.PlayOneShot(soundAppear);
+    public void SoundDead() =>ads.PlayOneShot(soundDead); 
+    public void SoundHit() => ads.PlayOneShot(soundHit); 
+    public void SoundShot() => ads.PlayOneShot(soundShot);
+    public void SoundShrink() => ads.PlayOneShot(soundShrink);
 }
 

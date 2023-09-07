@@ -39,7 +39,7 @@ Transform:
   - {fileID: 6052789752430714914}
   - {fileID: 3033087045308590244}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7251529111559603327
 SpriteRenderer:
@@ -213,6 +213,11 @@ MonoBehaviour:
   shoot21Position: {fileID: 1525862972251832511}
   shoot22Position: {fileID: 6052789752430714914}
   shoot23Position: {fileID: 3033087045308590244}
+  death:
+  - {fileID: 8300000, guid: aaa90af25da200f47825a1944892a877, type: 3}
+  - {fileID: 8300000, guid: cc99742b53b209849853fbab732cd24d, type: 3}
+  charge:
+  - {fileID: 8300000, guid: b188d3b3e43afd143adb989655950db9, type: 3}
 --- !u!82 &7541701790066428550
 AudioSource:
   m_ObjectHideFlags: 0

@@ -28,8 +28,15 @@ public class M_Worm : M_Holding
 
     public int attackCount { get; set; }
     public int attackCounter;
+
+    AudioSource ads;
+    public AudioClip soundBurrow;
+    public AudioClip soundDie;
+    public AudioClip soundEmerge;
+    public AudioClip soundSpit;
     protected override void Awake()
     {
+        ads = GetComponent<AudioSource>();
         base.Awake();
 
         attack = new M_WormAttack(this, stateMachine, "Attack", this);
@@ -103,4 +110,10 @@ public class M_Worm : M_Holding
     {
         myCollider.enabled = true;
     }
+
+
+    public void SoundBurrow() => ads.PlayOneShot(soundBurrow);
+    public void SoundDie() => ads.PlayOneShot(soundDie);
+    public void SoundEmerge() => ads.PlayOneShot(soundEmerge);
+    public void SoundSpit() => ads.PlayOneShot(soundSpit);
 }

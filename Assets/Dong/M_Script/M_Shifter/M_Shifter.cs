@@ -19,8 +19,14 @@ public class M_Shifter : M_Holding
     public GameObject bullet;
     public Transform shootPosition;
 
+    AudioSource ads;
+    public AudioClip soundCharge;
+    public AudioClip soundDead;
+    public AudioClip soundShoot;
+    public AudioClip soundShift;
     protected override void Awake()
     {
+        ads = GetComponent<AudioSource>();
         base.Awake();
         appear = new M_ShifterAppear(this, stateMachine, "Appear", this);
         attack = new M_ShifterAttack(this, stateMachine, "Attack", this);
@@ -100,4 +106,9 @@ public class M_Shifter : M_Holding
         GameObject bulletPrefab = Instantiate(bullet,shootPosition.position,Quaternion.identity);
         bulletPrefab.SetActive(true);
     }
+
+    public void SoundCharge() => ads.PlayOneShot(soundCharge);
+    public void SoundShift() => ads.PlayOneShot(soundShift);
+    public void SoundDead() => ads.PlayOneShot(soundDead);
+    public void SoundShoot() => ads.PlayOneShot(soundShoot);
 }

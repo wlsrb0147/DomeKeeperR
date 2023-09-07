@@ -16,10 +16,18 @@ public class M_Diver : M_Moving
 
     float angle;
 
+    AudioSource ads;
+    public AudioClip announcesound;
+    public AudioClip attacksound;
+    public AudioClip deadsound;
+    public AudioClip hitsound;
+    public AudioClip backsound;
+    public int x;
 
     protected override void Awake()
     {
         base.Awake();
+        ads = GetComponent<AudioSource>();
         attack = new M_DiverAttack(this, stateMachine, "Attack", this);
         attackSuccess = new M_DiverAttackSuccess(this, stateMachine, "AttackSuccess", this);
         attackDead = new M_DiverAttackDead(this, stateMachine, "AttackDead", this);
@@ -28,13 +36,14 @@ public class M_Diver : M_Moving
         backDead2 = new M_DiverBackDead2(this, stateMachine, "BackDead2", this);
 
         isAttacking = 1;
+
     }
 
 
     protected override void Start()
     {
         base.Start();
-        stateMachine.Initiate(attackSuccess);
+        stateMachine.Initiate(back);
 
 
         Vector2 pos = Getdir();
@@ -73,9 +82,11 @@ public class M_Diver : M_Moving
         GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
         GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
 
+
         warningPrefab.SetActive(true);
         warningPrefab2.SetActive(true);
         warningPrefab3.SetActive(true);
+        SoundAnnounce();
 
         Destroy(warningPrefab, 2.6f);
         Destroy(warningPrefab2, 2.6f);
@@ -92,6 +103,7 @@ public class M_Diver : M_Moving
         {
             transform.rotation = Quaternion.Euler(0, 0, (225 - angle));
         }
+        x++;
     }
 
     protected override void Update()
@@ -136,62 +148,85 @@ public class M_Diver : M_Moving
 
     private void OnBecameInvisible()
     {
-        if (M_GameManager.instance.domehp > 0)
+        if (!destroyed)
         {
-            if (!destroyed)
+            Vector2 pos = Getdir();
+
+            pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+
+            while (pos.x > 22.5f || pos.y > 18.1f)
             {
 
-                Vector2 pos = Getdir();
-
-                pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
-
-                while (pos.x > 22.5f || pos.y > 18.1f)
+                if (pos.x > 22.5f)
                 {
-
-                    if (pos.x > 22.5f)
-                    {
-                        pos.y = pos.y * 22.5f / pos.x;
-                        pos.x = 22.5f;
-                    }
-
-                    if (pos.y > 18.1f) // pos = getdir+9.6
-                    {
-                        pos.x = (18.1f * pos.x) / pos.y;
-                        pos.y = 18.1f;
-                    }
+                    pos.y = pos.y * 22.5f / pos.x;
+                    pos.x = 22.5f;
                 }
 
-                if (transform.position.x < 0)
+                if (pos.y > 18.1f) // pos = getdir+9.6
                 {
-                    pos.x = -pos.x;
+                    pos.x = (18.1f * pos.x) / pos.y;
+                    pos.y = 18.1f;
                 }
-                pos.y -= 8.6f;
-                pos.x += 0.5f;
-
-                Vector2 dir = Getdir();
-                angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-
-
-
-                GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
-                GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
-                GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
-
-                warningPrefab.SetActive(true);
-                warningPrefab2.SetActive(true);
-                warningPrefab3.SetActive(true);
-
-                Destroy(warningPrefab, 2.6f);
-                Destroy(warningPrefab2, 2.6f);
-                Destroy(warningPrefab3, 2.6f);
-
-                Invoke("Invisible", 2);
             }
+
+            if (transform.position.x < 0)
+            {
+                pos.x = -pos.x;
+            }
+            pos.y -= 8.6f;
+            pos.x += 0.5f;
+
+            Vector2 dir = Getdir();
+            angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+
+
+
+            GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
+            GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
+            GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
+
+            warningPrefab.SetActive(true);
+            warningPrefab2.SetActive(true);
+            warningPrefab3.SetActive(true);
+            SoundAnnounce();
+
+            Destroy(warningPrefab, 2.6f);
+            Destroy(warningPrefab2, 2.6f);
+            Destroy(warningPrefab3, 2.6f);
+
+            Invoke("Invisible", 2);
         }
+
     }
 
     void Invisible()
     {
         stateMachine.ChangeState(attack);
+    }
+
+    public void SoundAnnounce()
+    {
+        ads.PlayOneShot(announcesound);
+    }
+
+    public void SoundDive()
+    {
+        ads.PlayOneShot(attacksound);
+    }
+
+    public void SoundDead()
+    {
+        ads.PlayOneShot(deadsound);
+    }
+
+    public void SoundHit()
+    {
+        ads.PlayOneShot(hitsound);
+    }
+
+    public void SoundBack()
+    {
+        ads.PlayOneShot(backsound);
     }
 }

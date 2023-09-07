@@ -102,7 +102,7 @@ public class M_GameManager : MonoBehaviour
         spawnDuration = initialspawnDuration ;
 
 
-     //   Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
+      //  Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
 
 
         waveEnabled.enabled = false;
@@ -368,31 +368,33 @@ public class M_GameManager : MonoBehaviour
     }
     void Spawn(int x)
     {
-        switch (x)
+        int z = x ;
+        switch (z)
         {
             case 1:
-                x = 2;
+                z = 2;
                 break;
             case 2:
-                x = 3;
+                z = 3;
                 break;
             case 3:
-                x = 5;
+                z = 5;
                 break;
             case 4:
-                x = 6;
+                z = 6;
                 break;
             default:
-                x = 8;
+                z = 8;
                 break;
         }
-
+        
         int y;
 
-        for (int i = 0; i < Random.Range(2+(int)(x/2),x+4); i++)
+        for (int i = 0; i < Random.Range(2+(int)(z/2),z+4); i++)
         {
+            Debug.Log(x);
             y = Random.Range(1, x + 3);
-
+            Debug.Log(y);
             switch (y)
             {
                 case 1:

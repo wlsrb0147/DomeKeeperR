@@ -115,7 +115,7 @@ Transform:
   m_Children:
   - {fileID: 8265922122576106891}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5855438495984989083
 SpriteRenderer:
@@ -316,6 +316,12 @@ MonoBehaviour:
   moveSpeed: {x: 12, y: 0}
   attacked: 0
   warning: {fileID: 4534173509062403214, guid: 077f95db57df9c242b0d12033934a731, type: 3}
+  announcesound: {fileID: 8300000, guid: ab37d2019561dd1459bdf273d31e3101, type: 3}
+  attacksound: {fileID: 8300000, guid: 8853e068f3dfc6f48a2c38084360013a, type: 3}
+  deadsound: {fileID: 8300000, guid: 640324726b76f5e4c844632d0849efae, type: 3}
+  hitsound: {fileID: 8300000, guid: d77c9e090ef785847b6a94ef4717e54e, type: 3}
+  backsound: {fileID: 8300000, guid: a7e7f331246cc314fbb80c2b15e7d159, type: 3}
+  x: 0
 --- !u!61 &4615438521205529366
 BoxCollider2D:
   m_ObjectHideFlags: 0
