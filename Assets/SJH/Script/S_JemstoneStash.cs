@@ -9,6 +9,10 @@ public class S_JemstoneStash : MonoBehaviour
     public float greenjemScore = 0;
     public float bluejemScore = 0;
 
+    float redtemp = 0;
+    float greentemp = 0;
+    float bluetemp = 0;
+
     Animator anim;
     [SerializeField] GameObject player;
 
@@ -35,5 +39,34 @@ public class S_JemstoneStash : MonoBehaviour
             count = 0;
         }
 
+        if(redjemScore > redtemp)
+        {
+            M_GameManager.instance.redtotal += redjemScore-redtemp;
+            redtemp = redjemScore;
+        }
+        else if (redjemScore < redtemp)
+        {
+            redtemp = redjemScore;
+        }
+
+        if (greenjemScore > greentemp)
+        {
+            M_GameManager.instance.greentotal += greenjemScore-greentemp;
+            greentemp = greenjemScore;
+        }
+        else if(greenjemScore < greentemp)
+        {
+            greentemp = greenjemScore;
+        }
+
+        if (bluejemScore > bluetemp)
+        {
+            M_GameManager.instance.bluetotal += bluejemScore-bluetemp;
+            bluetemp = bluejemScore;
+        }
+        else if (bluejemScore < bluetemp)
+        {
+            bluetemp = bluejemScore;
+        }
     }
 }

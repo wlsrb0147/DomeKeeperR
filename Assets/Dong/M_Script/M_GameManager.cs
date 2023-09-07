@@ -59,7 +59,11 @@ public class M_GameManager : MonoBehaviour
     public bool healDome = false;
     public bool immortableDome = false;
     public bool destroyDome = false;
-    
+
+    public float redtotal = 0;
+    public float greentotal = 0;
+    public float bluetotal = 0;
+
     private void Awake()
     {
         if (instance == null)
