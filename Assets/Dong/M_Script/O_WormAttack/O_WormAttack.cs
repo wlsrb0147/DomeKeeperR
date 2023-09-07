@@ -10,9 +10,17 @@ public class O_WormAttack : M_Base
 
     float distance;
 
+    public AudioSource audioSource;
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public AudioClip clip3;
+    public AudioClip clip4;
+
+
     protected override void Awake()
     {
         base.Awake();
+        audioSource = GetComponent<AudioSource>();
         myCollider = rb.GetComponent<Collider2D>();
         attack = new O_WormAttackAttack(this, stateMachine, "Attack", this);
         dead = new O_WormAttackDead(this, stateMachine, "Dead", this);

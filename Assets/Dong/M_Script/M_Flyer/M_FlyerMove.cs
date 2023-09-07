@@ -25,7 +25,8 @@ public class M_FlyerMove : M_State
         enterPosition = flyer.transform.position; 
         currentPosition = flyer.GetComponent<Transform>();
         routeLength = flyer.vectorLength(enterPosition, flyer.path) + flyer.vectorLength(flyer.path, flyer.moveLocation);
-
+        flyer.inactive.enabled = false;
+        flyer.active.enabled = false;
     }
 
     public override void Exit()
