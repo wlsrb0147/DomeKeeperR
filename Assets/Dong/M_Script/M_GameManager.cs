@@ -1,5 +1,6 @@
 
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,13 @@ public class M_GameManager : MonoBehaviour
 
     public int killedMonster = 0;
 
+    public bool killmonster = false;
+    public bool stopWave= false;
+    public bool nextWave = false;
+    public bool healDome = false;
+    public bool immortableDome = false;
+    public bool destroyDome = false;
+    
     private void Awake()
     {
         if (instance == null)
@@ -92,72 +100,122 @@ public class M_GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            killmonster = !killmonster;
+            StartCoroutine(Setfalse());
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            stopWave = !stopWave;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            nextWave = !nextWave;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            healDome = !healDome;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            immortableDome = !immortableDome;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            destroyDome = !destroyDome;
+        }
+
+
+
+        if (nextWave)
+        {
+            nextWave = !nextWave;
+            wave++;
+            waveTimer = waveTime;
+        }
+
+
+
         slider.value = waveTimer / waveTime;
 
 
-        // 웨이브때 실행
-        if (spawnMonster)
+        if (!stopWave)
         {
-            respawnTimer += Time.deltaTime;
 
-            if (respawnTimer > spawnDuration)
+
+
+            // 웨이브때 실행
+            if (spawnMonster)
             {
-                Spawn(wave);
-                int monsterCount = CountWithTag(monsterTag);
-                Debug.Log(" 몬스터 숫자 : " + monsterCount);
+                respawnTimer += Time.deltaTime;
+
+                if (respawnTimer > spawnDuration)
+                {
+                    Spawn(wave);
+                    int monsterCount = CountWithTag(monsterTag);
+                    Debug.Log(" 몬스터 숫자 : " + monsterCount);
+                }
+
             }
 
-        }
 
-
-        if (waveTimer > 0)
-        {
-            waveTimer -= Time.deltaTime;
-        }
-
-
-        // 웨이브 시작
-        if (waveTimer <= 0 && !spawnMonster)
-        {
-            waveTimer = 0;
-            spawnDuration = initialspawnDuration;
-            StartCoroutine(WaveAlam());
-            spawnMonster = !spawnMonster;
-
-        }
-
-        if (spawnMonster)
-        {
-            waveContinued += Time.deltaTime;
-        }
-
-        // 웨이브 끝남
-        if (waveTimer <= 0 && waveContinued > waveTime / 2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
-        {
-
-            waveEnabled.enabled = false;
-            waveDisabled.enabled = true;
-
-            spawnMonster = false;
-            wave++;
-            waveTime = defaultWT + (wave-1) * increasingWT;
-            if (waveTime > maxWaveTime)
+            if (waveTimer > 0)
             {
-                waveTime = maxWaveTime;
+                waveTimer -= Time.deltaTime;
             }
 
-            waveTimer = waveTime;
-            waveContinued = 0;
-            respawnTimer = 0;
+
+            // 웨이브 시작
+            if (waveTimer <= 0 && !spawnMonster)
+            {
+                waveTimer = 0;
+                spawnDuration = initialspawnDuration;
+                StartCoroutine(WaveAlam());
+                spawnMonster = !spawnMonster;
+
+            }
+
+            if (spawnMonster)
+            {
+                waveContinued += Time.deltaTime;
+            }
+
+            // 웨이브 끝남
+            if (waveTimer <= 0 && waveContinued > waveTime / 2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
+            {
+
+                waveEnabled.enabled = false;
+                waveDisabled.enabled = true;
+
+                spawnMonster = false;
+                wave++;
+                waveTime = defaultWT + (wave - 1) * increasingWT;
+                if (waveTime > maxWaveTime)
+                {
+                    waveTime = maxWaveTime;
+                }
+
+                waveTimer = waveTime;
+                waveContinued = 0;
+                respawnTimer = 0;
+            }
+            else if (waveContinued > waveTime * 2 / 3)
+            {
+                spawnDuration = initialspawnDuration * 2;
+            }
+            else if (waveContinued > waveTime * 4 / 3)
+            {
+                spawnDuration = initialspawnDuration * 4;
+            }
         }
-        else if (waveContinued > waveTime* 2/3)
-        {
-            spawnDuration = initialspawnDuration*2;
-        }
-        else if (waveContinued > waveTime * 4/3)
-        {
-            spawnDuration = initialspawnDuration*4;
-        }
+
+    }
+    IEnumerator Setfalse()
+    {
+        yield return new WaitForSeconds(0.1f);
+        killmonster = !killmonster;
     }
 
     IEnumerator WaveAlam()

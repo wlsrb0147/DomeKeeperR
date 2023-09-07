@@ -57,7 +57,7 @@ public class M_Worm : M_Holding
     protected override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.C))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }

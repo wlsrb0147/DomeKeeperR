@@ -47,7 +47,7 @@ public class M_Shifter : M_Holding
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (M_GameManager.instance.killmonster)
         {
             Dead();
         }
