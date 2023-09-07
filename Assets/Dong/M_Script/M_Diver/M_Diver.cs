@@ -102,8 +102,15 @@ public class M_Diver : M_Moving
         {
             Dead();
         }
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            ChangeIdle();
+        }
     }
-
+    protected override void ChangeIdle()
+    {
+        stateMachine.ChangeState(back);
+    }
     protected override void Dead()
     {
         if (isAttacking == 1) stateMachine.ChangeState(attackDead);
@@ -129,52 +136,57 @@ public class M_Diver : M_Moving
 
     private void OnBecameInvisible()
     {
-        if (!destroyed)
+        if (M_GameManager.instance.domehp > 0)
         {
-
-            Vector2 pos = Getdir();
-
-            pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
-
-            while (pos.x > 22.5f || pos.y > 18.1f)
+            if (!destroyed)
             {
 
-                if (pos.x > 22.5f)
+                Vector2 pos = Getdir();
+
+                pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+
+                while (pos.x > 22.5f || pos.y > 18.1f)
                 {
-                    pos.y = pos.y * 22.5f / pos.x;
-                    pos.x = 22.5f;
+
+                    if (pos.x > 22.5f)
+                    {
+                        pos.y = pos.y * 22.5f / pos.x;
+                        pos.x = 22.5f;
+                    }
+
+                    if (pos.y > 18.1f) // pos = getdir+9.6
+                    {
+                        pos.x = (18.1f * pos.x) / pos.y;
+                        pos.y = 18.1f;
+                    }
                 }
 
-                if (pos.y > 18.1f) // pos = getdir+9.6
+                if (transform.position.x < 0)
                 {
-                    pos.x = (18.1f * pos.x) / pos.y;
-                    pos.y = 18.1f;
+                    pos.x = -pos.x;
                 }
+                pos.y -= 8.6f;
+                pos.x += 0.5f;
+
+                Vector2 dir = Getdir();
+                angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+
+
+
+                GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
+                GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
+                GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
+
+                warningPrefab.SetActive(true);
+                warningPrefab2.SetActive(true);
+                warningPrefab3.SetActive(true);
+
+                Destroy(warningPrefab, 2.6f);
+                Destroy(warningPrefab2, 2.6f);
+                Destroy(warningPrefab3, 2.6f);
+
+                Invoke("Invisible", 2);
             }
-
-            if (transform.position.x < 0)
-            {
-                pos.x = -pos.x;
-            }
-            pos.y -= 8.6f;
-            pos.x += 0.5f;
-
-            Vector2 dir = Getdir();
-            angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-
-            GameObject warningPrefab = Instantiate(warning, pos, Quaternion.Euler(0, 0, 180 - angle));
-            GameObject warningPrefab2 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 210 - angle));
-            GameObject warningPrefab3 = Instantiate(warning, pos, Quaternion.Euler(0, 0, 150 - angle));
-
-            warningPrefab.SetActive(true);
-            warningPrefab2.SetActive(true);
-            warningPrefab3.SetActive(true);
-
-            Destroy(warningPrefab, 2.6f);
-            Destroy(warningPrefab2, 2.6f);
-            Destroy(warningPrefab3, 2.6f);
-
-            Invoke("Invisible", 2);
         }
     }
 

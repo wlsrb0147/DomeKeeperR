@@ -40,7 +40,7 @@ public class Dome : MonoBehaviour
 
     private void Update()
     {
-
+        M_GameManager.instance.domehp = CurHp;
 
         if (M_GameManager.instance.healDome)
         {
@@ -86,6 +86,21 @@ public class Dome : MonoBehaviour
             }
 
         }
+
+        if(CurHp <= 0)
+        {
+            Invoke("LoadLoseScene", 3f);
+        }
+        else if (M_GameManager.instance.wave<=10)
+        {
+            M_GameManager.instance.playtime += Time.deltaTime;
+        }
+    }
+
+
+    public void LoadLoseScene()
+    {
+        M_GameManager.instance.EndingScene();
     }
 
     public void SetHeal(float heal)

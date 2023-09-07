@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class Buttoninteractive : MonoBehaviour
 {
+    [Header("스킬 정보")]
+    public string skillName;
+    public Sprite skillSprite;
+
+    [TextArea(1, 3)]
+    public string skillDes;
+    //[SerializeField] protected bool isUpgrade;
+
     [Header("Price")]
     [SerializeField] float redjemPrice;
     [SerializeField] float bluejemPrice;
