@@ -13,6 +13,9 @@ public class M_BolterDead : M_State
     public override void Enter()
     {
         base.Enter();
+
+        if (bolter.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        bolter.deadCheck++;
     }
 
     public override void Exit()

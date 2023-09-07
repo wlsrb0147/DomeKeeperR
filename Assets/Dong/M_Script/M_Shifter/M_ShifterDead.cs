@@ -13,6 +13,8 @@ public class M_ShifterDead : M_State
     public override void Enter()
     {
         base.Enter();
+        if (shifter.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        shifter.deadCheck++;
     }
 
     public override void Exit()

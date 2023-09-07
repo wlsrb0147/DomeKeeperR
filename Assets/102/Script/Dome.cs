@@ -18,6 +18,7 @@ public class Dome : MonoBehaviour
     SpriteRenderer Dd;
     public GameObject ShieldIg;
     [SerializeField] public float Shield;
+    [SerializeField] public float MaxShield;
     [SerializeField] float RespawnTime;
     [SerializeField] float CoolTimer;
 
@@ -45,7 +46,7 @@ public class Dome : MonoBehaviour
             if (CoolTimer > RespawnTime)
             {
 
-                //Shield = 100f;
+                Shield = MaxShield;
                 isShield = true;
                 SI.enabled = true;
                 CoolTimer = 0f;

@@ -45,13 +45,17 @@ public class M_Beast : M_Moving
         JumpX = Random.Range(10f, 12f);
         howl = false;
         onGround = true;
+
+
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
     }
 
     protected override void Start()
     {
         base.Start();
         stateMachine.Initiate(move);
-        currnetHP = HP1;
+        currnetHP = hp1;
     }
 
     protected override void Update()

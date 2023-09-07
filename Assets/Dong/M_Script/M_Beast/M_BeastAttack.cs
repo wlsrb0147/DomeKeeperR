@@ -15,6 +15,7 @@ public class M_BeastAttack : M_State
         base.Enter();
         beast.SetVelocity(beast.zero);
         beast.rb.bodyType = RigidbodyType2D.Kinematic;
+
     }
     public override void Exit()
     {

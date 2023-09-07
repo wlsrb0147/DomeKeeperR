@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class WJ_Player : MonoBehaviour
 {
+    [SerializeField] GameObject petSpawnPos;
+    [SerializeField] GameObject pet;
 
     public GameObject drill;
 
@@ -131,6 +133,11 @@ public class WJ_Player : MonoBehaviour
         }
     }
 
+    public void PetInstantiate()
+    {
+        //Instantiate(pet, petSpawnPos.transform.position, Quaternion.identity);
+        pet.SetActive(true );
+    }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 
     public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -168,9 +175,9 @@ public class WJ_Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
-            S_GameManager.instance.stash.redjemScore = redjemScore;
-            S_GameManager.instance.stash.bluejemScore = bluejemScore;
-            S_GameManager.instance.stash.greenjemScore = greenjemScore;
+            S_GameManager.instance.stash.redjemScore += redjemScore;
+            S_GameManager.instance.stash.bluejemScore += bluejemScore;
+            S_GameManager.instance.stash.greenjemScore += greenjemScore;
 
             redjemScore = 0;
             bluejemScore = 0;

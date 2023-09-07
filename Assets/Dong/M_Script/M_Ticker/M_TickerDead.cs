@@ -13,6 +13,8 @@ public class M_TickerDead : M_State
     public override void Enter()
     {
         base.Enter();
+        if (ticker.deadCheck == 0) M_GameManager.instance.killedMonster++;
+        ticker.deadCheck++;
     }
 
     public override void Exit()
