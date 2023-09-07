@@ -22,6 +22,7 @@ public class S_Mineral : MonoBehaviour
             groundCollider2d.transform.GetComponent<S_MapGenerator>().MakeDot(transform.position);
 
             Destroy(gameObject);
+            SoundManager.instance.PlayMineralCrack();
             Instantiate(mineral, transform.position, Quaternion.identity);
         }
     }

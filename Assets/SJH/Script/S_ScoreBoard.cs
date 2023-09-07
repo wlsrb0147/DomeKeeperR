@@ -36,11 +36,13 @@ public class S_ScoreBoard : MonoBehaviour
         if(S_GameManager.instance.player.isDomeCheck && Input.GetKeyDown(KeyCode.K) && skillboardcount == 0)
         {
             skillboard.SetActive(true);
+            SoundManager.instance.PlaySkillOpen();
             skillboardcount++;
         }
         else if(Input.GetKeyDown(KeyCode.K) && skillboardcount ==1)
         {
             skillboard.SetActive(false);
+            SoundManager.instance.PlaySkillOpen();
             skillboardcount = 0;
         }
     }

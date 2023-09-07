@@ -7,8 +7,22 @@ public class S_Drill : MonoBehaviour
     [SerializeField] LayerMask wahtisMIneral;
     [SerializeField] Transform drillPos;
 
-    bool hardTileCheck;
 
+    bool hardTileCheck;
+    void DigSound()
+    {
+        Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);
+        Collider2D mineralCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisMIneral);
+
+        if (mineralCollider2d != null)
+        {
+            SoundManager.instance.PlayDigSound();
+        }
+        else if (groundCollider2d != null && hardTileCheck == false)
+        {
+            SoundManager.instance.PlayDigSound();
+        }
+    }
     void Dig()
     {
         Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);

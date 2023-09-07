@@ -16,6 +16,7 @@ public class FireTower : SubTower
     [SerializeField] public float FireRestCool;
     [SerializeField] bool isFire;
     [SerializeField] bool playFire;
+    [SerializeField] float Timer;
 
 
     #endregion
@@ -31,6 +32,7 @@ public class FireTower : SubTower
 
         UpdateFirePosition();
         Attack();
+        Timer += Time.deltaTime;
     }
 
     void RestTimeCheck()
@@ -49,9 +51,10 @@ public class FireTower : SubTower
     protected override void Attack()
     {
         if (hit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
-        {
+        {   SoundManager.instance.PlaySubTower();
             if (FireRestTime > FireRestCool)
             {
+           
                 isFire = true;
             }
            
@@ -59,6 +62,10 @@ public class FireTower : SubTower
        
         if (isFire)
         {
+            if (Timer > 8f) { 
+            SoundManager.instance.PlayFireTower();
+                Timer = 0;
+            }
             StartCoroutine("CreateFire");
         }
         else
@@ -74,7 +81,7 @@ public class FireTower : SubTower
     {
 
 
-           
+      
             GameObject Firebat = Instantiate(Fire, FirePos.transform.position, FirePos.transform.rotation);
             Destroy(Firebat, 0.2f);
             yield return new WaitForSeconds(FireDuartion);

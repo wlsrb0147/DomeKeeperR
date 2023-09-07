@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6865852ea79ad48a030ab2fea9b701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Atk: 20
   stunTime: 2
-  Speed: 0
+  Speed: 5
+  Atk: 20
   monsterBase: {fileID: 0}

@@ -30,8 +30,9 @@ public class WJ_Player : MonoBehaviour
 
     [Header("Score Info")]
     public float redjemScore = 0;
-    public float greenjemScore = 0;
     public float bluejemScore = 0;
+    public float greenjemScore = 0;
+
 
     [Header("LightSkill Info")]
     [SerializeField] GameObject light;
@@ -127,7 +128,7 @@ public class WJ_Player : MonoBehaviour
 
         if (teleportCoolDown <= 0 && Input.GetKeyDown(KeyCode.T))
         {
-            //Instantiate(light, transform.position, Quaternion.identity);
+            SoundManager.instance.PlayUseTeleport();
             teleportCoolDown = teleportCoolTime;
             teleportSkillbar.GetComponent<Slider>().value = 0;
             gameObject.transform.position = teleportPos.transform.position;
@@ -136,12 +137,10 @@ public class WJ_Player : MonoBehaviour
 
     public void PetInstantiate()
     {
-        //Instantiate(pet, petSpawnPos.transform.position, Quaternion.identity);
         pet.SetActive(true);
     }
     public void PetInstantiate2()
     {
-        //Instantiate(pet, petSpawnPos.transform.position, Quaternion.identity);
         pet2.SetActive(true);
     }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
@@ -181,6 +180,9 @@ public class WJ_Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
+            if (redjemScore > 0 || bluejemScore > 0 || greenjemScore > 0)
+                SoundManager.instance.PlayJemSave();
+
             S_GameManager.instance.stash.redjemScore += redjemScore;
             S_GameManager.instance.stash.bluejemScore += bluejemScore;
             S_GameManager.instance.stash.greenjemScore += greenjemScore;

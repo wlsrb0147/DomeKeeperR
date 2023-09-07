@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 
 public class NavigationController2D : MonoBehaviour
 {
-    [SerializeField] Transform starPos;
     [Header("Navigator 옵션")]
     [SerializeField] float gridSize = 0.5f; // 그리드 크기 설정, 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
     [SerializeField] float speed = 0.05f; // 움직임 속도 설정, 더 빠른 이동을 위해 값을 증가시킬 수 있음
@@ -24,14 +23,14 @@ public class NavigationController2D : MonoBehaviour
     [SerializeField] bool drawDebugLines;
 
     Rigidbody2D rb;
-    EdgeCollider2D edgeColl;
+    CircleCollider2D circleColl;
     PetEntity pt;
 
     void Start()
     {
         pathfinder = new Pathfinder<Vector2>(GetDistance, GetNeighbourNodes, 1000); // 큰 맵을 위해 Patience나 gridSize를 늘릴 수 있음
         rb = GetComponent<Rigidbody2D>();
-        edgeColl = GetComponent<EdgeCollider2D>();
+        circleColl = GetComponent<CircleCollider2D>();
         pt = GetComponent<PetEntity>();
         Gmc();
     }
@@ -49,7 +48,7 @@ public class NavigationController2D : MonoBehaviour
 
                 if (pathLeftToGo.Count == 0)
                 {
-                    edgeColl.enabled = true;
+                    circleColl.enabled = true;
                 }
             }
         }
@@ -78,7 +77,7 @@ public class NavigationController2D : MonoBehaviour
     // List<Vector2> pathLeftToGo에 경로상 점들을 저장하는 역할을 해주는 MoveCommand
     void GetMoveCommand(Vector2 target) //주어진 목표 위치를 받아와 움직임을 명령을 생성하는 역할
     {
-        Vector2 closestNode = GetClosestNode(starPos.position); //현재 위치에서 가장 가까운 그리드 점을 찾는다. new Vector2(0.25f, -12f)
+        Vector2 closestNode = GetClosestNode(new Vector2(0.35f, -13.35f)); //현재 위치에서 가장 가까운 그리드 점을 찾는다. new Vector2(0.25f, -12f)
         Vector2 targetNode = GetClosestNode(target);    //목표위치에서 가장 가까운 그리드 점을 찾는다. 
 
         bool canMove = true;
@@ -110,8 +109,8 @@ public class NavigationController2D : MonoBehaviour
     void BackMoveCommand(Vector2 target)
     {
         rb.gravityScale = 0;
-        speed = 0.25f;
-        edgeColl.enabled = false;
+        speed = 0.16f;
+        circleColl.enabled = false;
         Vector2 closestNode = GetClosestNode(transform.position);
         if (pathfinder.GenerateAstarPath(closestNode, GetClosestNode(target), out path)) // 현재 위치와 목표 위치 주변의 그리드 점으로 경로를 생성
         {
@@ -128,7 +127,7 @@ public class NavigationController2D : MonoBehaviour
     private Vector2 SearchMine()
     {
         rb.gravityScale = 4;
-        speed = 0.01f;
+        speed = 0.04f;
         Vector2 randomTarget = (new Vector2(Random.Range(-80.0f, 80.0f), (Random.Range(-50.0f, -300.0f))));
 
         if (transform.localScale.x < 0) //현재 왼쪽을 바라보고있다면

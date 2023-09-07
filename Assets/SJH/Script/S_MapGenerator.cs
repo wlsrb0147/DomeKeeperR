@@ -8,7 +8,7 @@ public class S_MapGenerator : MonoBehaviour
     public GameObject redjam;
     public GameObject bluejam;
     public GameObject greenjam;
-    public Transform playerPos;
+    //public Transform playerPos;
 
     bool[] nullTile;
 
@@ -210,6 +210,7 @@ public class S_MapGenerator : MonoBehaviour
     {
         cellPosition = tileMap.WorldToCell(Pos);
         tileMap.SetTile(cellPosition, null);
+        SoundManager.instance.PlayGroundCrack();
         FillWall();
     }
 }

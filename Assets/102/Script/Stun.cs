@@ -20,7 +20,7 @@ public class Stun : MonoBehaviour
         FindAvailableTargets();
         SetNextTarget();
         //monsterBase.ChangeStunTime(100);
-        
+       
     }
 
     public float GetsStunTime()
@@ -33,6 +33,7 @@ public class Stun : MonoBehaviour
         stunTime = M_GameManager.instance.stunTime;
         if (target != null)
         {
+
             // 타겟 방향 계산
             Vector3 dir = (target.transform.position - transform.position).normalized;
             // 이동

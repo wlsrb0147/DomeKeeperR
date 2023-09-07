@@ -156,6 +156,7 @@ public class SubTower : Tower
             {
                 if (attackDelayTime > 1.5f)
                 {
+                  
                     attackDelayTime = 0f;
                     GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
                     Destroy(subAmmo, 5f);
@@ -169,6 +170,7 @@ public class SubTower : Tower
         {
             if (attackDelayTime > 1.5f)
             {
+             
                 attackDelayTime = 0f;
                 GameObject subAmmo = Instantiate(SubAmmo, SubPos.transform.position, SubPos.transform.rotation);
                 Destroy(subAmmo, 5f);
