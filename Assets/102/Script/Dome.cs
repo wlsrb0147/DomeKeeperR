@@ -10,6 +10,7 @@ public class Dome : MonoBehaviour
     [SerializeField] public float Def;
     [SerializeField] float trueatk;
 
+    public GameObject CrackBg;
     public GameObject Damaged;
     public GameObject DestroyDome;
     [Header("돔 쉴드")]
@@ -76,7 +77,7 @@ public class Dome : MonoBehaviour
             }
             if (CoolTimer > RespawnTime)
             {
-                Debug.Log("aaa");
+               
                 Shield = MaxShield;
                 isShield = true;
                 SI.enabled = true;
@@ -132,8 +133,9 @@ public class Dome : MonoBehaviour
                 Dd.enabled = false;
             if (CurHp < 0)
             {
+                CrackBg.SetActive(true);
                 DestroyDome.SetActive(true);
-                //어떻게 처리할건지 모름 ? 
+                Dd.enabled = false;
             }
         }
         else if (isShield)
