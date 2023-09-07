@@ -56,6 +56,10 @@ public class DefalutTower : Tower
         Attack();
         ChargeDelayUpgrade();
         ChargeTimeUpgrade();
+        if (M_GameManager.instance.domehp <= 0)
+        { 
+            gameObject.SetActive(false);
+        }
     }
 
     void ChargeDelayUpgrade()

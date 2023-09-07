@@ -22,6 +22,10 @@ public class SubTower : Tower
 
     protected virtual void Update()
     {
+        if (M_GameManager.instance.domehp <= 0)
+        {
+            gameObject.SetActive(false);
+        }
         Move();
         AutoMove();
         TimeContinue();

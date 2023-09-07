@@ -171,7 +171,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.07835209, y: 0.057729006}
@@ -206,7 +206,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0052284, y: -0.35045242}
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60b458049b5e7d488506eaa5677024f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadCheck: 0
   currentHP1: 0
   idleTime1: 0.15
   idleTimer1: 0
@@ -262,7 +263,8 @@ MonoBehaviour:
   hp1: 25
   hp2: 0
   atk: 1
-  stunBullet: {fileID: 1511442708161056059, guid: 9c9a6e46275235047bd52123d1fb8f47, type: 3}
+  realdome: {fileID: 0}
+  xx: 0
   moveSpeed: {x: 9, y: 0}
   attacked: 0
   active: {fileID: 5220822978120503954}

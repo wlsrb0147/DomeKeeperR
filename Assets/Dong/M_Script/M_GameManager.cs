@@ -147,6 +147,11 @@ public class M_GameManager : MonoBehaviour
         {
             nextWave = !nextWave;
             wave++;
+            initialspawnDuration = initialspawnDuration - wave * 0.5f;
+            if(initialspawnDuration < 2)
+            {
+                initialspawnDuration = 2;
+            }
             waveTimer = waveTime;
         }
 
@@ -384,9 +389,9 @@ public class M_GameManager : MonoBehaviour
 
         int y;
 
-        for (int i = 0; i < Random.Range(2,x+2); i++)
+        for (int i = 0; i < Random.Range(2+(int)(x/2),x+4); i++)
         {
-            y = Random.Range(1, x + 1);
+            y = Random.Range(1+(int)(x/2), x + 4);
 
             switch (y)
             {
