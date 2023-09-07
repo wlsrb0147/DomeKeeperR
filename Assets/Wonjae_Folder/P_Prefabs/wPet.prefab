@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 9103345212335302220}
   - component: {fileID: 1099182522928215136}
   - component: {fileID: 21784359278252298}
-  - component: {fileID: 4408457436200238985}
   - component: {fileID: 7979959642821259973}
   - component: {fileID: 8407604744272717170}
+  - component: {fileID: 6067451194167509282}
   m_Layer: 9
   m_Name: wPet
   m_TagString: Pet
@@ -101,7 +101,7 @@ Transform:
   - {fileID: 4939101024197258598}
   - {fileID: 8983549880669369456}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -120,7 +120,6 @@ MonoBehaviour:
   petCooldownTimer: 60
   footPos: {fileID: 1414214155786455657}
   toothPos: {fileID: 7061716428815760171}
-  copyPet: {fileID: 924973197211554225}
   plight: {fileID: 6481791030991046174, guid: b5df84fe1c4eb9c4c8352a50f37d0be9, type: 3}
   redjemScore: 0
   greenjemScore: 0
@@ -132,7 +131,7 @@ MonoBehaviour:
   backCheck: {fileID: 711510593784854159}
   wallCheck: {fileID: 1844269151752789375}
   sideMineralCheck: {fileID: 4520116920742061950}
-  sideMineralCheckDistance: 10
+  sideMineralCheckDistance: 8
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -218,61 +217,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &4408457436200238985
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924973197211554225}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.26971072, y: 0.041522026}
-  - {x: -0.26445502, y: -0.04829502}
-  - {x: -0.25178647, y: -0.085139275}
-  - {x: -0.24099207, y: -0.10639477}
-  - {x: -0.2127223, y: -0.1493473}
-  - {x: -0.14185582, y: -0.20091057}
-  - {x: -0.069269955, y: -0.21366215}
-  - {x: -0.0044253767, y: -0.22183323}
-  - {x: 0.13470295, y: -0.21024418}
-  - {x: 0.23594245, y: -0.20949364}
-  - {x: 0.29498038, y: -0.167737}
-  - {x: 0.31696698, y: -0.14109516}
-  - {x: 0.33870775, y: -0.08716297}
-  - {x: 0.3408703, y: -0.02931881}
-  - {x: 0.32423016, y: 0.026981354}
-  - {x: 0.2945783, y: 0.05746746}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!50 &7979959642821259973
 Rigidbody2D:
   serializedVersion: 4
@@ -312,7 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdef79944b73a8429c8930a8e5e082c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starPos: {fileID: 0}
   gridSize: 0.5
   speed: 0.5
   obstacles:
@@ -321,6 +264,41 @@ MonoBehaviour:
   searchShortcut: 0
   snapToGrid: 0
   drawDebugLines: 1
+--- !u!58 &6067451194167509282
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924973197211554225}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.050709248}
+  serializedVersion: 2
+  m_Radius: 0.34158373
 --- !u!1 &2182025306968062408
 GameObject:
   m_ObjectHideFlags: 0

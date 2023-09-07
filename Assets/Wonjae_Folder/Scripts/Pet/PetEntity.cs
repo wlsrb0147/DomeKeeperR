@@ -21,7 +21,6 @@ public class PetEntity : MonoBehaviour
     [SerializeField] protected Transform footPos;
     [Tooltip("toothPos : 정방향 채굴")]
     [SerializeField] protected Transform toothPos;
-    [SerializeField] protected GameObject copyPet;
     [SerializeField] GameObject plight;
 
     [Header("보유한 광물의 수")]
@@ -54,7 +53,7 @@ public class PetEntity : MonoBehaviour
 
     [Tooltip("바라보는 방향에 미네랄을 임의의 값만큼 감지합니다.")]
     [SerializeField] protected Transform sideMineralCheck;
-    public float sideMineralCheckDistance = 10.0f;
+    [SerializeField] protected float sideMineralCheckDistance;
 
     [Header("레이어 체크")]
     [SerializeField] protected LayerMask whatIsGround;
@@ -105,7 +104,6 @@ public class PetEntity : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
         mineral = GetComponent<S_Mineral>();
         move_Astar = GetComponent<NavigationController2D>();
-        Invoke("DoublePet", 0.5f);
     }
 
     protected virtual void Update()
@@ -337,7 +335,7 @@ public class PetEntity : MonoBehaviour
     {
         if (scanLv == 1)
         {
-            sideMineralCheckDistance += 2;
+            sideMineralCheckDistance += 2.0f;
             scanLv = 2;
         }
     }
@@ -346,7 +344,7 @@ public class PetEntity : MonoBehaviour
     {
         if (scanLv == 2)
         {
-            sideMineralCheckDistance += 2;
+            sideMineralCheckDistance += 3.0f;
             scanLv = 3;
         }
     }
@@ -364,7 +362,6 @@ public class PetEntity : MonoBehaviour
     {
         if (cooltimeLv == 2)
         {
-            Instantiate(copyPet, new Vector3(-1.4f, -10.0f, 0.0f), Quaternion.identity);
         }
     }
 
