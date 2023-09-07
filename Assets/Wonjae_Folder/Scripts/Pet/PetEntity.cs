@@ -354,7 +354,7 @@ public class PetEntity : MonoBehaviour
     {
         if (cooltimeLv == 2)
         {
-            Instantiate(copyPet, new Vector3(-1.4f, -10.0f, 0.0f), Quaternion.identity);
+            Instantiate(copyPet, new Vector2(-1.4f, -10.0f), Quaternion.identity);
         }
     }
 

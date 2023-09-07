@@ -106,7 +106,6 @@ public class WJ_Player : MonoBehaviour
             drill.SetActive(false);
             anim.SetBool("Dig", false);
         }
-
     }
 
     void LightSkill()

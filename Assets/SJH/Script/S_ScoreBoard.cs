@@ -37,16 +37,11 @@ public class S_ScoreBoard : MonoBehaviour
         {
             skillboard.SetActive(true);
             skillboardcount++;
-            Time.timeScale = 0;
-
-
         }
         else if(Input.GetKeyDown(KeyCode.K) && skillboardcount ==1)
         {
             skillboard.SetActive(false);
             skillboardcount = 0;
-            Time.timeScale = 1;
-
         }
     }
 
