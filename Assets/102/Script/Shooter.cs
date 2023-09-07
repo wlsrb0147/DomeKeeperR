@@ -17,6 +17,7 @@ public class Shooter : MonoBehaviour
         Dtime += Time.deltaTime;
         if(Dtime > 0.3f) 
         { 
+
         Shot();
         }
     }
@@ -30,6 +31,9 @@ public class Shooter : MonoBehaviour
         int _shot = shot;
         while (_shot > 0)
         {
+            if(target != null) { 
+            SoundManager.instance.PlayAutoTower();
+            }
             _shot--;
             GameObject bullet = Instantiate(missile, transform);
             bullet.GetComponent<BezierMissile>().master = gameObject;

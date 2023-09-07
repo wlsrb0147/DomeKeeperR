@@ -8,7 +8,7 @@ public class NonAutoStun : MonoBehaviour
     public float Speed = 5f;
     private void Start()
     {
-   
+      
     }
     private void Update()
     {

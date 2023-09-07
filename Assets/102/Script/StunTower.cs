@@ -36,7 +36,7 @@ public class StunTower : SubTower
         {
             if (StunRestTime > StunRestCool)
             {
-
+                SoundManager.instance.PlayStunTower();
                 StartCoroutine("StunAtk");
             }
         }
@@ -46,8 +46,8 @@ public class StunTower : SubTower
         if (Input.GetKeyDown(KeyCode.Space)) { 
             if (StunRestTime > StunRestCool)
             {
-               
-                    StartCoroutine("StunAtk");
+                SoundManager.instance.PlayStunTower();
+                StartCoroutine("StunAtk");
                     Shot();
             }
             else 
@@ -62,6 +62,8 @@ public class StunTower : SubTower
     {
         if (SkillTreeManager.Instance.isTech3 == false)
         {
+            
+          
             GameObject SA = Instantiate(NoneAutoStun, StunPos.transform.position, StunPos.transform.rotation);
             Destroy(SA, 5f);
             StunRestTime = 0;
@@ -75,8 +77,9 @@ public class StunTower : SubTower
   
     IEnumerator StunAtk()
     {
-        if(SkillTreeManager.Instance.isTech3 == true) { 
-        GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
+        if(SkillTreeManager.Instance.isTech3 == true) {
+            SoundManager.instance.PlayStunTower();
+            GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
         StunRestTime = 0;
         yield return new WaitForSeconds(StunRestCool);

@@ -14,6 +14,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip SwordHit;
     public AudioClip Skillpc;
     public AudioClip Playpc;
+    public AudioClip SubTowerAtk;
+    public AudioClip FireTowerAtk;
+    public AudioClip StunTowerAtk;
+    public AudioClip AutoTowerAtk;
 
 
 
@@ -42,13 +46,12 @@ public class SoundManager : MonoBehaviour
     {
         myAudio.PlayOneShot(LazerMove); //soundExplosion을 재생합니다.
     }
-    public void PlaySwordMove()
+  
+    public void PlaySwordHit(float volume)
     {
-        myAudio.PlayOneShot(SwordMove); //soundExplosion을 재생합니다.
-    }
-    public void PlaySwordHit()
-    {
-        myAudio.PlayOneShot(SwordHit); //soundExplosion을 재생합니다.
+        myAudio.clip = SwordHit; // 소리 클립 설정
+        myAudio.volume = volume; // 원하는 볼륨 설정
+        myAudio.PlayOneShot(SwordHit); // 소리 재생
     }
     public void PlayPc()
     {
@@ -58,7 +61,22 @@ public class SoundManager : MonoBehaviour
     {
         myAudio.PlayOneShot(Skillpc); //soundExplosion을 재생합니다.
     }
-
+    public void PlaySubTower()
+    {
+        myAudio.PlayOneShot(SubTowerAtk); //soundExplosion을 재생합니다.
+    }
+    public void PlayStunTower()
+    {
+        myAudio.PlayOneShot(StunTowerAtk); //soundExplosion을 재생합니다.
+    }
+    public void PlayFireTower()
+    {
+        myAudio.PlayOneShot(FireTowerAtk); //soundExplosion을 재생합니다.
+    }
+    public void PlayAutoTower()
+    {
+        myAudio.PlayOneShot(AutoTowerAtk); //soundExplosion을 재생합니다.
+    }
 
 
 
