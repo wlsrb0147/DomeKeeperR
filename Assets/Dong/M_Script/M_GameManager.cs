@@ -38,7 +38,7 @@ public class M_GameManager : MonoBehaviour
 
     public float waveTime;
     public float waveTimer;
-    
+
     public float respawnTimer = 0;
     public float initialspawnDuration = 6;
     public float spawnDuration;
@@ -54,7 +54,7 @@ public class M_GameManager : MonoBehaviour
     public int killedMonster = 0;
 
     public bool killmonster = false;
-    public bool stopWave= false;
+    public bool stopWave = false;
     public bool nextWave = false;
     public bool healDome = false;
     public bool immortableDome = false;
@@ -66,8 +66,12 @@ public class M_GameManager : MonoBehaviour
 
 
     public Text winlose;
-    public Text jemDescription;
-    public Text scroeDescription;
+    public Text redjemDescription;
+    public Text bluejemDescription;
+    public Text greenjemDescription;
+    public Text playscroeDescription;
+    public Text wavescroeDescription;
+    public Text monsterscroeDescription;
     public GameObject ending;
     public float playtime;
 
@@ -75,7 +79,7 @@ public class M_GameManager : MonoBehaviour
     public float stunTime = 50;
     private void Awake()
     {
-        
+
         if (instance == null)
         {
             instance = this;
@@ -97,12 +101,12 @@ public class M_GameManager : MonoBehaviour
     {
         int monsterCount = CountWithTag(monsterTag); // 몬스터 숫자 총합
 
-        waveTime = defaultWT + (wave-1) * increasingWT;
+        waveTime = defaultWT + (wave - 1) * increasingWT;
         waveTimer = waveTime;
-        spawnDuration = initialspawnDuration ;
+        spawnDuration = initialspawnDuration;
 
 
-     //   Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
+        //   Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
 
 
         waveEnabled.enabled = false;
@@ -113,14 +117,14 @@ public class M_GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             killmonster = !killmonster;
             StartCoroutine(Setfalse());
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             stopWave = !stopWave;
         }
@@ -148,7 +152,7 @@ public class M_GameManager : MonoBehaviour
             nextWave = !nextWave;
             wave++;
             initialspawnDuration = initialspawnDuration - wave * 0.5f;
-            if(initialspawnDuration < 2)
+            if (initialspawnDuration < 2)
             {
                 initialspawnDuration = 2;
             }
@@ -231,7 +235,7 @@ public class M_GameManager : MonoBehaviour
         }
 
 
-        if(wave >= 11)
+        if (wave >= 11)
         {
             EndingScene();
         }
@@ -240,7 +244,7 @@ public class M_GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         killmonster = !killmonster;
-}
+    }
 
     IEnumerator WaveAlam()
     {
@@ -279,7 +283,7 @@ public class M_GameManager : MonoBehaviour
         ending.SetActive(true);
 
         if (wave >= 11) winlose.text = "돔을 지켜냈습니다";
-        else    winlose.text = "돔이 파괴되었습니다";
+        else winlose.text = "돔이 파괴되었습니다";
 
 
         string str;
@@ -293,14 +297,18 @@ public class M_GameManager : MonoBehaviour
         }
 
 
-        jemDescription.text = $"레드 스톤 : {redtotal} \n그린 스톤 : {greentotal} \n블루 스톤 : {bluetotal} ";
-        
-        scroeDescription.text = $"총 플레이 시간 : {(int)playtime/60}분 {(int)playtime%60}초\n최종 웨이브 : {str}\n죽인 몬스터 수 : {killedMonster}";
+        redjemDescription.text =  redtotal.ToString();
+        bluejemDescription.text =  greentotal.ToString();
+        greenjemDescription.text =  bluetotal.ToString();
 
- 
+        playscroeDescription.text = $"{(int)playtime / 60}분 {(int)playtime % 60}초";
+        wavescroeDescription.text = str.ToString();
+        monsterscroeDescription.text = killedMonster.ToString();
+
+        //총 플레이시간, 최종 웨이브, 죽인 몬스터 수
         stopWave = true;
         StartCoroutine(Setfalse());
-        
+
 
     }
     private int CountWithTag(string tag)
@@ -389,7 +397,7 @@ public class M_GameManager : MonoBehaviour
 
         int y;
 
-        for (int i = 0; i < Random.Range(2+(int)(x/2),x+4); i++)
+        for (int i = 0; i < Random.Range(2 + (int)(x / 2), x + 4); i++)
         {
             y = Random.Range(1, x + 3);
 
@@ -425,5 +433,5 @@ public class M_GameManager : MonoBehaviour
         this.respawnTimer = 0;
     }
 
-    
+
 }

@@ -6,8 +6,7 @@ public class S_Drill : MonoBehaviour
     [SerializeField] LayerMask wahtisGround;
     [SerializeField] LayerMask wahtisMIneral;
     [SerializeField] Transform drillPos;
-    [SerializeField] GameObject initCrack;
-    [SerializeField] GameObject bigCrack;
+
 
     bool hardTileCheck;
     void DigSound()
@@ -18,12 +17,10 @@ public class S_Drill : MonoBehaviour
         if (mineralCollider2d != null)
         {
             SoundManager.instance.PlayDigSound();
-            Instantiate(initCrack, groundCollider2d.transform.position, Quaternion.identity);
         }
         else if (groundCollider2d != null && hardTileCheck == false)
         {
             SoundManager.instance.PlayDigSound();
-            Instantiate(bigCrack, groundCollider2d.transform.position, Quaternion.identity);
         }
     }
     void Dig()

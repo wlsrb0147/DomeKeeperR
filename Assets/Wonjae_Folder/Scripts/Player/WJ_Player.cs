@@ -180,6 +180,9 @@ public class WJ_Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stash"))
         {
+            if (redjemScore > 0 || bluejemScore > 0 || greenjemScore > 0)
+                SoundManager.instance.PlayJemSave();
+
             S_GameManager.instance.stash.redjemScore += redjemScore;
             S_GameManager.instance.stash.bluejemScore += bluejemScore;
             S_GameManager.instance.stash.greenjemScore += greenjemScore;

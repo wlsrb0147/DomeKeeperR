@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip domeOut;
     public AudioClip skillUp;
     public AudioClip skillOpen;
+    public AudioClip jemSave;
 
 
 
@@ -134,6 +135,11 @@ public class SoundManager : MonoBehaviour
     public void PlayDigSound()
     {
         myAudio.PlayOneShot(digSound);
+
+    }
+    public void PlayJemSave()
+    {
+        myAudio.PlayOneShot(jemSave);
 
     }
 
