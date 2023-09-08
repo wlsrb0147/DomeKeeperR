@@ -14,6 +14,7 @@ public class O_BolterAttackHit : M_State
     {
         base.Enter();
         attack.SetVelocity(attack.zero);
+        attack.SoundHit();
     }
 
     public override void Exit()

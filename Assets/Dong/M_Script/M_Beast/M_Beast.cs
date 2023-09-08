@@ -100,7 +100,7 @@ public class M_Beast : M_Moving
         base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag("Dome"))
         {
-            stateMachine.ChangeState(attack);
+            stateMachine.ChangeState(attack);   
         }
     }
 
@@ -110,4 +110,27 @@ public class M_Beast : M_Moving
         else stateMachine.ChangeState(wallDead);
     }
 
+    public void HitSound()
+    {
+        ads.PlayOneShot(hit[Random.Range(0,3)]);
+    }
+    public void HoulSound()
+    {
+        ads.PlayOneShot(roar[Random.Range(0, 3)]);
+    }
+
+    public void DeadSound()
+    {
+        ads.PlayOneShot(death);
+    }
+
+    public void JumpSound()
+    {
+        ads.PlayOneShot(jumps[Random.Range(0, 3)]);
+    }
+
+    public void LandSound()
+    {
+        ads.PlayOneShot(land[0]);
+    }
 }

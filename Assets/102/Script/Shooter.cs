@@ -31,15 +31,16 @@ public class Shooter : MonoBehaviour
         int _shot = shot;
         while (_shot > 0)
         {
-            if(target != null) { 
-            SoundManager.instance.PlayAutoTower();
-            }
+            
             _shot--;
             GameObject bullet = Instantiate(missile, transform);
             bullet.GetComponent<BezierMissile>().master = gameObject;
             bullet.GetComponent<BezierMissile>().enemy = target;
             Dtime = 0f;
-            
+            if (target != null)
+            {
+                SoundManager.instance.PlayAutoTower();
+            }
         }
         yield return null;
     }

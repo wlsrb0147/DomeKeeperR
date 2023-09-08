@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3325209977784711590
 SpriteRenderer:
@@ -201,6 +201,19 @@ MonoBehaviour:
   moveSpeed: {x: 2, y: 0}
   attacked: 0
   jumpPower: {x: 3, y: 5}
+  soundDead:
+  - {fileID: 8300000, guid: 5e078dfe7533d7d45a223e68ed9aca7b, type: 3}
+  - {fileID: 8300000, guid: 82baa034473a6a34396ae9922427cfb7, type: 3}
+  - {fileID: 8300000, guid: 71f91f929991ed14e8e481d9623e2780, type: 3}
+  - {fileID: 8300000, guid: 8ca8c387ae41be84a91d4bdfb23a94f6, type: 3}
+  - {fileID: 8300000, guid: 29948f5179788004e847fe1c84e26fbd, type: 3}
+  soundJump:
+  - {fileID: 8300000, guid: dde68be47d681f349a763a2cbd8044a5, type: 3}
+  - {fileID: 8300000, guid: 26a23ae420a56524ebc40c0fda68d6a0, type: 3}
+  - {fileID: 8300000, guid: 2e294fb91ada05240934395034dadd31, type: 3}
+  - {fileID: 8300000, guid: 533da72d0d2567d4997658412b9b22a5, type: 3}
+  - {fileID: 8300000, guid: 343484998239ad144affa9b7d3b2ce27, type: 3}
+  soundExplode: {fileID: 8300000, guid: e54be44c34212904cbeb4acd93c006a7, type: 3}
 --- !u!82 &-6992806594457787933
 AudioSource:
   m_ObjectHideFlags: 0

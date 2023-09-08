@@ -12,9 +12,15 @@ public class M_Driller : M_Moving
 
     public bool settingOn { get; set; }
 
+
+    AudioSource ads;
+    public AudioClip soundSet;
+    public AudioClip[] soundDie;
+    public AudioClip soundattackStart; 
+
     protected override void Awake()
     {
-
+        ads = GetComponent<AudioSource>();
         base.Awake();
         transform.Rotate(0, 180, 0);
         attacking = new M_DrillerAttacking(this, stateMachine, "Attacking", this);
@@ -73,5 +79,16 @@ public class M_Driller : M_Moving
         stateMachine.ChangeState(attacking);
     }
 
-
+    public void SoundSetting()
+    {
+        ads.PlayOneShot(soundSet);
+    }
+    public void SoundDie()
+    {
+        ads.PlayOneShot(soundDie[Random.Range(0,2)]);
+    }
+    public void SoundAtk()
+    {
+        ads.PlayOneShot(soundattackStart);
+    }
 }

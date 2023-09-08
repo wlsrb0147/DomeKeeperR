@@ -20,6 +20,8 @@ public class M_DiverBack : M_State
         diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
         diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         diver.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
+
+        if(diver.x >0) diver.SoundBack();
     }
 
     public override void Exit()

@@ -16,6 +16,7 @@ public class M_DiverAttack : M_State
         base.Enter();
 
         diver.isAttacking = 1;
+        diver.SoundDive();
     }
 
     public override void Exit()

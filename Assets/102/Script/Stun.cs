@@ -20,7 +20,9 @@ public class Stun : MonoBehaviour
         FindAvailableTargets();
         SetNextTarget();
         //monsterBase.ChangeStunTime(100);
-       
+        if(target != null) { 
+        SoundManager.instance.PlaySubTower();
+        }
     }
 
     public float GetsStunTime()

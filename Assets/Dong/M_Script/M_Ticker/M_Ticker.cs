@@ -12,6 +12,10 @@ public class M_Ticker : M_Moving
 
     public Vector2 jumpPower;
 
+    AudioSource ads;
+    public AudioClip[] soundDead;
+    public AudioClip[] soundJump;
+    public AudioClip soundExplode;
 
     protected override void Awake()
     {
@@ -61,4 +65,7 @@ public class M_Ticker : M_Moving
         }
     }
 
+    public void SoundExplode() => ads.PlayOneShot(soundExplode);
+    public void SoundJump() => ads.PlayOneShot(soundJump[Random.Range(0, soundJump.Length)]);
+    public void SoundDeath() => ads.PlayOneShot(soundDead[Random.Range(0, soundDead.Length)]);
 }

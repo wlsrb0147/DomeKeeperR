@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2670390417261131666
 SpriteRenderer:
@@ -200,6 +200,7 @@ MonoBehaviour:
   xx: 0
   moveSpeed: {x: 8, y: 0}
   attacked: 0
+  hitSound: {fileID: 8300000, guid: cca268307397ca54b9ae8f97582f86ca, type: 3}
 --- !u!82 &1509847416933585155
 AudioSource:
   m_ObjectHideFlags: 0

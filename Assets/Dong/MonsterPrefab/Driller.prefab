@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4623339331833410667
 SpriteRenderer:
@@ -210,6 +210,11 @@ MonoBehaviour:
   xx: 0
   moveSpeed: {x: 1, y: 0}
   attacked: 0
+  soundSet: {fileID: 8300000, guid: 322a1007662c1f644bb04b1360ab65f2, type: 3}
+  soundDie:
+  - {fileID: 8300000, guid: 8a17cdfeb73217b4c82c61cc565e1c3c, type: 3}
+  - {fileID: 8300000, guid: e8a9520bf1773c94484cdaea6eda8aea, type: 3}
+  soundattackStart: {fileID: 8300000, guid: 39949a7a1a891ab42b6d93718b47ac58, type: 3}
 --- !u!82 &5146308090345386629
 AudioSource:
   m_ObjectHideFlags: 0

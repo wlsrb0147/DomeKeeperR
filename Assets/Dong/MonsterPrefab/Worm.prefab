@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 8945844685905965064}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2433163392574080641
 SpriteRenderer:
@@ -207,6 +207,10 @@ MonoBehaviour:
   wakeUpTimer_Min: 3
   wakeUpTimer_Max: 5
   attackCounter: 3
+  soundBurrow: {fileID: 8300000, guid: a3861e3f6df4afc44beac28be19d5749, type: 3}
+  soundDie: {fileID: 8300000, guid: 1d9a6c718d5ac104f9da2f80cb14db93, type: 3}
+  soundEmerge: {fileID: 8300000, guid: 3ab1c405e062c794485e7fd194f7c52d, type: 3}
+  soundSpit: {fileID: 8300000, guid: 0d920e191b5125b42bb45a896a82cf15, type: 3}
 --- !u!82 &-4824738787185150832
 AudioSource:
   m_ObjectHideFlags: 0

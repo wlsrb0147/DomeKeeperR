@@ -19,7 +19,10 @@ public class LazerBig : MonoBehaviour
      
         }
     }
-
+    private void Start()
+    {
+        SoundManager.instance.PlayBigLazer();
+    }
     private void Update()
     {
         UpdateAtk();

@@ -51,7 +51,7 @@ public class FireTower : SubTower
     protected override void Attack()
     {
         if (hit = Physics2D.Raycast(transform.position, transform.up, raydistance, whatisEnemy))
-        {   SoundManager.instance.PlaySubTower();
+        {  
             if (FireRestTime > FireRestCool)
             {
            
@@ -64,6 +64,7 @@ public class FireTower : SubTower
         {
             if (Timer > 8f) { 
             SoundManager.instance.PlayFireTower();
+                Debug.Log("fireaudio");
                 Timer = 0;
             }
             StartCoroutine("CreateFire");
@@ -81,7 +82,7 @@ public class FireTower : SubTower
     {
 
 
-      
+            SoundManager.instance.PlayFireTower();
             GameObject Firebat = Instantiate(Fire, FirePos.transform.position, FirePos.transform.rotation);
             Destroy(Firebat, 0.2f);
             yield return new WaitForSeconds(FireDuartion);
