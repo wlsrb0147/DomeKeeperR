@@ -36,7 +36,7 @@ public class StunTower : SubTower
         {
             if (StunRestTime > StunRestCool)
             {
-                SoundManager.instance.PlayStunTower();
+                
                 StartCoroutine("StunAtk");
             }
         }
@@ -78,7 +78,7 @@ public class StunTower : SubTower
     IEnumerator StunAtk()
     {
         if(SkillTreeManager.Instance.isTech3 == true) {
-            SoundManager.instance.PlayStunTower();
+           
             GameObject StunAmmo = Instantiate(Stun, StunPos.transform.position, StunPos.transform.rotation);
         Destroy(StunAmmo, 5f);
         StunRestTime = 0;

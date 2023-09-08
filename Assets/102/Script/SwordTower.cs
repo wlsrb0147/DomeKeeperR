@@ -60,7 +60,7 @@ public class SwordTower : Tower
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            SoundManager.instance.PlaySwordHit(0.05f);
+            SoundManager.instance.PlaySwordHit();
             collision.gameObject.GetComponent<M_Base>().Damage1(atk);
 
         }

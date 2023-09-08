@@ -6,8 +6,12 @@ public class SubAmmo : MonoBehaviour
 {
     
     [SerializeField] public float Atk;
-    [SerializeField] public float Speed; 
-   
+    [SerializeField] public float Speed;
+
+    private void Start()
+    {
+        SoundManager.instance.PlaySubTower();
+    }
     private void Update()
     {
         transform.Translate(0, Speed * Time.deltaTime, 0);

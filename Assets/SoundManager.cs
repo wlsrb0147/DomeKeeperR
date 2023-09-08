@@ -29,6 +29,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip skillUp;
     public AudioClip skillOpen;
     public AudioClip jemSave;
+    public AudioClip BigLazer;
+
 
 
 
@@ -58,11 +60,13 @@ public class SoundManager : MonoBehaviour
         myAudio.PlayOneShot(LazerMove); //soundExplosion을 재생합니다.
     }
   
-    public void PlaySwordHit(float volume)
+    public void PlaySwordHit()
     {
-        myAudio.clip = SwordHit; // 소리 클립 설정
-        myAudio.volume = volume; // 원하는 볼륨 설정
         myAudio.PlayOneShot(SwordHit); // 소리 재생
+    }
+    public void PlayBigLazer()
+    {
+        myAudio.PlayOneShot(BigLazer); // 소리 재생
     }
     public void PlayPc()
     {
