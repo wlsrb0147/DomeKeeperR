@@ -10,10 +10,16 @@ public class S_Drill : MonoBehaviour
 
     bool hardTileCheck;
     Animator anim;
-
+    public float speed = 1;
     private void Start()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        anim.SetFloat("digSpeed", speed) ;
+
     }
     void DigSound()
     {
@@ -54,15 +60,7 @@ public class S_Drill : MonoBehaviour
             hardTileCheck = false;
     }
 
-    public void DigSpeedUp1()
-    {
-       
-        anim.SetFloat("digSpeed", 1.5f) ;
-    }
-    public void DigSpeedUp2()
-    {
-        anim.SetFloat("digSpeed", 2f);
-    }
+
 
 
 }
