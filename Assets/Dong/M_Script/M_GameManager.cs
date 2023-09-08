@@ -446,7 +446,7 @@ public class M_GameManager : MonoBehaviour
 
         int y;
 
-        for (int i = 0; i < Random.Range(1, x + 1); i++)
+        for (int i = 0; i < Random.Range(z,x+1); i++)
         { // 
             y = Random.Range(1, z + 3);
 
