@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -82,6 +83,8 @@ public class M_GameManager : MonoBehaviour
     public float stunTime = 50;
 
     public GameObject stash;
+
+    int count = 0;
     private void Awake()
     {
 
@@ -209,7 +212,7 @@ public class M_GameManager : MonoBehaviour
             // 웨이브 시작
             if (waveTimer <= 0 && !spawnMonster)
             {
-                
+
                 waveTimer = 0;
                 spawnDuration = initialspawnDuration;
                 StartCoroutine(WaveAlam());
@@ -223,7 +226,7 @@ public class M_GameManager : MonoBehaviour
             }
 
             // 웨이브 끝남
-            if (waveTimer <= 0 && waveContinued > defaultWaveLasts +  increaseWaveLasts * wave && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
+            if (waveTimer <= 0 && waveContinued > defaultWaveLasts + increaseWaveLasts * wave && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
             {
 
                 waveEnabled.enabled = false;
@@ -296,11 +299,36 @@ public class M_GameManager : MonoBehaviour
 
     public void EndingScene()
     {
+
         killmonster = true;
         ending.SetActive(true);
+        Debug.Log(count);
 
-        if (wave >= 11) winlose.text = "돔을 지켜냈습니다";
-        else winlose.text = "돔이 파괴되었습니다";
+        if (count == 0)
+        {
+            SoundManager.instance.StopLooping();
+            count++;
+        }
+
+        if (wave >= 11)
+        {
+            if (count == 1)
+            {
+                SoundManager.instance.PlayClear();
+                count++;
+            }
+            winlose.text = "돔을 지켜냈습니다";
+        }
+
+        else
+        {
+            if (count == 1)
+            {
+                SoundManager.instance.PlayDead();
+                count++;
+            }
+            winlose.text = "돔이 파괴되었습니다";
+        }
 
 
         string str;
@@ -314,9 +342,9 @@ public class M_GameManager : MonoBehaviour
         }
 
 
-        redjemDescription.text =  redtotal.ToString();
-        bluejemDescription.text =  greentotal.ToString();
-        greenjemDescription.text =  bluetotal.ToString();
+        redjemDescription.text = redtotal.ToString();
+        bluejemDescription.text = greentotal.ToString();
+        greenjemDescription.text = bluetotal.ToString();
 
         playscroeDescription.text = $"{(int)playtime / 60}분 {(int)playtime % 60}초";
         wavescroeDescription.text = str.ToString();
@@ -418,7 +446,7 @@ public class M_GameManager : MonoBehaviour
 
         int y;
 
-        for (int i = 0; i < Random.Range(1,x+1); i++)
+        for (int i = 0; i < Random.Range(1, x + 1); i++)
         { // 
             y = Random.Range(1, z + 3);
 

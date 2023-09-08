@@ -9,6 +9,12 @@ public class S_Drill : MonoBehaviour
 
 
     bool hardTileCheck;
+    Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();    
+    }
     void DigSound()
     {
         Collider2D groundCollider2d = Physics2D.OverlapCircle(drillPos.position, 0.01f, wahtisGround);
@@ -48,7 +54,15 @@ public class S_Drill : MonoBehaviour
             hardTileCheck = false;
     }
 
-
+    public void DigSpeedUp1()
+    {
+       
+        anim.SetFloat("digSpeed", 1.5f) ;
+    }
+    public void DigSpeedUp2()
+    {
+        anim.SetFloat("digSpeed", 2f);
+    }
 
 
 }

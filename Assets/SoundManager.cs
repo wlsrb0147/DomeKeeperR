@@ -30,6 +30,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip skillOpen;
     public AudioClip jemSave;
     public AudioClip BigLazer;
+    public AudioClip clearSound;
+    public AudioClip deadSound;
 
 
 
@@ -144,6 +146,16 @@ public class SoundManager : MonoBehaviour
     public void PlayJemSave()
     {
         myAudio.PlayOneShot(jemSave);
+
+    }
+    public void PlayClear()
+    {
+        myAudio.PlayOneShot(clearSound);
+
+    }
+    public void PlayDead()
+    {
+        myAudio.PlayOneShot(deadSound);
 
     }
 
