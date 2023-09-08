@@ -43,6 +43,8 @@ public class M_GameManager : MonoBehaviour
     public float initialspawnDuration = 6;
     public float spawnDuration;
     public float waveContinued;
+    public float defaultWaveLasts = 10;
+    public float increaseWaveLasts = 5;
 
     Image waveDisabled;
     Image waveEnabled;
@@ -220,7 +222,7 @@ public class M_GameManager : MonoBehaviour
             }
 
             // 웨이브 끝남
-            if (waveTimer <= 0 && waveContinued > waveTime / 2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
+            if (waveTimer <= 0 && waveContinued > defaultWaveLasts +  increaseWaveLasts * wave && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
             {
 
                 waveEnabled.enabled = false;
@@ -390,6 +392,7 @@ public class M_GameManager : MonoBehaviour
     }
     void Spawn(int x)
     {
+        int z = x;
         switch (x)
         {
             case 1:
@@ -404,6 +407,9 @@ public class M_GameManager : MonoBehaviour
             case 4:
                 x = 6;
                 break;
+            case 10:
+                x = 12;
+                break;
             default:
                 x = 8;
                 break;
@@ -411,9 +417,9 @@ public class M_GameManager : MonoBehaviour
 
         int y;
 
-        for (int i = 0; i < Random.Range(2 + (int)(x / 2), x + 4); i++)
-        {
-            y = Random.Range(1, x + 3);
+        for (int i = 0; i < Random.Range(2,x); i++)
+        { // 
+            y = Random.Range(1, z + 3);
 
             switch (y)
             {
