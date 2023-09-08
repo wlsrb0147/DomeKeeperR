@@ -199,6 +199,7 @@ MonoBehaviour:
   realdome: {fileID: 0}
   xx: 0
   myCollider: {fileID: 0}
+  audioSource: {fileID: 0}
   clip1: {fileID: 8300000, guid: fdf4e96d39827cf4ab24e2832ff63a1c, type: 3}
   clip2: {fileID: 8300000, guid: a079fb7df148a954f803edf89d409d99, type: 3}
   clip3: {fileID: 8300000, guid: 2a3a305a46dc275499c87919474bd242, type: 3}
@@ -215,7 +216,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
