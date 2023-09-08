@@ -122,6 +122,7 @@ public class M_GameManager : MonoBehaviour
 
     private void Update()
     {
+        currentWave.text = wave.ToString();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -166,10 +167,10 @@ public class M_GameManager : MonoBehaviour
         {
             nextWave = !nextWave;
             wave++;
-            initialspawnDuration = initialspawnDuration - wave * 0.5f;
-            if (initialspawnDuration < 2)
+            initialspawnDuration = initialspawnDuration - wave * 1f;
+            if (initialspawnDuration < 4)
             {
-                initialspawnDuration = 2;
+                initialspawnDuration = 4;
             }
             waveTimer = waveTime;
         }
@@ -208,7 +209,7 @@ public class M_GameManager : MonoBehaviour
             // 웨이브 시작
             if (waveTimer <= 0 && !spawnMonster)
             {
-                currentWave.text = wave.ToString();
+                
                 waveTimer = 0;
                 spawnDuration = initialspawnDuration;
                 StartCoroutine(WaveAlam());
@@ -417,7 +418,7 @@ public class M_GameManager : MonoBehaviour
 
         int y;
 
-        for (int i = 0; i < Random.Range(2,x); i++)
+        for (int i = 0; i < Random.Range(1,x+1); i++)
         { // 
             y = Random.Range(1, z + 3);
 
