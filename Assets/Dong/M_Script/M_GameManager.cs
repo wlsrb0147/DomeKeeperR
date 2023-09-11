@@ -83,11 +83,12 @@ public class M_GameManager : MonoBehaviour
     public float stunTime = 50;
 
     public GameObject stash;
+    public AudioSource ads;
 
     int count = 0;
     private void Awake()
     {
-
+       
         if (instance == null)
         {
             instance = this;
@@ -97,6 +98,7 @@ public class M_GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        ads = gameObject.GetComponent<AudioSource>();
         waveDisabled = GetComponent<Image>();
         waveEnabled = GetComponent<Image>();
 
@@ -271,6 +273,7 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled.enabled = true;
         waveDisabled.enabled = false;
+        ads.Play();
         yield return new WaitForSeconds(0.2f);
         waveEnabled.enabled = false;
         waveDisabled.enabled = true;
@@ -278,6 +281,7 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled.enabled = true;
         waveDisabled.enabled = false;
+        ads.Play();
         yield return new WaitForSeconds(0.2f);
         waveEnabled.enabled = false;
         waveDisabled.enabled = true;
@@ -285,6 +289,7 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled.enabled = true;
         waveDisabled.enabled = false;
+        ads.Play();
         yield return new WaitForSeconds(0.2f);
         waveEnabled.enabled = false;
         waveDisabled.enabled = true;
@@ -292,6 +297,7 @@ public class M_GameManager : MonoBehaviour
 
         waveEnabled.enabled = true;
         waveDisabled.enabled = false;
+        ads.Play();
         Spawn((int)wave);
 
     }

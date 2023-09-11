@@ -66,7 +66,7 @@ public class S_MapGenerator : MonoBehaviour
 
                 SetTileColor(j);
 
-                if (rnd >= 0 && rnd < 5 && j > -mapSize.y + 1) //잼스블록 생성
+                if (rnd >= 0 && rnd < 20 && j > -mapSize.y + 1) //잼스블록 생성
                 {
                     CreatJem(j, i);
                     CreatJem(j, -i);

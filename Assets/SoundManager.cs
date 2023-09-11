@@ -55,7 +55,7 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayLazerHit()
     {
-        myAudio.PlayOneShot(LazerHit); //soundExplosion을 재생합니다.
+       // myAudio.PlayOneShot(LazerHit); //soundExplosion을 재생합니다.
     }
     public void PlayLazerMove()
     {
