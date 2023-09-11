@@ -101,7 +101,7 @@ MonoBehaviour:
   wahtisGround:
     serializedVersion: 2
     m_Bits: 64
-  mineral: {fileID: 6761765093515425406, guid: 5827e843343f41c4c8d2ffb85f48393c, type: 3}
+  mineral: {fileID: 6761765093515425406, guid: fd4e0c02f7ecd1043be517bfb4b36f1b, type: 3}
   Hp: 60
 --- !u!61 &8267186495701992230
 BoxCollider2D:

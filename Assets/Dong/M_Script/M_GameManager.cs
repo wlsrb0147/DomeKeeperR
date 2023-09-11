@@ -270,30 +270,17 @@ public class M_GameManager : MonoBehaviour
 
     IEnumerator WaveAlam()
     {
+        for(int i = 0; i < 7; i++)
+        {
+            waveEnabled.enabled = true;
+            waveDisabled.enabled = false;
+            ads.Play();
+            yield return new WaitForSeconds(0.2f);
+            waveEnabled.enabled = false;
+            waveDisabled.enabled = true;
+            yield return new WaitForSeconds(0.8f);
+        }
 
-        waveEnabled.enabled = true;
-        waveDisabled.enabled = false;
-        ads.Play();
-        yield return new WaitForSeconds(0.2f);
-        waveEnabled.enabled = false;
-        waveDisabled.enabled = true;
-        yield return new WaitForSeconds(0.8f);
-
-        waveEnabled.enabled = true;
-        waveDisabled.enabled = false;
-        ads.Play();
-        yield return new WaitForSeconds(0.2f);
-        waveEnabled.enabled = false;
-        waveDisabled.enabled = true;
-        yield return new WaitForSeconds(0.8f);
-
-        waveEnabled.enabled = true;
-        waveDisabled.enabled = false;
-        ads.Play();
-        yield return new WaitForSeconds(0.2f);
-        waveEnabled.enabled = false;
-        waveDisabled.enabled = true;
-        yield return new WaitForSeconds(0.8f);
 
         waveEnabled.enabled = true;
         waveDisabled.enabled = false;

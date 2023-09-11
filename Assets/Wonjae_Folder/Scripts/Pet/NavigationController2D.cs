@@ -126,7 +126,7 @@ public class NavigationController2D : MonoBehaviour
 
     private Vector2 SearchMine()
     {
-        rb.gravityScale = 8;
+        rb.gravityScale = 5;
         speed = 0.02f;
         Vector2 randomTarget = (new Vector2(Random.Range(-80.0f, 80.0f), (Random.Range(-50.0f, -300.0f))));
 
