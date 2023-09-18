@@ -295,7 +295,7 @@ public class PetEntity : MonoBehaviour
     #region Pet Skill
     protected void PetDamageLv2()
     {
-        if (attackLv == 1) 
+        if (attackLv == 1 && S_GameManager.instance.player.petCheck == true) 
         {
             petDamage += 5.0f;
        
@@ -315,7 +315,7 @@ public class PetEntity : MonoBehaviour
 
     protected void PetCarryLv2()
     {
-        if (carryLv == 1)
+        if (carryLv == 1 && S_GameManager.instance.player.petCheck == true)
         {
             maxScore = 20;
             carryLv = 2;
@@ -333,7 +333,7 @@ public class PetEntity : MonoBehaviour
 
     protected void PetScanLv2()
     {
-        if (scanLv == 1)
+        if (scanLv == 1 && S_GameManager.instance.player.petCheck == true)
         {
             sideMineralCheckDistance += 2.0f;
             scanLv = 2;

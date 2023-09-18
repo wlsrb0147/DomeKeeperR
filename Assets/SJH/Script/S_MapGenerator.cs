@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class S_MapGenerator : MonoBehaviour
 {
-
+    [SerializeField] int jemStoneSpawnPercent = 10;
     Vector3Int cellPosition;
     public GameObject redjam;
     public GameObject bluejam;
@@ -66,13 +66,13 @@ public class S_MapGenerator : MonoBehaviour
 
                 SetTileColor(j);
 
-                if (rnd >= 0 && rnd < 5 && j > -mapSize.y + 1) //잼스블록 생성
+                if (rnd >= 0 && rnd < jemStoneSpawnPercent && j > -mapSize.y + 1) //잼스블록 생성
                 {
                     CreatJem(j, i);
                     CreatJem(j, -i);
                 }
 
-                if (rnd >= 19 && rnd < 60)
+                if (rnd >= jemStoneSpawnPercent && rnd < 60)
                 {
                     tileMap.SetTile(new Vector3Int(i, j, 0), GroundTile2);
                     tileMap.SetTile(new Vector3Int(-i, j, 0), GroundTile2);

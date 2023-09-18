@@ -79,11 +79,37 @@ public class PetController : PetEntity
         #endregion
     }
 
-    public void DamageUpgrade() => PetDamageLv2();
-    public void DamageUpgrade2() => PetDamageLv3();
-    public void CarryUpgrade() => PetCarryLv2();
+
+    public void DamageUpgrade()
+    {
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+            PetDamageLv2();
+        
+    }
+    public void DamageUpgrade2() 
+    {
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+            PetDamageLv3(); 
+    }
+    public void CarryUpgrade()
+    {
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+            PetCarryLv2();
+    }
     public void CarryUpgrade2() => PetCarryLv3();
-    public void ScanUpgrade() => PetScanLv2();
+    public void ScanUpgrade()
+    {
+        if(S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+        PetScanLv2();
+    }
     public void ScanUpgrade2() => PetScanLv3();
     public void coolTimeUpgrade() => PetCoolTimeUpgrade();
     public void doublePetUpgrade() => DoublePet();

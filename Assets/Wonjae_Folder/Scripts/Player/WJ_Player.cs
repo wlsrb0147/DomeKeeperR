@@ -11,7 +11,7 @@ public class WJ_Player : MonoBehaviour
 
     public GameObject drill;
     public bool playerCheck = true;
-
+    public bool petCheck = false;
 
     public int facingDir { get; private set; } = 1;
     bool facingRight = true;
@@ -137,11 +137,22 @@ public class WJ_Player : MonoBehaviour
 
     public void PetInstantiate()
     {
-        pet.SetActive(true);
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+        {
+            Debug.Log(Buttoninteractive.Instance.bluejemPrice);
+
+            pet.SetActive(true);
+            petCheck = true;
+        }
     }
     public void PetInstantiate2()
     {
-        pet2.SetActive(true);
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+            pet2.SetActive(true);
     }
     void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
 

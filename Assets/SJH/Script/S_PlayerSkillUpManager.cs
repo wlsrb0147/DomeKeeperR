@@ -30,9 +30,15 @@ public class S_PlayerSkillUpManager : MonoBehaviour
     }
     public void LightRangeUp1()
     {
-        S_GameManager.instance.player.GetComponentInChildren<Light2D>().pointLightInnerRadius += 0.5f;
-        S_GameManager.instance.player.GetComponentInChildren<Light2D>().pointLightOuterRadius += 0.5f;
-        lightRangeTech++;
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+        {
+            S_GameManager.instance.player.GetComponentInChildren<Light2D>().pointLightInnerRadius += 0.5f;
+            S_GameManager.instance.player.GetComponentInChildren<Light2D>().pointLightOuterRadius += 0.5f;
+            lightRangeTech++;
+        }
+            
     }
     public void LightRangeUp2()
     {
@@ -45,10 +51,16 @@ public class S_PlayerSkillUpManager : MonoBehaviour
     }
     public void DrillPowerUP1()
     {
-        S_GameManager.instance.player.GetComponentInChildren<S_Drill>().damage += 10f;
-        drill.GetComponent<S_Drill>().speed = 1.5f;
-        drillPowerUp1Image.SetActive(true);
-        drillPowerTech++;
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+        {
+            S_GameManager.instance.player.GetComponentInChildren<S_Drill>().damage += 10f;
+            drill.GetComponent<S_Drill>().speed = 1.5f;
+            drillPowerUp1Image.SetActive(true);
+            drillPowerTech++;
+        }
+          
     }
     public void DrillPowerUP2()
     {
@@ -62,12 +74,16 @@ public class S_PlayerSkillUpManager : MonoBehaviour
 
     public void UseLightSkill()
     {
-        S_GameManager.instance.player.useLightSkill = true;
-        lightUnlockImage.SetActive(false);
-        lightScorllBar.GetComponent<Slider>().value = 100;
-        lightuseCheck = true;
-        lightTech++;
-
+        if (S_GameManager.instance.stash.redjemScore >= Buttoninteractive.Instance.redjemPrice
+            && S_GameManager.instance.stash.bluejemScore >= Buttoninteractive.Instance.bluejemPrice
+            && S_GameManager.instance.stash.greenjemScore >= Buttoninteractive.Instance.greenjemPrice)
+        {
+            S_GameManager.instance.player.useLightSkill = true;
+            lightUnlockImage.SetActive(false);
+            lightScorllBar.GetComponent<Slider>().value = 100;
+            lightuseCheck = true;
+            lightTech++;
+        }
     }
 
     public void UseTeleportSkill()
