@@ -62,7 +62,7 @@ public class FireTower : SubTower
        
         if (isFire)
         {
-            if (Timer > 8f) { 
+            if (Timer > 0.1f) { 
             SoundManager.instance.PlayFireTower();
                 Debug.Log("fireaudio");
                 Timer = 0;
@@ -80,17 +80,12 @@ public class FireTower : SubTower
 
     IEnumerator CreateFire()
     {
-
-
-            SoundManager.instance.PlayFireTower();
+           // SoundManager.instance.PlayFireTower();
             GameObject Firebat = Instantiate(Fire, FirePos.transform.position, FirePos.transform.rotation);
             Destroy(Firebat, 0.2f);
             yield return new WaitForSeconds(FireDuartion);
             FireRestTime = 0f;
             isFire = false;
-        
-         
-        
 
     }
 }

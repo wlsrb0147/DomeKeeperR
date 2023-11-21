@@ -20,6 +20,7 @@ public class M_Ticker : M_Moving
     protected override void Awake()
     {
         base.Awake();
+        ads = GetComponent<AudioSource>();
         dead = new M_TickerDead(this, stateMachine, "Dead", this);
         explosion = new M_TickerExplosion(this, stateMachine, "Explosion", this);
         jump = new M_TickerJump(this, stateMachine, "Jump", this);

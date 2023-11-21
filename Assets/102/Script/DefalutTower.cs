@@ -2,6 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class DefalutTower : Tower
 {
+    float timer;
 
 
     #region 
@@ -217,7 +218,14 @@ public class DefalutTower : Tower
                     hitObject.GetComponent<M_Base>().Damage1(Atk);
                     hitEnemy = true;
                     penetratedEnemyCount++;
-                    SoundManager.instance.PlayLazerHit();
+
+                    timer += Time.deltaTime;
+                    if(timer > 0.25f)
+                    {
+                        SoundManager.instance.PlayLazerHit();
+                        timer = 0;
+                    }
+                    
                 }
             }
         }
@@ -238,7 +246,12 @@ public class DefalutTower : Tower
                         lr.SetPosition(1, hit.point);
                         lr.enabled = true;
 
-                        SoundManager.instance.PlayLazerHit();
+                        timer += Time.deltaTime;
+                        if(timer > 0.25f)
+                        {
+                            SoundManager.instance.PlayLazerHit();
+                            timer = 0;
+                        }
                         Instantiate(lazerend, hit.point, Quaternion.identity);
                         penetratedEnemyCount++;
 

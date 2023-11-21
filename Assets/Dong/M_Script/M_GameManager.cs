@@ -83,11 +83,12 @@ public class M_GameManager : MonoBehaviour
     public float stunTime = 50;
 
     public GameObject stash;
+    public AudioSource ads;
 
     int count = 0;
     private void Awake()
     {
-
+       
         if (instance == null)
         {
             instance = this;
@@ -97,6 +98,7 @@ public class M_GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        ads = gameObject.GetComponent<AudioSource>();
         waveDisabled = GetComponent<Image>();
         waveEnabled = GetComponent<Image>();
 
@@ -268,30 +270,21 @@ public class M_GameManager : MonoBehaviour
 
     IEnumerator WaveAlam()
     {
+        for(int i = 0; i < 7; i++)
+        {
+            waveEnabled.enabled = true;
+            waveDisabled.enabled = false;
+            ads.Play();
+            yield return new WaitForSeconds(0.2f);
+            waveEnabled.enabled = false;
+            waveDisabled.enabled = true;
+            yield return new WaitForSeconds(0.8f);
+        }
+
 
         waveEnabled.enabled = true;
         waveDisabled.enabled = false;
-        yield return new WaitForSeconds(0.2f);
-        waveEnabled.enabled = false;
-        waveDisabled.enabled = true;
-        yield return new WaitForSeconds(0.8f);
-
-        waveEnabled.enabled = true;
-        waveDisabled.enabled = false;
-        yield return new WaitForSeconds(0.2f);
-        waveEnabled.enabled = false;
-        waveDisabled.enabled = true;
-        yield return new WaitForSeconds(0.8f);
-
-        waveEnabled.enabled = true;
-        waveDisabled.enabled = false;
-        yield return new WaitForSeconds(0.2f);
-        waveEnabled.enabled = false;
-        waveDisabled.enabled = true;
-        yield return new WaitForSeconds(0.8f);
-
-        waveEnabled.enabled = true;
-        waveDisabled.enabled = false;
+        ads.Play();
         Spawn((int)wave);
 
     }

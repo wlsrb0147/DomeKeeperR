@@ -39,7 +39,7 @@ public class S_ScoreBoard : MonoBehaviour
             SoundManager.instance.PlaySkillOpen();
             skillboardcount++;
         }
-        else if(Input.GetKeyDown(KeyCode.K) && skillboardcount ==1)
+        else if(Input.GetKeyDown(KeyCode.K) && skillboardcount ==1 || Input.GetKeyDown(KeyCode.Escape) && skillboardcount == 1)
         {
             skillboard.SetActive(false);
             SoundManager.instance.PlaySkillOpen();
