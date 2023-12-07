@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Buttoninteractive : MonoBehaviour
 {
+    public static Buttoninteractive Instance;
+
     [Header("스킬 정보")]
     public string skillName;
     public Sprite skillSprite;
@@ -15,15 +17,16 @@ public class Buttoninteractive : MonoBehaviour
     //[SerializeField] protected bool isUpgrade;
 
     [Header("Price")]
-    [SerializeField] float redjemPrice;
-    [SerializeField] float bluejemPrice;
-    [SerializeField] float greenjemPrice;
+    [SerializeField] public float redjemPrice;
+    [SerializeField] public float bluejemPrice;
+    [SerializeField] public float greenjemPrice;
 
     [SerializeField] Button parentbutton;
     [SerializeField] Button[] otherTech;
     public bool parentCheck = false;
     public bool otherCheck = true;
 
+    public bool activeButton = false;
     [SerializeField] GameObject[] Attackimage;
     [SerializeField] GameObject[] Defimage;
 
@@ -41,6 +44,9 @@ public class Buttoninteractive : MonoBehaviour
 
     private void Start()
     {
+        if(Instance == null)
+            Instance = this;
+
         GetComponent<Button>().onClick.AddListener(OnClick);
     }
 
@@ -71,9 +77,6 @@ public class Buttoninteractive : MonoBehaviour
         }
         else
             otherCheck = true;
-
-
-
     }
 
     public void OnClick()
@@ -84,6 +87,7 @@ public class Buttoninteractive : MonoBehaviour
             && S_GameManager.instance.stash.bluejemScore >= bluejemPrice
             && S_GameManager.instance.stash.greenjemScore >= greenjemPrice)
             {
+                activeButton = true;
                 GetComponent<Button>().interactable = false;
                 SoundManager.instance.PlaySkillUp();
                 S_GameManager.instance.stash.redjemScore -= redjemPrice;

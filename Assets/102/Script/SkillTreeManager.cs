@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class SkillTreeManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class SkillTreeManager : MonoBehaviour
     [SerializeField] public GameObject defaltTower;
     [SerializeField] public GameObject dome;
     [SerializeField] GameObject UnlockImage;
+
+
     public int isAtkUp;
     public int isDefUp;
     #region
@@ -89,8 +92,7 @@ public class SkillTreeManager : MonoBehaviour
     }
     private void Update()
     {
-        /*       EquipSubTower();
-               CreateAutoTower();*/
+
     }
 
     public void AttackUp()
@@ -99,7 +101,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             defaltTower.GetComponent<DefalutTower>().Atk += 2;
             isAtkUp += 1;
-          
+
         }
     }
     public void DefUp()
@@ -117,25 +119,33 @@ public class SkillTreeManager : MonoBehaviour
     }
     public void Tech1Active()
     {
-        isTech1 = true;
-        defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
+        if (Buttoninteractive.Instance.activeButton == true)
+        {
+            isTech1 = true;
+            defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
+        }
     }
     public void Tech2Active()
     {
-        isTech2 = true;
+        if (Buttoninteractive.Instance.activeButton == true)
+        { 
+            isTech2 = true;
+            EquipSubTower();
+        }
     }
     public void Tech3Active()
     {
-        isTech3 = true;
+        if (Buttoninteractive.Instance.activeButton == true)
+            isTech3 = true;
     }
 
-    public void PenetrateUp1 ()
+    public void PenetrateUp1()
     {
-        if (isTech1 && !isCharge) 
-        { 
-        defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
-        defaltTower.GetComponent<DefalutTower>().Atk += 2;
-        isPenetrateUp1 = true;
+        if (isTech1 && !isCharge)
+        {
+            defaltTower.GetComponent<DefalutTower>().penetratedCount += 1;
+            defaltTower.GetComponent<DefalutTower>().Atk += 2;
+            isPenetrateUp1 = true;
         }
     }
     public void PenetrateUp2()
@@ -164,8 +174,8 @@ public class SkillTreeManager : MonoBehaviour
     }
     public void ChargeDelayDown()
     {
-        if(!isPenetrate && !isChargeTimeLess && isCharge)
-        isChargeDelayLess = true;
+        if (!isPenetrate && !isChargeTimeLess && isCharge)
+            isChargeDelayLess = true;
     }
     public void ChargeTimeUpgrade()
     {
@@ -175,23 +185,22 @@ public class SkillTreeManager : MonoBehaviour
     //еве╘2
     public void EquipSubTower()
     {
-        if(!isFireTower && !isStunTower)
-        SubTower.SetActive(true);
-
+        if (!isFireTower && !isStunTower)
+            SubTower.SetActive(true);
     }
     public void EquipStunTower()
     {
-        if (!isFireTower) { 
-        StunTower.SetActive(true);
-        SubTower.SetActive(false);
+        if (!isFireTower && isTech2)
+        {
+            StunTower.SetActive(true);
+            SubTower.SetActive(false);
             isStunTower = true;
         }
     }
     public void StunTimeUp()
     {
-        if(isStunTower && !isStunSpeedUp && !isStunAmmoSpeedUp) 
+        if (isStunTower && !isStunSpeedUp && !isStunAmmoSpeedUp && isTech2)
         {
-            Debug.Log("1");
             M_GameManager.instance.stunTime += 2f;
             isStunTimeUp = true;
         }
@@ -199,48 +208,45 @@ public class SkillTreeManager : MonoBehaviour
     }
     public void StunCoolDown()
     {
-        if (isStunTower && !isStunTimeUp && !isStunAmmoSpeedUp)
+        if (isStunTower && !isStunTimeUp && !isStunAmmoSpeedUp && isTech2)
         {
-
-            Debug.Log("2");
             StunTower.GetComponent<StunTower>().StunRestCool -= 2f;
-            isStunSpeedUp = true;   
+            isStunSpeedUp = true;
         }
     }
     public void StunSpeedUp()
+    {
+        if (isStunTower && !isStunTimeUp && !isStunSpeedUp && isTech2)
         {
-            if (isStunTower && !isStunTimeUp && !isStunSpeedUp)
-            {
 
-            Debug.Log("3");
             StunAmmo.GetComponent<Stun>().Speed += 10f;
             NonAutoStunAmmo.GetComponent<NonAutoStun>().Speed += 10f;
 
             isStunAmmoSpeedUp = true;
-            }
-
         }
+
+    }
 
 
     public void EquipFireTower()
     {
-        if(!isStunTower) 
-        { 
-        FireTower.SetActive(true);
-        SubTower.SetActive(false);
+        if (!isStunTower && isTech2)
+        {
+            FireTower.SetActive(true);
+            SubTower.SetActive(false);
             isFireTower = true;
         }
     }
     public void FireTowerDurUp()
     {
-        if(isFireTower && !isFireCoolUp) 
-        { 
+        if (isFireTower && !isFireCoolUp && isTech2)
+        {
             FireTower.GetComponent<FireTower>().FireDuartion += 4f;
         }
     }
     public void FireTowerRestDown()
     {
-        if (isFireTower && !isFireDurUp)
+        if (isFireTower && !isFireDurUp && isTech2)
         {
             FireTower.GetComponent<FireTower>().FireRestCool -= 2f;
             isFireCoolUp = true;
@@ -255,26 +261,27 @@ public class SkillTreeManager : MonoBehaviour
     }
     public void CreateAutoTower()
     {
-        if(isTech3)
-        { 
-        AutoTower.SetActive(true);
-        isAutoTower = true;
+        if (isTech3)
+        {
+            AutoTower.SetActive(true);
+            isAutoTower = true;
         }
 
     }
     public void CreateShield()
     {
-        if (isAutoTower) { 
-        isShield = true;
-        DomeShield.SetActive(true);
-        isDomeShield = true;
-        UnlockImage.SetActive(false);
+        if (isAutoTower && isTech3)
+        {
+            isShield = true;
+            DomeShield.SetActive(true);
+            isDomeShield = true;
+            UnlockImage.SetActive(false);
         }
     }
     public void CreateSword()
     {
-        if (isDomeShield )
-        SwordTower.SetActive(true);
+        if (isDomeShield && isTech3)
+            SwordTower.SetActive(true);
     }
 
 }
