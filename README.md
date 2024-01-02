@@ -28,8 +28,9 @@
 
 ## 2. 기술서 & Trello &깃허브
 
-(목차 포함 5p)
+
 설명 pdf파일 : https://drive.google.com/file/d/1XGJgSB1xZBBNSIeqCGo7lhdhmsVVzcH-/view?usp=drive_link
+</br>(목차 포함 5p)
 
 Trello 링크 : https://trello.com/b/QUnailvm/domekeeper
 
