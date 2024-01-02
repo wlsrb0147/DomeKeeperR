@@ -29,7 +29,7 @@
 ## 2. 기술서 & Trello &깃허브
 
 
-설명 pdf파일 : [https://drive.google.com/file/d/1XGJgSB1xZBBNSIeqCGo7lhdhmsVVzcH-/view?usp=drive_link](https://drive.google.com/file/d/16utwbWXVIbve87owh_QV8vCblUOvy8aj/view?usp=sharing)
+설명 pdf파일 : https://drive.google.com/file/d/1tpuKgoknuP6EjBiO2o1P6jCBtAnPZm0Q/view?usp=sharing
 </br>(목차 포함 7p)
 
 Trello 링크 : https://trello.com/b/QUnailvm/domekeeper
