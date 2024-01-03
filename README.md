@@ -15,7 +15,9 @@
    자원을 채굴하여 외계 생명체를 막는 디펜스 로그라이크 게임입니다.</br>
    본 프로젝트에서는 몬스터 웨이브, 채광, 펫, 스킬트리 시스템을 모방하였습니다.</br>
 
- - 몬스터의 행동 알고리즘은 FSM을 사용하여 구현하였고,</br>
+ - 몬스터의 행동은 FSM에 의해 제어되며, </br>
+   각각의 행동에서 필요한 계산이 처리됩니다.
+ </br>
     방어타워는 배타적 스킬트리를 채용하여, 하나의 테크만 선택 가능합니다.
     
     광산은 TileMap의 지반에 Gameobject의 광물을 배치하였으며,</br>
@@ -29,8 +31,8 @@
 ## 2. 기술서 & Trello &깃허브
 
 
-설명 pdf파일 : https://drive.google.com/file/d/1tpuKgoknuP6EjBiO2o1P6jCBtAnPZm0Q/view?usp=sharing
-</br>(목차 포함 7p)
+설명 pdf파일 : https://drive.google.com/file/d/114VbrcBGwP7Jm56TUnkhB48TqvMqy7qA/view?usp=sharing
+</br>(목차 포함 9p)
 
 Trello 링크 : https://trello.com/b/QUnailvm/domekeeper
 
