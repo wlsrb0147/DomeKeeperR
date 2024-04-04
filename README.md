@@ -1,7 +1,7 @@
 ## 목차
 
 ### 1. 프로젝트 설명</br>
-### 2. 기술서 & *Trello &깃허브 링크</br>
+### 2. 기술서 & *Trello & 시연영상</br>
 ### 3. 기능 시연
 
 
@@ -27,14 +27,14 @@
    프로젝트 조원으로서 몬스터 AI 및 돔과의 상호작용입니다.
     
 
-## 2. 기술서 & Trello &깃허브
+## 2. 기술서 & Trello & 시연영상
 
 
 설명 pdf파일 : https://drive.google.com/file/d/114VbrcBGwP7Jm56TUnkhB48TqvMqy7qA/view?usp=sharing
 </br>(목차 포함 9p)
-
-Trello 링크 : https://trello.com/b/QUnailvm/domekeeper
-
+ 
+Trello 링크 : https://trello.com/b/QUnailvm/domekeeper </br></br>
+시연영상 : https://youtu.be/c1NKMUqizPU</br>
 ## 3. 기능 시연
 
 1. 몬스터 8종 AI</br>
