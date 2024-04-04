@@ -35,8 +35,6 @@
 
 Trello 링크 : https://trello.com/b/QUnailvm/domekeeper
 
-깃허브 : https://github.com/wlsrb0147/DomeKeeperR
-
 ## 3. 기능 시연
 
 1. 몬스터 8종 AI</br>
