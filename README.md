@@ -40,8 +40,9 @@ Trello 링크 : https://trello.com/b/QUnailvm/domekeeper </br></br>
 Assets/Dong/M_Script에 저장되어있습니다.
 
 
-### 몬스터 8종 AI</br>
-    ![몬스터](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/17153811-c73c-46b2-abab-d101966ff303)
+### 몬스터 8종 시연</br>
+![cf](https://github.com/user-attachments/assets/bda500a9-b661-4c56-b6db-728f670bcf3c)
+
 
 ### 몬스터 주요 구성</br>
 ![몬스터 drawio](https://github.com/user-attachments/assets/e454e29c-2d51-4fe6-ad7c-fa0a8934cb1f)</br></br>
