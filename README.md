@@ -35,15 +35,36 @@
  
 Trello 링크 : https://trello.com/b/QUnailvm/domekeeper </br></br>
 시연영상 : https://youtu.be/c1NKMUqizPU</br>
-## 3. 기능 시연
+## 3. 기능 시연 및 스크립트와 로직
+모든 몬스터 스크립트는
+Assets/Dong/M_Script에 저장되어있습니다.
+
 
 몬스터 8종 AI</br>
     ![몬스터](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/17153811-c73c-46b2-abab-d101966ff303)
+
+몬스터 주요 구성
+![몬스터4 drawio](https://github.com/user-attachments/assets/00331aef-ad4d-4191-9436-0a9e29b31140)
+
+MonsterBase : Assets/Dong/M_Script/M_Base
+몬스터 프리팹 : Assets/Dong/MonsterPrefab
+몬스터 State : Assets/Dong/M_Script/M_몬스터명
+O_스크립트는 투사체를 나타냅니다.
 
 주요 몬스터 
 
 Flyer</br>
 ![Honeycam 2024-09-04 16-42-37](https://github.com/user-attachments/assets/dea94390-2161-456b-92a2-b462226bce33)
+
+핵심 기술 : 회전행렬
+![image](https://github.com/user-attachments/assets/4d402e6e-c1ba-470c-b558-985185aa2d8a)
+현재좌표와 목표지점을 지름으로 하는 원을 그리고, 원의 중심을 기준으로 90' 회전시킨 좌표를 경유지로 베지에 곡선을 따라 이동합니다.
+경유지에 무작위성을 부여하기 위하여 중심을 좌표로 1/3r, 1/2r, r만큼 떨어진 좌표를 랜덤으로 설정합니다.
+이동속도를 일정하게 유지하기 위하여 시작점 - 경유지 - 목적지까지의 거리를 측정 후, 속도/거리값을 Lerp의 T값으로 할당하였습니다
+
+스크립트 
+좌표 설정 : Assets/Dong/M_Script/M_Flyer/M_FlyerHide.cs
+Lerp 이동 : Assets/Dong/M_Script/M_Flyer/M_FlyerMove.cs
 
 Diver</br>
 ![Honeycam 2024-09-04 16-42-22](https://github.com/user-attachments/assets/a4424abc-8514-47e0-b6ab-5b1aa08272d5)
