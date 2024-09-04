@@ -47,7 +47,7 @@ Assets/Dong/M_Script에 저장되어있습니다.
 ### 몬스터 주요 구성</br>
 ![몬스터 drawio](https://github.com/user-attachments/assets/e454e29c-2d51-4fe6-ad7c-fa0a8934cb1f)</br></br>
 
-
+### 스크립트
 MonsterBase : Assets/Dong/M_Script/M_Base</br>
 몬스터 프리팹 : Assets/Dong/MonsterPrefab</br>
 몬스터 State : Assets/Dong/M_Script/M_몬스터명</br>
@@ -66,7 +66,7 @@ M_Moving과 M_holding는 움직임 여부로 구분하였습니다.</br>
 경유지에 무작위성을 부여하기 위하여 중심을 좌표로 1/3r, 1/2r, r만큼 떨어진 좌표를 랜덤으로 설정합니다.</br>
 이동속도를 일정하게 유지하기 위하여 시작점 - 경유지 - 목적지까지의 거리를 측정 후, 속도/거리값을 Lerp의 T값으로 할당하였습니다</br>
 
-스크립트 </br>
+### 스크립트 </br>
 좌표 설정 : Assets/Dong/M_Script/M_Flyer/M_FlyerHide.cs</br>
 Lerp 이동 : Assets/Dong/M_Script/M_Flyer/M_FlyerMove.cs</br>
 
@@ -81,4 +81,5 @@ Warner는 플레이어 시야의 끝에서 생성되며</br>
 
 따라서 x좌표 max와 y좌표 max값을 구한 후, 삼각형의 닮음비를 통하여 좌표값을 계산하였습니다.</br>
 
-Warner 스폰 스크립트 : Assets/Dong/M_Script/M_Diver/M_Diver.cs , OnBecameInvisible()</br>
+### 스크립트
+Warner 스폰 : Assets/Dong/M_Script/M_Diver/M_Diver.cs , OnBecameInvisible()</br>
