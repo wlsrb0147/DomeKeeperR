@@ -37,27 +37,13 @@ Trello 링크 : https://trello.com/b/QUnailvm/domekeeper </br></br>
 시연영상 : https://youtu.be/c1NKMUqizPU</br>
 ## 3. 기능 시연
 
-1. 몬스터 8종 AI</br>
+몬스터 8종 AI</br>
     ![몬스터](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/17153811-c73c-46b2-abab-d101966ff303)
 
-    
-    
+주요 몬스터 
 
-2. 타워 스킬트리</br>
-    ![Honeycam 2024-01-02 03-31-56](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/c6ab3ba6-8eca-4676-b172-c33728b7103f)
+Flyer</br>
+![Honeycam 2024-09-04 16-42-37](https://github.com/user-attachments/assets/dea94390-2161-456b-92a2-b462226bce33)
 
-   
-    
-
-3. A* 알고리즘 길찾기</br>
-    ![Honeycam 2023-12-26 14-15-01](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/6db84231-e70f-4504-94af-13d05f44b060)
-
-    
-    
-
-4. 타일맵</br>
-    ![Honeycam 2024-01-02 03-30-08](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/b84746db-3182-4afa-b5de-ce129ef6e432)</br>
-![Untitled](https://github.com/wlsrb0147/DomeKeeperR/assets/50743287/53d7ae07-6e06-4431-a00b-2dbe38273e13)
-
-   
-    사진의 점들은 광물을 나타냅니다.
+Diver</br>
+![Honeycam 2024-09-04 16-42-22](https://github.com/user-attachments/assets/a4424abc-8514-47e0-b6ab-5b1aa08272d5)
